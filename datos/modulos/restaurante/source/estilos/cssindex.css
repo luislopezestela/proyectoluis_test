@@ -1,0 +1,7 @@
+.list_view_items{display:block;}
+.items_lists{box-sizing:border-box;padding:0 15px;float:left;position:relative;width:100%;}
+.item_view_index{display:inline-block;min-height:258px;width:100%;position:relative;margin-bottom:20px;overflow:hidden;border-radius:10px;background-size:cover !important;}
+.item_view_name{font-size:30px;position:absolute;bottom:20px;left:20px;text-transform:uppercase;color:var(--color_a);}
+@media (min-width: 768px){
+	.items_lists{flex:0 0 50%;max-width:50%;}
+}

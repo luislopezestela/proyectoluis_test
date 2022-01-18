@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule estilo.css estilo.php [L]
+RewriteRule estilosad.css estilosad.php [L]

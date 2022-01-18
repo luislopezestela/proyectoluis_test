@@ -1,0 +1,1 @@
+<?=$pages=Luis::viewpagelink("acceder"); ?>

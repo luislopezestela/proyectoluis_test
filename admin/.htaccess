@@ -1,0 +1,3 @@
+RewriteEngine On
+Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure;SameSite=none
+RewriteRule ^([a-zA-Z0-9-_=&/]+)$ index.php?paginas=$1
