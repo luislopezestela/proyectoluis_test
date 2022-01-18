@@ -5,4 +5,5 @@ function mi_autocargador($modelname) {
 	}
 }
 spl_autoload_register('mi_autocargador');
+///hola
 ?>
