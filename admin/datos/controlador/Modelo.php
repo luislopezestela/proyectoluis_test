@@ -3,7 +3,7 @@ class Modelo {
 	public static function exists($modelname){
 		$fullpath = self::getFullpath($modelname);
 		$found=false;
-		if(file_exists($fullpath)){
+		if(file_exists('$fullpath')){
 			$found = true;
 		}
 		return $found;
