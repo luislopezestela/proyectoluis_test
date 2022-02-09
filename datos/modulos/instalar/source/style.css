@@ -1,0 +1,44 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+	background:#18191a;
+}
+.parent-container{
+  display:block;
+  width:100%;
+  text-align:center;
+  margin-top:18px;
+  text-transform:uppercase;
+}
+.text-holder{
+  margin:auto;
+  font-family:Arial;
+  font-size:14px;
+  color:rgba(255,255,255,0.2);
+}
+.opaque{
+  animation: opacity 1s linear;
+}
+@keyframes opacity{
+  0%{
+      color:rgba(255,255,255,0.2);
+  }
+  50%{
+      color: rgba(255,255,255,1);             
+  }
+  100%{
+      color:rgba(255,255,255,0.2);
+  }
+}
+
+
+.welcome_title_sty{display:block;color:#e4e6eb;
+  font-family:"Copperplate Gothic Light";}
+
+.contenedor_dta{
+	display:block;
+	text-align:center;
+}
