@@ -41,4 +41,8 @@ body{
 .contenedor_dta{
 	display:block;
 	text-align:center;
+	max-width:700px;
+	margin:10px auto;
 }
+.contenedor_dta input{width:100%;margin:10px auto;background-color:#242526;
+border:solid 2px #3a3b3c;padding:12px;outline:none;color:#e4e6eb;}
