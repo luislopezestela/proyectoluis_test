@@ -25,17 +25,7 @@ try{
 	if(mysqli_connect_errno()){
 	exit();
 	}
-}catch(Exception $e) {
-	$luis = new Luis();
+}catch(Exception $e){
 	$luis->loadModule("instalar");
-	if(mysqli_connect_errno()){
-		exit();
-	}
 }
 
-
-
-
-
-
- 
