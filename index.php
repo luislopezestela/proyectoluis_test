@@ -25,7 +25,7 @@ try{
 	if(mysqli_connect_errno()){
 	exit();
 	}
-}catch(Exception $e){
+}catch(Exception $e) {
 	$luis->loadModule("instalar");
 }
 
