@@ -342,14 +342,44 @@ class Luis {
 		return Modelo::one($query[0],new Luis());
 	}
 	public static function head_init($name){
-		$titulopagina = Luis::dato("luis_titulo")->valor;
-		$nombrepagina = Luis::dato("luis_nombre")->valor;
-		$descripcionpagina = Luis::dato("luis_descripcion")->valor;
-		$keywordspagina = Luis::dato("luis_keywords")->valor;
-		$verifica = Luis::dato("luis_verifica_google")->valor;
+		$titulopagina_luislopez = Luis::dato("luis_titulo")->valor;
+		if(isset($titulopagina_luislopez)==null){
+			$titulopagina="";
+		}else{
+			$titulopagina=$titulopagina_luislopez;
+		}
+		$nombrepagina_luislopez = Luis::dato("luis_nombre")->valor;
+		if(isset($nombrepagina_luislopez)==null){
+			$nombrepagina="";
+		}else{
+			$nombrepagina=$nombrepagina_luislopez;
+		}
+		$descripcionpagina_luislopez = Luis::dato("luis_descripcion")->valor;
+		if(isset($descripcionpagina_luislopez)==null){
+			$descripcionpagina="";
+		}else{
+			$descripcionpagina=$descripcionpagina_luislopez;
+		}
+		$keywordspagina_luislopez = Luis::dato("luis_keywords")->valor;
+		if(isset($keywordspagina_luislopez)==null){
+			$keywordspagina="";
+		}else{
+			$keywordspagina=$keywordspagina_luislopez;
+		}
+		$verifica_luislopez = Luis::dato("luis_verifica_google")->valor;
+		if(isset($verifica_luislopez)==null){
+			$verifica="";
+		}else{
+			$verifica=$verifica_luislopez;
+		}
 		$search_colors_in_page = Luis::mostrar_el_color_principal()->color_page;
 		$colorPrimario_herad = Luis::mostrar_el_color_principal_view($search_colors_in_page);
-		$colorPrimario = $colorPrimario_herad->color_primario."0D";
+		if(isset($colorPrimario_herad->color_primario)==null){
+			$colorprimarioview='#FFF';
+		}else{
+			$colorprimarioview=$colorPrimario_herad->color_primario;
+		}
+		$colorPrimario = $colorprimarioview."0D";
 		if(isset($_GET["paginas"])){
 			$urb=explode("/", $_GET["paginas"]);
 			if(isset($urb[0])){$urb0=$urb[0];}else{$urb0=false;}
@@ -509,7 +539,7 @@ class Luis {
 				Modulo::setModule($_GET['modulo']);
 				if(Modulo::esValido()){
 					include "datos/modulos/".$_GET['modulo']."/ini.php";
-				}else {
+				}else{
 					Modulo::Error();
 				}
 			}
@@ -532,6 +562,17 @@ class Luis {
 		$bodyconten.=$page;
 		$bodyconten.='</div>';
 		print $bodyconten;
+	}
+
+
+
+
+	/// iniciar
+
+	public static function idiomas(){
+		$sql = "select * from lang where activado=1";
+		$query = Ejecutor::doit($sql);
+		return Modelo::many($query[0],new Luis());
 	}
 
 }
