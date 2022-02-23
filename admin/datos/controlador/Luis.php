@@ -502,4 +502,4 @@ class Luis {
 		print $bodyconten;
 	}
 
-}
+} 
