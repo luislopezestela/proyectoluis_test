@@ -21,7 +21,12 @@ include "datos/controlador/Visitas.php";
 include "datos/controlador/Vista.php";
 try{
 	$luis = new Luis();
-	$luis->loadModule(Luis::temass());
+	if(Luis::temass()==""){
+		welcome::load();
+	}else{
+		$luis->loadModule(Luis::temass());
+	}
+	
 	if(mysqli_connect_errno()){
 	exit();
 	}
