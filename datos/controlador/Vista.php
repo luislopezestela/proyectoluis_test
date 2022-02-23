@@ -88,3 +88,9 @@ class Perfil {
 	  include "datos/modulos/index/paginas/menuperfil/luis_lopez.php";
 	}
 }
+
+class welcome {
+	public static function load(){
+	  include "datos/modulos/welcome.php";
+	}
+}
