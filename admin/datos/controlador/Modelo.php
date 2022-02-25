@@ -9,7 +9,12 @@ class Modelo {
 		return $found;
 	}
 	public static function getFullpath($modelname){
-		include "datos/modulos/".Luis::temass()."/modelo/".$modelname.".php";
+		if(Luis::temass()==""){
+			include "datos/modulos/bienvenido/modelo/".$modelname.".php";
+		}else{
+			include "datos/modulos/".Luis::temass()."/modelo/".$modelname.".php";
+		}
+		
 	}
 	public static function many($query,$aclass){
 		$cnt = 0;
