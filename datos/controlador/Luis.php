@@ -569,6 +569,67 @@ class Luis {
 
 	/// iniciar
 
+	public static function persona_cliente($id){
+		$sql = "select * from personas where id=$id";
+		$query = Ejecutor::doit($sql);
+		$found = null;
+		$data = new DatosUsuario();
+		while($r = $query[0]->fetch_array()){
+			$data->id = $r['id'];
+			$data->idioma = $r['idioma'];
+			$found = $data;
+			break;
+		}
+		return $found;
+	}
+
+	//Creamos una función que detecte el idioma del navegador del cliente.
+	public static function lenguagedeUsuario(){ 
+		$idioma =substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
+		return $idioma;
+	}
+	
+
+	public static function lang_data($name){
+		$sql = "select * from lang where lang_key=\"$name\" ";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new Luis());
+	}
+
+	public static function lang($lap){
+		if (isset($_SESSION["usuarioid"])) {
+			$clientes_lang=Luis::persona_cliente($_SESSION["usuarioid"]);
+			$pagelangs = Luis::lang_data($lap);
+			if($pagelangs){
+		    	if($clientes_lang->idioma){
+		    		$idiomapages = $clientes_lang->idioma;
+		    	}else{
+		    		$idiomapages = "spanish";
+		    	}
+		    	return Luis::lang_data($lap)->$idiomapages;
+			}else{
+				return html_entity_decode($lap);
+			}
+		}else{
+			$pagelangs = Luis::lang_data($lap);
+			if($pagelangs){
+		    	if(Luis::lenguagedeUsuario()=="es"){
+		    		$idiomapages = "spanish";
+		    	}elseif(Luis::lenguagedeUsuario()=="en"){
+		    		$idiomapages = "ingles";
+		    	}else{
+		    		$idiomapages = "spanish";
+		    	}
+		    	return Luis::lang_data($lap)->$idiomapages;
+			}else{
+				return html_entity_decode($lap);
+			}
+		}
+		
+		
+    	
+    }
+
 	public static function idiomas(){
 		$sql = "select * from lang where activado=1";
 		$query = Ejecutor::doit($sql);
