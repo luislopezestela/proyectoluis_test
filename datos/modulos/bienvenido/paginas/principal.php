@@ -22,7 +22,7 @@ $base_pg="https://".$_SERVER["HTTP_HOST"]."/";
 	 
 </head>
 <body id="body_luis_lopez">
-	<?=Vista::load("bienvenido"); ?>
+	<?=Vista::welcome_d("bienvenido"); ?>
 </body>
 </html>
 <?php
