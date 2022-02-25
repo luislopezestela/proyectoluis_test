@@ -9,6 +9,12 @@ class Luis {
 		$this->data = false;
 		$this->pagebase = false;
 	}
+	
+
+	public function guardar_url_base_page(){
+		$sql = "update configuracion SET valor=\"$this->urldata\" where nombre=\"$this->noms\"";
+		Ejecutor::doit($sql);
+	}
 
 	public static function promedioColorImagen($rutaImagen){
 		$finfo=finfo_open(FILEINFO_MIME_TYPE);
@@ -49,6 +55,8 @@ class Luis {
 			return $r['nombre'];
 		}
 	}
+
+	
 
 	public static function codigo(){
 		$alphabeth ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWYZ1234567890_-";
@@ -625,9 +633,6 @@ class Luis {
 				return html_entity_decode($lap);
 			}
 		}
-		
-		
-    	
     }
 
 	public static function idiomas(){
