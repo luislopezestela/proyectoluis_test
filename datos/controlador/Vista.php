@@ -23,9 +23,7 @@ class Vista {
 				$vistas = explode("/", $_GET['paginas']);
 				include "datos/modulos/".Modulo::$modulo."/paginas/".$vistas[0]."/luis_lopez.php";				
 			}else{
-				include "datos/modulos/".Modulo::$modulo."/paginas/index/luis_lopez.php";
-				//$basepagina = Luis::basepage("base_page");
-				//print "<script>window.location='".$basepagina."404';</script>";
+				include "datos/modulos/".Modulo::$modulo."/paginas/404/luis_lopez.php";
 			}
 		}
 	}
