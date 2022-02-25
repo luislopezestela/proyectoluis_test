@@ -269,21 +269,48 @@ class Luis {
 		return Modelo::one($query[0],new Luis());
 	}
 
+
+    public static function lenguagedeUsuario(){ 
+		$idioma =substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
+		return $idioma;
+	}
+	
+
+	public static function lang_data($name){
+		$sql = "select * from lang where lang_key=\"$name\" ";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new Luis());
+	}
+
 	public static function lang($lap){
-		$users=DatosUsuario::porId($_SESSION["admin_id"]);
-		$pagelangs = Luis::langpages($lap);
-		if($pagelangs){
-	    	if($users->idioma){
-	    		$idiomapages = $users->idioma;
-	    	}else{
-	    		$idiomapages = "spanish";
-	    	}
-	    	return Luis::langpages($lap)->$idiomapages;
+		if (isset($_SESSION["admin_id"])) {
+			$clientes_lang=DatosUsuario::porId($_SESSION["admin_id"]);
+			$pagelangs = Luis::lang_data($lap);
+			if($pagelangs){
+		    	if($clientes_lang->idioma){
+		    		$idiomapages = $clientes_lang->idioma;
+		    	}else{
+		    		$idiomapages = "spanish";
+		    	}
+		    	return Luis::lang_data($lap)->$idiomapages;
+			}else{
+				return html_entity_decode($lap);
+			}
 		}else{
-			return html_entity_decode($lap);
+			$pagelangs = Luis::lang_data($lap);
+			if($pagelangs){
+		    	if(Luis::lenguagedeUsuario()=="es"){
+		    		$idiomapages = "spanish";
+		    	}elseif(Luis::lenguagedeUsuario()=="en"){
+		    		$idiomapages = "ingles";
+		    	}else{
+		    		$idiomapages = "spanish";
+		    	}
+		    	return Luis::lang_data($lap)->$idiomapages;
+			}else{
+				return html_entity_decode($lap);
+			}
 		}
-		
-    	
     }
 
 	public static function page_conf($id){
