@@ -1,0 +1,136 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+:root{
+  --primary:#e4e6eb;
+  --primary-dark:#e4e6eb;
+  --colorneg: #444;
+  --colorsNum-2: #242526;
+  --greyDark: #9baacf;
+}
+body{
+  position:relative;
+  background:#242526;
+  display:flex;
+  min-height:100vh;
+  flex-wrap:wrap;
+  width:100%;
+  font-family:arial;
+}
+
+.btn{
+  border-radius:1rem;
+  box-shadow:0.3rem 0.3rem 0.6rem var(--colorsNum-2), -0.2rem -0.2rem 0.5rem var(--colorneg);
+  display:block;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border:1px solid #999;
+  padding:10px;
+}
+.btn__secondary {
+  color: var(--greyDark);
+}
+.btn__secondary:hover {
+  color: var(--primary);
+}
+.btn__secondary:active {
+  box-shadow: inset 0.2rem 0.2rem 0.5rem var(--colorsNum-2), inset -0.2rem -0.2rem 0.5rem var(--colorneg);
+}
+.btn p {
+  font-size: 1.6rem;
+}
+.alert_message_display{
+  padding:5px;
+  color:#b0b3b8;
+}
+.alert_message_display_rep{
+  padding:10px;
+  color:#F44336;
+}
+
+.parent-container{
+  display:block;
+  width:100%;
+  text-align:center;
+  margin-top:18px;
+  text-transform:uppercase;
+}
+.text-holder{
+  margin:auto;
+  font-family:Arial;
+  font-size:14px;
+  color:rgba(255,255,255,0.2);
+}
+.contenedor_dta{
+	display:block;
+	text-align:center;
+  box-sizing:border-box;
+	max-width:calc(700px - 20px);
+	margin:10px auto;
+}
+.image_log_error_server{
+  display:block;
+  width:calc(100% - 20px);
+  background:#999;
+  max-width:100%;
+  padding:0px;
+  border-radius:10px;
+  box-sizing:content-box;
+  border:5px solid #b0b3b8;
+}
+.image_log_error_server svg{
+  border:5px solid #3a3b3c;
+  border-radius:10px;
+  box-sizing:border-box;
+  padding:10px;
+  margin:0;
+  width:100%;
+  height:100%;
+}
+.text_conten_labels_message{
+  padding:10px;
+  color:#FAFAFA;
+  -webkit-text-stroke: 1px #ddd;
+  user-select:none;
+  cursor:default;
+}
+
+.contenido_dark{
+  user-select:none;
+  width:calc(100% - 20px);
+  max-width:700px;
+  margin:auto;
+  align-self:center;
+  align-items:center;
+  justify-content:center;
+  display:block;
+  background:transparent;
+}
+
+.text{
+  text-align:center;
+  display:block;
+  font-weight:100;
+  font-size:20px;
+  padding:10px;
+  color:#FAFAFA;
+  -webkit-text-stroke: 1px #ddd;
+  user-select:none;
+  cursor:default;
+}
+
+.dud{
+  color:#757575;
+}
+
+.select_language{
+  text-align:center;
+  border:2px solid #18191a;
+  display:block;
+  background:transparent;
+  width:100%;
+  border-radius:10px;
+  padding:15px;
+}
