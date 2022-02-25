@@ -22,7 +22,7 @@ include "datos/controlador/Vista.php";
 try{
 	$luis = new Luis();
 	if(Luis::temass()==""){
-		welcome::load();
+		$luis->loadModule("bienvenido");
 	}else{
 		$luis->loadModule(Luis::temass());
 	}
