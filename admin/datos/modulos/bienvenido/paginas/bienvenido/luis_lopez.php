@@ -219,8 +219,6 @@ ul {
   <label class="label_nom_hud">Eslogan.</label>
   <input class="input_data_new_user" type="text" name="">
   <br><br>
-  <label class="label_nom_hud">IGV.</label>
-  <input class="input_data_new_user" type="text" name="">
   <br><br>
 </div>
 
