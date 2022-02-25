@@ -19,8 +19,20 @@ include "datos/controlador/Solicitud.php";
 include "datos/controlador/Visitas.php";
 include "datos/controlador/Vista.php";
 include "datos/controlador/Functions.php";
-$luis = new Luis();
-$luis->loadModule(Luis::temass());
-if(mysqli_connect_errno()){
-exit();
+
+
+try{
+	$luis = new Luis();
+	if(Luis::temass()==""){
+		$luis->loadModule("bienvenido");
+	}else{
+		$luis->loadModule(Luis::temass());
+	}
+	
+	if(mysqli_connect_errno()){
+	exit();
+	}
+}catch(Exception $e) {
+	$luis->loadModule("instalar");
 }
+
