@@ -26,7 +26,7 @@ $base_pg="https://".$_SERVER["HTTP_HOST"]."/";
 </head>
 <body>
 	<div id="ur_timeline" data="<?=$base_pg;?>"></div>
-	<?=Vista::load("index"); ?>
+	<?=Vista::welcome_d("index"); ?>
 	<script src="<?=$base_pg."datos/modulos/bienvenido/source/script.js";?>"></script>
 </body>
 </html>
