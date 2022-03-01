@@ -18,12 +18,17 @@ $base_pg="https://".$_SERVER["HTTP_HOST"]."/";
 	
 	<link rel="shortcut icon" href="<?=$base_pg."datos/source/icons/shield.png";?>">
 	<link rel="stylesheet" type="text/css" href="<?=$base_pg."admin/datos/source/estilos/estilo.css";?>">
+	<link rel="stylesheet" type="text/css" href="<?=$base_pg."admin/datos/source/estilos/csnots.css";?>">
 	<link rel="stylesheet" type="text/css" href="<?=$base_pg."admin/datos/modulos/bienvenido/source/style.css";?>">
+	<link rel="stylesheet" type="text/css" href="<?=$base_pg."admin/datos/modulos/bienvenido/source/welcome.css";?>">
 	<script src="<?=$base_pg."admin/datos/source/scripts/jquery.min.js";?>"></script>
-	 
+	<script src="<?=$base_pg."admin/datos/source/scripts/pages.js";?>"></script>
 </head>
 <body id="body_luis_lopez">
+	<div class="mensaje100"></div>
+	<div id="ur_timeline" data="<?=$pagebase."admin/";?>"></div>
 	<?=Vista::load("bienvenido"); ?>
+	<script src="<?=$base_pg."admin/datos/modulos/bienvenido/source/welcome.js";?>"></script>
 </body>
 </html>
 <?php
