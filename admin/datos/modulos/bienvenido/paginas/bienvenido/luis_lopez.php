@@ -12,7 +12,7 @@
       <?php $temas_list=Luis::listartemas(); ?>
       <?php foreach ($temas_list as $s): ?>
         <li class="view_item_temas">
-        <input type="radio" id="<?=$s->id."tmalabel".$s->nombre;?>" name="tema_skin_data"> 
+        <input type="radio" id="<?=$s->id."tmalabel".$s->nombre;?>" value="<?=$s->id;?>" name="tema_skin_data"> 
           <div class="view_item_temas_image_conten">
             <div class="it_title_tem">
               <label for="<?=$s->id."tmalabel".$s->nombre;?>"><?=Luis::lang($s->nombre_label);?></label>
