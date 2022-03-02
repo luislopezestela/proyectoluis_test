@@ -27,7 +27,6 @@ $base_pg="https://".$_SERVER["HTTP_HOST"]."/";
 			<?=Vista::load("index"); ?>
 		</div>
 	</div>
-	<?=Luis::scripts_footer();?>
 	<script src="<?=$base_pg."datos/modulos/instalar/source/script.js";?>"></script>
 </body>
 </html>
