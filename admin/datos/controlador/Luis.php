@@ -529,4 +529,11 @@ class Luis {
 		print $bodyconten;
 	}
 
+
+	///// iniciar la pagina con detalles y skin
+	public function guardar_datos_pagina(){
+		$sql = "update configuracion set luis_nombre=\"$this->p_nombre\",luis_titulo=\"$this->p_titulo\",luis_descripcion=\"$this->p_descripcion\",eslogan=\"$this->p_eslogan\" where nombre=$this->id";
+		Ejecutor::doit($sql);
+	}
+
 }
