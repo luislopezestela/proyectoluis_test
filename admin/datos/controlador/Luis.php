@@ -531,9 +531,23 @@ class Luis {
 
 
 	///// iniciar la pagina con detalles y skin
-	public function guardar_datos_pagina(){
-		$sql = "update configuracion set luis_nombre=\"$this->p_nombre\",luis_titulo=\"$this->p_titulo\",luis_descripcion=\"$this->p_descripcion\",eslogan=\"$this->p_eslogan\" where nombre=$this->id";
+	public function guardar_datos_pagina($nombre,$value){
+		$sql = "update configuracion set valor=\"$value\" where nombre=\"$nombre\"";
 		Ejecutor::doit($sql);
 	}
+
+	public function guardar_tema_pagina(){
+		$sql = "update temas set estado=1 where id=$this->skin";
+		Ejecutor::doit($sql);
+	}
+
+	/// verificar existencia de usuario administrador
+	public static function buscarusuario(){
+		$sql = "select * from usuarios";
+		$query = Ejecutor::doit($sql);
+		return Modelo::many($query[0],new Luis());
+	}
+
+
 
 }
