@@ -239,44 +239,73 @@ class DatosAdmin{
 	}
 
 	public static function page_timeline_view(){
-		if(isset($_SESSION["admin_id"]) && $_SESSION["admin_id"]!=""){
-			print(DatosAdmin::headerpage());
-			print(DatosAdmin::header_page_menu());
-			print("<div id=\"contenidos_data\">");
-			Vista::load("index");
-			print("</div>");
-			print('<footer class="footer">');
-			print('<p> &copy; Sistema Hosting '.date("Y").'</p>');
-			print('</footer>');
-			$pageview=false;
+		$users = Luis::buscarusuario();
+		if(count($users)>0){
+			if(isset($_SESSION["admin_id"]) && $_SESSION["admin_id"]!=""){
+				print(DatosAdmin::headerpage());
+				print(DatosAdmin::header_page_menu());
+				print("<div id=\"contenidos_data\">");
+				Vista::load("index");
+				print("</div>");
+				print('<footer class="footer">');
+				print('<p> &copy; Sistema Hosting '.date("Y").'</p>');
+				print('</footer>');
+				$pageview=false;
+			}else{
+				$datos_sucursales = DatosAdmin::Mostrar_sucursales_all();
+				$pageview="<div class=\"iniciarpanel\">";
+				$pageview.="<form id=\"logboxinit\">";
+				$pageview.="<h4 class=\"titulo\">PANEL<b>Hosting</b></h4>";
+				$pageview.="<label class=\"labelpanel\">Correo</label>";
+				$pageview.="<input type=\"email\" required name=\"correo\" id=\"inputEmail1\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su correo electronico.\">";
+				$pageview.="<label class=\"labelpanel\">Contrase&ntilde;a</label>";
+				$pageview.="<input type=\"password\" name=\"pass\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba la contrase&ntilde;a de su cuenta.\">";
+				$pageview.="<select name=\"sucursal\" class=\"cajas_de_texto_acceder\">";
+				$pageview.="<option value=\"\">Selecciona sucursal</option>";
+				foreach ($datos_sucursales as $suc){
+					$pageview.="<option value=\"$suc->id\">".html_entity_decode($suc->nombre)."</option>";
+				}
+				$pageview.="</select>";
+				$pageview.="<input type=\"submit\" class=\"boton_acceder\" value=\"Acceder\">";
+				$pageview.="<a href=\"#\" class=\"olvide_mi_pass\">Olvide mi contraseña</a>";
+				$pageview.="<br>";
+				$pageview.="</form>";
+				if(isset($_SESSION['adios_user'])):
+					$pageview.='<div class="message_session_unsed"><b>Session finalizado.</b></div>';
+					unset($_SESSION['adios_user']);
+					else:
+				endif;
+				$pageview.="</div>";
+				$pageview.="<footer class=\"footer\">";
+				$pageview.="<p> &copy; Sistema Hosting ".date("Y")."</p>";
+				$pageview.="</footer>";
+			}
 		}else{
 			$datos_sucursales = DatosAdmin::Mostrar_sucursales_all();
-			$pageview="<div class=\"iniciarpanel\">";
-			$pageview.="<form id=\"logboxinit\">";
-			$pageview.="<h4 class=\"titulo\">PANEL<b>Hosting</b></h4>";
-			$pageview.="<label class=\"labelpanel\">Correo</label>";
-			$pageview.="<input type=\"email\" required name=\"correo\" id=\"inputEmail1\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su correo electronico.\">";
-			$pageview.="<label class=\"labelpanel\">Contrase&ntilde;a</label>";
-			$pageview.="<input type=\"password\" name=\"pass\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba la contrase&ntilde;a de su cuenta.\">";
-			$pageview.="<select name=\"sucursal\" class=\"cajas_de_texto_acceder\">";
-			$pageview.="<option value=\"\">Selecciona sucursal</option>";
-			foreach ($datos_sucursales as $suc){
-				$pageview.="<option value=\"$suc->id\">".html_entity_decode($suc->nombre)."</option>";
-			}
-			$pageview.="</select>";
-			$pageview.="<input type=\"submit\" class=\"boton_acceder\" value=\"Acceder\">";
-			$pageview.="<a href=\"#\" class=\"olvide_mi_pass\">Olvide mi contraseña</a>";
-			$pageview.="<br>";
-			$pageview.="</form>";
-			if(isset($_SESSION['adios_user'])):
-				$pageview.='<div class="message_session_unsed"><b>Session finalizado.</b></div>';
-				unset($_SESSION['adios_user']);
-				else:
-			endif;
-			$pageview.="</div>";
-			$pageview.="<footer class=\"footer\">";
-			$pageview.="<p> &copy; Sistema Hosting ".date("Y")."</p>";
-			$pageview.="</footer>";
+				$pageview="<div class=\"iniciarpanel\">";
+				$pageview.="<form id=\"logboxinit\">";
+				$pageview.="<h4 class=\"titulo\">REGISTRAR<b>admin</b></h4>";
+				$pageview.="<input type=\"number\" required name=\"dni\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su DNI.\">";
+				$pageview.="<br>";
+				$pageview.="<input type=\"text\" required name=\"nombre\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su nombre.\">";
+				$pageview.="<br>";
+				$pageview.="<input type=\"text\" required name=\"apellido_paterno\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su apellido paterno.\">";
+				$pageview.="<br>";
+				$pageview.="<input type=\"text\" required name=\"apellido_materno\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su apellido materno.\">";
+				$pageview.="<br>";
+				$pageview.="<input type=\"email\" required name=\"correo\" id=\"inputEmail1\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su correo electronico.\">";
+				$pageview.="<br>";
+				$pageview.="<input type=\"password\" name=\"pass\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba la contrase&ntilde;a de su cuenta.\">";
+				$pageview.="<br>";
+				$pageview.="<input type=\"password\" name=\"pass\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"COnfirma la contrase&ntilde;a de su cuenta.\">";
+				$pageview.="<br>";
+				$pageview.="<input type=\"submit\" class=\"boton_acceder\" value=\"Acceder\">";
+				$pageview.="<br>";
+				$pageview.="</form>";
+				$pageview.="</div>";
+				$pageview.="<footer class=\"footer\">";
+				$pageview.="<p> &copy; Sistema Hosting ".date("Y")."</p>";
+				$pageview.="</footer>";
 		}
 		return $pageview;
 	}
