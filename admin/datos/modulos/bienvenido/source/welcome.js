@@ -26,10 +26,9 @@ $(document).on("click", ".tb_btn_next", function(){
 		$.ajax({
 			url:list_urls()+list_action()+"start_data_page",
 			type:"POST",
-      data:{tema:skin,nombre:name,titulo:title,descripcion:description,eslogan:slogan},
+      data:{tema:skin,luis_nombre:name,luis_titulo:title,luis_descripcion:description,luis_slogan:slogan},
 			success: function(data){
-				console.log(data)
-				//window.location = data;
+				window.location.reload();
 			}
 		});
 	}
