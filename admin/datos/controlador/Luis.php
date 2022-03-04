@@ -547,7 +547,18 @@ class Luis {
 		$query = Ejecutor::doit($sql);
 		return Modelo::many($query[0],new Luis());
 	}
+	/// burcar personas por su numero de dni data
+	public static function buscarusuariopordni_data($documents){
+		$sql = "select * from dni where dni=$documents";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new Luis());
+	}
+	
 
-
+	public function guardar_persona_reniec(){
+		$sql = "insert into dni (nombre_a,nombre_b,apellido_paterno,apellido_materno,digito,dni,nombres) ";
+		$sql .= "value (\"$this->nombre_a\",\"$this->nombre_b\",\"$this->apellido_paterno\",\"$this->apellido_materno\",$this->digito,$this->dni,\"$this->nombres\")";
+		Ejecutor::doit($sql);
+	}
 
 }
