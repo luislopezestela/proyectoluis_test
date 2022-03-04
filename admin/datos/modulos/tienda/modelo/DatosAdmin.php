@@ -283,11 +283,11 @@ class DatosAdmin{
 		}else{
 			$datos_sucursales = DatosAdmin::Mostrar_sucursales_all();
 				$pageview="<div class=\"iniciarpanel\">";
-				$pageview.="<form id=\"logboxinit\">";
+				$pageview.="<form id=\"logboxinitregister\">";
 				$pageview.="<h4 class=\"titulo\">REGISTRAR<b>admin</b></h4>";
 				$pageview.="<input type=\"number\" required name=\"dni\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su DNI.\">";
 				$pageview.="<br>";
-				$pageview.="<input type=\"text\" required name=\"nombre\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su nombre.\">";
+				$pageview.="<input type=\"text\" required name=\"nombres\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su nombre.\">";
 				$pageview.="<br>";
 				$pageview.="<input type=\"text\" required name=\"apellido_paterno\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su apellido paterno.\">";
 				$pageview.="<br>";
@@ -297,7 +297,7 @@ class DatosAdmin{
 				$pageview.="<br>";
 				$pageview.="<input type=\"password\" name=\"pass\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba la contrase&ntilde;a de su cuenta.\">";
 				$pageview.="<br>";
-				$pageview.="<input type=\"password\" name=\"pass\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"COnfirma la contrase&ntilde;a de su cuenta.\">";
+				$pageview.="<input type=\"password\" name=\"pass_ver\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Confirma la contrase&ntilde;a.\">";
 				$pageview.="<br>";
 				$pageview.="<input type=\"submit\" class=\"boton_acceder\" value=\"Acceder\">";
 				$pageview.="<br>";
