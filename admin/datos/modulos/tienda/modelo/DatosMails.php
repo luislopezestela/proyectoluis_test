@@ -4,10 +4,10 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 class DatosMails {
     public function __construct(){
-        $this->email_user = DatosConfiguracion::dato("luis_cuenta_gmail")->valor;
-        $this->email_admin = DatosConfiguracion::dato("luis_correo")->valor;
-        $this->email_password = DatosConfiguracion::dato("luis_pd_gmail")->valor;
-        $this->nombrepagina = DatosConfiguracion::dato("luis_nombre")->valor;
+        $this->email_user = Luis::dato("luis_cuenta_gmail")->valor;
+        $this->email_admin = Luis::dato("luis_correo")->valor;
+        $this->email_password = Luis::dato("luis_pd_gmail")->valor;
+        $this->nombrepagina = Luis::dato("luis_nombre")->valor;
     }
 
     public static function check_email($email) {
@@ -36,6 +36,75 @@ class DatosMails {
         }
         return false;
     }
+public function verificar_nuevo_administrador(){
+    require '../admin/datos/controlador/vendor/autoload.php';
+    $mail = new PHPMailer(true);
+    try {
+        $mail->setFrom($this->correos, $this->nombrepagina);
+        $mail->AddAddress($this->correos);
+        $mail->isHTML(true);
+        $mail->Subject .="Codigo para activar tu cuenta";
+        $mail->Body .= ' <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <div style="border:0;">
+    <div style="text-align:center;font-family:Arial;background:transparent;">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:750px;margin:10px auto;background:#18191a;">
+        <thead>
+        <tr>
+        <th style="font-weight:bold;font-size:16px;background-color:#242526;color:#b0b3b8; text-align:center;padding:40px 0 30px 0;position:relative;">'.utf8_decode($this->nombrepagina).'
+         <div style="background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAOBAMAAAD3WtBsAAAAFVBMVEUAAAAAAAAAAAAAAAAAAAAAAAD29va1cB7UAAAAB3RSTlMCCwQHGBAaZf6MKAAAABpJREFUCNdjSGNIY3BhCGUQBEJjIFQCQigAACyJAjLNW4w5AAAAAElFTkSuQmCC);background-repeat:repeat-x;position:absolute;height:7px;width:100%;bottom:-6px;background-size: 1px 7px;box-sizing: border-box;right:0;left:0;pointer-events:none;display:block;"></div>
+        </th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td  style="background-color:#242526;box-shadow: 0 1px 2px rgba(0,0,0,0.1);border-radius:8px;box-sizing:border-box;position:relative;display:block;margin:10px 22px;padding:10px;color:#e4e6eb;position:relative;text-align:center;">Codigo de verificacion de cuenta.
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <table style="background-color:#242526;box-shadow: 0 1px 2px rgba(0,0,0,0.1);border-radius:8px;box-sizing:border-box;position:relative;display:block;margin:10px 22px;padding:10px;color:#e4e6eb;">
+            <tbody>
+            <tr>
+            <td colspan="3" align="left" style="font-size:14px;padding:5px 3px;">
+            <span style="font-family:Arial;font-weight:bold">NOMBRES: </span>
+            <span style="font-family:Arial;color:#777575;text-transform:uppercase;"> '.utf8_decode($this->unombres).'</span>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+            </td>
+            </tr>
+
+            <tr>
+            <td  style="background-color:#242526;box-shadow: 0 1px 2px rgba(0,0,0,0.1);border-radius:8px;box-sizing:border-box;position:relative;display:block;margin:10px 22px;padding:10px;color:#e4e6eb;position:relative;text-align:center;"><span style="display:block;width:100%;">CODIGO:</span>
+                <span style="padding:10px 16px;border-radius:4px;display:block;background-color:#18191a;margin:6px auto;margin-top:10px;border:1px solid #999;">'.$this->codigo_activacion.'</span>
+            </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table border="0" cellspacing="0" cellpadding="0" width="100%" style="max-width:750px; margin: 0 auto;">
+    <tbody>
+    <tr>
+    <td style="font-family: Arial; font-size: 12px;text-align:center;display:block;padding:10px 0">
+   &#x24B8; '.date("Y").' '.$this->nombrepagina.'
+ </td>
+    </tr>
+    </tbody>
+    </table>
+    <br>
+    </div>
+    </div>';
+        $mail->Send();
+        $mail->clearAddresses();
+        $mail->clearAttachments();
+        echo 1;
+    } catch (Exception $e) {
+      /*  echo 2;*/
+    }
+    }
+
 
 public function verificar_persona(){
     require 'admin/datos/controlador/vendor/autoload.php';

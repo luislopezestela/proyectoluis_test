@@ -31,10 +31,9 @@ $(document).ready(function(){
 			data:dataToSend,
 			dataType:"json",
 			success: function(data){
-				console.log(data)
 				if(data.type){
 					alertexito(data.mensaje)
-					//recargar(600)
+					recargar(700)
 				}else{
 					alertadvertencia(data.mensaje)
 				}

@@ -6,6 +6,13 @@ class DatosAdmin{
 		$this->fecha = "NOW()";
 	}
 
+	//// registrar administrador usuarios
+	public function registrar_admin_page(){
+		$sql = "insert into usuarios (dni,nombre,apellido_paterno,apellido_materno,correo,pass,es_administrador,funcion,ukr,codigo,fecha) ";
+		$sql .= "value (\"$this->dni\",\"$this->nombre\",\"$this->apellido_paterno\",\"$this->apellido_materno\",\"$this->email\",\"$this->pass\",1,1,\"$this->ukrr\",\"$this->codigo\",\"$this->fecha\")";
+		Ejecutor::doit($sql);
+	}
+
 	public static function poner_guion($url){
         $url = strtolower($url);
         $find = array('á','é','í','ó','ú','â','ê','î','ô','û','ã','õ','ç','ñ');
