@@ -254,22 +254,47 @@ class DatosAdmin{
 			}else{
 				$datos_sucursales = DatosAdmin::Mostrar_sucursales_all();
 				$pageview="<div class=\"iniciarpanel\">";
-				$pageview.="<form id=\"logboxinit\">";
-				$pageview.="<h4 class=\"titulo\">PANEL<b>Hosting</b></h4>";
-				$pageview.="<label class=\"labelpanel\">Correo</label>";
-				$pageview.="<input type=\"email\" required name=\"correo\" id=\"inputEmail1\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su correo electronico.\">";
-				$pageview.="<label class=\"labelpanel\">Contrase&ntilde;a</label>";
-				$pageview.="<input type=\"password\" name=\"pass\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba la contrase&ntilde;a de su cuenta.\">";
-				$pageview.="<select name=\"sucursal\" class=\"cajas_de_texto_acceder\">";
-				$pageview.="<option value=\"\">Selecciona sucursal</option>";
-				foreach ($datos_sucursales as $suc){
-					$pageview.="<option value=\"$suc->id\">".html_entity_decode($suc->nombre)."</option>";
+				if(count($datos_sucursales)>0){
+					$pageview.="<form id=\"logboxinit\">";
+					$pageview.="<h4 class=\"titulo\">PANEL<b>Hosting</b></h4>";
+					$pageview.="<label class=\"labelpanel\">Correo</label>";
+					$pageview.="<input type=\"email\" required name=\"correo\" id=\"inputEmail1\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su correo electronico.\">";
+					$pageview.="<label class=\"labelpanel\">Contrase&ntilde;a</label>";
+					$pageview.="<input type=\"password\" name=\"pass\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba la contrase&ntilde;a de su cuenta.\">";
+					$pageview.="<select name=\"sucursal\" class=\"cajas_de_texto_acceder\">";
+					$pageview.="<option value=\"\">Selecciona sucursal</option>";
+					foreach ($datos_sucursales as $suc){
+						$pageview.="<option value=\"$suc->id\">".html_entity_decode($suc->nombre)."</option>";
+					}
+					$pageview.="</select>";
+					$pageview.="<input type=\"submit\" class=\"boton_acceder\" value=\"Acceder\">";
+					$pageview.="<a href=\"#\" class=\"olvide_mi_pass\">Olvide mi contraseña</a>";
+					$pageview.="<br>";
+					$pageview.="</form>";
+				}else{
+					$pageview.="<script src=\"".Luis::basepage("base_page_admin")."datos/source/scripts/jquery.min.js\"></script>";
+					$pageview.="<script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyAzVClbbKRZ2Id-N8Xr-Sws5Z32NpVB-JY\"></script>";
+					$pageview.="<script src=\"".Luis::basepage("base_page_admin")."datos//source/scripts/maps.js\"></script>";
+					$pageview.="<form id=\"create_new_sucursal_page\">";
+					$pageview.="<h4 class=\"titulo\">".Luis::lang("crear_sucursal_de_tienda")."</h4>";
+					$pageview.="<br>";
+					$pageview.="<input type=\"email\" required name=\"nombre\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Nombre de sucursal.\">";
+					$pageview.="<br>";$pageview.="<input type=\"email\" required name=\"nombre\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Direccion.\">";
+					$pageview.="<br>";
+					$pageview.="<input type=\"email\" required name=\"nombre\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Referencia.\">";
+					$pageview.="<br>";
+					$pageview.="<label class=\"labelpanel\" style=\"text-align:center;\">Ubicacion</label>";
+			        $pageview.="<fieldset class=\"gllpLatlonPicker\" style=\"width:100%;max-width:650px!important;margin:0 auto;\">";
+			        $pageview.="<div class=\"gllpMap\" style=\"height:450px;width:100%;\"></div>";
+			        $pageview.="<input type=\"hidden\" name=\"latitud\" class=\"gllpLatitude\" value=\"-12.043819101308925\"/>";
+			        $pageview.="<input type=\"hidden\" name=\"longitud\" class=\"gllpLongitude\" value=\"-77.02026367187506\"/>";
+			        $pageview.="<input type=\"hidden\" name=\"zoom\" class=\"gllpZoom\" value=\"10\"/>";
+			        $pageview.="</fieldset>";
+			        $pageview.="<br>";
+					$pageview.="<input type=\"submit\" class=\"boton_acceder\" value=\"Acceder\">";
+					$pageview.="<br>";
+					$pageview.="</form>";
 				}
-				$pageview.="</select>";
-				$pageview.="<input type=\"submit\" class=\"boton_acceder\" value=\"Acceder\">";
-				$pageview.="<a href=\"#\" class=\"olvide_mi_pass\">Olvide mi contraseña</a>";
-				$pageview.="<br>";
-				$pageview.="</form>";
 				if(isset($_SESSION['adios_user'])):
 					$pageview.='<div class="message_session_unsed"><b>Session finalizado.</b></div>';
 					unset($_SESSION['adios_user']);
@@ -283,22 +308,22 @@ class DatosAdmin{
 		}else{
 				$pageview="<div class=\"iniciarpanel\">";
 				$pageview.="<form id=\"logboxinitregister\">";
-				$pageview.="<h4 class=\"titulo\">REGISTRAR<b></b></h4>";
-				$pageview.="<input type=\"number\" required name=\"dni\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su DNI.\">";
+				$pageview.="<h4 class=\"titulo\">".Luis::lang("registrar")."<b></b></h4>";
+				$pageview.="<input type=\"number\" required name=\"dni\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"".Luis::lang("escriba_su_dni")."\">";
 				$pageview.="<br>";
-				$pageview.="<input type=\"text\" required name=\"nombres\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su nombre.\">";
+				$pageview.="<input type=\"text\" required name=\"nombres\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"".Luis::lang("escriba_su_nombre")."\">";
 				$pageview.="<br>";
-				$pageview.="<input type=\"text\" required name=\"apellido_paterno\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su apellido paterno.\">";
+				$pageview.="<input type=\"text\" required name=\"apellido_paterno\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"".Luis::lang("escriba_su_apellido_paterno")."\">";
 				$pageview.="<br>";
-				$pageview.="<input type=\"text\" required name=\"apellido_materno\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su apellido materno.\">";
+				$pageview.="<input type=\"text\" required name=\"apellido_materno\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"".Luis::lang("escriba_su_apellido_materno")."\">";
 				$pageview.="<br>";
-				$pageview.="<input type=\"email\" required name=\"correo\" id=\"inputEmail1\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su correo electronico.\">";
+				$pageview.="<input type=\"email\" required name=\"correo\" id=\"inputEmail1\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"".Luis::lang("escriba_su_correo_electronico")."\">";
 				$pageview.="<br>";
-				$pageview.="<input type=\"password\" name=\"pass\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba la contrase&ntilde;a de su cuenta.\">";
+				$pageview.="<input type=\"password\" name=\"pass\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"".Luis::lang("escriba_la_contrasena_de_su_cuenta")."\">";
 				$pageview.="<br>";
-				$pageview.="<input type=\"password\" name=\"pass_ver\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Confirma la contrase&ntilde;a.\">";
+				$pageview.="<input type=\"password\" name=\"pass_ver\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"".Luis::lang("confirma_la_contrasena")."\">";
 				$pageview.="<br>";
-				$pageview.="<input type=\"submit\" class=\"boton_acceder\" value=\"Acceder\">";
+				$pageview.="<input type=\"submit\" class=\"boton_acceder\" value=\"".Luis::lang("siguiente")."\">";
 				$pageview.="<br>";
 				$pageview.="</form>";
 				$pageview.="</div>";
