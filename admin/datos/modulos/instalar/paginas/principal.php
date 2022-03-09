@@ -8,7 +8,7 @@ $base_pg="https://".$_SERVER["HTTP_HOST"]."/";
 <!DOCTYPE html>
 <html>
 <head>
-	<title id="title_pages"><?=Luis::lang("instalar");?></title>
+	<title id="title_pages"><?=DatosLang::tdat("instalar");?></title>
 	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="theme-color" content="#2c3e50">
