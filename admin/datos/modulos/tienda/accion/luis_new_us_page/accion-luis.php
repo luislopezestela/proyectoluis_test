@@ -28,11 +28,11 @@ if($correos){
 		$vmail->unombres = htmlentities($_POST["nombres"]." ".$_POST["apellido_paterno"]." ".$_POST["apellido_materno"]);
 		$vmail->codigo_activacion = $person->codigo;
 		$vmail->verificar_nuevo_administrador();
-		echo json_encode(array("type" => 1,'mensaje' => "Genial"));
+		echo json_encode(array("type" => 1,'mensaje' => Luis::lang("genial")));
 	}else{
-		echo json_encode(array("type" => 0,'mensaje' => "La contrase&ntilde;a no son iguales."));
+		echo json_encode(array("type" => 0,'mensaje' => Luis::lang("la_contrasena_no_son_iguales")));
 	}
 	
 }else{
-	echo json_encode(array("type" => 0,'mensaje' => "El correo no es valido"));
+	echo json_encode(array("type" => 0,'mensaje' => Luis::lang("el_correo_no_es_valido")));
 }
