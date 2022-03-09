@@ -19,6 +19,7 @@ include "datos/controlador/Session.php";
 include "datos/controlador/Solicitud.php";
 include "datos/controlador/Visitas.php";
 include "datos/controlador/Vista.php";
+include "admin/datos/controlador/Lang.php";
 try{
 	$luis = new Luis();
 	if(Luis::temass()==""){
