@@ -19,6 +19,7 @@ include "datos/controlador/Solicitud.php";
 include "datos/controlador/Visitas.php";
 include "datos/controlador/Vista.php";
 include "datos/controlador/Functions.php";
+include "datos/controlador/Lang.php";
 
 
 try{
