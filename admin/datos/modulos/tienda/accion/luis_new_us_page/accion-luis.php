@@ -10,7 +10,7 @@ $contra = sha1(md5($_POST['pass']));
 $contra2 = sha1(md5($_POST['pass_ver']));
 if($correos){
 	if($contra==$contra2) {
-		$person = new DatosAdmin();
+		$person = new Luis();
 		$person->dni = $_POST["dni"];
 		$person->nombre = htmlentities($_POST["nombres"]);
 		$person->apellido_paterno = htmlentities($_POST["apellido_paterno"]);
