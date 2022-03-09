@@ -561,6 +561,14 @@ class Luis {
 		Ejecutor::doit($sql);
 	}
 
+
+	//// registrar administrador usuarios
+	public function registrar_admin_page(){
+		$sql = "insert into usuarios (dni,nombre,apellido_paterno,apellido_materno,correo,pass,es_administrador,funcion,ukr,codigo,fecha) ";
+		$sql .= "value (\"$this->dni\",\"$this->nombre\",\"$this->apellido_paterno\",\"$this->apellido_materno\",\"$this->email\",\"$this->pass\",1,1,\"$this->ukrr\",\"$this->codigo\",\"$this->fecha\")";
+		Ejecutor::doit($sql);
+	}
+
 	
 
 }
