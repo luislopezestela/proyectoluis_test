@@ -9,7 +9,7 @@
   </div>
   <br>
   <div class="text_conten_labels_message">
-    <h4>ERROR: #1010 SERVER</h4>
-    <h2>Contactese con soporte.</h2>
+    <h4><?=DatosLang::tdat("error");?>: #1010 <?=DatosLang::tdat("servidor");?></h4>
+    <h2><?=DatosLang::tdat("contactese_con_soporte");?></h2>
   </div>
 </div>
