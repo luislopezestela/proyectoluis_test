@@ -9,7 +9,7 @@ class BaseDatos {
 	}
 
 	public static function basedatos_p(){
-		$datass = "restaurant";
+		$datass = "restaurantdd";
 		return $datass;
 	}
 	function conectar(){
