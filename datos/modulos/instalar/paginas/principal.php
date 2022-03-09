@@ -1,5 +1,5 @@
 <?php
-if($_SERVER["HTTPS"] != "on"){
+if(isset($_SERVER["HTTPS"]) != "on"){
     header("Location: https://".$_SERVER["HTTP_HOST"]);
     exit();
 }
