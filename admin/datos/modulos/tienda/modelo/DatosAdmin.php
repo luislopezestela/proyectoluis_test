@@ -291,7 +291,7 @@ class DatosAdmin{
 			        $pageview.="<input type=\"hidden\" name=\"zoom\" class=\"gllpZoom\" value=\"10\"/>";
 			        $pageview.="</fieldset>";
 			        $pageview.="<br>";
-					$pageview.="<input type=\"submit\" class=\"boton_acceder\" value=\"Acceder\">";
+					$pageview.="<input type=\"submit\" class=\"boton_acceder\" value=\"".Luis::lang("siguiente")."\">";
 					$pageview.="<br>";
 					$pageview.="</form>";
 				}
