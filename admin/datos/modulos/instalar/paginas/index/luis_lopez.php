@@ -9,7 +9,7 @@
   </div>
   <br>
   <div class="text_conten_labels_message">
-    <h4>ERROR: #1010 SERVER</h4>
-    <h2>Contactese con soporte.</h2>
+    <h4><?=Luis::lang("error");?>: #1010 <?=Luis::lang("servidor");?></h4>
+    <h2><?=Luis::lang("contactese_con_soporte");?></h2>
   </div>
 </div>
