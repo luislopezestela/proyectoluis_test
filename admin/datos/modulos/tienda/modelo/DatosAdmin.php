@@ -283,7 +283,7 @@ class DatosAdmin{
 		}else{
 				$pageview="<div class=\"iniciarpanel\">";
 				$pageview.="<form id=\"logboxinitregister\">";
-				$pageview.="<h4 class=\"titulo\">REGISTRAR<b>admin</b></h4>";
+				$pageview.="<h4 class=\"titulo\">REGISTRAR<b></b></h4>";
 				$pageview.="<input type=\"number\" required name=\"dni\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su DNI.\">";
 				$pageview.="<br>";
 				$pageview.="<input type=\"text\" required name=\"nombres\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su nombre.\">";
