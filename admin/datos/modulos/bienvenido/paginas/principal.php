@@ -7,11 +7,14 @@ if(isset($_SERVER["HTTPS"]) != "on"){
     exit();
 }
 $base_pg="https://".$_SERVER["HTTP_HOST"]."/";
+if(Luis::lang("bienvenido")) {
+	$titulopage="Bienvenido";
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title id="title_pages"><?=Luis::lang("bienvenido");?></title>
+	<title id="title_pages"><?=$titulopage;?></title>
 	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="theme-color" content="#2c3e50">
