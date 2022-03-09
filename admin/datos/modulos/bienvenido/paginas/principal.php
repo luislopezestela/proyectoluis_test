@@ -2,7 +2,7 @@
 // https://localhost/
 $pagebase = Luis::dato("luis_base")->valor;
 if($pagebase):
-if($_SERVER["HTTPS"] != "on"){
+if(isset($_SERVER["HTTPS"]) != "on"){
     header("Location: https://".$_SERVER["HTTP_HOST"]);
     exit();
 }
@@ -33,7 +33,7 @@ $base_pg="https://".$_SERVER["HTTP_HOST"]."/";
 </html>
 <?php
 else:	
-if($_SERVER["HTTPS"] != "on"){
+if(isset($_SERVER["HTTPS"]) != "on"){
     header("Location: https://".$_SERVER["HTTP_HOST"]);
     exit();
 }
