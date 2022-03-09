@@ -99,7 +99,6 @@ public function verificar_nuevo_administrador(){
         $mail->Send();
         $mail->clearAddresses();
         $mail->clearAttachments();
-        echo 1;
     } catch (Exception $e) {
       /*  echo 2;*/
     }
