@@ -13,6 +13,20 @@ class Vista {
 			}
 		}
 	}
+
+	public static function welcome_d($paginas){
+		if(!isset($_GET['paginas'])){
+			include "datos/modulos/".Modulo::$modulo."/paginas/".$paginas."/luis_lopez.php";
+		}else{
+			if(Vista::esValido()){
+				$vistas = explode("/", $_GET['paginas']);
+				include "datos/modulos/".Modulo::$modulo."/paginas/".$vistas[0]."/luis_lopez.php";				
+			}else{
+				include "datos/modulos/".Modulo::$modulo."/paginas/404/luis_lopez.php";
+			}
+		}
+	}
+	
 	public static function esValido(){
 		$valid=false;
 		if(isset($_GET["paginas"])){
