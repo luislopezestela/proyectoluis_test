@@ -27,18 +27,18 @@
 </div>
   <div class="text"><?=Luis::lang("bienvenido");?></div>
   <br><br>
-  <label class="label_nom_hud">Nombre de pagina.</label>
+  <label class="label_nom_hud"><?=Luis::lang("nombre_de_pagina");?>.</label>
   <input id="pag_name" class="input_data_new_user" type="text">
   <br><br>
-  <label class="label_nom_hud">Titulo pagina.</label>
+  <label class="label_nom_hud"><?=Luis::lang("titulo_pagina");?>.</label>
   <input id="pag_title" class="input_data_new_user" type="text">
   <br><br>
-  <label class="label_nom_hud">Descripcion de pagina.</label>
+  <label class="label_nom_hud"><?=Luis::lang("descripcion_pagina");?>.</label>
   <textarea id="pad_description" class="input_data_new_user" rows="6"></textarea>
   <br><br>
-  <label class="label_nom_hud">Eslogan.</label>
+  <label class="label_nom_hud"><?=Luis::lang("eslogan");?>.</label>
   <input id="pag_slogan" class="input_data_new_user" type="text">
   <br><br>
-  <span class="btn_sty btn btn__secondary tb_btn_next">Siguiente</span>
+  <span class="btn_sty btn btn__secondary tb_btn_next"><?=Luis::lang("siguiente");?></span>
   <br><br>
 </div>
