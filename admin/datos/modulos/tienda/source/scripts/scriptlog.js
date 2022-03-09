@@ -49,7 +49,6 @@ $(document).ready(function(){
 	$(document).on("keyup", "input[name='dni']", function(){
 		var datinp = doc.val().length;
 		if(datinp > 7){
-			console.log(datinp);
 			$.ajax({
 				url:urline+list_action()+"luis_consuls",
 				type:"POST",
