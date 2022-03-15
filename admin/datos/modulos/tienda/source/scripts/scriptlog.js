@@ -46,20 +46,19 @@ $(document).ready(function(){
 
 
 //////data document 
-	$(document).on("keyup", "input[name='dni']", function(){
-		var datinp = doc.val().length;
-		if(datinp > 7){
-			$.ajax({
-				url:urline+list_action()+"luis_consuls",
-				type:"POST",
-				data:{docs:doc.val()},
-				dataType:"json",
-				success: function(data){
-					$("input[name='nombres']").val(data.nombres);
-					$("input[name='apellido_paterno']").val(data.apellidoPaterno);
-					$("input[name='apellido_materno']").val(data.apellidoMaterno);
-				}
-			});
-		}
-		
-	});
+$(document).on("keyup", "input[name='dni']", function(){
+	var datinp = doc.val().length;
+	if(datinp > 7){
+		$.ajax({
+			url:urline+list_action()+"luis_consuls",
+			type:"POST",
+			data:{docs:doc.val()},
+			dataType:"json",
+			success: function(data){
+				$("input[name='nombres']").val(data.nombres);
+				$("input[name='apellido_paterno']").val(data.apellidoPaterno);
+				$("input[name='apellido_materno']").val(data.apellidoMaterno);
+			}
+		});
+	}
+});
