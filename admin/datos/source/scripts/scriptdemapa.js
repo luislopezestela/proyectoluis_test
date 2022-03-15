@@ -38,8 +38,8 @@ function initMap() {
 			infowindowContent.children['place-name'].textContent = place.name;
 			infowindowContent.children['place-address'].textContent = input.value;
 			infowindow.open(map, marker);
-			console.log(place.geometry.location.lat())
-			console.log(place.geometry.location.lng())
+			$("#lat_a").val(place.geometry.location.lat());
+			$("#lon_a").val(place.geometry.location.lng());
 		});
 
 
