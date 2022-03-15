@@ -273,27 +273,39 @@ class DatosAdmin{
 					$pageview.="</form>";
 				}else{
 					$pageview.="<script src=\"".Luis::basepage("base_page_admin")."datos/source/scripts/jquery.min.js\"></script>";
-					$pageview.="<script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyAzVClbbKRZ2Id-N8Xr-Sws5Z32NpVB-JY\"></script>";
-					$pageview.="<script src=\"".Luis::basepage("base_page_admin")."datos//source/scripts/maps.js\"></script>";
 					$pageview.="<form id=\"create_new_sucursal_page\">";
 					$pageview.="<h4 class=\"titulo\">".Luis::lang("crear_sucursal_de_tienda")."</h4>";
 					$pageview.="<br>";
-					$pageview.="<input type=\"email\" required name=\"nombre\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Nombre de sucursal.\">";
-					$pageview.="<br>";$pageview.="<input type=\"email\" required name=\"nombre\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Direccion.\">";
+					$pageview.="<input type=\"text\" required name=\"nombre\" class=\"cajas_de_texto_acceder_suc\" autocomplete=\"off\" placeholder=\"Nombre de sucursal.\">";
 					$pageview.="<br>";
-					$pageview.="<input type=\"email\" required name=\"nombre\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Referencia.\">";
+					$pageview.="<div id=\"pac-container\">";
+					$pageview.="<input type=\"text\" id=\"pac-input\" required name=\"address\" class=\"controls cajas_de_texto_acceder_suc\" placeholder=\"Direccion.\">";
+					$pageview.="<div id=\"location-error\"></div>";
+					$pageview.="</div>";
+					
+					$pageview.="<br>";
+
+					$pageview.="<input type=\"text\" required name=\"referencia\" class=\"cajas_de_texto_acceder_suc\" autocomplete=\"off\" placeholder=\"Referencia.\">";
 					$pageview.="<br>";
 					$pageview.="<label class=\"labelpanel\" style=\"text-align:center;\">Ubicacion</label>";
-			        $pageview.="<fieldset class=\"gllpLatlonPicker\" style=\"width:100%;max-width:650px!important;margin:0 auto;\">";
-			        $pageview.="<div class=\"gllpMap\" style=\"height:450px;width:100%;\"></div>";
-			        $pageview.="<input type=\"hidden\" name=\"latitud\" class=\"gllpLatitude\" value=\"-12.043819101308925\"/>";
-			        $pageview.="<input type=\"hidden\" name=\"longitud\" class=\"gllpLongitude\" value=\"-77.02026367187506\"/>";
-			        $pageview.="<input type=\"hidden\" name=\"zoom\" class=\"gllpZoom\" value=\"10\"/>";
-			        $pageview.="</fieldset>";
+					
+
+			        $pageview.="<div style=\"max-width:480px;height:350px;width:100%;margin:0 auto; \" id=\"map\"></div>";
+
+			        $pageview.="<div id=\"infowindow-content\">";
+				    $pageview.="<img src=\"\" width=\"16\" height=\"16\" id=\"place-icon\">";
+				    $pageview.="<span id=\"place-name\"  class=\"title\"></span><br>";
+				    $pageview.="<span id=\"place-address\"></span>";
+				    $pageview.="</div>";
 			        $pageview.="<br>";
 					$pageview.="<input type=\"submit\" class=\"boton_acceder\" value=\"".Luis::lang("siguiente")."\">";
 					$pageview.="<br>";
 					$pageview.="</form>";
+
+					$pageview.="<script src=\"".Luis::basepage("base_page_admin")."datos/source/scripts/scriptdemapa.js\"></script>";
+					$pageview.="<script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyAzVClbbKRZ2Id-N8Xr-Sws5Z32NpVB-JY&libraries=places&callback=initMap\"></script>";
+					          
+			
 				}
 				if(isset($_SESSION['adios_user'])):
 					$pageview.='<div class="message_session_unsed"><b>Session finalizado.</b></div>';
