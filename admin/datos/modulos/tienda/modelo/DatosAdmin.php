@@ -276,20 +276,21 @@ class DatosAdmin{
 					$pageview.="<form id=\"create_new_sucursal_page\">";
 					$pageview.="<h4 class=\"titulo\">".Luis::lang("crear_sucursal_de_tienda")."</h4>";
 					$pageview.="<br>";
-					$pageview.="<input type=\"text\" required name=\"nombre\" class=\"cajas_de_texto_acceder_suc\" autocomplete=\"off\" placeholder=\"Nombre de sucursal.\">";
+					$pageview.="<input type=\"text\" required name=\"nombre\" class=\"cajas_de_texto_acceder_suc\" autocomplete=\"off\" placeholder=\"".Luis::lang("nombre_de_sucursal")."\">";
+
+					
+
 					$pageview.="<br>";
 					$pageview.="<div id=\"pac-container\">";
-					$pageview.="<input type=\"text\" id=\"pac-input\" required name=\"address\" class=\"controls cajas_de_texto_acceder_suc\" placeholder=\"Direccion.\">";
+					$pageview.="<input type=\"text\" id=\"pac-input\" required name=\"address\" class=\"controls cajas_de_texto_acceder_suc\" placeholder=\"".Luis::lang("direccion").".\">";
 					$pageview.="<div id=\"location-error\"></div>";
 					$pageview.="</div>";
-					
+					$pageview.="<input id=\"lat_a\" type=\"hidden\" hidden required name=\"lati\">";
+					$pageview.="<input id=\"lon_a\" type=\"hidden\" hidden required name=\"longi\">";
 					$pageview.="<br>";
 
-					$pageview.="<input type=\"text\" required name=\"referencia\" class=\"cajas_de_texto_acceder_suc\" autocomplete=\"off\" placeholder=\"Referencia.\">";
+					$pageview.="<input type=\"text\" required name=\"referencia\" class=\"cajas_de_texto_acceder_suc\" autocomplete=\"off\" placeholder=\"".Luis::lang("referencia").".\">";
 					$pageview.="<br>";
-					$pageview.="<label class=\"labelpanel\" style=\"text-align:center;\">Ubicacion</label>";
-					
-
 			        $pageview.="<div style=\"max-width:480px;height:350px;width:100%;margin:0 auto; \" id=\"map\"></div>";
 
 			        $pageview.="<div id=\"infowindow-content\">";
@@ -393,6 +394,14 @@ class DatosAdmin{
 		$sql .= "value (\"$this->nombre\",\"$this->direccion\",\"$this->departamento\",\"$this->provincia\",\"$this->distrito\",\"$this->referencia\",\"$this->latitud\",\"$this->longitud\",\"$this->zoom\",$this->fecha)";
 		Ejecutor::doit($sql);
 	}
+
+	public function guardar_sucursal_nuevo(){
+		$sql = "insert into sucursales (nombre,direccion,referencia,latitud,longitud,zoom,estado,fecha) ";
+		$sql .= "value (\"$this->nombre\",\"$this->direccion\",\"$this->referencia\",\"$this->latitud\",\"$this->longitud\",\"$this->zoom\",1,$this->fecha)";
+		Ejecutor::doit($sql);
+	}
+
+
 
 	public function eliminar_sucursal(){
 		$sql = "delete from sucursales where id=$this->id";
