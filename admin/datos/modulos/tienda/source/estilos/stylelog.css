@@ -59,7 +59,20 @@ body{
   opacity:0.8;
   font-size:16px;
 }
-
+.cajas_de_texto_acceder_suc{
+  background: #ebebeb;
+    color: #555;
+    outline:none;
+    border: 2px solid #2c3e50;
+    display:block;
+    width: 100%;
+    padding:8px;
+    max-width:450px;
+    margin:10px auto;
+    margin-top:0;
+    font-size: 14px;
+    border-radius:6px;
+}
 .cajas_de_texto_acceder{
     background: #ebebeb;
     color: #555;
