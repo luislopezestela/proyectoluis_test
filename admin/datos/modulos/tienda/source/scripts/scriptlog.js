@@ -62,3 +62,24 @@ $(document).on("keyup", "input[name='dni']", function(){
 		});
 	}
 });
+
+
+$(document).on("submit", "#create_new_sucursal_page", function(e){
+	e.preventDefault();
+	var dataToSend = $("#create_new_sucursal_page").serialize();
+	$.ajax({
+		url:urline+list_action()+"luis_consuls_address",
+		type:"POST",
+		data:dataToSend,
+		dataType:"json",
+		success: function(data){
+			console.log(data)
+			if(data.type){
+				alertexito(data.mensaje)
+				recargar(700)
+			}else{
+				alertadvertencia(data.mensaje)
+			}
+		}
+	});
+});
