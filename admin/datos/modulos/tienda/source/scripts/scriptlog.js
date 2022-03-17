@@ -11,9 +11,12 @@ $(document).ready(function(){
 			data:dataToSend,
 			dataType:"json",
 			success: function(data){
+				if(data.activar){
+					$(".border_pals_luis").html("<input type=\"text\" name=\"codd\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Codigo de verificacion.\">");
+				}
 				if(data.type){
 					alertexito(data.mensaje)
-					recargar(600)
+					recargar(500)
 				}else{
 					alertadvertencia(data.mensaje)
 				}

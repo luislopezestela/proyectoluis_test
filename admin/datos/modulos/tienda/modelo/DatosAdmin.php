@@ -242,14 +242,27 @@ class DatosAdmin{
 		$users = Luis::buscarusuario();
 		if(count($users)>0){
 			if(isset($_SESSION["admin_id"]) && $_SESSION["admin_id"]!=""){
-				print(DatosAdmin::headerpage());
-				print(DatosAdmin::header_page_menu());
-				print("<div id=\"contenidos_data\">");
-				Vista::load("index");
-				print("</div>");
-				print('<footer class="footer">');
-				print('<p> &copy; Sistema Hosting '.date("Y").'</p>');
-				print('</footer>');
+				$vkluis=Luis::checktemas();
+				if($vkluis->color_admin==null){
+					print("<link rel=\"stylesheet\" type=\"text/css\" href=\"".Luis::basepage("base_page_admin")."datos/source/estilos/coloreschangue.css\">");
+					echo("<div class=\"contenidos_config_color\">");
+					Vista::load("color_tema_select");
+					echo("</div>");
+
+					echo("<span id=\"optluisfunt\"><span>");
+					echo("<span id=\"sidebar\"><span>");
+					echo("<span id=\"hoverlistv\"><span>");
+				}else{
+					echo(DatosAdmin::headerpage());
+					echo(DatosAdmin::header_page_menu());
+					echo("<div id=\"contenidos_data\">");
+					Vista::load("index");
+					echo("</div>");
+					echo('<footer class="footer">');
+					echo('<p> &copy; Sistema Hosting '.date("Y").'</p>');
+					echo('</footer>');
+				}
+				
 				$pageview=false;
 			}else{
 				$datos_sucursales = DatosAdmin::Mostrar_sucursales_all();
@@ -267,6 +280,8 @@ class DatosAdmin{
 						$pageview.="<option value=\"$suc->id\">".html_entity_decode($suc->nombre)."</option>";
 					}
 					$pageview.="</select>";
+					$pageview.="<div class=\"border_pals_luis\"></div>";
+					$pageview.="<br>";
 					$pageview.="<input type=\"submit\" class=\"boton_acceder\" value=\"Acceder\">";
 					$pageview.="<a href=\"#\" class=\"olvide_mi_pass\">Olvide mi contraseña</a>";
 					$pageview.="<br>";
@@ -2270,6 +2285,7 @@ class DatosAdmin{
 		$query = Ejecutor::doit($sql);
 		return Modelo::one($query[0],new DatosAdmin());
 	}
+
 
 
 }

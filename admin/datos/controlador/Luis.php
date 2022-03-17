@@ -212,6 +212,13 @@ class Luis {
 		}
 	}
 
+
+	public static function checktemas(){
+		$sql = "select * from temas where estado=1";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new Luis());
+	}
+
 	public static function listartemas(){
 		$sql = "select * from temas";
 		$query = Ejecutor::doit($sql);
