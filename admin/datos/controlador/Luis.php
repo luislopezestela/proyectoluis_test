@@ -102,11 +102,15 @@ class Luis {
 					"gastos" => Luis::formatstyle("productos","pageslist","gastos"),
 					"gastos/".$urb1 => Luis::formatstyle("productos","pageslist","gastos"),
 					///***/////
+
+					"color_tema_select" => Luis::formatstyle("coloreschangue",false,false),
+
+					///***///
 					"administrar_idioma" => Luis::formatstyle("productos","pageslist",false),
 					"administrar_idioma/".$urb1 => Luis::formatstyle("productos","pageslist",false),
 
 					"administrar_idioma/".$urb1."/".$urb2 => Luis::formatstyle("productos","publiclist","pageslist"),
-					/////////////////////////
+					///////////////////////// 
 					default => '',
 				};
 			}else{
