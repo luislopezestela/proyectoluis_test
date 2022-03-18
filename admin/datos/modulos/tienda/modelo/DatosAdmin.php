@@ -269,13 +269,12 @@ class DatosAdmin{
 				$pageview="<div class=\"iniciarpanel\">";
 				if(count($datos_sucursales)>0){
 					$pageview.="<form id=\"logboxinit\">";
-					$pageview.="<h4 class=\"titulo\">PANEL<b>Hosting</b></h4>";
-					$pageview.="<label class=\"labelpanel\">Correo</label>";
-					$pageview.="<input type=\"email\" required name=\"correo\" id=\"inputEmail1\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba su correo electronico.\">";
-					$pageview.="<label class=\"labelpanel\">Contrase&ntilde;a</label>";
-					$pageview.="<input type=\"password\" name=\"pass\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"Escriba la contrase&ntilde;a de su cuenta.\">";
+					$pageview.="<h4 class=\"titulo\">PANEL<b>lopez</b></h4>";
+					$pageview.="<br>";
+					$pageview.="<input type=\"email\" required name=\"correo\" id=\"inputEmail1\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"".Luis::lang("escriba_su_correo_electronico")."\">";
+					$pageview.="<input type=\"password\" name=\"pass\" class=\"cajas_de_texto_acceder\" autocomplete=\"off\" placeholder=\"".Luis::lang("escriba_la_contrasena_de_su_cuenta")."\">";
 					$pageview.="<select name=\"sucursal\" class=\"cajas_de_texto_acceder\">";
-					$pageview.="<option value=\"\">Selecciona sucursal</option>";
+					$pageview.="<option value=\"\">".Luis::lang("sucursales")."</option>";
 					foreach ($datos_sucursales as $suc){
 						$pageview.="<option value=\"$suc->id\">".html_entity_decode($suc->nombre)."</option>";
 					}
@@ -283,7 +282,7 @@ class DatosAdmin{
 					$pageview.="<div class=\"border_pals_luis\"></div>";
 					$pageview.="<br>";
 					$pageview.="<input type=\"submit\" class=\"boton_acceder\" value=\"Acceder\">";
-					$pageview.="<a href=\"#\" class=\"olvide_mi_pass\">Olvide mi contraseña</a>";
+					//$pageview.="<a href=\"#\" class=\"olvide_mi_pass\">Olvide mi contraseña</a>";
 					$pageview.="<br>";
 					$pageview.="</form>";
 				}else{
@@ -330,7 +329,7 @@ class DatosAdmin{
 				endif;
 				$pageview.="</div>";
 				$pageview.="<footer class=\"footer\">";
-				$pageview.="<p> &copy; Sistema Hosting ".date("Y")."</p>";
+				$pageview.="<p> &copy; Luislopez ".date("Y")."</p>";
 				$pageview.="</footer>";
 			}
 		}else{
