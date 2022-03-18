@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/peruanos/public_html/
-    - /bin/cp -R --exclude 'index.php' repositories/proyectoluis/ $DEPLOYPATH
+    - /bin/cp -R --exclude 'index.php' proyectoluis/ $DEPLOYPATH
