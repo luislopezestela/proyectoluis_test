@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/peruanos/public_html/
-    - /bin/rsync -a --exclude 'index.php' proyectoluis/ $DEPLOYPATH
+    - /bin/rsync -a sitioswebs/ $DEPLOYPATH
