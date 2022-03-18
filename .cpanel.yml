@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/peruanos/public_html/
-    - /bin/cp -R sitioswebs/ $DEPLOYPATH
+    - /bin/cp -a sitioswebs/ $DEPLOYPATH
