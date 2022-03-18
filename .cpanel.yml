@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/peruanos/public_html/
-    - /bin/rsync -a sitioswebs/ $DEPLOYPATH
+    - /bin/cp -R sitioswebs/ $DEPLOYPATH
