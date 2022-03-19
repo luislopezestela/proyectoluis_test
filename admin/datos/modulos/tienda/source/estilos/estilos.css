@@ -4,10 +4,10 @@
 ::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.0);background-color:rgba(44, 62, 80,1.0);}
 a{text-decoration:none;}
 body{font-family:Helvetica, Arial, sans-serif;display:flex;min-height:100vh;width:100%;flex-wrap:wrap;background-color:#f0f2f5;user-select:none;}
-.menu li ul{background-color:#1e272e;}
-.menu li ul li a:hover{background-color:#485460!important;}
-.opcionulActivado{background-color:#1e272e;}
-.menu li ul li .opciontiendaActivado{background-color:#485460;}
+.menu li ul{background-color:var(--color_segundario);}
+.menu li ul li a:hover{background-color:var(--color_primario)!important;}
+.opcionulActivado{background-color:var(--color_segundario);}
+.menu li ul li .opciontiendaActivado{background-color:var(--color_primario);}
 .sidebar  ul ul{display:none;}
 .sidebar ul .opcionulActivado{display:block;}
 .menu_administracion{z-index:2000;position:fixed;top:0;width:100%;background-color:var(--color_primario);padding:0 0 0 20px;box-shadow:0 5px 20px -10px rgba(0, 0, 0, .2);box-sizing:border-box;}

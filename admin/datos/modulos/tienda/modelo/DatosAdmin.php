@@ -183,7 +183,7 @@ class DatosAdmin{
 
 			}
 			$lista_menu.='<li><a class="inicio opcion '.$home_a.'" href="'.Luis::basepage("base_page_admin").'"><i class="icono__principal"></i> '.Luis::lang("tablero").'</a></li>';
-			$lista_menu.='<li><a class="inicio opcion '.$home_ca.'" href="'.Luis::basepage("base_page_admin").'cajas"><i class="icono__cajas"></i> '.Luis::lang("Caja").'</a></li>';
+			$lista_menu.='<li><a class="inicio opcion '.$home_ca.'" href="'.Luis::basepage("base_page_admin").'cajas"><i class="icono__cajas"></i> '.Luis::lang("caja").'</a></li>';
 			$lista_menu.='<li class="sub-menu">';
 			$lista_menu.='<a class="tienda opcion '.$restaurant_a.'" href="javascript:void(0);"><i class="icono__restaurant"></i> '.Luis::lang("tienda").'</a>';
 			$lista_menu.='<ul class="ultienda '.$restaurant_b.'">';

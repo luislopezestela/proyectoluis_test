@@ -25,9 +25,49 @@ $cantidad_total_de_ventas=DatosAdmin::contar_cantidad_de_ventas_en_total($usuari
 	 <?php endif ?>
 	<h3 class="titulospanel"><?=Luis::lang("inicio");?></h3>
 	<div class="datos_pag">
-		Welcome.
+		<div class="cubos cubs_tr">
+			<a class="fotercubo_tr" href="<?=$base."color_tema_select";?>">
+				<div class="admin_titulo_tablero_index"><span class="color_seleccionado_view"></span></div><br>
+				<i class=" icon_respont">
+					<img class="iccono_imagens" src="<?=$base."datos/source/icons/pintar.png";?>">
+				</i>
+				<b><?=Luis::lang("color");?></b>
+			</a>
+		</div>
+
+		<div class="cubos cubs_tr">
+			<a class="fotercubo_tr" href="<?=$base."idioma";?>">
+				<?php if($usuario->idioma): ?>
+					<?php $idiomapages=$usuario->idioma; ?>
+				<?php else: ?>
+					<?php if(Luis::lenguagedeUsuario()=="es"){
+						$idiomapages = "spanish";
+					}elseif(Luis::lenguagedeUsuario()=="en"){
+					    $idiomapages = "ingles";
+					}else{
+						$idiomapages = "spanish";
+					} ?>
+				<?php endif ?>
+				<div class="admin_titulo_tablero_index sty_lang_def"><span><?=ucwords($idiomapages); ?></span></div><br>
+				<i class=" icon_respont">
+					<img class="iccono_imagens" src="<?=$base."datos/source/icons/idiomas.png";?>">
+				</i>
+				<b><?=Luis::lang("idioma");?></b>
+			</a>
+		</div>
+
+		<div class="cubos cubs_tr">
+			<a class="fotercubo_tr" href="<?=$base."tema_select_page";?>">
+				<?php $data_skin = Luis::checktemas(); ?>
+				<div class="admin_titulo_tablero_index sty_lang_def"><span><?=$data_skin->nombre_skin; ?></span></div><br>
+				<i class=" icon_respont">
+					<img class="iccono_imagens" src="<?=$base."datos/source/icons/web_luis.png";?>">
+				</i>
+				<b><?=Luis::lang("web");?></b>
+			</a>
+		</div>
 	</div>
-	<h3 class="titulospanel">Funciones</h3>
+	<h3 class="titulospanel"><?=Luis::lang("funciones");?></h3>
 	<div class="datos_pag">
 	<div class="cubos cubs_tr">
 		<a class="fotercubo_tr" href="<?=$base."ventas/vender";?>">
@@ -73,7 +113,7 @@ $cantidad_total_de_ventas=DatosAdmin::contar_cantidad_de_ventas_en_total($usuari
 	</div>
 	</div>
 	<br>
-	<h3 class="titulospanel">Tablero</h3>
+	<h3 class="titulospanel"><?=Luis::lang("tablero");?></h3>
 	<div class="datos_pag">
 	<div class="cubos productos_total_un">
 		<div class="admin_titulo_tablero_index">Categorias</div>
@@ -101,7 +141,7 @@ $cantidad_total_de_ventas=DatosAdmin::contar_cantidad_de_ventas_en_total($usuari
 	</div>
 	</div>
 	<br>
-	<h3 class="titulospanel">Accesos directos</h3>
+	<h3 class="titulospanel"><?=Luis::lang("accesos_directos");?></h3>
   <div class="datos_pag">
     	<a class="botonfunciones" href="<?=$base."productos/crear";?>">Agregar producto</a>
     	<a class="botonfunciones" href="<?=$base."usuarios/add";?>">Agregar usuario</a>

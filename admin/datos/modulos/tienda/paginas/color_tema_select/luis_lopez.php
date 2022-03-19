@@ -37,10 +37,9 @@ $selec_cold=false;
 	$(document).on("click", ".color_config", function(){
 		var confi = $(this).attr("data");
 		var page_view_color = $(".palet_colors").attr("data");
-		var urline=$("#ur_timeline").attr("data");
 		$.ajax({
 			type:"POST",
-			url: urline+"index.php?accion=configcolors",
+			url: list_urls()+list_action()+"configcolors",
 			data: {colorparent:confi,page_view_c:page_view_color},
 			cache: false,
 			success: function(data){

@@ -216,15 +216,20 @@ class Luis {
 		}
 	}
 
-
 	public static function checktemas(){
 		$sql = "select * from temas where estado=1";
 		$query = Ejecutor::doit($sql);
 		return Modelo::one($query[0],new Luis());
 	}
 
+	public static function administrar_el_tema($nombre){
+		$sql = "select * from temas where estado=1 and disponible=1 and nombre=\"$nombre\"";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new Luis());
+	}
+
 	public static function listartemas(){
-		$sql = "select * from temas";
+		$sql = "select * from temas where disponible=1";
 		$query = Ejecutor::doit($sql);
 		return Modelo::many($query[0],new Luis());
 	}
@@ -268,6 +273,11 @@ class Luis {
 		return Modelo::one($query[0],new Luis());
 	}
 
+	public function actualizar_idioma_usuario(){
+		$sql = "update usuarios set idioma=\"$this->idioma\" where id=$this->id";
+		Ejecutor::doit($sql);
+	}
+
 	public static function lang_files_all(){
 		$sql = "select * from lang";
 		$query = Ejecutor::doit($sql);
@@ -301,7 +311,13 @@ class Luis {
 		    	if($clientes_lang->idioma){
 		    		$idiomapages = $clientes_lang->idioma;
 		    	}else{
-		    		$idiomapages = "spanish";
+		    		if(Luis::lenguagedeUsuario()=="es"){
+			    		$idiomapages = "spanish";
+			    	}elseif(Luis::lenguagedeUsuario()=="en"){
+			    		$idiomapages = "ingles";
+			    	}else{
+			    		$idiomapages = "spanish";
+			    	}
 		    	}
 		    	return Luis::lang_data($lap)->$idiomapages;
 			}else{

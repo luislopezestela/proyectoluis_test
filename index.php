@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 date_default_timezone_set('America/Lima');
 include "admin/datos/controlador/BaseDatos.php";
 include "admin/datos/controlador/class.upload.php";
+include "admin/datos/controlador/Functions.php";
 include "datos/controlador/Luis.php";
 include "datos/controlador/Accion.php";
 include "datos/controlador/Cookie.php";
