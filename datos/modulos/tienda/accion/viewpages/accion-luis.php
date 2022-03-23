@@ -32,7 +32,7 @@ if(isset($_POST["gold_black"])==1){
 }elseif($menu===null){
 	echo json_encode(array('type' => 0, 'mensaje' => "Error 404, pagina no existe", 'title' => "Error 404"));
 }elseif($menu->home){
-	echo json_encode(array('type' => 2, 'mensaje' => "cargando..", 'url' => $ukr, 'title' => $menu->label_menu));
+	echo json_encode(array('type' => 2, 'mensaje' => "cargando..", 'url' => $ukr, 'title' => Luis::head_init("title")));
 }else{
 	echo json_encode(array('type' => 1, 'mensaje' => "cargando..", 'url' => $ukr, 'title' => $menu->titulo));
 }

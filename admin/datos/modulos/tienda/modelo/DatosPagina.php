@@ -69,7 +69,13 @@ class DatosPagina{
 	}
 
 	public static function headerpage(){
-		$header=Functions::header_view();
+		$head=Functions::header_disp();
+		if($head) {
+			$header=Functions::header_view($head->nombre);
+		}else{
+			$header=false;
+		}
+		
 		return $header;
 	}
 

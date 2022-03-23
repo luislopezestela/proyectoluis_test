@@ -50,13 +50,17 @@ class dataisd{
 }
 $das_cols = dataisd::menc()->color_page;
 $col = dataisd::mencdos($das_cols);
+if(isset($col->color_primario)){$colorprimsa=$col->color_primario;}else{$colorprimsa="#2c3e50";}
+if(isset($col->color_segundario)){$colorseguna=$col->color_segundario;}else{$colorseguna="#34495e";}
+if(isset($col->color)){$colorletra=$col->color;}else{$colorletra="#ecf0f1";}
+
 $fSd = dataisd::menctres("header")->font_family_style;
 if($fSd==""){$fS="Roboto";}else{$fS=$fSd;}
 
 print(":root{");
-print("--color_primario:".$col->color_primario.";");
-print("--color_segundario:".$col->color_segundario.";");
-print("--color_a:".$col->color.";");
-print("--color_b:".$col->color.";");
+print("--color_primario:".$colorprimsa.";");
+print("--color_segundario:".$colorseguna.";");
+print("--color_a:".$colorletra.";");
+print("--color_b:".$colorletra.";");
 print("--font_family:".$fS.";");
 print("}");

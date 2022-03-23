@@ -18,6 +18,8 @@ if($_GET["viewind"]=="carrito"){
 }elseif($_GET["viewind"]=="perfil/cambiar_pass"){
     $pages_two=Luis::viewpagelink("perfil");
     echo json_encode(array('type' => 1, 'mensaje' => "", 'datapage' => $pages_two, 'stylepage' => "perfil_style",'jspage' => "perfil_js", "title" => "PERFIL | CAMBIAR PASSWORD"));
+}elseif($titlepages->home){   
+    echo json_encode(array('type' => 1, 'mensaje' => "", 'datapage' => $pages, 'stylepage' => $stylespage, "title" =>  Luis::head_init("title")));
 }elseif($titlepages){	
 	echo json_encode(array('type' => 1, 'mensaje' => "", 'datapage' => $pages, 'stylepage' => $stylespage, "title" => $titlepages->label_menu));
 }else{

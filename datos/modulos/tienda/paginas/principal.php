@@ -1,6 +1,6 @@
 <?php
 Luis::httpconf();
-$logopagina = Luis::page_conf("header")->logo_img;
+$logopagina = Luis::dato("luis_logo")->valor;
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,17 +17,40 @@ $logopagina = Luis::page_conf("header")->logo_img;
 		<meta property="og:title" content="<?=Luis::head_init("title");?>">
 		<meta property="og:type" content="article">
 		<meta property="og:url" content="<?=Luis::basepage("base_page");?>">
-		<meta property="og:image" content="<?=Luis::basepage("base_page")."admin/datos/imagenes/pagina/".$logopagina;?>">
+		<?php if($logopagina): ?>
+			<?php $image_logo="admin/datos/imagenes/pagina/".$logopagina; ?>
+			<?php if(is_file($image_logo)): ?>
+				<meta property="og:image" content="<?=Luis::basepage("base_page")."admin/datos/imagenes/pagina/".$logopagina;?>">
+			<?php endif ?>
+		<?php endif ?>
 		<meta property="og:site_name" content="<?=Luis::head_init("name");?>">
-		<meta property="og:image:secure_url" content="<?=Luis::basepage("base_page")."admin/datos/imagenes/pagina/".$logopagina;?>">
+		<?php if($logopagina): ?>
+			<?php $image_logo="admin/datos/imagenes/pagina/".$logopagina; ?>
+			<?php if(is_file($image_logo)): ?>
+				<meta property="og:image:secure_url" content="<?=Luis::basepage("base_page")."admin/datos/imagenes/pagina/".$logopagina;?>">
+			<?php endif ?>
+		<?php endif ?>
 		<meta property="og:description" content="<?=Luis::head_init("description");?>">
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:title" content="<?=Luis::head_init("title");?>">
 		<meta name="twitter:description" content="<?=Luis::head_init("description");?>">
-		<meta name="twitter:image" content="<?=Luis::basepage("base_page")."admin/datos/imagenes/pagina/".$logopagina;?>">
+		<?php if($logopagina): ?>
+			<?php $image_logo="admin/datos/imagenes/pagina/".$logopagina; ?>
+			<?php if(is_file($image_logo)): ?>
+				<meta name="twitter:image" content="<?=Luis::basepage("base_page")."admin/datos/imagenes/pagina/".$logopagina;?>">
+			<?php endif ?>
+		<?php endif ?>
 	<?php endif ?>
 	<link hreflang="es-PE" rel="alternate" href="<?=Luis::basepage("base_page");?>">
-	<link rel="shortcut icon" href="<?=Luis::basepage("base_page_admin")."datos/imagenes/pagina/".$logopagina;?>">
+	<?php if($logopagina): ?>
+		<?php $image_logo="admin/datos/imagenes/pagina/".$logopagina; ?>
+		<?php if(is_file($image_logo)): ?>
+			<link rel="shortcut icon" href="<?=Luis::basepage("base_page_admin")."datos/imagenes/pagina/".$logopagina;?>">
+		<?php else: ?>
+			<link rel="shortcut icon" href="<?=Luis::basepage("base_page_admin")."datos/imagenes/icons/foto.png";?>">
+		<?php endif ?>
+	<?php endif ?>
+
 	<link rel="stylesheet" type="text/css" href="<?=Luis::basepage("base_page_admin")."datos/source/estilos/estilo.css";?>">
 	<link rel="stylesheet" type="text/css" href="<?=Luis::basepage("base_page")."datos/source/estilos/estilos.css";?>">
 	<?=Luis::styles(false);?>

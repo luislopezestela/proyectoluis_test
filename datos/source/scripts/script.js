@@ -73,7 +73,11 @@ $(document).on("click", '.alert_confirm_action_exit_dialog', function(){
 
 var urline=$("#ur_timeline").attr("data");
 var urline_ini=$("#ur_timeline").attr("data-x");
-var alto = header.offsetTop;
+if($('#header').length){
+	var alto = header.offsetTop;
+}else{
+	var alto = 0;
+}
 window.addEventListener('scroll', function(){
 if (window.pageYOffset+5 > alto){
 header.classList.add("fixed");
@@ -439,8 +443,7 @@ window.onload = function(){
 	$('.andloadpage').html(loader_pages_views())
       var pathArray = window.location.pathname.split('/');
       var req = new XMLHttpRequest();
-      //web///req.open("GET",urline+list_action()+"fiel_item&viewind="+pathArray[1]+"&subinit="+pathArray[2], true);
-      req.open("GET",list_urls()+list_action()+"fiel_item&viewind="+pathArray[2]+"&subinit="+pathArray[3], true);
+      req.open("GET",list_urls()+list_action()+"fiel_item&viewind="+pathArray[1]+"&subinit="+pathArray[2], true);
       req.onreadystatechange = function(aEvt){
       	if (req.readyState == 4) {
       		if (req.status == 200){
@@ -450,16 +453,16 @@ window.onload = function(){
       			const response = JSON.parse(req.responseText);
       			if(response.type==1){
 
-      				if(pathArray[2]=="carrito"){
-      					swapPhoto(pathArray[2],false,false)
+      				if(pathArray[1]=="carrito"){
+      					swapPhoto(pathArray[1],false,false)
       					$(".li_menu").removeClass("menu_activo");
       					$(".mens_perf_nots09").removeClass("menu_activo");
-      					$("."+pathArray[2]+"_page").addClass("menu_activo");
-      				}else if(pathArray[2]=="perfil"){
-      					if(pathArray[3]){
-	      					swapPhoto(pathArray[2]+"/"+pathArray[3],false,false)
+      					$("."+pathArray[1]+"_page").addClass("menu_activo");
+      				}else if(pathArray[1]=="perfil"){
+      					if(pathArray[2]){
+	      					swapPhoto(pathArray[1]+"/"+pathArray[2],false,false)
 	      				}else{
-	      					swapPhoto(pathArray[2],false,false)
+	      					swapPhoto(pathArray[1],false,false)
 	      				}
       					
       					$(".li_menu").removeClass("menu_activo");
@@ -468,11 +471,11 @@ window.onload = function(){
       				}else{
       					$(".li_menu").removeClass("menu_activo");
       					$(".mens_perf_nots09").removeClass("menu_activo");
-      					$("."+pathArray[2]+"_page").addClass("menu_activo");
-      					swapPhoto(pathArray[2],1,false)
+      					$("."+pathArray[1]+"_page").addClass("menu_activo");
+      					swapPhoto(pathArray[1],1,false)
       				}
       			}else if(response.type==2){
-      				swapPhoto(pathArray[3],2,false)
+      				swapPhoto(pathArray[2],2,false)
       			}else{
       				$(".li_menu").removeClass("menu_activo");
       				$(".mens_perf_nots09").removeClass("menu_activo");
