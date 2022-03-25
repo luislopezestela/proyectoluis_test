@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-03-2022 a las 00:31:02
+-- Tiempo de generación: 26-03-2022 a las 00:29:22
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -2279,8 +2279,9 @@ CREATE TABLE `header_page` (
 --
 
 INSERT INTO `header_page` (`id`, `activo`, `vercion`, `nombre`) VALUES
-(1, 1, '0.1', 'header_base'),
-(2, 1, '0.1', 'header_duc');
+(1, 0, '0.1', 'header_base'),
+(2, 0, '0.1', 'header_duc'),
+(3, 1, '0.1', 'header_gog');
 
 -- --------------------------------------------------------
 
@@ -2506,9 +2507,9 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id`, `label_menu`, `titulo`, `nombre`, `nombre_ses`, `id_pagina_n`, `subs`, `posicion`, `por_defecto`, `activado`, `url`, `ukr`, `home`) VALUES
-(5, 'EQUIPOS DIGITALES', 'INICIO', NULL, NULL, NULL, 0, 4, 1, 0, NULL, 'inicio', 1),
-(27, 'MI CUENTA', 'MI CUENTA', 'acceder', NULL, NULL, 0, 6, 1, 0, NULL, 'acceder', 0),
-(28, 'SUCURSALES', 'SUCURSALES', 'sucursales', NULL, NULL, 0, 7, 1, 0, NULL, 'sucursales', 0);
+(5, 'EQUIPOS DIGITALES', 'INICIO', NULL, NULL, NULL, 0, 4, 1, 1, NULL, 'inicio', 1),
+(27, 'MI CUENTA', 'MI CUENTA', 'acceder', NULL, NULL, 0, 6, 1, 1, NULL, 'acceder', 0),
+(28, 'SUCURSALES', 'SUCURSALES', 'sucursales', NULL, NULL, 0, 7, 1, 1, NULL, 'sucursales', 0);
 
 -- --------------------------------------------------------
 
@@ -3653,7 +3654,7 @@ ALTER TABLE `estado_venta`
 -- AUTO_INCREMENT de la tabla `header_page`
 --
 ALTER TABLE `header_page`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `imagen_carta`
