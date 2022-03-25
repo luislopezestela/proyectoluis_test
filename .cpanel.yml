@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/layshane/public_html/
+    - export DEPLOYPATH=/home/peruanos/preperuano/
     - /bin/rsync -a --exclude 'BaseDatos.php' --exclude '.cpanel.yml' * $DEPLOYPATH
