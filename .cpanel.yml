@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/peruanos/proyectoluis/
+    - export DEPLOYPATH=/home/peruanos/public_html/
     - /bin/rsync -a --exclude 'BaseDatos.php' --exclude 'git' --exclude '.cpanel.yml'  * $DEPLOYPATH
