@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/peruanos/preperuano/
-    - /bin/rsync -a --exclude 'BaseDatos.php' --exclude '.cpanel.yml' * $DEPLOYPATH
+    - /bin/rsync -a  --exclude 'BaseDatos.php' --exclude 'cpanel.yml' * $DEPLOYPATH
