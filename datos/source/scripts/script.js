@@ -1,7 +1,7 @@
 setTimeout(console.log.bind(console, "%c¡Detente!", "font-family:Helvetica, Arial, sans-serif; font-weight: bold; color: red; font-size: 45px; padding-top:10px;padding-bottom:10px;"));
 setTimeout(console.log.bind(console, "%cEsta función del navegador está pensada para desarrolladores. Si alguien te indicó que copiaras y pegaras algo aquí para habilitar una función de sistemahostin o para hackear la cuenta de alguien, se trata de un fraude. Si lo haces, esta persona podrá acceder a tu cuenta.", "font-family: Helvetica, Arial, sans-serif; color: #444; font-size: 20px; padding-top:15px;padding-bottom:15px;"));
 setTimeout(console.log.bind(console, "%cPara obtener más información, consulta https://sistemahosting.com/", "font-family:Helvetica, Arial, sans-serif; font-weight: normal; color: #444; font-size: 20px; padding-top:15px;padding-bottom:15px;"));
-var header = document.getElementById("header");
+
 var i = 0;
 var idl=i++;
 
@@ -73,22 +73,6 @@ $(document).on("click", '.alert_confirm_action_exit_dialog', function(){
 
 var urline=$("#ur_timeline").attr("data");
 var urline_ini=$("#ur_timeline").attr("data-x");
-if($('#header').length){
-	var alto = header.offsetTop;
-}else{
-	var alto = 0;
-}
-window.addEventListener('scroll', function(){
-if (window.pageYOffset+5 > alto){
-header.classList.add("fixed");
-header.classList.add("somb_f");
-document.getElementById("contenidopage").style.padding = header.clientHeight+"px 0 0 0";
-}else{
-document.getElementById("contenidopage").style.padding = "0 0 0 0";
-header.classList.remove("fixed");
-header.classList.remove("somb_f");
-} 
-});
 
 $(document).on("click", ".menupagecurrent", function(e){
 	e.preventDefault();

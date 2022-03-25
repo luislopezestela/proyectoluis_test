@@ -1,6 +1,7 @@
 <?php
 Luis::httpconf();
 $logopagina = Luis::dato("luis_logo")->valor;
+$head=Functions::header_disp();
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,6 +54,15 @@ $logopagina = Luis::dato("luis_logo")->valor;
 
 	<link rel="stylesheet" type="text/css" href="<?=Luis::basepage("base_page_admin")."datos/source/estilos/estilo.css";?>">
 	<link rel="stylesheet" type="text/css" href="<?=Luis::basepage("base_page")."datos/source/estilos/estilos.css";?>">
+	<?php if(isset($head->nombre)): ?>
+		<?php if($head->nombre=="header_base"):?>
+			<link rel="stylesheet" type="text/css" href="<?=Luis::basepage("base_page")."datos/source/estilos/header_base.css";?>">
+		<?php elseif($head->nombre=="header_duc"):?>
+			<link rel="stylesheet" type="text/css" href="<?=Luis::basepage("base_page")."datos/source/estilos/header_duc.css";?>">
+		<?php elseif($head->nombre=="header_gog"):?>
+			<link rel="stylesheet" type="text/css" href="<?=Luis::basepage("base_page")."datos/source/estilos/header_gog.css";?>">
+		<?php endif ?>
+	<?php endif ?>
 	<?=Luis::styles(false);?>
 	<script src="<?=Luis::basepage("base_page_admin")."datos/source/scripts/jquery.min.js";?>"></script>
 	 
@@ -70,6 +80,13 @@ $logopagina = Luis::dato("luis_logo")->valor;
 		</div>
 	</div>
 	<?=Luis::scripts_footer();?>
+	<?php if(isset($head->nombre)): ?>
+		<?php if($head->nombre=="header_base"):?>
+			<script src="<?=Luis::basepage("base_page")."datos/source/scripts/header_base.js";?>"></script>
+			<?php elseif($head->nombre=="header_duc"):?>
+			<script src="<?=Luis::basepage("base_page")."datos/source/scripts/header_duc.js";?>"></script>
+		<?php endif ?>
+	<?php endif ?>
 	<script src="<?=Luis::basepage("base_page")."datos/source/scripts/script.js";?>"></script>
 </body>
 </html>

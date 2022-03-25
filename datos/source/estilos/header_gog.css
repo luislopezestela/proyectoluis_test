@@ -1,0 +1,48 @@
+/**Header**/
+.header{background-color:var(--color_primario);position:relative;width:100%;top:0;z-index:2;display:block;text-align:center;align-self:flex-start;box-sizing:border-box;box-shadow:5px 5px 5px 0 rgba(0, 0, 0, 0.13);}
+#header{width:100%;transition:all 0.5s;}
+.somb_f{box-shadow:3px 3px 5px 0 rgba(0, 0, 0, 0.13);}
+.csdperflcont{outline:none;} 
+#header ul{position:relative;margin:0 auto;padding:5px 0;}
+#header li{display:inline-block;box-sizing: content-box;transition:all 0.5s;}
+#header li .menu{display:inline-block;padding:22px 13px;box-sizing:content-box;text-transform:capitalize!important;color:var(--color_a);}
+#header li .menu:hover{position:relative;color:var(--color_a);}
+#header img.logo_menu{position:relative;float:left;height:66px;padding:10px;left:15px;transition: all 0.5s ease-in-out 0.2s;}
+.logo{display:inline-block;}
+.contenedor_header_menu{width:100%;margin:0 auto;}
+.logotipo_pagina{display:block;max-height:120px;vertical-align: middle;height:auto;margin:25px auto;}
+.fixed{position:fixed;top:0;left:0;text-align:center;width:100%;z-index:1000;background-color:var(--color_primario);}
+.fixed ul img.logo_menu{opacity:1!important;height:60px!important;}
+.fixed li .menu{padding: 19px 13px!important;}
+.menu_ce{display:none;}
+.logo_principal{float:left;height:48px;max-width:100%;left:15px;transition:all 0.5s ease-in-out 0.2s;}
+.menu_activo a{opacity:.6;}
+
+.contenido{position:relative;display:block;height:100%;top:0;max-width:1225px;margin:0 auto;padding:0;padding-left:240px;}
+.contenido100{position:relative;display:block;height:100%;top:0;max-width:1225px;margin:0 auto;padding:0;padding-left:0;}
+.contienelogin .acluis .formulario .tituloacceso{color:#555;}
+.producto_precios .precio_ant{color: #7a7a7a;text-decoration: line-through;font-size: .875rem;}
+.contienedata{position:relative;}
+.notif_panel_cs90{background-color:#242526;fill:#FAFAFA;padding:6px;border-radius:40px;margin:auto;cursor:pointer;margin-top:4px;}
+.on_displ_menu_line{display:flex;right:0;position:relative;padding-top:2px;padding-bottom:2px;justify-content:center;align-items:center;}
+.perf_mens_subs_pl900{display:flex;height:45px;width:100%;justify-content:center;align-items:center;position:relative;}
+.clperflleft{text-align:left!important;justify-content:flex-start;display:inline-flex;padding-left:2.5%;}
+.clperfllrih{align-self:flex-end;text-align:right!important;justify-content:flex-end;display:inline-flex;padding-right:2.5%;}
+.mens_perf_nots09{margin-right:5px;font-size:12px;justify-content:center;color:#555;}
+.numdoclis_page09{display:block;text-align:left;font-size:12px;margin-right:5px;}
+.numdoclis_page09 a{font-size:14px;text-transform:capitalize;}
+.moer_lis{display:inline-block;box-sizing:content-box;transition:all 0.5s;padding:22px 0;box-sizing: content-box;color:transparent;transition: all 0.5s;}
+.ftoperf{height:47px;width:47px;display:block;transition:all 0.5s ease-in-out 0.2s;border:2px solid #ccc;border-radius:50px;cursor:pointer;object-fit:cover;}
+/**Header end**/
+@media only screen and (max-width:920px){
+.usernoneviewcartbox{display:none;}
+body{margin-bottom:0;}
+.logo{display:none;}
+#header ul {width:100%;}
+#header ul .li_menu{display:none;}
+#header img.logo_menu{position:relative;display:block;height:50px;top:5px;padding:5px;opacity:1;visibility:visible;left:10px;}
+}
+
+@media only screen and (max-width:200px){
+#header img.logo_menu{position:relative;display:block;height:50px;margin:0 auto;left:0;}
+}
