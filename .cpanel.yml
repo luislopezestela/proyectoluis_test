@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/peruanos/public_html/
+    - export DEPLOYPATH=/home/layshane/public_html/
     - /bin/rsync -a --exclude 'BaseDatos.php' * $DEPLOYPATH
