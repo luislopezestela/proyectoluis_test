@@ -17,7 +17,8 @@
 .menu_ce{display:none;}
 .logo_principal{float:left;height:70px;max-width:100%;left:15px;transition:all 0.5s ease-in-out 0.2s;}
 .menu_activo a{opacity:.6;}
-
+.cdfdperflcontblius{position:relative;font-family: inherit;border-radius: 50%;padding: 2px;display:inline-block;width:44px;height:44px;text-align:center;background-color:#242526;margin:0px auto;}
+.perf767fildobs{height:40px;width:40px;object-fit:contain;}
 .contenido{position:relative;display:block;height:100%;top:0;max-width:1225px;margin:0 auto;padding:0;padding-left:240px;}
 .contenido100{position:relative;display:block;height:100%;top:0;max-width:1225px;margin:0 auto;padding:0;padding-left:0;}
 .contienelogin .acluis .formulario .tituloacceso{color:#555;}

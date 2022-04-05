@@ -90,10 +90,9 @@ alerta
 }
 .contenidoperfil{display:block;position:relative;width:100%;top:0;padding:30px 10px;}
 .perf767fils{height:140px;width:140px;}
-.perf767fildobs{height:40px;width:40px;object-fit:contain;}
+
 .qfrr9uorilb {display:inline-block;position:relative;z-index:0;outline:none;}
 .cdfdperflcont{position:relative;font-family: inherit;border-radius: 50%;padding: 2px;display:block;width:145px;height:145px;text-align:center;background-color:#242526;margin:5px auto;}
-.cdfdperflcontblius{position:relative;font-family: inherit;border-radius: 50%;padding: 2px;display:inline-block;width:44px;height:44px;text-align:center;background-color:#242526;margin:0px auto;}
 
 .alerta_top{position:fixed;top:0.2%;z-index:9999;right:0;max-width:300px;left:0;margin:0 auto;display:flex;padding:1em;border-radius:10px;word-wrap:break-word;color:#FFFFFFFF;font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,0.3);transition:all 0.7s;}
 .alerta_top100{width:100%;}

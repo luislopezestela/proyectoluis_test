@@ -9,6 +9,14 @@ $selec_cold=false;
 ?>
 <label>Colores pagina</label>
 <hr>
+<?php foreach($temas as $t):
+		if($active==$t->estado){
+		}else{
+			$active_colk_page=$t->color_page;
+			$tema_view=$t->id;
+		}
+	?>
+<?php endforeach ?>
 <div class="palet_colors" data="<?=$tema_view;?>">
 	<?php foreach($colores as $c): ?>
 		<?php if($c->id===$active_colk_page): ?>
@@ -23,10 +31,9 @@ $selec_cold=false;
 	$(document).on("click", ".color_config_pages", function(){
 		var confi = $(this).attr("data");
 		var page_view_color = $(".palet_colors").attr("data");
-		var urline=$("#ur_timeline").attr("data");
 		$.ajax({
 			type:"POST",
-			url: urline+"index.php?accion=configcolors_page",
+			url:list_urls()+list_action()+"configcolors_page",
 			data: {colorparent:confi,page_view_c:page_view_color},
 			cache: false,
 			success: function(data){

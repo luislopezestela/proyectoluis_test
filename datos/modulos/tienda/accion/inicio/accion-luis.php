@@ -2,7 +2,6 @@
 $base=Luis::basepage("base_page");
 $categorias=DatosAdmin::mostrar_categorias(); 
 $idexhtmls="<h1 class=\"titlecurrentpage\">".Luis::head_init("name")."</h1>";
-$idexhtmls.="<hr>";
 $idexhtmls.="<div class=\"contenspage\">";
 $idexhtmls.="<div class=\"list_view_items\">";
 foreach ($categorias as $cart){
