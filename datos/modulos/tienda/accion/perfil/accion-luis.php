@@ -21,8 +21,10 @@ if(isset($_SESSION['usuarioid'])){
 		}
 	}
 
-	
-	$idexhtmls='<div class="contenedor_datos_perfil">';
+$idexhtmls="<div class=\"b_contenido_onb_page_luis\">";
+$idexhtmls.="<div class=\"c_contenido_onb_page_luis\">";
+
+	$idexhtmls.='<div class="contenedor_datos_perfil">';
 	/*Datos perfil start*/
 	$idexhtmls.='<br>';
 	$idexhtmls.='<div class="cdfdperflcont">';
@@ -170,9 +172,17 @@ if(isset($_SESSION['usuarioid'])){
 	$idexhtmls.='</div>';
 	$idexhtmls.='<br>';
 	$idexhtmls.='<br>';
-	
-	
+
+
+$idexhtmls.='</div>';	
+$idexhtmls.='</div>';
 }else{
-	$idexhtmls='Debes ininiciar session para continuar.';
+	$idexhtmls="<div class=\"b_contenido_onb_page_luis\">";
+	$idexhtmls.="<div class=\"c_contenido_onb_page_luis\">";
+	
+	$idexhtmls.='Debes ininiciar session para continuar.';
+	
+	$idexhtmls.='</div>';	
+	$idexhtmls.='</div>';
 }
 return $idexhtmls;

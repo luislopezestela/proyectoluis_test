@@ -12,13 +12,12 @@ $codigos = "";
 for($i=0;$i<11;$i++){$codigos .= $alphabeth[rand(0,strlen($alphabeth)-1)];}
 $cat->nombre = htmlentities($_POST["nombre"]);
 $cat->codigo = $codigos;
-$cat->sucursal = $_POST["sucursal"];
 $cat->ukr=DatosAdmin::poner_guion(strip_tags(htmlentities($_POST["nombre"])));
 $handle = new \Verot\Upload\Upload($_FILES['logo']);
 
 if($handle->uploaded){
 	$handle->image_resize = true;
-    $handle->image_ratio_x = true;
+    $handle->image_x = 250;
     $handle->image_y = 250;
     $handle->image_convert = 'jpeg';
     $url="../datos/modulos/".Luis::temass()."/source/imagenes/categorias/thumb/";

@@ -291,28 +291,6 @@ if(isset($_SESSION["admin_id"])):
                 <div class="untmsd4ss4listticread">Nueva publicacion</div>
                 <div class="contentboxitemslistcread">
                   <form id="form800goodlive" role="form" method="POST" enctype="multipart/form-data">
-                    <div class="boxinputlists">
-                      <select id="sucursal_view" class="inptexboslistspublic" name="sucursal" required>
-                        <option value=""></option>
-                        <?php $sucursales=DatosAdmin::Mostrar_sucursales();
-                        foreach($sucursales as $m): ?>
-                          <option value="<?=$m->id;?>"><?=html_entity_decode($m->nombre);?></option>
-                        <?php endforeach; ?>
-                      </select>
-                      <label class="labelboxinptext">Sucursal</label>
-                    </div>
-
-                    <div class="boxinputlists">
-                      <select id="type_item_view" class="inptexboslistspublic type_item_view_pages" name="tipo" required>
-                        <option value=""></option>
-                        <?php $tipyitems=DatosAdmin::Mostrar_typeitems_list();
-                        foreach($tipyitems as $ty): ?>
-                          <option value="<?=$ty->id;?>"><?=html_entity_decode($ty->nombre);?></option>
-                        <?php endforeach; ?>
-                      </select>
-                      <label class="labelboxinptext">Tipo de productos</label>
-                    </div>
-
                     <div>
                       <span class="infmaximgs">Fotos <span id="coukbox200" class="coukbox">0</span>/5 <span>Puedes agregar maximo 5 fotos</span></span>
                     </div>

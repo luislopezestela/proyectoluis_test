@@ -95,14 +95,6 @@ header('location:'.$base.'categorias');
   <?php unset($_SESSION["failexep"]); endif ?>
   <a class="butt_back" href="<?=$base."categorias";?>">❮ Categorias</a>
   <form method="POST" action="<?=$base."index.php?accion=editarcategoria";?>" role="form" enctype="multipart/form-data">
-     <select class="input_luis_tres input_text_category_seaching" required name="sucursal">
-      <?php $sucursales=DatosAdmin::Mostrar_sucursales(); ?>
-      <option>Seleccionar sucursal</option>
-      <?php foreach ($sucursales as $k): 
-        if($k->id==$sucurs){$sucursale="selected";}else{$sucursale=false;}?>
-        <option value="<?=$k->id;?>" <?=$sucursale; ?>><?=html_entity_decode($k->nombre);?></option>
-      <?php endforeach ?>
-    </select>
   <input class="input_luis_one" type="text" name="nombre" value="<?=$cats_tit;?>" placeholder="Nombre de categoria">
 <div class="imagenes">
 <input hidden="hidden" type="text" name="laimagen" value="<?=$logo_disp;?>">
@@ -150,13 +142,6 @@ header('location:'.$base.'categorias');
   <p class="cerrar_modal" id="cerrar_modal">X</p>
   <h2 class="title_slide_luis">Agregar categoria</h2>
   <form class="formulariodiapositiva" method="POST" action="<?=$base."index.php?accion=nuevacategoria";?>" role="form" enctype="multipart/form-data">
-    <select class="input_luis_tres input_text_category_seaching" required name="sucursal">
-      <?php $sucursales=DatosAdmin::Mostrar_sucursales(); ?>
-      <option>Seleccionar sucursal</option>
-      <?php foreach ($sucursales as $k): ?>
-        <option value="<?=$k->id;?>"><?=html_entity_decode($k->nombre);?></option>
-      <?php endforeach ?>
-    </select>
   <input class="input_luis_tres" type="text" name="nombre" placeholder="Nombre de la categoria" autocomplete="off" required="required">
   <div class="imagenes">
     <input hidden="hidden" type="text" name="laimagen_logo" value="">

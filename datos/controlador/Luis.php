@@ -16,6 +16,22 @@ class Luis {
 		Ejecutor::doit($sql);
 	}
 
+	public static function fromRGB($R, $G, $B){
+	    $R = dechex($R);
+	    if (strlen($R)<2)
+	    $R = '0'.$R;
+
+	    $G = dechex($G);
+	    if (strlen($G)<2)
+	    $G = '0'.$G;
+
+	    $B = dechex($B);
+	    if (strlen($B)<2)
+	    $B = '0'.$B;
+
+	    return '#' . $R . $G . $B;
+	}
+
 	public static function promedioColorImagen($rutaImagen){
 		$finfo=finfo_open(FILEINFO_MIME_TYPE);
 		$fileMime=finfo_file($finfo, $rutaImagen);
@@ -25,6 +41,8 @@ class Luis {
 			$imgId=imagecreatefromgif($rutaImagen);
 		elseif($fileMime=="image/png")
 			$imgId=imagecreatefrompng($rutaImagen);
+		elseif($fileMime=="image/webp")
+			$imgId=imagecreatefromwebp($rutaImagen);
 		else
 			return array(0,0,0);
 		$red=0;
@@ -225,14 +243,19 @@ class Luis {
 				if(isset($urb[1])){$urb1=$urb[1];}else{$urb1=false;}
 				if(isset($urb[2])){$urb2=$urb[2];}else{$urb2=false;}
 				if(isset($urb[3])){$urb3=$urb[3];}else{$urb3=false;}
+
+				$verrifiv_pad = Luis::currentpage(Luis::temass(),$urb1);
+				if($verrifiv_pad){ $urb_null=$verrifiv_pad; }else{$urb_null="non_sl";}
+
 				$page_style=$_GET["paginas"];
 				$estilo_page = match($page_style){
 					"index" => Luis::formatstyle("cssindex"),
 					"carrito" => Luis::formatstyle("carrito_style"),
 					"perfil" => Luis::formatstyle("perfil_style"),
 					"perfil/".$urb1 => Luis::formatstyle("perfil_style"),
-					$urb0 => Luis::currentpage(Luis::temass(),false),
-					$urb0."/".$urb1 => Luis::formatstyle(Luis::currentpage(Luis::temass(),$urb1)),
+					"serv/".$urb1 => Luis::formatstyle("services"),
+					$urb0 => Luis::currentpage(Luis::temass(),false),		
+					$urb0."/".$urb1 => Luis::formatstyle($urb_null),				
 					"404" => Luis::formatstyle("404"),
 					default => '',
 				};
@@ -411,9 +434,22 @@ class Luis {
 				case $_GET["paginas"]:
 				    $pld=Luis::Mostrartitulo($_GET["paginas"]);
 				    $slpo=DatosAdmin::categoriaporUkr($urb0);
+				    $serv=DatosAdmin::serv_view($urb1);
 				    if(isset($slpo)){
 				    	if($name==="title") {
 				    		$data = $slpo->nombre;
+				    	}elseif($name==="name"){
+				    		$data = html_entity_decode($nombrepagina);
+				    	}elseif($name==="description"){
+				    		$data = Luis::poner_guion_ur(strip_tags(html_entity_decode($descripcionpagina)));
+				    	}elseif($name==="keywords"){
+				    		$data = html_entity_decode($keywordspagina);
+				    	}elseif($name==="primarycolor"){
+				    		$data = $colorPrimario;
+				    	}
+				    }elseif(isset($serv)){
+				    	if($name==="title") {
+				    		$data = $serv->nombre;
 				    	}elseif($name==="name"){
 				    		$data = html_entity_decode($nombrepagina);
 				    	}elseif($name==="description"){

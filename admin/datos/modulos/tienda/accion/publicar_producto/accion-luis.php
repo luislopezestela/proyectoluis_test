@@ -1,4 +1,5 @@
 <?php
+$usuario=DatosUsuario::poriUsuario($_SESSION["admin_id"]);
 $alphabeth ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWYZ1234567890_-";
 $codigos = "";
 for($i=0;$i<11;$i++){
@@ -22,8 +23,7 @@ $publi->precio=$_POST["precio"];
 $publi->moneda_b=$_POST["moneda_two"];
 $publi->precio_final=$_POST["precio_final"];
 $publi->marca=$_POST["marca"];
-$publi->sucursal=$_POST["sucursal"];
-$publi->tipo=$_POST["tipo"];
+$publi->sucursal=$usuario->sucursal;
 $publi->id_categoria=$_POST["listone"];
 $publi->id_subcategoria=$listtwo;
 $publi->descripcion=htmlentities($_POST['listboxstrin']);

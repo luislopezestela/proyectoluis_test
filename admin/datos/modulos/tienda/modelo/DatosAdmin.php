@@ -97,6 +97,8 @@ class DatosAdmin{
 			$restaurantit_i=false;
 			$restaurantit_j=false;
 			$restaurantit_k=false;
+			$restaurantit_l=false;
+			$restaurantit_m=false;
 
 			$restaurantit_ab=false;
 			$restaurantit_bb=false;
@@ -164,6 +166,18 @@ class DatosAdmin{
 					$restaurantit_k="opciontiendaActivado";
 				}
 
+				if($_GET["paginas"]=="diapositiva" or $_GET["paginas"]=="diapositiva/".$urb1 or  $_GET["paginas"]=="diapositiva/".$urb1."/".$urb2){
+					$restaurant_a="opcionActivado";
+					$restaurant_b="opcionulActivado";
+					$restaurantit_l="opciontiendaActivado";
+				}
+
+				if($_GET["paginas"]=="servicios" or $_GET["paginas"]=="servicios/".$urb1 or  $_GET["paginas"]=="servicios/".$urb1."/".$urb2){
+					$restaurant_a="opcionActivado";
+					$restaurant_b="opcionulActivado";
+					$restaurantit_m="opciontiendaActivado";
+				}
+
 				if($_GET["paginas"]=="agregar_idioma"){
 					$restaurantit_ab="opcionActivado";
 					$restaurantit_bb="opcionulActivado";
@@ -199,6 +213,8 @@ class DatosAdmin{
 			$lista_menu.='<li><a class="'.$restaurantit_i.'" href="'.Luis::basepage("base_page_admin").'clientes">'.Luis::lang("clientes").'</a></li>';
 			$lista_menu.='<li><a class="'.$restaurantit_g.'" href="'.Luis::basepage("base_page_admin").'gastos">'.Luis::lang("gastos").'</a></li>';
 			$lista_menu.='<li><a class="'.$restaurantit_j.'" href="'.Luis::basepage("base_page_admin").'devoluciones">'.Luis::lang("devoluciones").'</a></li>';
+			$lista_menu.='<li><a class="'.$restaurantit_l.'" href="'.Luis::basepage("base_page_admin").'diapositiva">'.Luis::lang("diapositiva").'</a></li>';
+			$lista_menu.='<li><a class="'.$restaurantit_m.'" href="'.Luis::basepage("base_page_admin").'servicios">'.Luis::lang("servicios").'</a></li>';
 			$lista_menu.='</ul>';
 			$lista_menu.='</li>';
 
@@ -530,13 +546,13 @@ class DatosAdmin{
 	}
 
 	public function editar_categoria(){
-		$sql = "update categorias SET nombre=\"$this->nombre\",ukr=\"$this->ukr\",logo=\"$this->logo\",sucursal=$this->sucursal where id=\"$this->id\"";
+		$sql = "update categorias SET nombre=\"$this->nombre\",ukr=\"$this->ukr\",logo=\"$this->logo\" where id=\"$this->id\"";
 		Ejecutor::doit($sql);
 	}
 
 	public function agregar_categoria(){
-		$sql = "insert into categorias (nombre,logo,codigo,ukr,sucursal,fecha) ";
-		$sql .= "value (\"$this->nombre\",\"$this->logo\",\"$this->codigo\",\"$this->ukr\",$this->sucursal,$this->fecha)";
+		$sql = "insert into categorias (nombre,logo,codigo,ukr,fecha) ";
+		$sql .= "value (\"$this->nombre\",\"$this->logo\",\"$this->codigo\",\"$this->ukr\",$this->fecha)";
 		Ejecutor::doit($sql);
 	}
 
@@ -776,9 +792,9 @@ class DatosAdmin{
 	}
 
 	public function publicar_producto(){
-		$sql = "insert into items (usuario,nombre,moneda_a,precio,moneda_b,precio_final,marca,descripcion,categoria,subcategoria,codigo,sucursal,tipo,ukr,fecha)";
+		$sql = "insert into items (usuario,nombre,moneda_a,precio,moneda_b,precio_final,marca,descripcion,categoria,subcategoria,codigo,sucursal,ukr,fecha)";
 
-		$sql .= "value ($this->id_persona,\"$this->titulo\",$this->moneda_a,\"$this->precio\",$this->moneda_b,\"$this->precio_final\",$this->marca,\"$this->descripcion\",\"$this->id_categoria\",".(($this->id_subcategoria=='')?"NULL":("'".$this->id_subcategoria."'")).",\"$this->codigo\",$this->sucursal,$this->tipo,\"$this->ub\",\"$this->fecha\")";
+		$sql .= "value ($this->id_persona,\"$this->titulo\",$this->moneda_a,\"$this->precio\",$this->moneda_b,\"$this->precio_final\",$this->marca,\"$this->descripcion\",\"$this->id_categoria\",".(($this->id_subcategoria=='')?"NULL":("'".$this->id_subcategoria."'")).",\"$this->codigo\",$this->sucursal,\"$this->ub\",\"$this->fecha\")";
 		return Ejecutor::doit($sql);
 	}
 
@@ -2284,6 +2300,176 @@ class DatosAdmin{
 		$query = Ejecutor::doit($sql);
 		return Modelo::one($query[0],new DatosAdmin());
 	}
+
+	/// Publicidad
+
+	/**diapositiva principal**/
+	public static function diapositivas_lista(){
+		$sql = "select * from diapositiva";
+		$query = Ejecutor::doit($sql);
+		return Modelo::many($query[0], new DatosAdmin());
+	}
+	public static function diapositivas_lista_public(){
+		$sql = "select * from diapositiva where activado=1";
+		$query = Ejecutor::doit($sql);
+		return Modelo::many($query[0], new DatosAdmin());
+	}
+
+	public static function diapositiva_detalle($id){
+		$sql = "select * from diapositiva where id=$id";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new DatosAdmin());
+	}
+
+	public function publicar_diapositiva(){
+		$sql = "insert into diapositiva (usuario,nombre,texto,codigo,ub,fecha) ";
+		$sql .= "value ($this->usuario,\"$this->nombre\",\"$this->texto\",\"$this->codigo\",\"$this->ub\",\"$this->fecha\")";
+		return Ejecutor::doit($sql);
+	}
+
+	public function publicar_diapositiva_b(){
+		$sql = "insert into diapositiva (usuario,nombre,texto,codigo,ub,url,boton,fecha) ";
+		$sql .= "value ($this->usuario,\"$this->nombre\",\"$this->texto\",\"$this->codigo\",\"$this->ub\",\"$this->url\",\"$this->boton\",\"$this->fecha\")";
+		return Ejecutor::doit($sql);
+	}
+
+	public function activardiapositiva(){
+		$sql = "update diapositiva SET activado=\"$this->activado\" where id=\"$this->id\"";
+		Ejecutor::doit($sql);
+	}
+
+	////editar datos de diapositiva
+	public function editar_diapositiva(){
+		$sql = "update diapositiva SET usuario=\"$this->usuario\",nombre=\"$this->nombre\",texto=\"$this->texto\",ub=\"$this->ub\",url=null,boton=null,fecha=\"$this->fecha\" where id=\"$this->id\"";
+		Ejecutor::doit($sql);
+	}
+
+	public function editar_diapositiva_b(){
+		$sql = "update diapositiva SET usuario=\"$this->usuario\",nombre=\"$this->nombre\",texto=\"$this->texto\",ub=\"$this->ub\",url=\"$this->url\",boton=\"$this->boton\",fecha=\"$this->fecha\" where id=\"$this->id\"";
+		Ejecutor::doit($sql);
+	}
+
+
+
+	//// agregar imagen de publicidad
+	public function agrega_imagen_diapositiva(){
+		$sql = "insert into imagen_diapositiva (id_diapositiva,imagen,fecha)";
+		$sql .= "value ($this->id_diapositiva,\"$this->imagen\",\"$this->fecha\")";
+		return Ejecutor::doit($sql);
+	}
+
+	////editar la imagen de la diapositiva
+	public function editar_imagen_diapositiva(){
+		$sql = "update imagen_diapositiva SET imagen=\"$this->imagen\",fecha=\"$this->fecha\" where id_diapositiva=\"$this->id_diapositiva\"";
+		Ejecutor::doit($sql);
+	}
+
+	/// visualiza imagen diapositiva
+	public static function diapositiva_image($id){
+		$sql = "select * from imagen_diapositiva where id_diapositiva=$id";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new DatosAdmin());
+	}
+
+	//// eliminar diapositiva
+	public function eliminar_diapositiva(){
+		$sql = "delete from diapositiva where id=$this->id";
+		Ejecutor::doit($sql);
+	}
+
+
+
+	/// Servicios acciones
+	public function publicar_servicios(){
+		$sql = "insert into servicios (usuario,nombre,icono,codigo,url) ";
+		$sql .= "value ($this->usuario,\"$this->nombre\",\"$this->icono\",\"$this->codigo\",\"$this->url\")";
+		return Ejecutor::doit($sql);
+	}
+	
+	/// mostrar servicios al publico
+	public static function servicios_lista(){
+		$sql = "select * from servicios";
+		$query = Ejecutor::doit($sql);
+		return Modelo::many($query[0], new DatosAdmin());
+	}
+
+	public static function servicios_public(){
+		$sql = "select * from servicios where activado=1";
+		$query = Ejecutor::doit($sql);
+		return Modelo::many($query[0], new DatosAdmin());
+	}
+
+	public static function serv_view($url){
+		$sql = "select * from servicios where url=\"$url\"";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new DatosAdmin());
+	}
+
+	public static function serv_view_data($url){
+		$sql = "select * from servicios where url=\"$url\"";
+		$query = Ejecutor::doit($sql);
+		return Modelo::many($query[0],new DatosAdmin());
+	}
+
+	public static function ver_servicio_id($id){
+		$sql = "select * from servicios where id=\"$id\"";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new DatosAdmin());
+	}
+	public function activar_servicio(){
+		$sql = "update servicios SET activado=\"$this->activado\" where id=\"$this->id\"";
+		Ejecutor::doit($sql);
+	}
+	
+
+	////editar la imagen de la servicios 
+	public function editar_servicios(){
+		$sql = "update servicios SET nombre=\"$this->nombre\",icono=\"$this->icono\",url=\"$this->url\" where id=\"$this->id\"";
+		Ejecutor::doit($sql);
+	}
+	public function editar_servicios_fals(){
+		$sql = "update servicios SET nombre=\"$this->nombre\",url=\"$this->url\" where id=\"$this->id\"";
+		Ejecutor::doit($sql);
+	}
+
+	//// eliminar servicios
+	public function eliminar_servicio(){
+		$sql = "delete from servicios where id=$this->id";
+		Ejecutor::doit($sql);
+	}
+
+	/// Servicios acciones publicaciones
+	public function publicar_servicios_post_a(){
+		$sql = "insert into servicios_datos (usuario,texto,sucursal,color,url,id_servicio,fecha) ";
+		$sql .= "value ($this->usuario,\"$this->texto\",\"$this->sucursal\",\"$this->color\",\"$this->url\",$this->id_servicio,\"$this->fecha\")";
+		return Ejecutor::doit($sql);
+	}
+
+	public function publicar_servicios_post_b(){
+		$sql = "insert into servicios_datos (usuario,texto,sucursal,color,url,imagen,id_servicio,fecha) ";
+		$sql .= "value ($this->usuario,\"$this->texto\",\"$this->sucursal\",\"$this->color\",\"$this->url\",\"$this->imagen\",$this->id_servicio,\"$this->fecha\")";
+		return Ejecutor::doit($sql);
+	}
+
+	public static function vista_previa_lp($servicio){
+		$sql = "select * from servicios_datos where id_servicio=$servicio order by fecha desc";
+		$query = Ejecutor::doit($sql);
+		return Modelo::many($query[0],new DatosAdmin());
+	}
+	public static function public_post_image_data($servicio){
+		$sql = "select * from servicios_datos where id=$servicio";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new DatosAdmin());
+	}
+
+	//// eliminar servicio post publics
+	public function eliminar_list_service_post(){
+		$sql = "delete from servicios_datos where id=$this->id";
+		Ejecutor::doit($sql);
+	}
+
+	
+	
 
 
 

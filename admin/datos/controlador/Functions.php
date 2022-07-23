@@ -200,6 +200,11 @@ class Functions{
         $query = Ejecutor::doit($sql);
         return Modelo::one($query[0],new DatosPagina());
     }
+    public static function footer_disp(){
+        $sql = "select * from footer_page where activo=1";
+        $query = Ejecutor::doit($sql);
+        return Modelo::one($query[0],new DatosPagina());
+    }
 
     public static function header_view($header_l){
         $valortotaldecompra=0;

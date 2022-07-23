@@ -17,6 +17,15 @@ if(isset($_POST["gold_black"])==1){
 	}else{
 		echo json_encode(array('type' => 0, 'mensaje' => "Error 404, pagina no existe", 'title' => "Error 404 1"));
 	}
+}elseif(isset($_POST["gold_black_service"])==3){
+	$service=DatosAdmin::serv_view($ukr);
+	if($service){
+		echo json_encode(array('type' => 1, 'mensaje' => "cargando..",'url_a' => "serv", 'url' => $service->url, 'title' => $service->nombre));
+	}else{
+		echo json_encode(array('type' => 0, 'mensaje' => "Error 404, pagina no existe", 'title' => "Error 404"));
+	}
+}elseif($_POST["index"]=="serv"){
+	echo json_encode(array('type' => 0, 'mensaje' => "Error url", 'title' => "Error url"));
 }elseif($_POST["index"]=="carrito"){
 	echo json_encode(array('type' => 1, 'mensaje' => "cargando..", 'url' => $ukr, 'jspage' => "carrito_js", 'title' => "CARRITO"));
 }elseif($_POST["index"]=="perfil"){

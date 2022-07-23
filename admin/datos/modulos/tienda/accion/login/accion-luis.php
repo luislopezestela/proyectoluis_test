@@ -5,8 +5,8 @@ class userdat{
 		return array($con->query($sql),$con->insert_id);
 	}
 
-	public static function verificar_usuario_activado($email,$pass){
-		$sql = "select * from usuarios where (correo= \"$email\" ) and pass= \"$pass\"";
+	public static function verificar_usuario_activado($email){
+		$sql = "select * from usuarios where (correo= \"$email\" )";
 		$query = userdat::conect_data($sql);
 		$found = null;
 		$data = new userdat();
@@ -51,6 +51,22 @@ class userdat{
 		userdat::conect_data($sql);
 	}
 
+	public static function verificarexistenciadecorreo($elcorreo){
+		$sql = "select * from usuarios where (correo=\"$elcorreo\")";
+		$query = userdat::conect_data($sql);
+		$found = null;
+		$data = new userdat();
+		while($r = $query[0]->fetch_array()){
+			$data->correo = $r['correo'];
+			$data->passw = $r['pass'];
+			$found = $data;
+			break;
+		}
+		return $found;
+	}
+
+	
+
 	
 }
 //
@@ -58,15 +74,21 @@ class userdat{
 if(Session::getUID()==""){
 $email = $_POST['correo'];
 $pass = sha1(md5($_POST['pass']));
+$existeemail = userdat::verificarexistenciadecorreo($email);
 $usuario_activado = userdat::verificar_usuario_activado($email,$pass);
 $usuario_activado_inicio = userdat::verificar_usuario_activado_iniciar($email,$pass);
 
 
 
-if($_POST['sucursal']==""){
-	echo(json_encode(array('type' => false, 'mensaje' => "Selecciona el sucursal.")));
-}else{
-	if($usuario_activado->esta_activado==0){
+	if($email == ""){
+		echo(json_encode(array('type' => false, 'mensaje' => "Escribe un correo.")));
+	}elseif($existeemail==null){
+		echo(json_encode(array('type' => false, 'mensaje' => "EL correo ingresado no existe en nuestra base de datos.")));
+	}elseif($_POST['pass'] == ""){
+		echo(json_encode(array('type' => false, 'mensaje' => "Escribe su contrase&ntilde de acceso.")));
+	}elseif($existeemail->passw!=$pass){
+		echo(json_encode(array('type' => false, 'mensaje' => "La contrase&ntilde;a no es correcto.")));
+	}elseif($usuario_activado->esta_activado==0){
 		if(isset($_POST['codd'])){
 			$codigo_ver = userdat::validar_codigo_de_verificacion($email,$pass);
 			if($_POST['codd']==$codigo_ver->codigo){
@@ -86,18 +108,17 @@ if($_POST['sucursal']==""){
 		}else{
 			echo(json_encode(array('type' => false, 'mensaje' => "Activa tu cuenta con el codigo que enviamos a tu correo.", 'activar' => 1)));
 		}
-	}else{
-		if($usuario_activado_inicio->id){
-			$var_sucursal = new DatosAdmin();
-			$var_sucursal->usuario = $usuario_activado_inicio->id;
-			$var_sucursal->sucursal = $_POST['sucursal'];
-			$var_sucursal->actualizar_sucursal_usuario();
-			$_SESSION['admin_id']=$usuario_activado_inicio->id;
-			echo(json_encode(array('type' => true, 'mensaje' => "Cargando...")));
-		}else{
-			echo(json_encode(array('type' => false, 'mensaje' => "El usuario y/o la contrase&ntilde;a no son correctos.")));
-		}
+	}elseif($_POST['sucursal']==""){
+		echo(json_encode(array('type' => false, 'mensaje' => "Selecciona el sucursal.")));
+	}elseif(isset($usuario_activado_inicio->id)){
+		$var_sucursal = new DatosAdmin();
+		$var_sucursal->usuario = $usuario_activado_inicio->id;
+		$var_sucursal->sucursal = $_POST['sucursal'];
+		$var_sucursal->actualizar_sucursal_usuario();
+		$_SESSION['admin_id']=$usuario_activado_inicio->id;
+		echo(json_encode(array('type' => true, 'mensaje' => "Cargando...")));
+		
 	}
-}
+
 
 }

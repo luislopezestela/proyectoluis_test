@@ -9,7 +9,7 @@ $(document).ready(function(){
     var files = this.files;
     var filesLength = files.length;
     var element;
-    var supportedImages = ["image/jpeg", "image/png", "image/gif"];
+    var supportedImages = ["image/jpeg", "image/png", "image/gif", "image/webp"];
     var seEncontraronElementoNoValidos = false;
     if(filesLength<=1 ) {
     for (var i = 0; i < files.length; i++) {

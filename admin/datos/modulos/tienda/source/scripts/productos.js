@@ -43,8 +43,6 @@ $(document).ready(function(){
   formData.append('marca',$("#ifodmarc").val());
   formData.append('listone',$("#ifgoodc").val());
   formData.append('listtwo',$("#ifgoodd").val());
-  formData.append('sucursal',$("#sucursal_view").val());
-  formData.append('tipo',$("#type_item_view").val());
   if($("#editor").length > 0){
     formData.append('listboxstrin',CKEDITOR.instances['editor'].getData());
   }
@@ -71,7 +69,7 @@ $(document).ready(function(){
     var files = this.files;
     var filesLength = files.length;
     var element;
-    var supportedImages = ["image/jpeg", "image/png", "image/gif"];
+    var supportedImages = ["image/jpeg", "image/png", "image/gif", "image/webp"];
     var seEncontraronElementoNoValidos = false;
     if(filesLength<=5 ) {
     for (var i = 0; i < files.length; i++) {
@@ -153,13 +151,7 @@ $(document).ready(function(){
 
 
   $(document).on("click", '.aphlistbuttonnextopembox', function(){
-    if($("#sucursal_view").val()==""){
-      $("#sucursal_view").focus()
-      alertadvertencia("Selecciona el sucursal");
-    }else if($("#type_item_view").val()==""){
-      $("#type_item_view").focus()
-      alertadvertencia("Selecciona el tipo de producto");
-    }else if($("#ifgooda").val()==""){
+    if($("#ifgooda").val()==""){
       $("#ifgooda").focus()
       alertadvertencia("Ingresa un título válido.");
     }else if($("#ifpmond_one").val()==""){
@@ -325,8 +317,6 @@ $('.aphlistbuttonnextopemboxlist100').on("click", function(){
     formData.set('marca',$("#ifodmarc").val());
     formData.set('listone',$("#ifgoodc").val());
     formData.set('listtwo',$("#ifgoodd").val());
-    formData.set('sucursal',$("#sucursal_view").val());
-    formData.set('tipo',$("#type_item_view").val());
     formData.append('listboxstrin',CKEDITOR.instances['editor'].getData());
     var optl=$(".optlistnull").attr("data-nullb");
     var idl = i++;
@@ -397,7 +387,6 @@ $('.aphlistbuttonnextopemboxlist100').on("click", function(){
     formData.set('marca',$("#ifodmarc").val());
     formData.set('listone',$("#ifgoodc").val());
     formData.set('listtwo',$("#ifgoodd").val());
-    formData.set('sucursal',$("#sucursal_view").val());
     formData.set('listboxstrin',CKEDITOR.instances['editor'].getData());
     var optl=$(".optlistnull").attr("data-nullb");
     var idl = i++;

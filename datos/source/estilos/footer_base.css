@@ -1,0 +1,5 @@
+footer{position:relative;width:100%;align-items:flex-end;align-self:flex-end;bottom:0;z-index:1;background-color:var(--color_primario);display:flex;flex-wrap: wrap; padding-top:35px;padding-bottom:0;border-top:1px solid #ccc;}
+.der_pagina_footer{font-size:1.4rem;display:block;padding:10px;width:100%;text-align:center;}
+.der_pagina_footer span{color:var(--color_a);font-size:16px;}
+.cor_page_luis{display:block;font-weight: 500;font-size:14px;background:var(--color_segundario);width:100%;align-self:flex-end;bottom:0;margin-top:35px;text-transform:uppercase;text-align:center;padding:7px;}
+

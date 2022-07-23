@@ -4,7 +4,10 @@ $basepagina = Luis::basepage("base_page");
 
 if(isset($_SESSION['car_stepp'])){
 	if($_SESSION['car_stepp']==2){
-		$idexhtmls="<section class=\"vista_preb_page\">";
+		$idexhtmls="<div class=\"b_contenido_onb_page_luis\">";
+		$idexhtmls.="<div class=\"c_contenido_onb_page_luis\">";
+
+		$idexhtmls.="<section class=\"vista_preb_page\">";
 		$idexhtmls.="<ol class=\"box_visw\">";
 		$idexhtmls.="<li><a>Inicio</a></li>";
 		$idexhtmls.="<li><a>Carrito</a></li>";
@@ -208,8 +211,16 @@ if(isset($_SESSION['car_stepp'])){
 		}
 		$idexhtmls.="</div>";
 		$idexhtmls.="</div>";
+
+
+		$idexhtmls.="</div>";
+		$idexhtmls.="</div>";
 	}elseif($_SESSION['car_stepp']==3){
-		$idexhtmls="<section class=\"vista_preb_page\">";
+		$idexhtmls="<div class=\"b_contenido_onb_page_luis\">";
+		$idexhtmls.="<div class=\"c_contenido_onb_page_luis\">";
+
+
+		$idexhtmls.="<section class=\"vista_preb_page\">";
 		$idexhtmls.="<ol class=\"box_visw\">";
 		$idexhtmls.="<li><a>Inicio</a></li>";
 		$idexhtmls.="<li><a>Carrito</a></li>";
@@ -374,8 +385,15 @@ if(isset($_SESSION['car_stepp'])){
 		$idexhtmls.="</div>";
 		$idexhtmls.="</div>";
 	//////*/
+		$idexhtmls.="</div>";
+		$idexhtmls.="</div>";
 	}elseif($_SESSION['car_stepp']==4){
-		$idexhtmls="<section class=\"vista_preb_page\">";
+
+		$idexhtmls="<div class=\"b_contenido_onb_page_luis\">";
+		$idexhtmls.="<div class=\"c_contenido_onb_page_luis\">";
+
+
+		$idexhtmls.="<section class=\"vista_preb_page\">";
 		$idexhtmls.="<ol class=\"box_visw\">";
 		$idexhtmls.="<li><a>Inicio</a></li>";
 		$idexhtmls.="<li><a>Carrito</a></li>";
@@ -531,12 +549,23 @@ if(isset($_SESSION['car_stepp'])){
 		}
 		$idexhtmls.="</div>";
 		$idexhtmls.="</div>";
+
+
+		$idexhtmls.="</div>";
+		$idexhtmls.="</div>";
 	}else{
-		$idexhtmls="";
+		$idexhtmls="<div class=\"b_contenido_onb_page_luis\">";
+		$idexhtmls.="<div class=\"c_contenido_onb_page_luis\">";
 		$idexhtmls.="";
+		$idexhtmls.="";
+		$idexhtmls.="</div>";
+		$idexhtmls.="</div>";
 	}
 }else{
-	$idexhtmls="<section class=\"vista_preb_page\">";
+	$idexhtmls="<div class=\"b_contenido_onb_page_luis\">";
+	$idexhtmls.="<div class=\"c_contenido_onb_page_luis\">";
+
+	$idexhtmls.="<section class=\"vista_preb_page\">";
 	$idexhtmls.="<ol class=\"box_visw\">";
 	$idexhtmls.="<li><a>Inicio</a></li>";
 	$idexhtmls.="<li class=\"active\">Carrito</li>";
@@ -617,6 +646,9 @@ if(isset($_SESSION['car_stepp'])){
 		$idexhtmls.="</div>";
 		$idexhtmls.="</div>";
 	}
+	$idexhtmls.="</div>";
+	$idexhtmls.="</div>";
+
 	$idexhtmls.="</div>";
 	$idexhtmls.="</div>";
 }

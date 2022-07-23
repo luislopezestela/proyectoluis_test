@@ -9,23 +9,38 @@ if ($ver==null or $namesukr==$categoria_d->ukr) {
  $categoria->id = $_POST["id"];
  $categoria->nombre = $_POST["nombre"];
  $categoria->ukr=$namesukr;
- $categoria->sucursal=$_POST["sucursal"];
 $handle = new \Verot\Upload\Upload($_FILES['logo']);
-if($handle->uploaded) {
-$lod = "datos/imagenes/categoria/".$categoria_d->logo;
-if (file_exists($lod)) {
-unlink($lod);
+
+$image_a = "../datos/modulos/".Luis::temass()."/source/imagenes/categorias"."/".$categoria_d->logo;
+$image_b = "../datos/modulos/".Luis::temass()."/source/imagenes/categorias/thumb"."/".$categoria_d->logo;
+if(file_exists($image_a)){unlink($image_a);}
+if(file_exists($image_b)){unlink($image_b);}
+
+if($handle->uploaded){
+    $handle->image_resize = true;
+    $handle->image_x = 250;
+    $handle->image_y = 250;
+    $handle->image_convert = 'jpeg';
+    $url="../datos/modulos/".Luis::temass()."/source/imagenes/categorias/thumb/";
+    $handle->Process($url);
 }
-$handle->image_resize = true;
-$handle->image_x = 50;
-$handle->image_y = 50;
-$handle->image_convert='jpg';
-$url="datos/imagenes/categoria/";
-$handle->Process($url);
-$categoria->logo=$handle->file_dst_name;
-}else{
-$categoria->logo = $categoria_d->logo;
+
+if($handle->uploaded){
+    $handle->image_convert = 'jpeg';
+    $url="../datos/modulos/".Luis::temass()."/source/imagenes/categorias/";
+    $handle->Process($url);
+    if($handle->processed){
+        $categoria->logo=$handle->file_dst_name;
+    }else{
+        $categoria->logo = $categoria_d->logo;
+        $error = true;
+        echo json_encode(array('estado' => "error", 'mensaje' => $handle->error));
+    }
 }
+
+
+
+
 $categoria->editar_categoria();
 Nucleo::redir($basepagina."categorias/".$namesukr."/update");
 }else{

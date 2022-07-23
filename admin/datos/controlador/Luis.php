@@ -106,6 +106,14 @@ class Luis {
 					"color_tema_select" => Luis::formatstyle("coloreschangue",false,false),
 
 					///***///
+					"diapositiva" => Luis::formatstyle("diapositiva","pageslist",false),
+					"diapositiva/".$urb1 => Luis::formatstyle("diapositiva","pageslist",false),
+					"diapositiva/".$urb1."/".$urb2 => Luis::formatstyle("diapositiva","pageslist",false),
+					///***///
+					"servicios" => Luis::formatstyle("servicios","pageslist",false),
+					"servicios/".$urb1 => Luis::formatstyle("servicios","pageslist",false),
+					"servicios/".$urb1."/".$urb2 => Luis::formatstyle("servicios","pageslist",false),
+					///***///
 					"administrar_idioma" => Luis::formatstyle("productos","pageslist",false),
 					"administrar_idioma/".$urb1 => Luis::formatstyle("productos","pageslist",false),
 
@@ -182,6 +190,14 @@ class Luis {
 					///******///
 					"gastos" => Luis::formatscript("gastos"),
 					"gastos/".$urb1 => Luis::formatscript("gastos"),
+					///------///
+					"diapositiva" => Luis::formatscript("diapositiva"),
+					"diapositiva/".$urb1 => Luis::formatscript("diapositiva"),
+					"diapositiva/".$urb1."/".$urb2 => Luis::formatscript("diapositiva"),
+					///------///
+					"servicios" => Luis::formatscript("servicios"),
+					"servicios/".$urb1 => Luis::formatscript("servicios"),
+					"servicios/".$urb1."/".$urb2 => Luis::formatscript("servicios"),
 					///------///
 					"administrar_idioma" => Luis::formatscript("manage_language"),
 					"administrar_idioma/".$urb1."/".$urb2 => Luis::formatscript("manage_language"),

@@ -2,6 +2,7 @@
 Luis::httpconf();
 $logopagina = Luis::dato("luis_logo")->valor;
 $head=Functions::header_disp();
+$footer=Functions::footer_disp();
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,22 +64,33 @@ $head=Functions::header_disp();
 			<link rel="stylesheet" type="text/css" href="<?=Luis::basepage("base_page")."datos/source/estilos/header_gog.css";?>">
 		<?php endif ?>
 	<?php endif ?>
+
+	<?php if(isset($footer->nombre)): ?>
+		<?php if($footer->nombre=="footer_base"):?>
+			<link rel="stylesheet" type="text/css" href="<?=Luis::basepage("base_page")."datos/source/estilos/footer_base.css";?>">
+		<?php endif ?>
+	<?php endif ?>
 	<?=Luis::styles(false);?>
 	<script src="<?=Luis::basepage("base_page_admin")."datos/source/scripts/jquery.min.js";?>"></script>
-	 
+	<?php if(!isset($_GET['paginas'])): ?>
+		<script src="<?=Luis::basepage("base_page")."datos/modulos/".Luis::temass()."/source/scripts/slick.min.js";?>"></script>
+	<?php endif ?>
 </head>
 <body id="body_luis_lopez">
 	<div class="mensaje100"></div>
+	<div class="loader"></div>
 	<div class="andloadpage"></div>
 	<div id="page_error_line"></div>
 	<div id="process456" class="lds-rippledef"><div></div><div></div> <div id="porsenrbozx"></div></div>
 	<div id="ur_timeline" data="<?=Luis::basepage("base_page");?>" data-x="<?=Luis::temass();?>"></div>
 	<div class="contenidopage" id="contenidopage">
-		<?=DatosPagina::headerpage(); ?>
+		<?=DatosPagina::headerpage();?>
 		<div class="pages_list_timeline">
 			<?=Vista::load("index"); ?>
 		</div>
 	</div>
+	
+	<?=DatosPagina::footerpage();?>
 	<?=Luis::scripts_footer();?>
 	<?php if(isset($head->nombre)): ?>
 		<?php if($head->nombre=="header_base"):?>

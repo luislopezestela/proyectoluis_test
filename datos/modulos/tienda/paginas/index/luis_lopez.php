@@ -7,7 +7,6 @@ if(isset($_GET["paginas"])){
 }
 ?>
 
-<div class="contenido100" id="contenido100">
 	<?php if(isset($urb[1])): ?>
 		<?php $items = DatosAdmin::porUkr_items_page($urb[1]); ?>
 		<?php if($items): ?>
@@ -25,4 +24,3 @@ if(isset($_GET["paginas"])){
 	<?php else: ?>
 		<?php echo $pages=Luis::viewpagelink("inicio"); ?>
 	<?php endif ?>
-</div>

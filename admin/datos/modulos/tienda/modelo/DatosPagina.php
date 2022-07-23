@@ -68,9 +68,37 @@ class DatosPagina{
 		return $found;
 	}
 
+	public static function existehead(){
+		$valid=false;
+		if(isset($_GET["paginas"])){
+			$vistas = explode("/", $_GET['paginas']);
+			if(file_exists($file = "datos/modulos/".Modulo::$modulo."/paginas/".$vistas[0]."/luis_lopez.php")){
+				$valid = true;
+			}
+		}
+		return $valid;
+	}
+
 	public static function headerpage(){
 		$head=Functions::header_disp();
-		if($head) {
+		$filedad = "datos/modulos/".Modulo::$modulo."/headers/".$head->nombre."/luis_head.php";
+		if(file_exists($filedad)){
+			include $filedad;
+		}else{
+		}
+	}
+	public static function footerpage(){
+		$footer=Functions::footer_disp();
+		$filedad_f = "datos/modulos/".Modulo::$modulo."/footers/".$footer->nombre."/luis_footer.php";
+		if(file_exists($filedad_f)){
+			include $filedad_f;
+		}else{
+		}
+	}
+
+	public static function headerpage_mmmm(){
+		$head=Functions::header_disp();
+		if($head){
 			$header=Functions::header_view($head->nombre);
 		}else{
 			$header=false;

@@ -18,18 +18,17 @@ $items_viewa=DatosAdmin::MostrarItems_cartas_opciones($carta_list->id);
 $idexhtmls="<h2 class=\"titlecurrentpage\">".html_entity_decode($carta_list->nombre)."</h2>";
 $chek_item=false;
 $idexhtmls.="<div class=\"contenspage\">";
-
-
-
 $idexhtmls.="<div class=\"menu_item_list_option\">";
 if(count($items_viewa)>0){
-	$idexhtmls.="<label class=\"barra_list_hend\"></label>";
 	foreach($items_viewa as $tms){
 		if($chek_item==$tms->id){
 		}else{
 			$image_int=DatosImagenes::mostrar_imagen_items_carta($tms->id);
+
+			
 			$idexhtmls.="<div class=\"items_list_views\">";
-			$idexhtmls.="<div class=\"boxpicturelistst\">";
+			$idexhtmls.="<a class=\"\" href=\"".$base.$view->ukr."/".$tms->ukr."\" aria-label=\"".$tms->ukr."\" data_null_page=\"".$carta_list->ukr."\" data_int=\"2\">";
+			$idexhtmls.="<div class=\"boxpictureliststb\">";
 			$direct_true="datos/modulos/".Luis::temass()."/source/imagenes/items/".$tms->id;
 			if(is_dir($direct_true)){
 				$idexhtmls.="<picture><img class=\"boxpictureliststimg\" src=\"".$base."datos/modulos/".Luis::temass()."/source/imagenes/items/".$tms->id."/thumb/".$image_int->imagen."\"></picture>";
@@ -52,11 +51,9 @@ if(count($items_viewa)>0){
 			$idexhtmls.="<span class=\"price_view_items_price\"> ".$moneda_por_id_b.".".$tms->precio_final."</span>";
 			$idexhtmls.="</div>";
 			$idexhtmls.="</div>";
-			$idexhtmls.="<div class=\"direct_list_view_item\">";
-			$idexhtmls.="<a class=\"view_items_lista_view_page\" href=\"".$base.$view->ukr."/".$tms->ukr."\" aria-label=\"".$tms->ukr."\" data_null_page=\"".$carta_list->ukr."\" data_int=\"2\">DETALLES</a>";
-			$idexhtmls.="</div>";
 			$idexhtmls.="</div>";
 			$idexhtmls.="";
+			$idexhtmls.="</a>";
 			$idexhtmls.="</div>";
 		}
 	}

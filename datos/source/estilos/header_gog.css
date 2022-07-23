@@ -1,5 +1,5 @@
 /**Header**/
-.header{background-color:var(--color_primario);position:relative;width:100%;top:0;z-index:2;display:block;text-align:center;align-self:flex-start;box-sizing:border-box;box-shadow:5px 5px 5px 0 rgba(0, 0, 0, 0.13);}
+.header{background-color:var(--color_primario);position:fixed;width:100%;top:0;z-index:2;display:block;text-align:center;align-self:flex-start;box-sizing:border-box;box-shadow:5px 5px 5px 0 rgba(0, 0, 0, 0.13);}
 #header{width:100%;transition:all 0.5s;}
 .somb_f{box-shadow:3px 3px 5px 0 rgba(0, 0, 0, 0.13);}
 .csdperflcont{outline:none;} 
