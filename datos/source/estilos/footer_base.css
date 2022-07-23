@@ -3,3 +3,46 @@ footer{position:relative;width:100%;align-items:flex-end;align-self:flex-end;bot
 .der_pagina_footer span{color:var(--color_a);font-size:16px;}
 .cor_page_luis{display:block;font-weight: 500;font-size:14px;background:var(--color_segundario);width:100%;align-self:flex-end;bottom:0;margin-top:35px;text-transform:uppercase;text-align:center;padding:7px;}
 
+.system_curl_v_box_conten_lui{
+	display:none;
+	visibility:hidden;
+	background:var(--color_primario);
+	width:100%;
+	position:fixed;
+	z-index:1;
+	box-sizing:border-box;
+	bottom:0;
+	transition:all 0.5s;
+}
+
+.subs_conten_luis_menu_system{
+	display: flex;
+	padding:15px 10px;width:calc(25% );
+	text-align: center;
+	justify-content: center;
+	fill:var(--color_a);
+	transition: all 0.5s;
+	border-top:2px solid #ddd;
+}
+.subs_conten_luis_menu_system:hover{
+	background:var(--color_segundario);
+	cursor:pointer;
+	fill:var(--color_primario);
+}
+
+
+@media only screen and (max-width:920px){
+	footer{
+		margin-bottom:var(--footer-menu-height);
+	}
+	.system_curl_v_box_conten_lui{
+		display:flex;
+		visibility:visible;
+	}
+}
+
+@media only screen and (max-width:200px){
+	.subs_conten_luis_menu_system{
+		padding:10px;
+	}
+}

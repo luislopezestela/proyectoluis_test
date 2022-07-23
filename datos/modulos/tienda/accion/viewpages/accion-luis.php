@@ -26,6 +26,8 @@ if(isset($_POST["gold_black"])==1){
 	}
 }elseif($_POST["index"]=="serv"){
 	echo json_encode(array('type' => 0, 'mensaje' => "Error url", 'title' => "Error url"));
+}elseif($_POST["index"]=="menulk"){
+	echo json_encode(array('type' => 1, 'mensaje' => "cargando..", 'url' => $ukr, 'title' => "Menu"));
 }elseif($_POST["index"]=="carrito"){
 	echo json_encode(array('type' => 1, 'mensaje' => "cargando..", 'url' => $ukr, 'jspage' => "carrito_js", 'title' => "CARRITO"));
 }elseif($_POST["index"]=="perfil"){

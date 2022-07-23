@@ -5,6 +5,9 @@
  $titlepages = Luis::Mostrartituloukr($_GET["viewind"]);
 if($_GET["viewind"]=="carrito"){
     echo json_encode(array('type' => 1, 'mensaje' => "", 'datapage' => $pages, 'stylepage' => "carrito_style",'jspage' => "carrito_js", "title" => "CARRITO"));
+}elseif($_GET["viewind"]=="menulk"){
+    $pages_two=Luis::viewpagelink("menulkl");
+    echo json_encode(array('type' => 1, 'mensaje' => "", 'datapage' => $pages_two, 'stylepage' => "menulk", "title" => "Menu"));
 }elseif($_GET["viewind"]=="serv"){
     echo json_encode(array('type' => 0, 'mensaje' => "", 'datapage' => $pages, "title" => "Error"));
 }elseif($_GET["viewind"]=="perfil"){

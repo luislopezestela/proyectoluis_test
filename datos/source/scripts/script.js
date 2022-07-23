@@ -6,8 +6,9 @@ var i = 0;
 var idl=i++;
 function media_revice() {
 	var headers = document.querySelector(".header").offsetHeight;
+	var menufooter = document.querySelector(".system_curl_v_box_conten_lui").offsetHeight;
 	var darp = document.getElementById("current_pl");
-	darp.innerHTML = ":root{--header-height:"+headers+"px;}";
+	darp.innerHTML = ":root{--header-height:"+headers+"px;--footer-menu-height:"+menufooter+"px;}";
 }
 
 var css = media_revice,
