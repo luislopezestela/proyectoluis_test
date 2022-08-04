@@ -7,8 +7,9 @@ var idl=i++;
 function media_revice() {
 	var headers = document.querySelector(".header").offsetHeight;
 	var menufooter = document.querySelector(".system_curl_v_box_conten_lui").offsetHeight;
+	var footer_sf = document.querySelector(".footer_").offsetHeight;
 	var darp = document.getElementById("current_pl");
-	darp.innerHTML = ":root{--header-height:"+headers+"px;--footer-menu-height:"+menufooter+"px;}";
+	darp.innerHTML = ":root{--header-height:"+headers+"px;--footer-menu-height:"+menufooter+"px;--footer-height:"+footer_sf+"px;}";
 }
 
 var css = media_revice,
@@ -27,7 +28,13 @@ window.addEventListener('resize', media_revice);
 
 
 
-
+function clean_searchs_box(){
+	$(".contenidopage").removeClass('inip_bottom');
+	$(".pages_list_timeline").removeClass('seacr_active');
+	$('.search_box').removeClass("search_box_v");
+	$('.search_box').html("");
+	$("#searchlist").val("");
+}
 
 
 function alertadvertencia(title){
@@ -106,7 +113,44 @@ $(document).on("click", ".menupagecurrent", function(e){
 	e.preventDefault();
 	$(".li_menu").removeClass("menu_activo");
 	$(".mens_perf_nots09").removeClass("menu_activo");
+	$(".subs_conten_luis_menu_system").removeClass("menu_activo_b");
 	$(this).parent().addClass("menu_activo");
+	let ind = $(this).attr("aria-label");
+	$("."+ind+"_fot").addClass("menu_activo_b");
+	$.ajax({
+		url:list_urls()+list_action()+"viewpages",
+		type:"POST",
+		data:{index:ind},
+		dataType:"json",
+		beforeSend: function(){
+			$('.andloadpage').html(loader_pages_views())
+		},
+		success: function(data){
+			document.getElementById('title_pages').innerHTML = data.title;
+			if(data.type===1){
+				if (swapPhoto(data.url,false,false)) {
+					history.pushState(null, null, urline+data.url, null);
+				}
+			}else if(data.type===2){
+				if (swapPhoto(data.url,false,false)) {
+					history.pushState(null, null, urline, null);
+				}
+			}else{
+				alertadvertencia(data.mensaje)
+			}
+			setTimeout(function(){
+				$('.andloadpage').html("")
+			}, 100);
+		}
+	});
+})
+
+$(document).on("click", ".menupagecurrent_fot", function(e){
+	e.preventDefault();
+	$(".li_menu").removeClass("menu_activo");
+	$(".mens_perf_nots09").removeClass("menu_activo");
+	$(".subs_conten_luis_menu_system").removeClass("menu_activo_b");
+	$(this).addClass("menu_activo_b");
 	let ind = $(this).attr("aria-label");
 	$.ajax({
 		url:list_urls()+list_action()+"viewpages",
@@ -135,6 +179,7 @@ $(document).on("click", ".menupagecurrent", function(e){
 		}
 	});
 })
+
 $(document).on("click", ".menupagecurrent_perfil", function(e){
 	e.preventDefault();
 	let ind = $(this).attr("aria-label");
@@ -203,6 +248,11 @@ $(document).on("click", ".view_items_lista_view_page", function(e){
 			$('.andloadpage').html(loader_pages_views())
 		},
 		success: function(data){
+			$(".contenidopage").removeClass('inip_bottom');
+	  	$(".pages_list_timeline").removeClass('seacr_active');
+	  	$('.search_box').removeClass("search_box_v");
+	  	$('.search_box').html("");
+	  	$('#searchlist').val("");
 			document.getElementById('title_pages').innerHTML = data.title;
 			if(data.type==1){
 				if (swapPhoto(data.url,2,false)) {
@@ -255,6 +305,7 @@ function swapPhoto(href,dfs,$page){
 	$(".pages_list_timeline").removeClass('preloaderbar');			
 	var req = new XMLHttpRequest();
 	$('html, body').animate({scrollTop:0}, 'slow');
+	clean_searchs_box()
 	if(dfs==1){
 		req.open("GET",list_urls()+list_action()+"viewpage_items&viewind="+ href, true);
 		req.onreadystatechange = function(aEvt){
@@ -534,6 +585,7 @@ window.onload = function(){
 			req.open("GET",list_urls()+list_action()+"fiel_item&viewind="+pathArray[1]+"&subinit="+pathArray[2], true);
 			req.onreadystatechange = function(aEvt){
 				if(req.readyState == 4){
+					clean_searchs_box();
 					if(req.status == 200){
       			setTimeout(function(){
       				$('.andloadpage').html("")
@@ -544,7 +596,9 @@ window.onload = function(){
       					swapPhoto(pathArray[1],false,false)
       					$(".li_menu").removeClass("menu_activo");
       					$(".mens_perf_nots09").removeClass("menu_activo");
+      					$(".subs_conten_luis_menu_system").removeClass("menu_activo_b");
       					$("."+pathArray[1]+"_page").addClass("menu_activo");
+      					$("."+pathArray[1]+"_fot").addClass("menu_activo_b");
       				}else if(pathArray[1]=="perfil"){
       					if(pathArray[2]){
 	      					swapPhoto(pathArray[1]+"/"+pathArray[2],false,false)
@@ -554,11 +608,22 @@ window.onload = function(){
       					
       					$(".li_menu").removeClass("menu_activo");
       					$(".mens_perf_nots09").removeClass("menu_activo");
+      					$(".subs_conten_luis_menu_system").removeClass("menu_activo_b");
       					$("."+pathArray[2]+"_page").addClass("menu_activo");
+      					$("."+pathArray[1]+"_fot").addClass("menu_activo_b");
+      				}else if(pathArray[1]=="menulk"){
+      					$(".li_menu").removeClass("menu_activo");
+      					$(".mens_perf_nots09").removeClass("menu_activo");
+      					$(".subs_conten_luis_menu_system").removeClass("menu_activo_b");
+      					$("."+pathArray[1]+"_page").addClass("menu_activo");
+      					$("."+pathArray[1]+"_fot").addClass("menu_activo_b");
+      					swapPhoto(pathArray[1],false,false)
       				}else{
       					$(".li_menu").removeClass("menu_activo");
       					$(".mens_perf_nots09").removeClass("menu_activo");
+      					$(".subs_conten_luis_menu_system").removeClass("menu_activo_b");
       					$("."+pathArray[1]+"_page").addClass("menu_activo");
+      					$("."+pathArray[1]+"_fot").addClass("menu_activo_b");
       					swapPhoto(pathArray[1],1,false)
       				}
       			}else if(response.type==2){
@@ -568,7 +633,9 @@ window.onload = function(){
       			}else{
       				$(".li_menu").removeClass("menu_activo");
       				$(".mens_perf_nots09").removeClass("menu_activo");
+      				$(".subs_conten_luis_menu_system").removeClass("menu_activo_b");
       				$(".inicio_page").addClass("menu_activo");
+      				$(".inicio_fot").addClass("menu_activo_b");
       				swapPhoto("inicio",false,false);
       			}
 					
@@ -1039,6 +1106,35 @@ $(document).on("click", ".btn_saved_grange_use", function(){
 	    success: function(data){
 	    }
 	});
+})
+///searchlist
+
+$(document).on("keyup", "#searchlist", function(){
+	let data_a = $(this).val();
+	$.ajax({
+		type:"POST",
+		dataType:"json",
+	  url:list_urls()+list_action()+"search",
+	  data:{data:data_a},
+	  success: function(data){
+	  	if($("#searchlist").val().length > 0){
+	  		$(".pages_list_timeline").addClass('seacr_active');
+	  		$(".contenidopage").addClass('inip_bottom');
+	  		$('.search_box').addClass("search_box_v");
+	  		$('.search_box').html(data.data_rt);
+	  	}else{
+	  		clean_searchs_box()
+	  	}
+	  	
+	    console.log(data)
+	  }
+	});
+})
+
+document.getElementById('searchlist').addEventListener('input', (e) => {
+  if(e.currentTarget.value==""){
+  	clean_searchs_box()
+  }
 })
 
 

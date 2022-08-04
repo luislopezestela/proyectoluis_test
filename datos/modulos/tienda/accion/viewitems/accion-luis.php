@@ -27,7 +27,7 @@ if(count($items_viewa)>0){
 
 			
 			$idexhtmls.="<div class=\"items_list_views\">";
-			$idexhtmls.="<a class=\"\" href=\"".$base.$view->ukr."/".$tms->ukr."\" aria-label=\"".$tms->ukr."\" data_null_page=\"".$carta_list->ukr."\" data_int=\"2\">";
+			$idexhtmls.="<a class=\"view_items_lista_view_page\" href=\"".$base.$view->ukr."/".$tms->ukr."\" aria-label=\"".$tms->ukr."\" data_null_page=\"".$carta_list->ukr."\" data_int=\"2\">";
 			$idexhtmls.="<div class=\"boxpictureliststb\">";
 			$direct_true="datos/modulos/".Luis::temass()."/source/imagenes/items/".$tms->id;
 			if(is_dir($direct_true)){

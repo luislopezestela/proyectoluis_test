@@ -252,6 +252,7 @@ class Luis {
 					"index" => Luis::formatstyle("cssindex"),
 					"carrito" => Luis::formatstyle("carrito_style"),
 					"perfil" => Luis::formatstyle("perfil_style"),
+					"menulk" => Luis::formatstyle("menulk"),
 					"perfil/".$urb1 => Luis::formatstyle("perfil_style"),
 					"serv/".$urb1 => Luis::formatstyle("services"),
 					$urb0 => Luis::currentpage(Luis::temass(),false),		

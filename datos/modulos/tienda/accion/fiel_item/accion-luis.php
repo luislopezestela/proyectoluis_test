@@ -5,6 +5,8 @@
 	$menu=Luis::menu_porUkr($_GET["viewind"]);
 if($_GET["viewind"]=="carrito"){
 	echo json_encode(array('type' => 1, 'mensaje' => "null", 'url' => "carrito", 'jspage' => "carrito_js", 'tlp' =>""));
+}elseif($_GET["viewind"]=="menulk"){
+	echo json_encode(array('type' => 1, 'mensaje' => "null", 'url' => "menulk", 'tlp' =>""));
 }elseif($_GET["viewind"]=="perfil"){
 	echo json_encode(array('type' => 1, 'mensaje' => "null", 'url' => "perfil", 'jspage' => "perfil_js", 'tlp' =>""));
 }elseif($_GET["viewind"]=="perfil/direcciones"){

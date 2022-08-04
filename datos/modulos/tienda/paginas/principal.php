@@ -85,6 +85,7 @@ $footer=Functions::footer_disp();
 	<div id="ur_timeline" data="<?=Luis::basepage("base_page");?>" data-x="<?=Luis::temass();?>"></div>
 	<div class="contenidopage" id="contenidopage">
 		<?=DatosPagina::headerpage();?>
+		<div class="search_box"></div>
 		<div class="pages_list_timeline">
 			<?=Vista::load("index"); ?>
 		</div>

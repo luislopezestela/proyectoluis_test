@@ -815,6 +815,12 @@ class DatosAdmin{
 		return Modelo::many($query[0],new DatosAdmin());
 	}
 
+	public static function buscar_items_page($q){
+		$sql = "select * from items where (nombre like '%$q%' or codigo like '%$q%') ORDER BY fecha desc";
+		$query = Ejecutor::doit($sql);
+		return Modelo::many($query[0],new DatosAdmin());
+	}
+
 	public static function view_page_searchs($q){
 		$sql = "select stock.barcode,stock.en_carrito, stock.ram,stock.hard_drive,stock.drivetype,stock.aditional_information,stock.other_information, items.nombre,items.precio from stock JOIN items on items.id = stock.id_producto where (stock.barcode like '%$q%' or stock.make like '%$q%' or items.nombre like '%$q%') and stock.en_carrito=0 and stock.estado=0";
 		$query = Ejecutor::doit($sql);

@@ -24,6 +24,7 @@ footer{position:relative;width:100%;align-items:flex-end;align-self:flex-end;bot
 	transition: all 0.5s;
 	border-top:2px solid #ddd;
 }
+.menu_activo_b,
 .subs_conten_luis_menu_system:hover{
 	background:var(--color_segundario);
 	cursor:pointer;
