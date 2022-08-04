@@ -2,7 +2,7 @@
 a{text-decoration:none;}
 li{list-style:none;}
 hr{background-image:linear-gradient(to right, transparent, rgba(0, 0, 0, 0.2),transparent);border:0;height:1px;margin:22px 0;}
-.contenidopage{position:relative;width:100%;box-sizing:border-box;align-self: flex-start;margin-bottom:55px; }
+.contenidopage{position:relative;width:100%;box-sizing:border-box;align-self: flex-start;}
 .barra_list_hend{display:block;color:var(--color_primario);font-size:23px;font-weight:bold;margin-bottom:20px;text-shadow:1px 0px 1px var(--color_segundario);}
 .barra_list_hend:before{content:'';background-image:linear-gradient(to right, var(--color_segundario), var(--color_primario),transparent);border:0;height:1px;margin:22px 0 10px 0;display:block;}
 
@@ -69,7 +69,24 @@ body:before{
 }
 
 /*-----*/
-
+.ERROR404C{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+    width:100%;
+    min-height:calc(100vh - var(--header-height) - var(--footer-menu-height) - var(--footer-height));
+    text-align:center;
+}
+.E404{
+    display:block;
+    position:relative;
+    margin-top:35px;
+    font-size:23px;
+    font-weight:700;
+    color:#777;
+}
+.redirinicio{color:var(--color_b);}
 .cdfdperflcontbliustwo{fill:var(--color_a);outline:none;stroke-linejoin:round;stroke-linecap:round;position:relative;font-family:inherit;border-radius:50%;padding:2px;display:inline-block;width:58px;height:48px;text-align:center;margin:0px auto;margin-left:20px;margin-right:10px;outline:none;}
 .shop_store_box{background:#fff;position:absolute;top:9px;right:-5px;color:#000;border-radius:7px;padding:1px 3px;}
 .vista_preb_page{display:block;}
@@ -199,7 +216,7 @@ alerta
 .cantidad_stock_disponible_en_item_style{background-color:#fafafa;border:#ddd solid 4px;border-radius:2px;display:block;padding:15px;margin:8px auto;}
 .titlecurrentpage{display:block;width:100%;max-width:400px;text-align:center;color:var(--color_segundario);margin:18px auto;padding-top:23px;}
 
-.contenspage{max-width:1380px;width:100%;position:relative;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;box-sizing:border-box;}
+.contenspage{max-width:1380px;width:100%;position:relative;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;box-sizing:border-box;margin-bottom:55px; }
 /*Page view style end */
 @media only screen and (max-width:920px){
 
