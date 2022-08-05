@@ -56,6 +56,7 @@ if($mail==""){
 				$m = new DatosMails();
 				$m->persona_correo = $mail;
 				$m->codigo_activacion = $data->codigo;
+				$m->unombres = $data->nombre;
 				$m->verificar_persona();
 				echo json_encode(array('estado' => 1,'mensaje' => 'Datos agregados con exito.'));
 			}else{
