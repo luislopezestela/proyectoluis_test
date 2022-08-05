@@ -93,3 +93,89 @@
     height: 100%;
     border-radius: 100%;
 }
+.contenido_access_new_page_luis,.contenido_access_page_luis{
+  display:flex;
+  width:100%;
+  max-width:300px;
+  margin:0 auto;
+  flex-wrap:wrap;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:calc(100vh - var(--header-height) - var(--footer-menu-height) - var(--footer-height));
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.2px;
+}
+.contenido_access_new_page_luis h1, .contenido_access_page_luis h1{
+  color:#BABECC;
+  text-shadow: 1px 1px 1px #FFF;
+  padding:15px;
+}
+.contenido_access_new_page_luis .button_acces_dl,
+.contenido_access_page_luis .button_acces_dl,
+.contenido_access_new_page_luis .input_access_dl,
+.contenido_access_page_luis .input_access_dl{
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  border-radius: 16px;
+  padding: 16px;
+  background-color:#EBECF0;
+  text-shadow: 1px 1px 0 #FFF;
+  user-select:none;
+}
+
+.contenido_access_new_page_luis label,.contenido_access_page_luis label{
+  display:block;
+  margin-bottom:24px;
+  width:100%;
+}
+.contenido_access_new_page_luis .input_access_dl,
+.contenido_access_page_luis .input_access_dl {
+  box-shadow: inset 2px 2px 5px #BABECC, inset -5px -5px 10px #FFF;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.contenido_access_new_page_luis .input_access_dl:focus,
+.contenido_access_page_luis  .input_access_dl:focus {
+  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+.contenido_access_new_page_luis .button_acces_dl,
+.contenido_access_page_luis .button_acces_dl {
+  color: #61677C;
+  font-weight: bold;
+  width:100%;
+  max-width:250px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow: -5px -5px 20px #FFF, 5px 5px 20px #BABECC;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.contenido_access_new_page_luis .button_acces_dl:hover,
+.contenido_access_page_luis .button_acces_dl:hover {
+  box-shadow: -2px -2px 5px #FFF, 2px 2px 5px #BABECC;
+}
+
+.contenido_access_new_page_luis .button_acces_dl:active,
+.contenido_access_page_luis .button_acces_dl:active {
+  box-shadow: inset 1px 1px 2px #BABECC, inset -1px -1px 2px #FFF;
+}
+
+.button_acces_new_dl{display:block;margin:28px;cursor:pointer;transition:all .5s;user-select:none;}
+.button_acces_new_dl:hover{opacity:0.5;}
+.view_null{display:none;}
+.title_data_cl{padding:10px;}
+
+
+@media only screen and (max-width:420px){
+.contenido_access_new_page_luis h1, .contenido_access_page_luis h1{
+  font-size:20px;
+}
+}

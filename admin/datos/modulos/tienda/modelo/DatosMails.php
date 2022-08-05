@@ -109,7 +109,7 @@ public function verificar_persona(){
     require 'admin/datos/controlador/vendor/autoload.php';
     $mail = new PHPMailer(true);
     try {
-        $mail->setFrom($this->email_admin, $this->nombrepagina);
+        $mail->setFrom($this->nombrepagina);
         $mail->AddAddress($this->persona_correo);
         $mail->isHTML(true);
         $mail->Subject .="Codigo para activar tu cuenta";
@@ -168,7 +168,6 @@ public function verificar_persona(){
         $mail->Send();
         $mail->clearAddresses();
         $mail->clearAttachments();
-        echo 1;
     } catch (Exception $e) {
       /*  echo 2;*/
     }

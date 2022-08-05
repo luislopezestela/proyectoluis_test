@@ -179,9 +179,31 @@ $idexhtmls.='</div>';
 }else{
 	$idexhtmls="<div class=\"b_contenido_onb_page_luis\">";
 	$idexhtmls.="<div class=\"c_contenido_onb_page_luis\">";
-	
-	$idexhtmls.='Debes ininiciar session para continuar.';
-	
+
+		$idexhtmls.="<div class=\"contenido_access_page_luis view_null\">";
+			$idexhtmls.='<h1>Acceder</h1>';
+			$idexhtmls.='<label><input class="input_access_dl sess_input_text_data_a" placeholder="Correo"></label>';
+			$idexhtmls.='<label><input class="input_access_dl sess_input_text_data_b" type="password" placeholder="Password"></label>';
+			$idexhtmls.='<span class="button_acces_dl sess_input_button789">Acceder</span>';
+			$idexhtmls.='<span class="button_acces_new_dl button_acces_new_dl_a">Registrarme</span>';
+		$idexhtmls.='</div>';
+
+		$idexhtmls.="<div class=\"contenido_access_new_page_luis \">";
+			$idexhtmls.='<h1>Registrar</h1>';
+			$idexhtmls.='<label><input class="input_access_dl reg_input_text_data_a" placeholder="Correo"></label>';
+			$idexhtmls.='<label><input class="input_access_dl reg_input_text_data_b" type="password" placeholder="Contrase&ntilde;a"></label>';
+			$idexhtmls.='<label><input class="input_access_dl reg_input_text_data_c" type="password" placeholder="Confirmar contrase&ntilde;a"></label>';
+			$idexhtmls.='<label class="title_data_cl">Datos</label>';
+			$idexhtmls.='<label><input class="input_access_dl reg_input_text_data_d" name="dni" placeholder="DNI"></label>';
+			$idexhtmls.='<label><input class="input_access_dl reg_input_text_data_e" name="nombres" placeholder="Nombres"></label>';
+			$idexhtmls.='<label><input class="input_access_dl reg_input_text_data_f" name="apellido_paterno" placeholder="Apellido paterno"></label>';
+			$idexhtmls.='<label><input class="input_access_dl reg_input_text_data_g" name="apellido_materno" placeholder="Apellido materno"></label>';
+			$idexhtmls.='<label><input class="input_access_dl reg_input_text_data_h" placeholder="Numero de celular"></label>';
+			$idexhtmls.='<span class="button_acces_dl sess_input_button789_b">Registrar</span>';
+
+			$idexhtmls.='<span class="button_acces_new_dl button_acces_new_dl_b">Acceder</span>';
+		$idexhtmls.='</div>';
+
 	$idexhtmls.='</div>';	
 	$idexhtmls.='</div>';
 }

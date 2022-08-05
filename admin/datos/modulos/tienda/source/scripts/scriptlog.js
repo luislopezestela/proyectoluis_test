@@ -48,7 +48,7 @@ $(document).ready(function(){
 });
 
 
-//////data document 
+//////data document  
 $(document).on("keyup", "input[name='dni']", function(){
 	var datinp = doc.val().length;
 	if(datinp > 7){

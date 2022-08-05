@@ -1058,6 +1058,12 @@ class DatosAdmin{
 		Ejecutor::doit($sql);
 	}
 
+	public function registrar_cliente_page(){
+		$sql = "insert into personas (tipo,dni,nombre,apellido_paterno,apellido_materno,celular,ukr,correo,pass,codigo,fecha) ";
+		$sql .= "value ($this->tipo,\"$this->dni\",\"$this->nombre\",\"$this->apellido_paterno\",\"$this->apellido_materno\",\"$this->celular\",\"$this->ukr\",\"$this->correo\",\"$this->pass\",\"$this->codigo\",\"$this->fecha\")";
+		Ejecutor::doit($sql);
+	}
+
 	public function update_client_in_pages_data(){
 		$sql = "update personas SET tipo=$this->tipo,dni=\"$this->dni\",nombre=\"$this->nombre\",apellido_paterno=\"$this->apellido_paterno\",apellido_materno=\"$this->apellido_materno\",celular=\"$this->celular\",direccion=\"$this->direccion\",ukr=\"$this->ukr\",correo=\"$this->correo\" where id=$this->id";
 		Ejecutor::doit($sql);

@@ -806,6 +806,15 @@ $(document).on("click", ".boton_eliminar_producto_de_carrito", function(){
 	alerta_confirm_dialog("boton_eliminar_producto_de_carrito_success",items_del,false);
 })
 
+$(document).on("click", ".button_acces_new_dl_a", function(){
+	$(".contenido_access_new_page_luis").removeClass("view_null");
+	$(".contenido_access_page_luis").addClass("view_null");
+})
+$(document).on("click", ".button_acces_new_dl_b", function(){
+	$(".contenido_access_new_page_luis").addClass("view_null");
+	$(".contenido_access_page_luis").removeClass("view_null");
+})
+
 $(document).on("click", ".boton_eliminar_producto_de_carrito_success", function(){
 	let indexlist = $(this).attr("data");
 	$.ajax({
