@@ -25,38 +25,36 @@ $idexhtmls="<div class=\"b_contenido_onb_page_luis\">";
 $idexhtmls.="<div class=\"c_contenido_onb_page_luis\">";
 
 	$idexhtmls.='<div class="contenedor_datos_perfil">';
-	/*Datos perfil start*/
-	$idexhtmls.='<br>';
-	$idexhtmls.='<div class="cdfdperflcont">';
-	$idexhtmls.='<div class="csdperflcont qfrr9uorilb" role="button" tabindex="0">';
-	$idexhtmls.='<div class="iconoloaderbthis"><div class="lidtv"><div></div><div></div><div></div></div><div class="pordf"></div></div>';
-	$idexhtmls.='<div class="qfrr9uorilb">';
-	$idexhtmls.='<svg class="perf767fils" aria-label="'.$per->nombreCompleto_dos().'" data-vc-ignore-dynamic="1" role="img">';
-	$idexhtmls.='<mask id="jsc_c_25s">';
-	$idexhtmls.='<circle cx="70" cy="70" fill="white" r="70"></circle>';
-	$idexhtmls.='</mask>';
-	$idexhtmls.='<g mask="url(#jsc_c_25s)">';
-	$idexhtmls.='<image id="imagopedperf" x="0" y="0" height="100%" width="100%" xlink:href="'.$imagenper.'"></image>';
-	$idexhtmls.='<circle class="mlqo0dh0gtd" cx="70" cy="70" r="70"></circle>';
-	$idexhtmls.='</g>';
-	$idexhtmls.='</svg>';
-	$idexhtmls.='</div>';
-	$idexhtmls.='</div>';
-	$idexhtmls.='</div>';
-	/*Datos perfil end*/
-	$idexhtmls.='<div class="title_page_perfil_user">'.$per->nombreCompleto_dos().'</div>';
-	$idexhtmls.='<div class="title_page_perfil_user_doc">'.$per->dni.'</div>';
-	if (isset($r[2])) {
-	}else{
-		
-	}
-	$idexhtmls.='<br>';
+		/*Datos perfil start*/
+		$idexhtmls.='<div class="cdfdperflcont_b">';
+			$idexhtmls.='<div class="csdperflcont qfrr9uorilb" role="button" tabindex="0">';
+				$idexhtmls.='<div class="iconoloaderbthis"><div class="lidtv"><div></div><div></div><div></div></div><div class="pordf"></div></div>';
+					$idexhtmls.='<div class="qfrr9uorilb">';
+						$idexhtmls.='<svg class="perf767fils_b" aria-label="'.$per->nombreCompleto_dos().'" data-vc-ignore-dynamic="1" role="img">';
+						$idexhtmls.='<mask id="jsc_c_25s">';
+						$idexhtmls.='<circle cx="45" cy="45" fill="white" r="45"></circle>';
+						$idexhtmls.='</mask>';
+						$idexhtmls.='<g mask="url(#jsc_c_25s)">';
+						$idexhtmls.='<image id="imagopedperf" x="0" y="0" height="100%" width="100%" xlink:href="'.$imagenper.'"></image>';
+						$idexhtmls.='<circle class="mlqo0dh0gtd" cx="45" cy="45" r="45"></circle>';
+						$idexhtmls.='</g>';
+						$idexhtmls.='</svg>';
+					$idexhtmls.='</div>';
+				$idexhtmls.='</div>';
+			$idexhtmls.='</div>';
+
+			$idexhtmls.='<div class="title_page_perfil_user">';
+				$idexhtmls.='<span class="title_page_perfil_user_doc">'.$per->nombreCompleto_dos().'</span>';
+				$idexhtmls.='<span class="title_page_perfil_user_doc">'.$per->dni.'</span>';
+			$idexhtmls.='</div>';
+		$idexhtmls.='</div>';
+		/*Datos perfil end*/
 	$idexhtmls.='</div>';
 
 	$idexhtmls.='<div class="contenedor_datos_perfil_two">';
 	$idexhtmls.='<div class="box_page_perfil_user_details_two">';
-	if (isset($r[2])) {
-		$number_page=$r[2];
+	if (isset($r[1])) {
+		$number_page=$r[1];
 	}else{
 		$number_page="perfil";
 	}
@@ -92,7 +90,7 @@ $idexhtmls.="<div class=\"c_contenido_onb_page_luis\">";
 	$idexhtmls.='<div class="contenedor_datos_perfil_two">';
 	$idexhtmls.='';
 	$title_optio_perfiles=null;
-	if("direcciones"==$number_page) {
+	if($number_page=="direcciones") {
 		$title_optio_perfiles="DIRECCIONES";
 	}elseif($number_page=="historial_compras"){
 		$title_optio_perfiles="HISTORIAL DE COMPRAS";
@@ -107,7 +105,7 @@ $idexhtmls.="<div class=\"c_contenido_onb_page_luis\">";
 	$idexhtmls.='<br>';
 	$idexhtmls.='<div class="title_pa_options_perf">'.$title_optio_perfiles.'</div>';
 	$idexhtmls.='<br>';
-	if("direcciones"==$number_page) {
+	if($number_page=="direcciones") {
 		$title_optio_perfiles="DIRECCIONES";
 
 		$idexhtmls.='<div class="diplay_box_data_new_address_client">';
@@ -180,15 +178,16 @@ $idexhtmls.='</div>';
 	$idexhtmls="<div class=\"b_contenido_onb_page_luis\">";
 	$idexhtmls.="<div class=\"c_contenido_onb_page_luis\">";
 
-		$idexhtmls.="<div class=\"contenido_access_page_luis view_null\">";
+		$idexhtmls.="<div class=\"contenido_access_page_luis \">";
 			$idexhtmls.='<h1>Acceder</h1>';
 			$idexhtmls.='<label><input class="input_access_dl sess_input_text_data_a" placeholder="Correo"></label>';
 			$idexhtmls.='<label><input class="input_access_dl sess_input_text_data_b" type="password" placeholder="Password"></label>';
+			$idexhtmls.='<label><input class="input_access_dl sess_input_text_data_c view_null" type="text" placeholder="Codigo de verificacion"></label>';
 			$idexhtmls.='<span class="button_acces_dl sess_input_button789">Acceder</span>';
 			$idexhtmls.='<span class="button_acces_new_dl button_acces_new_dl_a">Registrarme</span>';
 		$idexhtmls.='</div>';
 
-		$idexhtmls.="<div class=\"contenido_access_new_page_luis \">";
+		$idexhtmls.="<div class=\"contenido_access_new_page_luis view_null\">";
 			$idexhtmls.='<h1>Registrar</h1>';
 			$idexhtmls.='<label><input class="input_access_dl reg_input_text_data_a" placeholder="Correo"></label>';
 			$idexhtmls.='<label><input class="input_access_dl reg_input_text_data_b" type="password" placeholder="Contrase&ntilde;a"></label>';

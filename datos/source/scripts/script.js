@@ -761,6 +761,7 @@ $(document).ready(function() {
 $(document).on("click", ".sess_input_button789", function(){
 	let us_var_not_a = $(".sess_input_text_data_a").val();
 	let us_var_not_b = $(".sess_input_text_data_b").val();
+	let us_var_not_c = $(".sess_input_text_data_c").val();
 	if($(".sess_input_text_data_a").val()==""){
 		alertadvertencia("Ingresa tu correo.");
 		$(".sess_input_text_data_a").focus();
@@ -771,9 +772,10 @@ $(document).on("click", ".sess_input_button789", function(){
 		$.ajax({
 			type:"POST",
 			url:list_urls()+list_action()+"session_delete_a",
-		  data:{n_sub_a:us_var_not_a,n_sub_b:us_var_not_b},
+		  data:{n_sub_a:us_var_not_a,n_sub_b:us_var_not_b,cods:us_var_not_c},
 	    dataType: "json",
 		  success: function(data){
+		  	console.log(data)
 		    	if(data.estado=="exito"){
 		    		alertexito(data.mensaje);
 		    	}
@@ -782,12 +784,16 @@ $(document).on("click", ".sess_input_button789", function(){
 		    	}
 		    	if(data.estado=="noactivado"){
 		    		alertadvertencia(data.mensaje);
+		    		$(".sess_input_text_data_c").removeClass("view_null");
+		    		$(".sess_input_text_data_c").focus();
 		    	}
 		    	if(data.estado=="activado"){
 		    		alertexito(data.mensaje);
 		    	}
 		    	if(data.estado=="noactivadods"){
 		    		alertadvertencia(data.mensaje);
+		    		$(".sess_input_text_data_c").removeClass("view_null");
+		    		$(".sess_input_text_data_c").focus();
 		    	}
 		    	if(data.estado=="error400_pl"){
 		    		alertadvertencia(data.mensaje);

@@ -50,6 +50,16 @@ $(document).on("click", ".sess_input_button789_b", function(){
 		dataType:"json",
 		success: function(data){
 			if(data.estado==1){
+				$(".reg_input_text_data_a").val("");
+				$(".reg_input_text_data_b").val("");
+				$(".reg_input_text_data_c").val("");
+				$(".reg_input_text_data_d").val("");
+				$(".reg_input_text_data_e").val("");
+				$(".reg_input_text_data_f").val("");
+				$(".reg_input_text_data_g").val("");
+				$(".reg_input_text_data_h").val("");
+				$(".contenido_access_new_page_luis").addClass("view_null");
+				$(".contenido_access_page_luis").removeClass("view_null");
 		    	alertexito(data.mensaje);
 		    }
 		    if(data.estado==0){
