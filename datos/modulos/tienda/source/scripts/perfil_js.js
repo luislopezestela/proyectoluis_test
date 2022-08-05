@@ -47,9 +47,8 @@ $(document).on("click", ".sess_input_button789_b", function(){
 		type:"POST",
 		url:list_urls()+list_action()+"session_delete_b",
 		data:{a:u_a,b:u_b,c:u_c,d:u_d,e:u_e,f:u_f,g:u_g,h:u_h},
-		//dataType:"json",
+		dataType:"json",
 		success: function(data){
-			console.log(data)
 			if(data.estado==1){
 		    	alertexito(data.mensaje);
 		    }
