@@ -789,6 +789,9 @@ $(document).on("click", ".sess_input_button789", function(){
 		    	}
 		    	if(data.estado=="activado"){
 		    		alertexito(data.mensaje);
+		    		if (swapPhoto("perfil",false,false)) {
+							history.pushState(null, null, urline+"perfil", null);
+						}
 		    	}
 		    	if(data.estado=="noactivadods"){
 		    		alertadvertencia(data.mensaje);
