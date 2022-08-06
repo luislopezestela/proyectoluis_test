@@ -35,6 +35,11 @@
 	height:55px;
 	padding:10px;
 }
+.data_left_div_a_data_icon_sv{
+	display:block;
+	margin:10px;
+	fill:#777;
+}
 .title_name_menu_ac{padding:8px;font-size:14px;}
 
 .contenidopage{margin:0;}
