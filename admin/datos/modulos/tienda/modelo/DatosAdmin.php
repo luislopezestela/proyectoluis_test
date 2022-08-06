@@ -1076,6 +1076,11 @@ class DatosAdmin{
 		$sql = "update personas SET pass=\"$this->pass\" where id=$this->id";
 		Ejecutor::doit($sql);
 	}
+
+	public function activar_persona(){
+		$sql = "update personas SET estado=1 where id=\"$this->id\"";
+		Ejecutor::doit($sql);
+	}
 	
 
 	public static function MostrarClientes($user){

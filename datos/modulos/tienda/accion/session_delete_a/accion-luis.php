@@ -16,7 +16,9 @@ if ($verif){
 					}else{
 						if($_POST["cods"]==$pers->codigo){
 							$_SESSION["usuarioid"]=$pers->id;
-							$pers->activate();
+							$inlines = new DatosAdmin();
+							$inlines->id = $pers->id;
+							$inlines->activar_persona();
 							echo json_encode(array('estado' => 'activado','mensaje' => 'Tu cuenta se activo con exito.'));
 						}else{
 							echo json_encode(array('estado' => 'noactivadods','mensaje' => 'El codigo no es correcto'));
