@@ -243,7 +243,7 @@ if(isset($_SESSION['usuarioid'])){
 																					$idexhtmls.='</div>';
 																				$idexhtmls.='</div>';
 																			$idexhtmls.='</div>';
-																			$idexhtmls.='<div class="perfil_left_data_list_a_data_x '.$displ_active4.'">';
+																			$idexhtmls.='<div class="perfil_left_data_list_a_data_x">';
 																			$idexhtmls.='</div>';
 																		$idexhtmls.='</a>';
 																	$idexhtmls.='</div>';
@@ -280,13 +280,64 @@ if(isset($_SESSION['usuarioid'])){
 																							$idexhtmls.='<div class="title_pa_options_perf">'.$title_optio_perfiles.'</div>';
 
 																							if($number_page=="direcciones"){
-																								// code...
+																								$idexhtmls.='<button class="custom-btn btn_saved_grange btn_new_ge_use btn_new_ge_use_persons btn_new_ge_use_persons_add">AGREGAR</button>';
+																								$idexhtmls.='<div class="diplay_box_data_new_address_client">';
+																									$idexhtmls.='<input class="data_input_selc_users_name" type="text" placeholder="NOMBRE">';
+																									$idexhtmls.='<input class="data_input_selc_users_address" type="text" placeholder="DIRECCION">';
+																									$idexhtmls.='<input class="data_input_selc_users_surg" type="text" placeholder="SUGERENCIA">';
+																								$idexhtmls.='</div>';
+
+																								$idexhtmls.='<div class="class_op_address_list_order">';
+																									$direcciones_envios=DatosAdmin::Mostrar_direcciones_de_envio($_SESSION['usuarioid']);
+																									foreach($direcciones_envios as $env){
+																									///direcciones in
+																										$idexhtmls.='<div class="conten_address_timelines contentboxitemslist_client_viewers'.$env->id.'">';
+																										$idexhtmls.='<div class="class_op_address_list_order_direcc_logo">';
+																										$idexhtmls.='<div class="marcador_mapa"></div>';
+																										$idexhtmls.='</div>';
+																										$idexhtmls.='<div class="detaillsboxlists">';
+																										$idexhtmls.='<span class="tluisboxunli data_selc_us_name'.$env->id.'">'.html_entity_decode($env->nombre).'</span>';
+																										$idexhtmls.='<span class="tluisboxunliprice data_selc_us_address'.$env->id.'">'.html_entity_decode($env->direccion).'</span>';
+																										$idexhtmls.='<div class="tluisboxunlipubl data_selc_us_surg'.$env->id.'">'.html_entity_decode($env->sugerencia).'</div>';
+																										$idexhtmls.='</div>';
+																										///* opciones de list
+																										$idexhtmls.='<div class="opcionesblocklist opcionesblocklist1000boxlist">';
+																										$idexhtmls.='<a class="opcionesblocklist100 opcionesblocklist1000" href="javascript:void(0)">';
+																										$idexhtmls.='<span class="opcionesblocklistoption opcionesblocklistoption100">';
+																										$idexhtmls.='<i class="opcionesblocklistoption200 opcionesblocklistoption300">•••</i>';
+																										$idexhtmls.='</span>';
+																										$idexhtmls.='</a>';
+																										///
+																										$idexhtmls.='<div class="boxoptionslistlines">';
+																										$idexhtmls.='<div class="makposdind"></div>';
+																										$idexhtmls.='<div class="boxoptionslistitems data_address_update" data-config="'.$env->id.'">Editar</div>';
+																										$idexhtmls.='<div class="boxoptionslistitems data_address_delete" data-config="'.$env->id.'">Eliminar</div>';
+																										$idexhtmls.='</div>';
+																										///
+																										$idexhtmls.='</div>';
+																										///** fin de opciones list
+																										$idexhtmls.='</div>';
+																										///** fin de direcciones in
+																									}
+																								$idexhtmls.='</div>';
 																							}elseif($number_page=="historial_compras"){
 																								// code...
 																							}elseif($number_page=="configurar"){
-																								// code...
+																								$idexhtmls.='<div class="box_page_perfil_user_details">';
+																								$idexhtmls.='<span>DNI: <input class="class_tipe_upt_d" type="text" value="'.$per->dni.'"></span>';
+																								$idexhtmls.='<span>NOMBRES: <input class="class_tipe_upt_n" type="text" value="'.html_entity_decode($per->nombre).'"></span>';
+																								$idexhtmls.='<span>APELLIDO PATERNO: <input class="class_tipe_upt_p" type="text" value="'.html_entity_decode($per->apellido_paterno).'"></span>';
+																								$idexhtmls.='<span>APELLIDO MATERNO: <input class="class_tipe_upt_m" type="text" value="'.html_entity_decode($per->apellido_materno).'"></span>';
+																								$idexhtmls.='</div>';
+																								$idexhtmls.='<div class="butttons_box_content">';
+																								$idexhtmls.='<button class="custom-btn btn_saved_grange btn_saved_grange_use">GUARDAR</button>';
+																								$idexhtmls.='</div>';
 																							}elseif($number_page=="cambiar_pass"){
-																								// code...
+																								$idexhtmls.='<div class="conten_display_pass">';
+																								$idexhtmls.='<span>Contrase&ntilde;a: <input class="pass_g_ntr_a" type="password"></span>';
+																								$idexhtmls.='<span>Confirmar contrase&ntilde;a: <input class="pass_g_ntr_b" type="password"></span>';
+																								$idexhtmls.='<button class="custom-btn btn_saved_grange btn_new_ge_use btn_new_ge_use_persons btn_new_ge_use_persons_pass_ing">Guardar cambios</button>';
+																								$idexhtmls.='</div>';
 																							}elseif($number_page=="perfil"){
 																								$idexhtmls.='<div class="contenedor_datos_perfil">';
 																									/*Datos perfil start*/
@@ -316,10 +367,41 @@ if(isset($_SESSION['usuarioid'])){
 
 																								$idexhtmls.='<div class="contenido_accesos_directos_pags">';
 																									$idexhtmls.='<div class="contenido_accesos_directos_pags_lines">';
-																									$idexhtmls.='<span>Billetera</span>';
+																									$idexhtmls.='<span class="head_acceso_direc">Billetera</span>';
+																									$idexhtmls.='<svg class="acceso_direc_a" viewBox="0 0 24 24" width="35" height="35">';
+																									$idexhtmls.='<path d="M21,6H5c-.859,0-1.672-.372-2.235-.999,.55-.614,1.349-1.001,2.235-1.001H23c1.308-.006,1.307-1.995,0-2H5C2.239,2,0,4.239,0,7v10c0,2.761,2.239,5,5,5H21c1.657,0,3-1.343,3-3V9c0-1.657-1.343-3-3-3Zm-1,9c-1.308-.006-1.308-1.994,0-2,1.308,.006,1.308,1.994,0,2Z"/>';
+																									$idexhtmls.='</svg>';
+																									$idexhtmls.='<span class="acceso_direc_b">S/.0.00</span>';
 																									$idexhtmls.='</div>';
-																									$idexhtmls.='<div class="contenido_accesos_directos_pags_lines">hola';
+
+																									$idexhtmls.='<div class="contenido_accesos_directos_pags_lines">';
+																									$idexhtmls.='<span class="head_acceso_direc">Estado compra</span>';
+																									$idexhtmls.='<svg class="acceso_direc_a" viewBox="0 0 24 24" width="36" height="36">';
+																									$idexhtmls.='<path d="M11.948,24.009l-.354-.157C11.2,23.679,2,19.524,2,12V5.476A2.983,2.983,0,0,1,4.051,2.644L12,.009l7.949,2.635A2.983,2.983,0,0,1,22,5.476V12c0,8.577-9.288,11.755-9.684,11.887ZM12,2.106,4.684,4.532A.992.992,0,0,0,4,5.476V12c0,5.494,6.44,9.058,8.047,9.861C13.651,21.216,20,18.263,20,12V5.476a.992.992,0,0,0-.684-.944Z"/>';
+																									$idexhtmls.='<path d="M11.111,14.542h-.033a1.872,1.872,0,0,1-1.345-.6l-2.306-2.4L8.868,10.16,11.112,12.5l5.181-5.181,1.414,1.414-5.261,5.261A1.873,1.873,0,0,1,11.111,14.542Z"/>';
+																									$idexhtmls.='</svg>';
+																									$idexhtmls.='<span class="acceso_direc_b">-</span>';
 																									$idexhtmls.='</div>';
+
+																									$idexhtmls.='<div class="contenido_accesos_directos_pags_lines">';
+																									$idexhtmls.='<span class="head_acceso_direc">Deuda</span>';
+																									$idexhtmls.='<svg class="acceso_direc_a" viewBox="0 0 24 24" width="36" height="36">';
+																									$idexhtmls.='<path d="M12.5,0H5.5c-1.378,0-2.5,1.121-2.5,2.5v6.5H15V2.5c0-1.379-1.122-2.5-2.5-2.5Zm-1.5,2v2H7V2h4Zm12.152,6.681c-.515-.469-1.186-.712-1.878-.678-.697,.032-1.339,.334-1.794,.835l-3.541,3.737c.032,.21,.065,.42,.065,.638,0,2.083-1.555,3.876-3.617,4.17l-4.241,.606-.283-1.979,4.241-.606c1.084-.155,1.9-1.097,1.9-2.191,0-1.22-.993-2.213-2.213-2.213H3.003C1.349,11,.003,12.346,.003,14v7c0,1.654,1.346,3,3,3H12.667l10.674-11.655c.948-1.062,.862-2.707-.189-3.665Z"/>';
+																									$idexhtmls.='</svg>';
+																									$idexhtmls.='<span class="acceso_direc_b">S/.0.00</span>';
+																									$idexhtmls.='</div>';
+
+																									$idexhtmls.='<div class="contenido_accesos_directos_pags_lines">';
+																									$idexhtmls.='<span class="head_acceso_direc">Total compras</span>';
+																									$idexhtmls.='<svg class="acceso_direc_a" viewBox="0 0 24 24" width="36" height="36">';
+																									$idexhtmls.='<path d="M18,12a5.993,5.993,0,0,1-5.191-9H4.242L4.2,2.648A3,3,0,0,0,1.222,0H1A1,1,0,0,0,1,2h.222a1,1,0,0,1,.993.883l1.376,11.7A5,5,0,0,0,8.557,19H19a1,1,0,0,0,0-2H8.557a3,3,0,0,1-2.821-2H17.657a5,5,0,0,0,4.921-4.113l.238-1.319A5.984,5.984,0,0,1,18,12Z"/>';
+																									$idexhtmls.='<circle cx="7" cy="22" r="2"/>';
+																									$idexhtmls.='<circle cx="17" cy="22" r="2"/>';
+																									$idexhtmls.='<path d="M15.733,8.946a1.872,1.872,0,0,0,1.345.6h.033a1.873,1.873,0,0,0,1.335-.553l4.272-4.272A1,1,0,1,0,21.3,3.3L17.113,7.494,15.879,6.17a1,1,0,0,0-1.463,1.366Z"/>';
+																									$idexhtmls.='</svg>';
+																									$idexhtmls.='<span class="acceso_direc_b">0</span>';
+																									$idexhtmls.='</div>';
+
 																								$idexhtmls.='</div>';
 																							}
 																						$idexhtmls.='</div>';
@@ -351,47 +433,10 @@ if(isset($_SESSION['usuarioid'])){
 			if() {
 				$title_optio_perfiles="DIRECCIONES";
 
-				$idexhtmls.='<div class="diplay_box_data_new_address_client">';
-				$idexhtmls.='<button class="custom-btn btn_saved_grange btn_new_ge_use btn_new_ge_use_persons btn_new_ge_use_persons_add">AGREGAR</button>';
-				$idexhtmls.='<input class="data_input_selc_users_name" type="text" placeholder="NOMBRE">';
-				$idexhtmls.='<input class="data_input_selc_users_address" type="text" placeholder="DIRECCION">';
-				$idexhtmls.='<input class="data_input_selc_users_surg" type="text" placeholder="SUGERENCIA">';
-				$idexhtmls.='</div>';
-				$idexhtmls.='<hr>';
+				
+
 				////lista de direcciones opcionesblocklist1000boxlist
-				$idexhtmls.='<div class="class_op_address_list_order">';
-				$direcciones_envios=DatosAdmin::Mostrar_direcciones_de_envio($_SESSION['usuarioid']);
-				foreach($direcciones_envios as $env){
-					///direcciones in
-					$idexhtmls.='<div class="contentboxitemslist contentboxitemslist_client_viewers'.$env->id.'">';
-					$idexhtmls.='<div class="class_op_address_list_order_direcc_logo">';
-					$idexhtmls.='<img src="'.$base_a.'datos/source/icons/ubication.png">';
-					$idexhtmls.='</div>';
-					$idexhtmls.='<div class="detaillsboxlists">';
-					$idexhtmls.='<span class="tluisboxunli data_selc_us_name'.$env->id.'">'.html_entity_decode($env->nombre).'</span>';
-					$idexhtmls.='<span class="tluisboxunliprice data_selc_us_address'.$env->id.'">'.html_entity_decode($env->direccion).'</span>';
-					$idexhtmls.='<div class="tluisboxunlipubl data_selc_us_surg'.$env->id.'">'.html_entity_decode($env->sugerencia).'</div>';
-					$idexhtmls.='</div>';
-					///* opciones de list
-					$idexhtmls.='<div class="opcionesblocklist opcionesblocklist1000boxlist">';
-					$idexhtmls.='<a class="opcionesblocklist100 opcionesblocklist1000" href="javascript:void(0)">';
-					$idexhtmls.='<span class="opcionesblocklistoption opcionesblocklistoption100">';
-					$idexhtmls.='<i class="opcionesblocklistoption200 opcionesblocklistoption300">•••</i>';
-					$idexhtmls.='</span>';
-					$idexhtmls.='</a>';
-					///
-					$idexhtmls.='<div class="boxoptionslistlines">';
-					$idexhtmls.='<div class="makposdind"></div>';
-					$idexhtmls.='<div class="boxoptionslistitems data_address_update" data-config="'.$env->id.'">Editar</div>';
-					$idexhtmls.='<div class="boxoptionslistitems data_address_delete" data-config="'.$env->id.'">Eliminar</div>';
-					$idexhtmls.='</div>';
-					///
-					$idexhtmls.='</div>';
-					///** fin de opciones list
-					$idexhtmls.='</div>';
-					///** fin de direcciones in
-				}
-				$idexhtmls.='</div>';
+				
 				///** fin de lista de direcciones
 			}elseif($number_page=="historial_compras"){
 				$title_optio_perfiles="HISTORIAL DE COMPRAS";
@@ -400,15 +445,7 @@ if(isset($_SESSION['usuarioid'])){
 			}elseif($number_page=="cambiar_pass"){
 				$title_optio_perfiles="CAMBIAR CONTRASE&Ntilde;A";
 			}elseif($number_page=="perfil"){
-				$idexhtmls.='<div class="box_page_perfil_user_details">';
-				$idexhtmls.='<span>DNI: <input class="class_tipe_upt_d" type="text" value="'.$per->dni.'"></span>';
-				$idexhtmls.='<span>NOMBRES: <input class="class_tipe_upt_n" type="text" value="'.html_entity_decode($per->nombre).'"></span>';
-				$idexhtmls.='<span>APELLIDO PATERNO: <input class="class_tipe_upt_p" type="text" value="'.html_entity_decode($per->apellido_paterno).'"></span>';
-				$idexhtmls.='<span>APELLIDO MATERNO: <input class="class_tipe_upt_m" type="text" value="'.html_entity_decode($per->apellido_materno).'"></span>';
-				$idexhtmls.='</div>';
-				$idexhtmls.='<div class="butttons_box_content">';
-				$idexhtmls.='<button class="custom-btn btn_saved_grange btn_saved_grange_use">GUARDAR</button>';
-				$idexhtmls.='</div>';
+				
 			}
 			$idexhtmls.='</div>';*/
 

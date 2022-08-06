@@ -16,9 +16,9 @@ if($_POST['nombre']==""){
     $user->sugerencia = htmlentities($_POST['surg']);
     $u = $user->add_address_delivery_cliente();
     ///direcciones in
-    $address='<div class="contentboxitemslist contentboxitemslist_client_viewers'.$u[1].'">';
+    $address='<div class="conten_address_timelines contentboxitemslist_client_viewers'.$u[1].'">';
     $address.='<div class="class_op_address_list_order_direcc_logo">';
-    $address.='<img src="'.$base_a.'datos/source/icons/ubication.png">';
+    $address.='<div class="marcador_mapa"></div>';
     $address.='</div>';
     $address.='<div class="detaillsboxlists">';
     $address.='<span class="tluisboxunli data_selc_us_name'.$u[1].'">'.html_entity_decode($user->nombre).'</span>';
@@ -47,3 +47,4 @@ if($_POST['nombre']==""){
 
     echo json_encode(array('type' => "exito","messaje"=>"GUARDADO", 'item_new_address' => $address));
 }
+?>
