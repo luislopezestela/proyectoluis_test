@@ -313,6 +313,14 @@ if(isset($_SESSION['usuarioid'])){
 																									$idexhtmls.='</div>';
 																									/*Datos perfil end*/
 																								$idexhtmls.='</div>';
+
+																								$idexhtmls.='<div class="contenido_accesos_directos_pags">';
+																									$idexhtmls.='<div class="contenido_accesos_directos_pags_lines">';
+																									$idexhtmls.='<span>Billetera</span>';
+																									$idexhtmls.='</div>';
+																									$idexhtmls.='<div class="contenido_accesos_directos_pags_lines">hola';
+																									$idexhtmls.='</div>';
+																								$idexhtmls.='</div>';
 																							}
 																						$idexhtmls.='</div>';
 																					$idexhtmls.='</div>';
