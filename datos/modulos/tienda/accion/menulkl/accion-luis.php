@@ -62,6 +62,6 @@ $idexhtmls ="<div class=\"cont_fort_all\">";
 			$idexhtmls.="</li>";
 		}
 	$idexhtmls.="</div>";
-	$idexhtmls.="";
+	$idexhtmls.="<span class=\"closed_var_users_data ini_play_luis\">Cerrar sesion</span>";
 $idexhtmls.="</div>";
 return $idexhtmls;

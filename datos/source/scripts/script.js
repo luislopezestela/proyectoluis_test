@@ -778,6 +778,9 @@ $(document).on("click", ".sess_input_button789", function(){
 		  	console.log(data)
 		    	if(data.estado=="exito"){
 		    		alertexito(data.mensaje);
+		    		if (swapPhoto("perfil",false,false)) {
+							history.pushState(null, null, urline+"perfil", null);
+						}
 		    	}
 		    	if(data.estado=="error900_pl"){
 		    		alertadvertencia(data.mensaje);
@@ -809,7 +812,17 @@ $(document).on("click", ".sess_input_button789", function(){
 	}
 })
 
-
+$(document).on("click", ".ini_play_luis", function(){
+	$.ajax({
+		type:"POST",
+	    url:list_urls()+list_action()+"ds",
+	    success: function(data){
+	    	if(swapPhoto("perfil",false,false)) {
+					history.pushState(null, null, urline+"perfil", null);
+				}
+	    }
+	});
+})
 $(document).on("click", ".boton_eliminar_producto_de_carrito", function(){
 	let items_del = $(this).attr("data_cart");
 	alerta_confirm_dialog("boton_eliminar_producto_de_carrito_success",items_del,false);
