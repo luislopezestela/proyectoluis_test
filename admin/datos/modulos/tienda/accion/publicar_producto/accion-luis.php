@@ -2,9 +2,12 @@
 $usuario=DatosUsuario::poriUsuario($_SESSION["admin_id"]);
 $alphabeth ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWYZ1234567890_-";
 $codigos = "";
-for($i=0;$i<11;$i++){
-	$codigos .= $alphabeth[rand(0,strlen($alphabeth)-1)];
-}
+for($i=0;$i<11;$i++){$codigos .= $alphabeth[rand(0,strlen($alphabeth)-1)];}
+
+$numbers_code ="ABCDEFGHIJKLMNOPQRSTUVWYZ1234567890";
+$barcodes = "";
+for($i=0;$i<8;$i++){$barcodes .= $numbers_code[rand(0,strlen($numbers_code)-1)];}
+
 if (isset($_POST["listtwo"])) {
   if($_POST["listtwo"]=="null"){
     $listtwo="";
@@ -28,6 +31,7 @@ $publi->id_categoria=$_POST["listone"];
 $publi->id_subcategoria=$listtwo;
 $publi->descripcion=htmlentities($_POST['listboxstrin']);
 $publi->codigo=$codigos;
+$publi->barcode="L-".$barcodes;
 $publi->fecha=date ('Y-m-d H:i:s');
 $publi->ub=DatosAdmin::poner_guion(strip_tags($_POST["titulo"]));
 if (isset($_FILES) && !empty($_FILES)) {

@@ -1,8 +1,17 @@
-.contentboxbuttons{display:block;position:relative;padding:10px;margin:10px auto;}
+.contentboxbuttons{display:block;position:relative;margin:10px auto;}
+.result_seaching_pag{
+  display:flex;
+  flex-wrap:wrap;
+  position:relative;
+  width:100%;
+}
+.contentboxitemslist{display:flex;flex-wrap:wrap;width:calc(33.333333% - 14px);margin:7px; user-select:none;padding:10px;position:relative;background-color:#fff;box-shadow:0 1px 2px rgba(0,0,0,0.2);border-radius:7px;transition:all .5s;}
+.boxdisplay_stock{position:relative;display:block;height:50px;width:100%;}
+.stock_view_page_items{background:#ccc;display:block;width:100%;border-radius:5px;text-align:center;padding:10px;}
+
 .boxdatabuttompublic{display:block;width:100%;max-width:250px;padding:6px;cursor:pointer;user-select:none;text-align:center;margin:0 auto;background:var(--color_primario)}
 .contenidoboxplasst{display:flex;flex-wrap:wrap;padding:10px;position:relative;width:100%;max-width:1225px;border-radius:8px;}
 .untmsd4ss4listti{display:block;user-select:none;padding:10px 10px 0px 0px;width:100%;max-width:700px;margin:0 auto;}
-.contentboxitemslist{display:flex;width:100%;user-select:none;max-width:700px;padding:10px;margin:7px auto;position:relative;background-color:#ffffffff;box-shadow:0 1px 2px rgba(0,0,0,0.2);border-radius:7px;}
 .boxpicturelistst{position:relative;display:block;height:120px;width:120px;min-width:120px;border:1px solid #ddd;border-radius:5px;}
 .boxpictureliststimg{object-fit:cover;width:100%;height:100%;border-radius:5px;}
 .detaillsboxlists{display:block;width:100%;padding:10px 10px 0 10px;}
@@ -56,27 +65,53 @@
 .butt_luis_one{display:block;text-align:center;width:100%;position:relative;}
 .butt_luis_one span{margin-bottom:0!important;}
 .butt_luis_one a{color:#555;display:inline-block;}
-.conten_controls_box_items{width:100%;max-width:700px;margin:10px auto;}
-.caja_opcion_productos{display:flex;position:relative;}
-  .input_text_foot {
-    display: block;
-    margin: 17px auto;
-    margin-bottom:0;
+.conten_controls_box_items{display:flex;flex-wrap:wrap;width:100%;margin:10px 0;background-color:transparent;position:relative;}
+.input_text_foot {
+  position:relative;
+    display: flex;
+    margin: 17px 5px;
     box-sizing: border-box;
     padding: 10px 9px;
-    width: 100%;
-    border: 2px solid #999;
+    width:calc(30% - 10px);
     outline: none;
     transition: all .5s;
 }
-
+.input_text_foot_b {
+  position:relative;
+    display: flex;
+    margin: 17px 5px;
+    box-sizing: border-box;
+    padding: 10px 9px;
+    width:calc(70% - 10px);
+    outline: none;
+    transition: all .5s;
+}
 .select_document_view{display:block;position:relative;padding:10px 6px;width:100%;margin-top:7px;}
-.boxdisplay_stock{position:relative;display:block;height:50px;width:100px;}
-.stock_view_page_items{background:#ccc;display:block;width:100%;max-width:250px;border-radius:5px;text-align:center;padding:10px;}
+
+
 .labelstockitem{display:block;width:100%;text-align:center;}
-.box_select_categorias{display:inline-block;width:100%;padding:10px 5px;background:#ccc;position:relative;}
-.lb_box_categoria{position:absolute;padding:5px;font-size:12px;top:5px;}
+@media screen and (max-width: 1090px){
+  .contentboxitemslist{width:calc(50% - 14px);}
+}
+@media screen and (max-width: 1040px){
+  .input_text_foot {
+    width:calc(40% - 10px);
+  }
+  .input_text_foot_b{
+    width:calc(60% - 10px);
+  }
+}
+@media screen and (max-width: 650px){
+  .contentboxitemslist{width:calc(100% - 14px);}
+}
 @media screen and (max-width: 450px) {
+  .input_text_foot {
+    width:calc(100% - 10px);
+  }
+  .input_text_foot_b{
+    width:calc(100% - 10px);
+  }
+  .contenidoboxplasst{padding:2px;}
     .caja_opcion_productos{display:block;}
     .contentboxitemslist{display:block;}
     .boxdisplay_stock{display:block;text-align:center;width:100%;}
@@ -85,7 +120,7 @@
     .butt_luis_one span{max-width:100%;}
     .detaillsboxlists{padding:10px 0;}
     .tluisboxunli{padding:0!important;font-size:12px!important;}
-    .tluisboxunliprice{padding:0px!important;font-size:15px!important;}
+    .tluisboxunliprice{padding:7px 0px!important;font-size:15px!important;}
     .tluisboxunlipubl{padding:0!important;}
 }
 .message_searching{position:absolute;bottom:-15px;font-size:12px;}

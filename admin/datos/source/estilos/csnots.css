@@ -51,7 +51,17 @@
 .view_modal{opacity:1;pointer-events:auto;display:block;}
 /*Modal end*/
 /* estilos de modal de paginas*/
-.modal__content input{width:100%;padding:8px 6px;outline: none;border-bottom-color:#ddd;border:2px solid #ddd;border-radius:3px;display:block;margin:7px auto;margin-bottom:14px;}
+.modal__content input{position: relative;
+    height: 46px;
+    background-color: transparent;
+    font-size: 16px;
+    padding: 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border: 0;
+    transition: all 0.2s ease-in-out;
+    box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #fff;}
 .modal{display:none;position:fixed;z-index:3000;top:0;right:0;bottom:0;left:0;padding:15px;overflow:auto;background-color:rgba(0, 0, 0, 0.88);-webkit-animation-duration:0.35s;animation-duration:0.35s;-webkit-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-name:fadeIn;animation-name:fadeIn;}
 .modal__dialog{position: relative;max-width:500px;padding:20px;width:100%;margin:auto;border-radius:4px;background-color:#fff;}
 .modal__close {position:absolute;top:20px;right:20px;padding:0;cursor:pointer;border:none;color:#ccc;background-color:transparent;background-image:none;}

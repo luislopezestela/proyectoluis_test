@@ -659,6 +659,12 @@ class DatosAdmin{
 		return Modelo::many($query[0],new DatosAdmin());
 	}
 
+	public static function MostrarItems_cartas_opciones_sub($opc){
+		$sql = "select * from items where subcategoria=$opc ORDER BY id desc";
+		$query = Ejecutor::doit($sql);
+		return Modelo::many($query[0],new DatosAdmin());
+	}
+
 	public static function porUkr_items_page($ukr){
 		$sql = "select * from items where ukr=\"$ukr\" and estado=1  ORDER BY id";
 		$query = Ejecutor::doit($sql);
@@ -792,9 +798,9 @@ class DatosAdmin{
 	}
 
 	public function publicar_producto(){
-		$sql = "insert into items (usuario,nombre,moneda_a,precio,moneda_b,precio_final,marca,descripcion,categoria,subcategoria,codigo,sucursal,ukr,fecha)";
+		$sql = "insert into items (usuario,nombre,moneda_a,precio,moneda_b,precio_final,marca,descripcion,categoria,subcategoria,codigo,barcode,sucursal,ukr,fecha)";
 
-		$sql .= "value ($this->id_persona,\"$this->titulo\",$this->moneda_a,\"$this->precio\",$this->moneda_b,\"$this->precio_final\",$this->marca,\"$this->descripcion\",\"$this->id_categoria\",".(($this->id_subcategoria=='')?"NULL":("'".$this->id_subcategoria."'")).",\"$this->codigo\",$this->sucursal,\"$this->ub\",\"$this->fecha\")";
+		$sql .= "value ($this->id_persona,\"$this->titulo\",$this->moneda_a,\"$this->precio\",$this->moneda_b,\"$this->precio_final\",$this->marca,\"$this->descripcion\",\"$this->id_categoria\",".(($this->id_subcategoria=='')?"NULL":("'".$this->id_subcategoria."'")).",\"$this->codigo\",\"$this->barcode\",$this->sucursal,\"$this->ub\",\"$this->fecha\")";
 		return Ejecutor::doit($sql);
 	}
 
@@ -1659,7 +1665,19 @@ class DatosAdmin{
 	}
 
 
-	////// DATOS TIPO DE OPCIONES DE ITEMS
+	////// DATOS TIPO DE OPCIONES DE ITEMS  
+	public function add_detalle_type_b(){
+		$sql = "insert into opciones_type (nombre,id_items,id_cat_add) ";
+		$sql .= "value (\"$this->nombre\",$this->id_items,$this->cat)";
+		return Ejecutor::doit($sql);
+	}
+
+	public function add_detalle_type_c(){
+		$sql = "insert into opciones_type (nombre,id_items,id_cat_sub_add) ";
+		$sql .= "value (\"$this->nombre\",$this->id_items,$this->cat)";
+		return Ejecutor::doit($sql);
+	}
+
 	public function add_detalle_type(){
 		$sql = "insert into opciones_type (nombre,id_items) ";
 		$sql .= "value (\"$this->nombre\",$this->id_items)";
@@ -1667,9 +1685,35 @@ class DatosAdmin{
 	}
 
 	public function update_options_type(){
-		$sql = "update opciones_type set nombre=\"$this->nombre\" where id=$this->id";
+		$sql = "update opciones_type set nombre=\"$this->nombre\", id_cat_add=null, id_cat_sub_add=null where id=$this->id";
 		Ejecutor::doit($sql);
 	}
+
+	public function update_options_type_b(){
+		$sql = "update opciones_type set nombre=null, id_cat_add=$this->cat, id_cat_sub_add=null where id=$this->id";
+		Ejecutor::doit($sql);
+	}
+
+	public function update_options_type_c(){
+		$sql = "update opciones_type set nombre=null, id_cat_add=null, id_cat_sub_add=$this->sub where id=$this->id";
+		Ejecutor::doit($sql);
+	}
+	
+	public function eliminar_cambios(){
+		$sql = "delete from opciones_items where id_opciones_type=$this->id and inb=1";
+		Ejecutor::doit($sql);
+	}
+
+	public function eliminar_cambios_b(){
+		$sql = "delete from opciones_items where id_opciones_type=$this->id and inb=0";
+		Ejecutor::doit($sql);
+	}
+
+	public function eliminar_cambios_c(){
+		$sql = "delete from opciones_items where id_opciones_type=$this->id and inb=1";
+		Ejecutor::doit($sql);
+	}
+
 	
 	public function delete_option_type(){
 		$sql = "delete from opciones_type where id=$this->id";
@@ -1708,8 +1752,20 @@ class DatosAdmin{
 
 	////// DATOS OPCIONES DE ITEMS
 	public function add_opciones_detalle(){
-		$sql = "insert into opciones_items (nombre,ukr,precio,id_opciones_type)";
-		$sql .= "value (\"$this->nombre\",\"$this->ukr\",$this->precio,$this->id_opciones_type)";
+		$sql = "insert into opciones_items (nombre,ukr,id_opciones_type)";
+		$sql .= "value (\"$this->nombre\",\"$this->ukr\",$this->id_opciones_type)";
+		return Ejecutor::doit($sql);
+	}
+
+	public function add_opciones_detalle_b(){
+		$sql = "insert into opciones_items (nombre,ukr,precio,id_opciones_type,item_k,inb)";
+		$sql .= "value (\"$this->nombre\",\"$this->ukr\",\"$this->precio\",$this->id_opciones_type,\"$this->ith\",1)";
+		return Ejecutor::doit($sql);
+	}
+
+	public function add_opciones_detalle_c(){
+		$sql = "insert into opciones_items (nombre,ukr,precio,id_opciones_type,item_k,inb,cat_act)";
+		$sql .= "value (\"$this->nombre\",\"$this->ukr\",\"$this->precio\",$this->id_opciones_type,\"$this->ith\",1,$this->cat_act)";
 		return Ejecutor::doit($sql);
 	}
 
@@ -1717,6 +1773,12 @@ class DatosAdmin{
 		$sql = "select * from opciones_items where id_opciones_type=$id";
 		$query = Ejecutor::doit($sql);
 		return Modelo::many($query[0],new DatosAdmin());
+	}
+
+	public static function ver_detalles_opciones_b($id){
+		$sql = "select * from opciones_items where id_opciones_type=$id";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new DatosAdmin());
 	}
 
 	public static function ver_opciones_detalles_list_one_name($id){
@@ -1735,6 +1797,12 @@ class DatosAdmin{
 		$sql = "select * from opciones_items where id_opciones_type=$id and nombre=\"$nams\"";
 		$query = Ejecutor::doit($sql);
 		return Modelo::one($query[0],new DatosAdmin());
+	}
+
+	public static function ver_opciones_detalles_list_one_name_view_b($id,$nams){
+		$sql = "select * from opciones_items where id_opciones_type=$id and ukr=\"$nams\"";
+		$query = Ejecutor::doit($sql);
+		return Modelo::many($query[0],new DatosAdmin());
 	}
 
 	public function update_data_opciones_detalles(){

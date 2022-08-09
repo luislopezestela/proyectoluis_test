@@ -128,7 +128,6 @@ $(document).ready(function(){
   });
 
   $("#ifgoodc").change(function(){
-    var optl=$(".optlistnull").attr("data-nullb");
     $.ajax({
       type:'POST',
       url:list_urls()+list_action()+"function_bord",
@@ -505,12 +504,34 @@ $(document).on("click", ".delete_button_in_stock_item", function(){
     });
 })
 
+
+$(document).on("keyup", ".add_details_items_inputs", function(){
+  let dar = $(this).val().length;
+  if(dar > 0){
+    $("#ifgoodc").val("");
+    $(".in_day_ps").addClass("in_day_ps_true");
+  }else{
+    $(".in_day_ps").removeClass("in_day_ps_true");
+  }
+})
+
+$(document).on("change", "#ifgoodc", function(){
+  let darb = $(this).val();
+  if(darb==""){
+    $(".in_day_ps_b").removeClass("in_day_ps_true");
+  }else{
+    $(".in_day_ps_b").addClass("in_day_ps_true");
+  }
+})
+
 $(document).on("click", ".add_details_items_buttons", function(){
   let item_d = $(this).attr("data");
+  let ittms_c=$("#ifgoodc").val();
+  let ittms_s=$("#ifgoodd").val();
   let ittms=$(".add_details_items_inputs").val();
     $.ajax({
         type:"POST",
-        data:{dat:ittms,item:item_d},
+        data:{dat:ittms,item:item_d,cat:ittms_c,sub:ittms_s},
         url:list_urls()+list_action()+"add_item_details",
         dataType: "json",
         success: function(datos){
@@ -536,6 +557,9 @@ $(document).on("click", ".add_details_items_buttons", function(){
           if(datos.tipo===0){
             alertadvertencia(datos.message);
           }
+          $("#ifgoodc").val("");
+          $("#ifgoodd").val("");
+          $(".in_day_ps").removeClass("in_day_ps_true");
           $(".add_details_items_inputs").val("");
           $(".add_details_items_inputs").focus();
         }
@@ -543,46 +567,79 @@ $(document).on("click", ".add_details_items_buttons", function(){
 })
 
 
-
-$(document).on("click", ".update_button_types", function(){
-    let ittms=$(this).attr("data");
-    let ittmsd=$(this).attr("data_two");
-    $(".add_details_items_buttons_notes").removeClass("add_details_items_buttons");
-    $(".add_details_items_buttons_notes").addClass("update_types_names_butt");
-    $(".add_details_items_buttons_notes").attr("data_up", ittms);
-    $(".add_details_items_buttons_notes").attr("data_up_name", ittmsd);
-    $(".add_details_items_inputs").addClass("update_check");
-    $(".add_details_items_inputs").val(ittmsd);
-    $(".add_details_items_buttons_notes").html("Guardar");
+/* para editar las caracteristicas */
+$(document).on("keyup", ".add_details_items_inputs_upd", function(){
+  let dac = $(this).attr("data");
+  let dar = $(".add_details_items_inputs_upd"+dac).val().length;
+  if(dar > 0){
+    $("#ifgoodc"+dac).val("");
+    $(".in_day_ps"+dac).addClass("in_day_ps_true");
+  }else{
+    $(".in_day_ps"+dac).removeClass("in_day_ps_true");
+  }
+  console.log(dar)
 })
 
 
-$(document).on("click", ".update_types_names_butt", function(){
-    let ittms=$(this).attr("data_up");
-    let ittms_nam=$(".add_details_items_inputs").val();
-    $.ajax({
-        type:"POST",
-        data:{dat:ittms,dat_name:ittms_nam},
-        url:list_urls()+list_action()+"update_type_names",
-        success: function(datos){
-          if(datos===""){
-            $(".label_data_types_detalle"+ittms).html(ittms_nam);
-            $(".update_button_types"+ittms).attr("data_two", ittms_nam);
-            $(".add_details_items_buttons_notes").removeClass("update_types_names_butt");
-            $(".add_details_items_buttons_notes").addClass("add_details_items_buttons");
-            $(".add_details_items_buttons_notes").html("Agregar");
-            $(".add_details_items_buttons_notes").removeAttr("data_up");
-            $(".add_details_items_inputs").removeClass("update_check");
-            $(".add_details_items_buttons_notes").removeAttr("data_up_name");
-            $(".add_details_items_inputs").val("");
-            alertexito("Datos actualizados");
-          }else{
-            alertadvertencia(datos);
-          }
+$(document).on("change", ".inptexboslistspublic_funct", function(){
+  let dac_b = $(this).attr("data");
+  let darb = $("#ifgoodc"+dac_b).val();
+  if(darb==""){
+    $(".in_day_ps_b"+dac_b).removeClass("in_day_ps_true");
+  }else{
+    $(".in_day_ps_b"+dac_b).addClass("in_day_ps_true");
+  }
+
+  $.ajax({
+    type:'POST',
+    url:list_urls()+list_action()+"function_bord",
+    data:{"cats":darb},
+    cache: false,
+    success: function(msg){
+      if(msg!==""){
+        $("#ifgoodd"+dac_b).removeAttr("disabled")
+          $("#ifgoodd"+dac_b).attr('required',"required")
+          $("#ifgoodd"+dac_b).parent().css({"display":"block"})
+        }else{
+          $("#ifgoodd"+dac_b).attr('disabled',"disabled")
+          $("#ifgoodd"+dac_b).removeAttr("required")
+          $("#ifgoodd"+dac_b).parent().css({"display":"none"})
         }
+        $("#ifgoodd"+dac_b).html(msg);
+      }
     });
 })
 
+$(document).on("click", ".add_details_items_buttons_upd", function(){
+  let ittms=$(this).attr("data");
+  let ittms_c=$("#ifgoodc"+ittms).val();
+  let ittms_s=$("#ifgoodd"+ittms).val();
+  let ittms_nam=$(".add_details_items_inputs_upd"+ittms).val();
+  $.ajax({
+    type:"POST",
+    data:{dat:ittms,dat_name:ittms_nam,cat:ittms_c,sub:ittms_s},
+    url:list_urls()+list_action()+"update_type_names",
+    dataType: "json",
+    success: function(datos){
+      console.log(datos)
+      if(datos.play_data===0) {
+        $(".listar_opciones_de_tipo_box"+ittms).html("");
+      }
+      if(datos.tipo===1){
+        $(".label_data_types_detalle"+ittms).html(datos.values);
+        alertexito(datos.message);
+      }else{
+        alertadvertencia(datos.message);
+      }
+      if(datos.options){
+        $("#items_li_puv"+ittms).html(datos.options);
+      }else{
+        $("#items_li_puv"+ittms).html("");
+      }
+    }
+  });
+})
+/* ----------------------------------- */
 
 $(document).on("click", ".delete_button_types", function(){
   let items_del = $(this).attr("data");
@@ -611,18 +668,23 @@ $(document).on("click", ".eliminar_titulo_tipo_de_opciones", function(){
 })
 
 
-//// agregar  detalles a las opciones
+//// agregar  detalles a las opciones 
 
-$(document).on("click", ".button_add_detalle_de_options_boxs", function(){
+$(document).on("click", ".ad_det_it_b_upd_opts", function(){
   let typo_opcion = $(this).attr("data");
-  let opcion_detalle=$(".input_add_detalle_de_options_box"+typo_opcion).val();
-  let pric_option = $(".input_add_detalle_de_options_box_price"+typo_opcion).val();
+  let opcion_detalle=$(".ad_opt_lk"+typo_opcion).val();
+  let opcion_items=$("#items_li_puv"+typo_opcion).val();
+  let pric_option = $('input[name=price_data'+typo_opcion+']:checked').val();
     $.ajax({
         type:"POST",
-        data:{type_option:typo_opcion,opcion_det:opcion_detalle,option_pr:pric_option},
+        data:{type_option:typo_opcion,opcion_det:opcion_detalle,itemp:opcion_items,option_pr:pric_option},
         url:list_urls()+list_action()+"add_item_details_options_subs",
         dataType: "json",
         success: function(datos){
+          console.log(datos);
+          if(datos.priv===4){
+            $(".price_option_actives").removeClass("in_day_ps_true");
+          }
           if(datos.active===1){
             $(".input_add_detalle_de_options_box_price"+typo_opcion).attr("type", "text");
             var funmp = '<span class="button_display_opciones_principal_active update_default_option update_default_option'+typo_opcion+'" data_p="'+typo_opcion+'" data_s="'+datos.line+'">Principal</span>';
@@ -641,7 +703,10 @@ $(document).on("click", ".button_add_detalle_de_options_boxs", function(){
           '<label class="name_data_options_view'+datos.line+'">'+opcion_detalle+'</label>'+
           '</div>';
 
+          
           if(datos.tipo===1){
+            $(".ad_opt_lk"+typo_opcion).val("");
+            $("#items_li_puv"+typo_opcion).val("")
             alertexito(datos.message);
             $(".listar_opciones_de_tipo_box"+typo_opcion).append(item_insert_in_box_details_in_type);
             $(".input_add_detalle_de_options_box"+typo_opcion).val("");
