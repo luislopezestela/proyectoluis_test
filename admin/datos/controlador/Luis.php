@@ -79,6 +79,10 @@ class Luis {
 					"usuarios/".$urb1 => Luis::formatstyle("productos","pageslist",false),
 					"usuarios/".$urb1."/".$urb2 => Luis::formatstyle("productos","pageslist",false),
 					///------///
+					"moneda" => Luis::formatstyle("moneda","pageslist",false),
+					"moneda/".$urb1 => Luis::formatstyle("moneda","pageslist",false),
+					"moneda/".$urb1."/".$urb2 => Luis::formatstyle("moneda","pageslist",false),
+					///------///
 					"clientes" => Luis::formatstyle("productos","pageslist",false),
 					"clientes/".$urb1 => Luis::formatstyle("productos","pageslist",false),
 					"clientes/".$urb1."/".$urb2 => Luis::formatstyle("productos","pageslist",false),

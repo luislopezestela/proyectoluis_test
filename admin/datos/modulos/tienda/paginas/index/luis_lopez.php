@@ -1,5 +1,6 @@
 <?php
 $base = Luis::basepage("base_page_admin");
+$base_a = Luis::basepage("base_page");
 $usuario = DatosUsuario::porId($_SESSION["admin_id"]);
 $cantidad_de_ventas_hoy=DatosAdmin::contar_cantidad_de_ventas_en_el_dia_actual($usuario->sucursal);
 $cantidad_de_gastos_hoy=DatosAdmin::contar_cantidad_de_gastos_en_el_dia_actual($usuario->sucursal);
@@ -11,7 +12,9 @@ $cantidad_de_usuarios=DatosAdmin::cantidad_de_usuarios_r();
 $cantidad_de_clientes=DatosAdmin::cantidad_de_clientes_r();
 $cantidad_de_proveedores=DatosAdmin::cantidad_de_proveedores_r();
 $cantidad_total_de_ventas=DatosAdmin::contar_cantidad_de_ventas_en_total($usuario->sucursal);
+$moneda_principal = DatosAdmin::mostrar_la_moneda_principal();
 ?>
+                              
 <style type="text/css">
 	.venta_pendiente_view_alert_box{display:block;margin:10px auto;padding:10px;background-color:rgba(243, 156, 18,0.40);color:rgba(230, 126, 34,1.0);border:2px solid rgba(243, 156, 18,1.0);}
 	.button_venta_pendiente{border-radius:7px;cursor:pointer;padding:4px;display:inline-block;width:100%;max-width:150px;background:rgba(52, 152, 219,1.0);color:#fff;text-align:center;}
@@ -53,6 +56,23 @@ $cantidad_total_de_ventas=DatosAdmin::contar_cantidad_de_ventas_en_total($usuari
 					<img class="iccono_imagens" src="<?=$base."datos/source/icons/idiomas.png";?>">
 				</i>
 				<b><?=Luis::lang("idioma");?></b>
+			</a>
+		</div>
+
+		<div class="cubos cubs_tr">
+			<a class="fotercubo_tr" href="<?=$base."moneda";?>">
+				<?php if(isset($moneda_principal->nombre)): ?>
+					<div class="admin_titulo_tablero_index sty_lang_def"><span><?=html_entity_decode($moneda_principal->nombre);?></span></div><br>
+					<i class=" icon_respont">
+						<img class="iccono_imagens" src="<?=$base_a."datos/modulos/".Luis::temass()."/source/imagenes/divisas/".$moneda_principal->icon;?>">
+					</i>
+				<?php else: ?>
+					<div class="admin_titulo_tablero_index sty_lang_def"><span><?=Luis::lang("selecciona_moneda");?></span></div><br>
+					<i class=" icon_respont">
+						<img class="iccono_imagens" src="<?=$base."datos/source/icons/sin-dinero.png";?>">
+					</i>
+				<?php endif ?>
+				<b><?=Luis::lang("moneda");?></b>
 			</a>
 		</div>
 

@@ -3,6 +3,80 @@
  * Luis lopez estela funcrions
  */
 class Functions{
+public static function _utf8_decode($string)
+{
+  $tmp = $string;
+  $count = 0;
+  while (mb_detect_encoding($tmp)=="UTF-8")
+  {
+    $tmp = utf8_decode($tmp);
+    $count++;
+  }
+ 
+  for ($i = 0; $i < $count-1 ; $i++)
+  {
+    $string = utf8_decode($string);
+   
+  }
+  return $string;
+ 
+}
+
+    public static function getUpadtesdsd(){
+        $returnHtml = array();
+        $page = 'https://www.google.com/finance/quote/PEN-USD';
+        $returnRawHtml = file_get_contents($page);    
+        preg_match_all("/<[^>]+>(.*)<\/[^>]+>/U",$returnRawHtml,$returnHtml,PREG_PATTERN_ORDER);
+    
+        $listarsd =$returnHtml[0];
+        print_r($listarsd);
+        if (isset($returnHtml[0][59])) 
+        {
+          $gRate = strip_tags($returnHtml[0][59]);
+          return $gRate;
+        }
+        else {
+          return false;
+        }
+
+    }
+
+    public static function currency($moneda_origen,$moneda_destino,$cantidad) {
+$cantidad = urlencode($cantidad);
+$moneda_origen = urlencode($moneda_origen);
+$moneda_destino = urlencode($moneda_destino);
+$url = 'https://www.google.com/search?q=PEN+to+USD';
+$ch = curl_init();
+$timeout = 0;
+curl_setopt ($ch, CURLOPT_URL, $url);
+curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_USERAGENT , "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)");
+curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+$rawdata = curl_exec($ch);
+curl_close($rawdata);
+$data = explode('"', $rawdata);
+$data = explode(' ', $data['3']);
+
+
+$data_string = (string)$data['0'];
+$data_string = utf8_decode($data_string);
+$data_string = str_replace(chr(160), '', $data_string);
+
+$var = (float)$data_string;
+return round($var,7);
+
+}
+
+    public static function comvertirdivisa($fromCurrency,$toCurrency,$amount) { 
+    $fromCurrency = urlencode($fromCurrency);
+    $toCurrency = urlencode($toCurrency);   
+    $url  = "https://www.google.com/search?q=".$fromCurrency."+to+".$toCurrency;
+    $get = file_get_contents($url);
+    $data = preg_split('/\D\s(.*?)\s=\s/',$get);
+    $exhangeRate = (float) substr($data[1],0,2);
+    $convertedAmount = $amount*$exhangeRate;
+    echo print_r( $convertedAmount );  
+}
 
     public static function cuenta_regresiva($year, $month, $day, $hour, $minute, $second){
     	global $return;

@@ -36,9 +36,7 @@ $(document).ready(function(){
   var formData = new FormData();
   formData.append('intlinear',$(".hipboxmp").val());
   formData.append('titulo',$("#ifgooda").val());
-  formData.append('moneda_one',$("#ifpmond_one").val());
   formData.append('precio',$("#ifgoodb").val());
-  formData.append('moneda_two',$("#ifpmond_two").val());
   formData.append('precio_final',$("#ifgoodb_two").val());
   formData.append('marca',$("#ifodmarc").val());
   formData.append('listone',$("#ifgoodc").val());
@@ -153,15 +151,9 @@ $(document).ready(function(){
     if($("#ifgooda").val()==""){
       $("#ifgooda").focus()
       alertadvertencia("Ingresa un título válido.");
-    }else if($("#ifpmond_one").val()==""){
-      $("#ifpmond_one").focus()
-      alertadvertencia("Selecciona el tipo de moneda para el precio de venta por cantidad.");
     }else if($("#ifgoodb").val()==""){
       $("#ifgoodb").focus()
       alertadvertencia("Ingresa el precio venta por cantidad.");
-    }else if($("#ifpmond_two").val()==""){
-      $("#ifpmond_two").focus()
-      alertadvertencia("Selecciona el tipo de moneda para el precio de venta por unidad.");
     }else if($("#ifgoodb_two").val()==""){
       $("#ifgoodb_two").focus()
       alertadvertencia("Ingresa un precio en soles.");
@@ -220,31 +212,9 @@ $('.aphlistbuttonnextopemboxlist100').on("click", function(){
           $("#rem"+idl).remove();
         }, 500);
       }, 7000);
-    }else if($("#ifpmond_one").val()==""){
-      $("#ifpmond_one").focus()
-      $(".mensaje100").html('<div id="rem'+idl+'" class="alerta_top advertencia_top"><p class="alerta_top100">Ingresa el tipo de moneda para venta por cantidad.</p><span id="close_alert_'+idl+'" class="close_alert_100">X</span></div>');
-      $("#extx100").focus();
-      $('#close_alert_'+idl).click(function(){$('#rem'+idl).remove();});
-      window.setTimeout(function(){
-        $("#rem"+idl).addClass("close_alert_200");
-        setTimeout(function(){
-          $("#rem"+idl).remove();
-        }, 500);
-      }, 7000);
     }else if($("#ifgoodb").val()==""){
       $("#ifgoodb").focus()
       $(".mensaje100").html('<div id="rem'+idl+'" class="alerta_top advertencia_top"><p class="alerta_top100">Ingresa precio venta por cantidad.</p><span id="close_alert_'+idl+'" class="close_alert_100">X</span></div>');
-      $("#extx100").focus();
-      $('#close_alert_'+idl).click(function(){$('#rem'+idl).remove();});
-      window.setTimeout(function(){
-        $("#rem"+idl).addClass("close_alert_200");
-        setTimeout(function(){
-          $("#rem"+idl).remove();
-        }, 500);
-      }, 7000);
-    }else if($("#ifpmond_two").val()==""){
-      $("#ifpmond_two").focus()
-      $(".mensaje100").html('<div id="rem'+idl+'" class="alerta_top advertencia_top"><p class="alerta_top100">Ingresa el tipo de moneda para venta por unidad.</p><span id="close_alert_'+idl+'" class="close_alert_100">X</span></div>');
       $("#extx100").focus();
       $('#close_alert_'+idl).click(function(){$('#rem'+idl).remove();});
       window.setTimeout(function(){
@@ -309,9 +279,7 @@ $('.aphlistbuttonnextopemboxlist100').on("click", function(){
     e.preventDefault();
     formData.set('intlinear',$(".hipboxmp").val());
     formData.set('titulo',$("#ifgooda").val());
-    formData.set('moneda_one',$("#ifpmond_one").val());
     formData.set('precio',$("#ifgoodb").val());
-    formData.set('moneda_two',$("#ifpmond_two").val());
     formData.set('precio_final',$("#ifgoodb_two").val());
     formData.set('marca',$("#ifodmarc").val());
     formData.set('listone',$("#ifgoodc").val());
@@ -379,9 +347,7 @@ $('.aphlistbuttonnextopemboxlist100').on("click", function(){
     e.preventDefault();
     formData.set('intlinear',$(".hipboxmp").val());
     formData.set('titulo',$("#ifgooda").val());
-    formData.set('moneda_one',$("#ifpmond_one").val());
     formData.set('precio',$("#ifgoodb").val());
-    formData.set('moneda_two',$("#ifpmond_two").val());
     formData.set('precio_final',$("#ifgoodb_two").val());
     formData.set('marca',$("#ifodmarc").val());
     formData.set('listone',$("#ifgoodc").val());

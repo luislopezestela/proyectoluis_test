@@ -866,12 +866,6 @@ $(document).on("click", ".boton_eliminar_producto_de_carrito_success", function(
 	});
 });
 
-
-
-
-
-
-
 //cancelarcompra
 
 

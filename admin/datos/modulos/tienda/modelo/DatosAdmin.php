@@ -2379,8 +2379,19 @@ class DatosAdmin{
 	}
 
 	/// Monedas
+	public static function mostrar_la_moneda_principal(){
+		$sql = "select * from moneda where estado=1 and principal=1";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new DatosAdmin());
+	}
+
 	public static function Mostrar_las_monedas(){
 		$sql = "select * from moneda where estado=1";
+		$query = Ejecutor::doit($sql);
+		return Modelo::many($query[0],new DatosAdmin());
+	}
+	public static function Mostrar_las_monedas_admin(){
+		$sql = "select * from moneda";
 		$query = Ejecutor::doit($sql);
 		return Modelo::many($query[0],new DatosAdmin());
 	}
@@ -2388,6 +2399,41 @@ class DatosAdmin{
 		$sql = "select * from moneda where id=$id";
 		$query = Ejecutor::doit($sql);
 		return Modelo::one($query[0],new DatosAdmin());
+	}
+
+	public static function actualizar_moneda_none(){
+		$sql = "update moneda set principal=0";
+		Ejecutor::doit($sql);
+	}
+
+	public static function actualizar_moneda_page($id){
+		$sql = "update moneda set principal=1 where id=$id";
+		Ejecutor::doit($sql);
+	}
+
+	public function agregar_moneda(){
+		$sql = "insert into moneda (nombre,moneda,simbolo,icon)";
+		$sql .= "value (\"$this->nombre\",\"$this->moneda\",\"$this->simbolo\",\"$this->icon\")";
+		return Ejecutor::doit($sql);
+	}
+
+	public function editar_moneda(){
+		$sql = "update moneda set nombre=\"$this->nombre\", moneda=\"$this->moneda\", simbolo=\"$this->simbolo\", icon=\"$this->icon\" where id=\"$this->id\"";
+		Ejecutor::doit($sql);
+	}
+	public function editar_moneda_b(){
+		$sql = "update moneda set nombre=\"$this->nombre\", moneda=\"$this->moneda\", simbolo=\"$this->simbolo\" where id=\"$this->id\"";
+		Ejecutor::doit($sql);
+	}
+
+	public function activar_monedas(){
+		$sql = "update moneda SET estado=\"$this->estado\" where id=\"$this->id\"";
+		Ejecutor::doit($sql);
+	}
+
+	public function eliminar_moneda(){
+		$sql = "delete from moneda where id=$this->id";
+		Ejecutor::doit($sql);
 	}
 
 	/// Publicidad

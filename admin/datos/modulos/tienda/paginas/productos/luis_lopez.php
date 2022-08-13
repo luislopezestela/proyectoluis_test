@@ -7,7 +7,7 @@ if(isset($_SESSION["admin_id"])):
     $productos=DatosAdmin::MostrarPublicacionesMarket($_SESSION["admin_id"],$usuario->categoria_prod_def);
     $categoria = DatosAdmin::mostrar_categorias();
     $marcas = DatosAdmin::mostrar_marcas();
-    ?> 
+    ?>
     <div class="optlistnull" data-nullb="<?=$base;?>"></div>
     <section class="vista_preb_page">
       <ol class="box_visw">
@@ -61,13 +61,11 @@ if(isset($_SESSION["admin_id"])):
                   <div class="contentboxitemslistcread">
                     <form action="#" id="form800goodlive100" role="form" method="POST" enctype="multipart/form-data">
                       <input class="hipboxmp" type="text" name="intlinear" value="<?=DatosAdmin::urlpersona($prod->id);?>">
-                      <div>
-                        <span class="infmaximgs <?=$infboxfail;?>">
-                          <?=Luis::lang("fotos");?>
-                          <span id="coukbox200" class="coukbox"><?=DatosAdmin::cantidad_imagenes($prod->id)->c;?></span>/5 
-                          <span><?=Luis::lang("puedes_agregar_maximo_cinco_fotos");?></span>
-                        </span>
-                      </div>
+                      <span class="infmaximgs <?=$infboxfail;?>">
+                        <?=Luis::lang("fotos");?>
+                        <span id="coukbox200" class="coukbox"><?=DatosAdmin::cantidad_imagenes($prod->id)->c;?></span>/5 
+                        <span><?=Luis::lang("puedes_agregar_maximo_cinco_fotos");?></span>
+                      </span>
 
                       <div class="litimgecurrrentbox">
                         <!-- imagenes lista -->
@@ -94,41 +92,9 @@ if(isset($_SESSION["admin_id"])):
                           <label class="labelboxinptext"><?=Luis::lang("titulo");?></label>
                         </div>
                         <hr>
-                        <?php $mostrar_las_monedas_disponibles = DatosAdmin::Mostrar_las_monedas(); ?>
-                        <div class="boxinputlists">
-                          <select id="ifpmond_one" class="inptexboslistspublic" required>
-                            <option value=""></option>
-                            <?php foreach ($mostrar_las_monedas_disponibles as $mon): ?>
-                              <?php if($prod->moneda_a==$mon->id): ?>
-                                <?php $slected_moneda="selected"; ?>
-                              <?php else: ?>
-                                <?php $slected_moneda=false; ?>
-                              <?php endif ?>
-                              <option value="<?=$mon->id;?>" <?=$slected_moneda;?>><?=html_entity_decode($mon->nombre);?></option>
-                            <?php endforeach ?>
-                          </select>
-                          <label class="labelboxinptext"><?=Luis::lang("selecciona_tipo_de_moneda");?></label>
-                        </div>
-
                         <div class="boxinputlists">
                           <input id="ifgoodb" class="inptexboslistspublic" type="text" name="precio" autocomplete="off" value="<?=$prod->precio;?>" required>
                           <label class="labelboxinptext"><?=Luis::lang("precio_venta_por_cantidad");?></label>
-                        </div>
-                        <hr>
-
-                        <div class="boxinputlists">
-                          <select id="ifpmond_two" class="inptexboslistspublic" required>
-                            <option value=""></option>
-                            <?php foreach ($mostrar_las_monedas_disponibles as $mon): ?>
-                              <?php if($prod->moneda_b==$mon->id): ?>
-                                <?php $slected_moneda="selected"; ?>
-                              <?php else: ?>
-                                <?php $slected_moneda=false; ?>
-                              <?php endif ?>
-                              <option value="<?=$mon->id;?>" <?=$slected_moneda;?>><?=html_entity_decode($mon->nombre);?></option>
-                            <?php endforeach ?>
-                          </select>
-                          <label class="labelboxinptext"><?=Luis::lang("selecciona_tipo_de_moneda");?></label>
                         </div>
 
                         <div class="boxinputlists">
@@ -182,7 +148,6 @@ if(isset($_SESSION["admin_id"])):
                         <div class="boxinputlists opcilinesviewbox">
                           <textarea cols="20" rows="2" data-editable="0" class="inptexboslistspublic hedboxhomeeditorsblok" name="listboxstrin" id="editor" required=""><?=html_entity_decode($prod->descripcion);?></textarea>
                           <label class="labelboxinptext"><?=Luis::lang("caracteristicas");?></label>
-   
                         </div>
                       </div>
 
@@ -649,31 +614,9 @@ if(isset($_SESSION["admin_id"])):
                         <label class="labelboxinptext"><?=Luis::lang("titulo");?></label>
                       </div>
                       <hr>
-                      <?php $mostrar_las_monedas_disponibles = DatosAdmin::Mostrar_las_monedas(); ?>
-                      <div class="boxinputlists">
-                        <select id="ifpmond_one" class="inptexboslistspublic" required>
-                          <option value=""></option>
-                          <?php foreach ($mostrar_las_monedas_disponibles as $mon): ?>
-                            <option value="<?=$mon->id;?>"><?=html_entity_decode($mon->nombre);?></option>
-                          <?php endforeach ?>
-                        </select>
-                        <label class="labelboxinptext"><?=Luis::lang("selecciona_tipo_de_moneda");?></label>
-                      </div>
-
                       <div class="boxinputlists">
                         <input id="ifgoodb" class="inptexboslistspublic" type="text" name="precio" autocomplete="off" required>
                         <label class="labelboxinptext"><?=Luis::lang("precio_venta_por_cantidad");?></label>
-                      </div>
-                      <hr>
-
-                      <div class="boxinputlists">
-                        <select id="ifpmond_two" class="inptexboslistspublic" required>
-                          <option value=""></option>
-                          <?php foreach ($mostrar_las_monedas_disponibles as $mon): ?>
-                            <option value="<?=$mon->id;?>"><?=html_entity_decode($mon->nombre);?></option>
-                          <?php endforeach ?>
-                        </select>
-                        <label class="labelboxinptext"><?=Luis::lang("selecciona_tipo_de_moneda");?></label>
                       </div>
 
                       <div class="boxinputlists">
@@ -938,14 +881,9 @@ if(isset($_SESSION["admin_id"])):
             <?php endif ?>
             <div class="conten_controls_box_items">
               <select class="input_text_foot input_text_category_seaching">
-                <?php $total_productos_a=0;?>
                 <?php foreach ($categoria as $k): ?>
                   <?php $productos_op=DatosAdmin::MostrarPublicacionesMarket($_SESSION["admin_id"],$k->id); ?>
-                  <?php foreach($productos_op as $uss_d): ?>
-                    <?php $stcok_items=DatosAdmin::cantidad_stock_de_producto_admin($uss_d->id)->c; ?>
-                    <?php $total_productos_a +=$stcok_items; ?>
-                  <?php endforeach ?>
-                  <option <?php if($k->id==$usuario->categoria_prod_def){echo "selected";} ?> value="<?=$k->id;?>"><?=html_entity_decode($k->nombre);?> (<?=$total_productos_a;?>)</option>
+                  <option <?php if($k->id==$usuario->categoria_prod_def){echo "selected";} ?> value="<?=$k->id;?>"><?=html_entity_decode($k->nombre);?> (<?=count($productos_op);?>)</option>
                 <?php endforeach ?>
               </select>
               <input type="text" class="input_text_foot_b" id="search" placeholder="Buscar item...">              
