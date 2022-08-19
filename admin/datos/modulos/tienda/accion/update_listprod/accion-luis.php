@@ -10,12 +10,12 @@ if (isset($_POST["listtwo"])) {
 }
 $idupdate=DatosAdmin::urlpersona_off($_POST["intlinear"]);
 try{
+$moneda_principal = DatosAdmin::mostrar_la_moneda_principal();
 $publi=new DatosAdmin();
 $publi->id=$idupdate;
 $publi->titulo=htmlentities($_POST["titulo"]);
-$publi->moneda_a=$_POST["moneda_one"];
+$publi->moneda_a=$moneda_principal->id;
 $publi->precio=$_POST["precio"];
-$publi->moneda_b=$_POST["moneda_two"];
 $publi->precio_final=$_POST["precio_final"];
 $publi->id_categoria=$_POST["listone"];
 $publi->id_subcategoria=$listtwo;
@@ -23,7 +23,7 @@ $publi->marca=$_POST["marca"];
 $publi->descripcion=htmlentities($_POST['listboxstrin']);
 $publi->ub=DatosAdmin::poner_guion(strip_tags($_POST["titulo"]));
 $publi->update_producto();
-
+ 
 $todaslasimagenes=DatosAdmin::cantidad_imagenes($idupdate)->c;
 
 if($todaslasimagenes>5) {

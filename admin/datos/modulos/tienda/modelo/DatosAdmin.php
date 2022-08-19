@@ -805,7 +805,7 @@ class DatosAdmin{
 	}
 
 	public function update_producto(){
-		$sql = "update items set nombre=\"$this->titulo\",descripcion=\"$this->descripcion\",moneda_a=$this->moneda_a,precio=\"$this->precio\",moneda_b=$this->moneda_b,precio_final=\"$this->precio_final\",marca=\"$this->marca\",categoria=\"$this->id_categoria\",subcategoria=".(($this->id_subcategoria=='')?"NULL":("'".$this->id_subcategoria."'")).",ukr=\"$this->ub\" where id=$this->id";
+		$sql = "update items set nombre=\"$this->titulo\",descripcion=\"$this->descripcion\",moneda_a=$this->moneda_a,precio=\"$this->precio\",precio_final=\"$this->precio_final\",marca=\"$this->marca\",categoria=\"$this->id_categoria\",subcategoria=".(($this->id_subcategoria=='')?"NULL":("'".$this->id_subcategoria."'")).",ukr=\"$this->ub\" where id=$this->id";
 		Ejecutor::doit($sql);
 	}
 

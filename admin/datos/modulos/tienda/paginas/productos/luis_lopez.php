@@ -239,7 +239,7 @@ if(isset($_SESSION["admin_id"])):
                                 <span class="button_display_opciones_principal_desactivado update_default_option <?="update_default_option".$td->id;?>" data_p="<?=$td->id;?>" data_s="<?=$deop->id;?>"><?=Luis::lang("activar");?></span>
                               <?php endif ?>
                             </div>
-                            <label class="<?="name_data_options_view".$deop->id;?>"><?=html_entity_decode($deop->nombre);?>ssssssss</label>
+                            <label class="<?="name_data_options_view".$deop->id;?>"><?=html_entity_decode($deop->nombre);?></label>
                             <div class="opcionesblocklist opcionesblocklist1000boxlist">
                               <a class="opcionesblocklist100 opcionesblocklist1000" href="javascript:void(0)">
                                 <span class="opcionesblocklistoption opcionesblocklistoption100">
