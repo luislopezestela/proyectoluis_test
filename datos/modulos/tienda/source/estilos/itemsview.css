@@ -16,7 +16,7 @@
 }
 @media only screen and (max-width:1200px){
 	.items_list_views {
-	    width: calc(33.3333333% - 10px);
+	    width: calc(33.3333333% - 16px);
 	}
 }
 
