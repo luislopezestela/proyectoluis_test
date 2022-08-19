@@ -8,14 +8,10 @@ class Functions{
         $page = 'https://www.google.com/finance/quote/'.$cambio.'-'.$principal;
         $returnRawHtml = file_get_contents($page);    
         preg_match_all("/<[^>]+>(.*)<\/[^>]+>/U",$returnRawHtml,$returnHtml,PREG_PATTERN_ORDER);
-    
-       
-        if (isset($returnHtml[0][208])) 
-        {
+        if(isset($returnHtml[0][208])) {
           $gRate = strip_tags($returnHtml[0][208]);
           return $gRate;
-        }
-        else {
+        }else{
           return false;
         }
 
