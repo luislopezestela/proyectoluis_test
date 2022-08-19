@@ -159,7 +159,7 @@ if(isset($urb[2])){$urbs=$urb[2];}else{$urbs=false;}
 					            <?php $cambio_tipo = 0; ?>
 					            <?php if($ser->principal==1): ?>
 					            <?php else: $resultadode_cambios = Functions::getUpadtesdsd($moneda_principal->moneda,$ser->moneda);?>
-					            	<div class="nameshiffs"><?='1 '.html_entity_decode($moneda_principal->nombre)." = ".number_format($resultadode_cambios, 2, '.', '');?> </div>
+					            	<div class="nameshiffs"><?='1 '.html_entity_decode($moneda_principal->nombre)." = ".number_format((float) $resultadode_cambios, 2, '.', '');?> </div>
 					            	Fuente Google
 					            <?php endif ?>
 					            
