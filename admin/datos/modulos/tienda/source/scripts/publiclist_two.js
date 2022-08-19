@@ -107,13 +107,6 @@ for (var pair of formData.entries()) {
     if(inp_line===""){
       alertadvertencia("Escribe un nombre");
     }else{
-      
-    
-  
-    // formData.append('caracteristica', boxes);
-
-
-      
       dapl=document.querySelector('[data-modal-name="add_new_carateristica_in_item_place"]')
       dapl.classList.remove("is-modal-active");
  
@@ -144,9 +137,6 @@ for (var pair of formData.entries()) {
     var itemsvar = $(this).attr("data")
     var contentext = $(".class_name_ini_add_caracteristic_update_"+itemsvar).val()
      // formData.set(itemsvar,contentext);
-
-
-
      for (var opc of formData.getAll("caracteristica[]")) {
       var opl = JSON.parse(opc);
       if (opl.id===itemsvar) {

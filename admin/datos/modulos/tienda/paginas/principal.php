@@ -28,7 +28,7 @@ if(isset($_GET["paginas"])){
 	<?php if (isset($_GET["paginas"])): ?>
 		<?php if($_GET["paginas"]=="sucursales/".$urb1 or $_GET["paginas"]=="sucursales/".$urb1."/".$urb2): ?>
 			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzVClbbKRZ2Id-N8Xr-Sws5Z32NpVB-JY"></script>
-			<script src="<?=Luis::basepage("base_page_admin")."datos/escripts/maps.js";?>"></script>
+			<script src="<?=Luis::basepage("base_page_admin")."datos/source/scripts/maps.js";?>"></script>
 		<?php endif ?>
 	<?php endif ?>
 	

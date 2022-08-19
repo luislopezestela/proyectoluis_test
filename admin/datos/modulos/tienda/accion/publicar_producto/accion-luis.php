@@ -18,12 +18,12 @@ if (isset($_POST["listtwo"])) {
   $listtwo="";
 }
 try{
+$moneda_principal = DatosAdmin::mostrar_la_moneda_principal();
 $publi=new DatosAdmin();
 $publi->id_persona=$_SESSION["admin_id"];
 $publi->titulo=htmlentities($_POST["titulo"]);
-$publi->moneda_a=$_POST["moneda_one"];
+$publi->moneda_a=$moneda_principal->id;
 $publi->precio=$_POST["precio"];
-$publi->moneda_b=$_POST["moneda_two"];
 $publi->precio_final=$_POST["precio_final"];
 $publi->marca=$_POST["marca"];
 $publi->sucursal=$usuario->sucursal;

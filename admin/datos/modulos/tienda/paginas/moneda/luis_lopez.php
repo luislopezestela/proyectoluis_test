@@ -123,17 +123,16 @@ if(isset($urb[2])){$urbs=$urb[2];}else{$urbs=false;}
 		<div class="contentlists_items">
 			<h4 class="titulo_paginas"><?=Luis::lang("divisas");?></h4>
 			<div class="message"></div>
-			<a class="add_itembox" href="<?=$base."moneda/add"?>">
-				<div class="butt_luis_one"><span><?=Luis::lang("agregar");?></span></div>
+			<!-- <a class="add_itembox" href="$base."moneda/add ">
+				<div class="butt_luis_one"><span>Luis::lang("agregar")</span></div>
 			</a>
-			<hr>
-			<?php
-//$result = Functions::getUpadtesdsd();
-//print_r($result);
-?>
+			<hr> -->
+			
 			<div class="conten_services">
 				<?php if(count($moneda)>0): ?>
 					<?php foreach ($moneda as $ser): ?>
+						<?php $moneda_principal = DatosAdmin::mostrar_la_moneda_principal();
+						?>
 						<?php if($ser->principal==1){$mon_ac="le_en_listr";}elseif($ser->estado==1){$mon_ac="le_en_activ";}else{$mon_ac="le_en_listrds";}?>
 						<div class="itemsviewslist moned_en_listr <?="moned_en_".$ser->id;?> <?=$mon_ac;?>">
 							<div class="contensviewsitstr">
@@ -159,12 +158,11 @@ if(isset($urb[2])){$urbs=$urb[2];}else{$urbs=false;}
 					            <span class="nameshiffs"><?php if(!$ser->nombre==null){echo($ser->nombre);}else{echo('-');}?></span>
 					            <?php $cambio_tipo = 0; ?>
 					            <?php if($ser->principal==1): ?>
-					            	
-					            <?php else: ?>
-					            <?php endif ?><?php
-
-?>
-					            <div class="nameshiffs"><?=Luis::lang("cambio");?></div>
+					            <?php else: $resultadode_cambios = Functions::getUpadtesdsd($moneda_principal->moneda,$ser->moneda);?>
+					            	<div class="nameshiffs"><?='1 '.html_entity_decode($moneda_principal->nombre)." = ".number_format($resultadode_cambios, 2, '.', '');?> </div>
+					            	Fuente Google
+					            <?php endif ?>
+					            
 					        </div>
 					        <div class="opcionesblocklist opcionesblocklist1000boxlist">
 					        	<a class="opcionesblocklist100 opcionesblocklist1000" href="javascript:void(0)">

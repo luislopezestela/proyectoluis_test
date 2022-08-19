@@ -31,7 +31,13 @@ if(count($items_viewa)>0){
 			$idexhtmls.="<div class=\"boxpictureliststb\">";
 			$direct_true="datos/modulos/".Luis::temass()."/source/imagenes/items/".$tms->id;
 			if(is_dir($direct_true)){
-				$idexhtmls.="<picture><img class=\"boxpictureliststimg\" src=\"".$base."datos/modulos/".Luis::temass()."/source/imagenes/items/".$tms->id."/thumb/".$image_int->imagen."\"></picture>";
+				$direct_true_file="datos/modulos/".Luis::temass()."/source/imagenes/items/".$tms->id."/thumb/".$image_int->imagen;
+				if(is_file($direct_true_file)){
+					$idexhtmls.="<picture><img class=\"boxpictureliststimg\" src=\"".$base."datos/modulos/".Luis::temass()."/source/imagenes/items/".$tms->id."/thumb/".$image_int->imagen."\"></picture>";
+				}else{
+					$idexhtmls.="<picture><img class=\"boxpictureliststimg\" src=\"".$base."admin/datos/imagenes/icons/no_image.png"."\"></picture>";
+				}
+				
 			}else{
 				$idexhtmls.="<picture><img class=\"boxpictureliststimg\" src=\"".$base."admin/datos/imagenes/icons/foto.png"."\"></picture>";
 			}

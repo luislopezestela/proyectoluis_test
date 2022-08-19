@@ -3,7 +3,8 @@
 .divprincipalhomsucursals{font-size:16px;padding:4px 5px;border:1px solid #ccc;text-align:center;max-width:130px;}
 .activesuct{border-radius:3px;background-color:#16a085;color:#fff;border:1px solid transparent;transition:0.5s;}
 .activesuct:hover{opacity:0.8;}
-
+.direcnone{display:none!important;}
+.direcdatlabel{display:flex;width:100%;font-size:28px;color:#000;justify-content:center;}
 li{list-style:none;}
 .noitemsnull{margin:10px auto;text-align:center;padding:10px;border-radius:8px;color:#777;margin-top:37px; display:block;width:100%;max-width:400px;background-color:var(--card-background);}
 .add_itembox{max-width:144px;position:relative;display:block;margin:0 auto}
@@ -58,11 +59,16 @@ li{list-style:none;}
 .elimina_activo:hover{background-color:#c0392b;} 
 .imagen_pre{max-width:100%;display:inline-block;position:relative;}
 /*inputs*/
-.input_luis_one{display:block;width:100%;border:1px solid #ddd;padding:12px 6px;max-width:100%;outline:none;transition:all .5s;margin:6px auto;max-width:800px;}
-.input_luis_one:focus{border:1px solid #999;}
-.input_luis_two{display:block;width:100%;border:1px solid #ddd;padding:10px 6px;max-width:100%;outline:none;transition:all .5s;margin:10px auto;max-width:800px;}
-.input_luis_two:focus{border:1px solid #999;}
-.input_luis_tres{width:100%;padding:8px 6px;outline: none;border-bottom-color:#ddd;border:2px solid #ddd;border-radius:3px;display:block;margin:7px auto;margin-bottom:14px;}
+.boxinputlists{max-width:100%;padding:0;position:relative;width:calc(100% - 12px);margin:10px 5px;display:block;}
+.inptexboslistspublic{position:relative;height:46px;background-color:#fff;font-size:16px;padding:10px 5px;display:block;width:100%;border:none;border:0;transition: all 0.2s ease-in-out;box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #fff;}
+.inptexboslistspublic:focus{outline:none;padding-bottom:1px;box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;}
+.labelboxinptext{color:#555;font-size:16px;font-weight:normal;position:absolute;pointer-events:none;left:8px;top:15px;transition:0.2s ease all; -moz-transition:0.2s ease all; -webkit-transition:0.2s ease all;white-space:nowrap;text-overflow:ellipsis;max-width:100%;padding-right:18px;overflow:hidden;}
+.inptexboslistspublic:valid{outline:none;padding-bottom:1px;box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;}
+.undefined{background-color:rgba(178, 190, 195,1.0)!important;color:#777!important;cursor:not-allowed!important;}
+/* active state */
+.inptexboslistspublic:focus ~ .labelboxinptext, .inptexboslistspublic:valid ~ .labelboxinptext{top:2px;font-size:12px;color:#555;}
+.inptexboslistspublic option:nth-child(1){display:none;}
+.inptexboslistspublic option{outline:none;}
 /*inputs end*/
 .iconbarnot{display:block;padding:10px;}
 .notpage{display:block;background-color:#FFFFFF;padding:10px;margin:10px auto;text-align:center;}

@@ -239,7 +239,7 @@ if(isset($_SESSION["admin_id"])):
                                 <span class="button_display_opciones_principal_desactivado update_default_option <?="update_default_option".$td->id;?>" data_p="<?=$td->id;?>" data_s="<?=$deop->id;?>"><?=Luis::lang("activar");?></span>
                               <?php endif ?>
                             </div>
-                            <label class="<?="name_data_options_view".$deop->id;?>"><?=html_entity_decode($deop->nombre);?></label>
+                            <label class="<?="name_data_options_view".$deop->id;?>"><?=html_entity_decode($deop->nombre);?>ssssssss</label>
                             <div class="opcionesblocklist opcionesblocklist1000boxlist">
                               <a class="opcionesblocklist100 opcionesblocklist1000" href="javascript:void(0)">
                                 <span class="opcionesblocklistoption opcionesblocklistoption100">
@@ -248,7 +248,7 @@ if(isset($_SESSION["admin_id"])):
                               </a>
                               <div class="boxoptionslistlines" style="display:none;">
                                 <div class="makposdind"></div>
-                                <div class="boxoptionslistitems button_display_opciones_update <?="button_display_opciones_update".$deop->id;?>" data-modal-trigger="<?="dpl_details__subs_li".$deop->id;?>" data-config="<?=$td->id;?>"><?=Luis::lang("editar");?></div>
+                                <div class="boxoptionslistitems <?="button_display_opciones_update".$deop->id;?>" data-modal-trigger="<?="dpl_details__subs_li".$deop->id;?>" data="<?=$deop->id?>" item_type="<?=$td->id;?>"><?=Luis::lang("editar");?></div>
                                 <div class="boxoptionslistitems button_display_opciones_delete <?="button_display_opciones_delete".$deop->id;?>" data="<?=$deop->id?>" data_dels="<?=$td->id;?>"><?=Luis::lang("eliminar");?></div>
                               </div>
                               <div class="modal" data-modal-name="<?="dpl_details__subs_li".$deop->id;?>" data-modal-dismiss="">
@@ -276,7 +276,7 @@ if(isset($_SESSION["admin_id"])):
                                               <option value=""></option>
                                               <option value=""><?=Luis::lang("ninguno");?></option>
                                               <?php foreach($items_for_cat as $t):?>
-                                                <option value="<?=$t->id;?>"><?=html_entity_decode($t->nombre);?></option>
+                                                <option value="<?=$t->id;?>" <?php if($t->id==$deop->item_k){echo("selected");}?>><?=html_entity_decode($t->nombre);?></option>
                                               <?php endforeach; ?>
                                             </select>
                                             <label class="labelboxinptext"><?=Luis::lang("por_categorias");?></label>
@@ -284,9 +284,20 @@ if(isset($_SESSION["admin_id"])):
                                         </div>
                                         <div class="add_details_items_box">
                                           <div class="boxinputlists in_day_ps_b<?=$deop->id;?> in_day_ps_true">
-                                            <input class="inptexboslistspublic ad_opt_lk<?=$deop->id;?>" data="<?=$deop->id;?>" type="text" required>
+                                            <input class="inptexboslistspublic ad_opt_lk_up<?=$deop->id;?>" data="<?=$deop->id;?>" type="text" required>
                                             <label class="labelboxinptext"><?=Luis::lang("nombre");?></label>
                                           </div>
+                                        </div>
+                                        <label class="fraces_precargadas"><?=Luis::lang("usar_precio");?></label>
+                                        <div class="price_option_actives">
+                                          <input class="pric_hid pric-labelone" type="radio" name="<?="price_data".$deop->id?>" value="1" id="<?="pric_dl_o".$deop->id?>" <?php if($deop->precio==1){echo("checked");}?>/>
+                                          <label class="btn_lab_styl" for="<?="pric_dl_o".$deop->id?>">
+                                            <h1><?=Luis::lang("si");?></h1>
+                                          </label>
+                                          <input class="pric_hid pric-labeltwo" type="radio" name="<?="price_data".$deop->id?>" value="0" id="<?="pric_dl".$deop->id?>" <?php if($deop->precio==0){echo("checked");}?>/>
+                                          <label class="btn_lab_styl" for="<?="pric_dl".$deop->id?>">
+                                            <h1><?=Luis::lang("no");?></h1>
+                                          </label>
                                         </div>
                                       <?php elseif($td->id_cat_add): ?>
                                         <?php $items_for_cat = DatosAdmin::MostrarItems_cartas_opciones($td->id_cat_add);?>
@@ -296,7 +307,7 @@ if(isset($_SESSION["admin_id"])):
                                               <option value=""></option>
                                               <option value=""><?=Luis::lang("ninguno");?></option>
                                               <?php foreach($items_for_cat as $t):?>
-                                                <option value="<?=$t->id;?>"><?=html_entity_decode($t->nombre);?></option>
+                                                <option value="<?=$t->id;?>" <?php if($t->id==$deop->item_k){echo("selected");}?>><?=html_entity_decode($t->nombre);?></option>
                                               <?php endforeach; ?>
                                             </select>
                                             <label class="labelboxinptext"><?=Luis::lang("por_categorias");?></label>
@@ -304,9 +315,21 @@ if(isset($_SESSION["admin_id"])):
                                         </div>
                                         <div class="add_details_items_box">
                                           <div class="boxinputlists in_day_ps_b<?=$deop->id;?> in_day_ps_true">
-                                            <input class="inptexboslistspublic ad_opt_lk<?=$deop->id;?>" data="<?=$deop->id;?>" type="text" required>
+                                            <input class="inptexboslistspublic ad_opt_lk_up<?=$deop->id;?>" data="<?=$deop->id;?>" type="text" required>
                                             <label class="labelboxinptext"><?=Luis::lang("nombre");?></label>
                                           </div>
+                                        </div>
+
+                                        <label class="fraces_precargadas"><?=Luis::lang("usar_precio");?></label>
+                                        <div class="price_option_actives">
+                                          <input class="pric_hid pric-labelone" type="radio" name="<?="price_data".$deop->id?>" value="1" id="<?="pric_dl_o".$deop->id?>" <?php if($deop->precio==1){echo("checked");}?>/>
+                                          <label class="btn_lab_styl" for="<?="pric_dl_o".$deop->id?>">
+                                            <h1><?=Luis::lang("si");?></h1>
+                                          </label>
+                                          <input class="pric_hid pric-labeltwo" type="radio" name="<?="price_data".$deop->id?>" value="0" id="<?="pric_dl".$deop->id?>" <?php if($deop->precio==0){echo("checked");}?>/>
+                                          <label class="btn_lab_styl" for="<?="pric_dl".$deop->id?>">
+                                            <h1><?=Luis::lang("no");?></h1>
+                                          </label>
                                         </div>
                                       <?php else: ?>
                                         <div class="fraces_precargadas">
@@ -317,27 +340,28 @@ if(isset($_SESSION["admin_id"])):
                                         </div>
                                         <div class="add_details_items_box">
                                           <div class="boxinputlists in_day_ps_b<?=$deop->id;?>">
-                                            <input class="inptexboslistspublic ad_opt_lk<?=$deop->id;?>" data="<?=$deop->id;?>" type="text" value="<?=$deop->nombre; ?>" required>
+                                            <input class="inptexboslistspublic ad_opt_lk_up<?=$deop->id;?>" data="<?=$deop->id;?>" type="text" value="<?=$deop->nombre; ?>" required>
                                             <label class="labelboxinptext"><?=Luis::lang("nombre");?></label>
                                           </div>
                                         </div>
+
+                                        <div class="price_option_actives in_day_ps_true">
+                                          <input class="pric_hid pric-labelone" type="radio" name="<?="price_data".$td->id?>" value="1" id="<?="pric_dl_o".$td->id?>"/>
+                                          <label class="btn_lab_styl" for="<?="pric_dl_o".$td->id?>">
+                                            <h1><?=Luis::lang("si");?></h1>
+                                          </label>
+                                          <input class="pric_hid pric-labeltwo" type="radio" name="<?="price_data".$td->id?>" value="0" id="<?="pric_dl".$td->id?>"/>
+                                          <label class="btn_lab_styl" for="<?="pric_dl".$td->id?>">
+                                            <h1><?=Luis::lang("no");?></h1>
+                                          </label>
+                                        </div>
                                       <?php endif ?>
-                                      <div class="price_option_actives in_day_ps_true">
-                                        <input class="pric_hid pric-labelone" type="radio" name="<?="price_data".$deop->id?>" value="1" id="<?="pric_dl_o".$deop->id?>"/>
-                                        <label class="btn_lab_styl" for="<?="pric_dl_o".$deop->id?>">
-                                          <h1><?=Luis::lang("si");?></h1>
-                                        </label>
-                                        <input class="pric_hid pric-labeltwo" type="radio" name="<?="price_data".$deop->id?>" value="0" id="<?="pric_dl".$deop->id?>"/>
-                                        <label class="btn_lab_styl" for="<?="pric_dl".$deop->id?>">
-                                          <h1><?=Luis::lang("no");?></h1>
-                                        </label>
-                                      </div>
+                                      
                                       <div class="add_details_items_box">
                                         <div class="boxinputlists">
-                                          <span class="add_details_items_button ad_det_it_b_upd_opts_update" data="<?=$td->id;?>"><?=Luis::lang("agregar");?>..</span>
+                                          <span class="add_details_items_button ad_det_it_b_upd_opts_update" data="<?=$td->id;?>" data_i="<?=$deop->id;?>"><?=Luis::lang("guardar");?>..</span>
                                         </div>
                                       </div>
-
                                     </div>
                                   </div>
                                 </div>
@@ -404,7 +428,9 @@ if(isset($_SESSION["admin_id"])):
                                         <option value=""></option>
                                         <option value=""><?=Luis::lang("ninguno");?></option>
                                         <?php foreach($items_for_cat as $t):?>
-                                          <option value="<?=$t->id;?>"><?=html_entity_decode($t->nombre);?></option>
+                                          <?php if($t->subcategoria==null): ?>
+                                            <option value="<?=$t->id;?>"><?=html_entity_decode($t->nombre);?></option>
+                                          <?php endif ?>
                                         <?php endforeach; ?>
                                       </select>
                                       <label class="labelboxinptext"><?=Luis::lang("por_categorias");?></label>
@@ -430,7 +456,9 @@ if(isset($_SESSION["admin_id"])):
                                     </div>
                                   </div>
                                 <?php endif ?>
+
                                 <div class="price_option_actives in_day_ps_true">
+                                  <label class=""><?=Luis::lang("usar_precio");?></label><br>
                                   <input class="pric_hid pric-labelone" type="radio" name="<?="price_data".$td->id?>" value="1" id="<?="pric_dl_o".$td->id?>"/>
                                   <label class="btn_lab_styl" for="<?="pric_dl_o".$td->id?>">
                                     <h1><?=Luis::lang("si");?></h1>
@@ -494,6 +522,7 @@ if(isset($_SESSION["admin_id"])):
                                       <label class="labelboxinptext"><?=Luis::lang("por_sub_categoria");?></label>
                                     </div>
                                   </div>
+
                                   <div class="add_details_items_box">
                                     <div class="boxinputlists in_day_ps_b<?=$td->id;?> in_day_ps_true">
                                       <input class="inptexboslistspublic add_details_items_inputs_upd add_details_items_inputs_upd<?=$td->id;?>" data="<?=$td->id;?>" type="text" value="<?=html_entity_decode($td->nombre);?>" required>
@@ -513,10 +542,18 @@ if(isset($_SESSION["admin_id"])):
                                       <label class="labelboxinptext"><?=Luis::lang("por_categorias");?></label>
                                     </div>
 
-                                    <div class="boxinputlists in_day_ps<?=$td->id;?>" style="display:none;">
-                                      <select id="ifgoodd<?=$td->id;?>" class="inptexboslistspublic" name="listtwo" disabled></select>
+                                    <div class="boxinputlists in_day_ps<?=$td->id;?>">
+                                      <select id="ifgoodd<?=$td->id;?>" class="inptexboslistspublic" name="listtwo" required>
+                                        <option value=""></option>
+                                        <option value=""><?=Luis::lang("ninguno");?></option>
+                                        <?php $categoria_sub = DatosAdmin::mostrar_sub_categorias($td->id_cat_add); ?>
+                                        <?php foreach($categoria_sub as $t):?>
+                                          <option value="<?=$t->id;?>" <?php if($t->id==$td->id_cat_sub_add){echo("selected");}?>><?=html_entity_decode($t->nombre);?></option>
+                                        <?php endforeach; ?>
+                                      </select>
                                       <label class="labelboxinptext"><?=Luis::lang("por_sub_categoria");?></label>
                                     </div>
+
                                   </div>
 
                                   <div class="add_details_items_box">
@@ -551,8 +588,6 @@ if(isset($_SESSION["admin_id"])):
                                     </div>
                                   </div>
                                 <?php endif ?>
-
-
                                 <div class="add_details_items_box">
                                   <div class="boxinputlists">
                                     <span class="add_details_items_button add_details_items_buttons_upd" data="<?=$td->id;?>"><?=Luis::lang("guardar");?></span>

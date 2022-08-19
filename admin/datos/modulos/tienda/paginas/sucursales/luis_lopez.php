@@ -8,20 +8,20 @@ if(isset($urb[3])){$urb3=$urb[3];}else{$urb3=false;}
 ?>
 <section class="vista_preb_page">
      <ol class="box_visw" id="dir_homs" data_linm="<?=$base;?>">
-        <li><a href="<?=$base;?>">Inicio</a></li>
-        <li><a href="<?=$base."tiendas";?>">Tienda</a></li>
+        <li><a href="<?=$base;?>"><?=Luis::lang("inicio");?></a></li>
+        <li><a href="<?=$base."tiendas";?>"><?=Luis::lang("tienda");?></a></li>
         <?php if($urbs): ?>
           <?php if($urbp=="update"): ?>
-            <li class="active">Update</li>
+            <li class="active"><?=Luis::lang("editar");?></li>
           <?php elseif($urbp=="view"): ?>
-            <li class="active">View</li>
+            <li class="active"><?=Luis::lang("ver");?></li>
           <?php endif ?>
         <?php elseif($urbp): ?>
           <?php if($urbp=="add"): ?>
-            <li class="active">add</li>
+            <li class="active"><?=Luis::lang("agregar");?></li>
           <?php endif ?>
         <?php else: ?>
-          <li class="active">Sucursales</li>
+          <li class="active"><?=Luis::lang("sucursales");?></li>
         <?php endif ?>
      </ol>
 </section>
@@ -29,65 +29,92 @@ if(isset($urb[3])){$urb3=$urb[3];}else{$urb3=false;}
 
 <?php if ($urbs): ?>
   <?php if($urbp=="update"): ?>
-    <h4 class="titulo_paginas">Editar sucursal</h4>
+    <h4 class="titulo_paginas"><?=Luis::lang("editar");?></h4>
   <?php elseif($urbp=="view"): ?>
-    <h4 class="titulo_paginas">Visualizar</h4>
+    <h4 class="titulo_paginas"><?=Luis::lang("detalles");?></h4>
   <?php endif ?>
 <?php elseif($urbp): ?>
   <?php if($urbp=="add"): ?>
-    <h4 class="titulo_paginas">Nuevo sucursal</h4>
+    <h4 class="titulo_paginas"><?=Luis::lang("nuevo");?></h4>
   <?php endif ?>
 <?php else: ?>
-  <h4 class="titulo_paginas">Sucursales</h4>
+  <h4 class="titulo_paginas"><?=Luis::lang("sucursales");?></h4>
   <a class="add_itembox" href="<?=$base."sucursales/add"?>">
-    <div class="butt_luis_one"><span>Nuevo sucursal</span></div>
+    <div class="butt_luis_one"><span><?=Luis::lang("nuevo");?></span></div>
   </a>
 <?php endif ?>
 
 <div class="contentlists_items">
   <?php if($urbs): ?>
     <?php if($urbp=="update"): $sucursal = DatosAdmin::poridSucursal($urbs); ?>
-      <a class="butt_back" href="<?=$base."sucursales";?>">❮ Sucursales</a>
+      <a class="butt_back" href="<?=$base."sucursales";?>">❮ <?=Luis::lang("sucursales");?></a>
       <form method="post" action="<?=$base."index.php?accion=editar_sucursal";?>">
         <input type="hidden" name="id" value="<?=$sucursal->id?>">
-        <label>Nombre</label>
-        <input required="required" class="input_luis_two" type="text" name="nombre" placeholder="Nombre de sucursal" value="<?=$sucursal->nombre?>">
-        <label>Pais</label>
-        <input type="text" class="input_luis_two" name="pais" disabled="disabled" value="PERU">
-        <label>Departamento</label>
-        <select required name="departamento" class="input_luis_two"  id="departamento">
-          <?php $departamentos = DatosAdmin::Mostrar_departamentos();
-          if(count($departamentos)>0):?>
-            <option value="">Departamentos</option>
-            <?php foreach($departamentos as $dep):?>
-              <option value="<?=$dep->id; ?>" <?php if($sucursal->departamento==$dep->id){echo("selected");}?>><?=$dep->nombre;?></option>
-            <?php endforeach; ?>
-          <?php endif; ?>
-        </select>
-        <label>Provincia</label>
-        <select required="required" name="provincia" id="provincia" class="input_luis_two">
-          <option>Provincia</option>
-          <?php $provincia=DatosAdmin::poridDeDepartamento($sucursal->departamento);
-          if(count($provincia)>0):?>
-            <?php foreach($provincia as $pro):?>
-              <option value="<?=$pro->id; ?>" <?php if($sucursal->provincia==$pro->id){echo "selected";} ?>><?=$pro->nombre; ?></option>
-            <?php endforeach; ?>
-          <?php endif; ?>
-        </select>
-        <label>Distrito</label>
-        <select required="required" name="distrito" id="distrito" class="input_luis_two">
-          <option>Distrito</option>
-          <?php $distrito = DatosAdmin::poridDeProvincia($sucursal->provincia);
-          if(count($distrito)>0):?>
-            <?php foreach($distrito as $dis):?>
-              <option value="<?=$dis->id; ?>" <?php if($sucursal->distrito==$dis->id){echo "selected";} ?>><?=$dis->nombre; ?></option>
-            <?php endforeach; ?>
-          <?php endif; ?>
-        </select>
-        <label>Direccion</label>
-        <input required="required" class="input_luis_two" type="text" name="direccion" placeholder="Direccion de sucursal" value="<?=$sucursal->direccion?>">
-        <label>Referencia</label>
-        <input class="input_luis_two" type="text" name="referencia" placeholder="Referencia" value="<?=$sucursal->referencia?>">
+        <div class="boxinputlists">
+          <input required="required" class="input_luis_two inptexboslistspublic" type="text" name="nombre" value="<?=$sucursal->nombre?>" autocomplete="off">
+          <label class="labelboxinptext"><?=Luis::lang("nombre");?></label>
+        </div>
+
+        <div class="boxinputlists">
+          <input required="required" class="input_luis_two inptexboslistspublic" type="text" name="pais" onmousedown="return false;" value="PERU" autocomplete="off">
+          <label class="labelboxinptext"><?=Luis::lang("pais");?></label>
+        </div>
+
+        <div class="boxinputlists">
+          <select required="required" name="departamento" class="input_luis_two inptexboslistspublic" id="departamento">
+            <?php $departamentos = DatosAdmin::Mostrar_departamentos();
+            if(count($departamentos)>0):?>
+              <option value=""><?=Luis::lang("departamento");?></option>
+              <?php foreach($departamentos as $dep):?>
+                <option value="<?=$dep->id; ?>" <?php if($sucursal->departamento==$dep->id){echo("selected");}?>><?=$dep->nombre;?></option>
+              <?php endforeach; ?>
+            <?php endif; ?>
+          </select>
+          <label class="labelboxinptext"><?=Luis::lang("departamento");?></label>
+        </div>
+
+       
+        
+        <div class="boxinputlists">
+          <select required="required" name="provincia" id="provincia" class="input_luis_two inptexboslistspublic">
+            <option>Provincia</option>
+            <?php if($sucursal->departamento): ?>
+              <?php $provincia=DatosAdmin::poridDeDepartamento($sucursal->departamento);
+              if(count($provincia)>0):?>
+                <?php foreach($provincia as $pro):?>
+                  <option value="<?=$pro->id; ?>" <?php if($sucursal->provincia==$pro->id){echo "selected";} ?>><?=$pro->nombre; ?></option>
+                <?php endforeach; ?>
+              <?php endif; ?>
+            <?php endif ?>
+          </select>
+          <label class="labelboxinptext"><?=Luis::lang("provincia");?></label>
+        </div>
+
+        <div class="boxinputlists">
+          <select required="required" name="distrito" id="distrito" class="input_luis_two inptexboslistspublic">
+            <option>Distrito</option>
+            <?php if($sucursal->provincia): ?>
+              <?php $distrito = DatosAdmin::poridDeProvincia($sucursal->provincia);
+              if(count($distrito)>0):?>
+                <?php foreach($distrito as $dis):?>
+                  <option value="<?=$dis->id; ?>" <?php if($sucursal->distrito==$dis->id){echo "selected";} ?>><?=$dis->nombre; ?></option>
+                <?php endforeach; ?>
+              <?php endif; ?>
+            <?php endif ?>
+          </select>
+          <label class="labelboxinptext"><?=Luis::lang("distrito");?></label>
+        </div>
+
+        <div class="boxinputlists">
+          <input required="required" class="input_luis_two inptexboslistspublic" type="text" name="direccion" value="<?=$sucursal->direccion?>">
+          <label class="labelboxinptext"><?=Luis::lang("direccion");?></label>
+        </div>
+
+        <div class="boxinputlists">
+          <input required="required" class="input_luis_two inptexboslistspublic" type="text" name="referencia" value="<?=$sucursal->referencia?>">
+          <label class="labelboxinptext"><?=Luis::lang("referencia");?></label>
+        </div>
+
         <label>Mapa</label>
         <fieldset class="gllpLatlonPicker">
           <div class="gllpMap" style="height: 450px; width: 100%; "></div>
@@ -144,32 +171,52 @@ if(isset($urb[3])){$urb3=$urb[3];}else{$urb3=false;}
     <?php if($urbp=="add"): ?>
       <a class="butt_back" href="<?=$base."sucursales";?>">❮ Sucursales</a>
       <form method="post" action="<?=$base."index.php?accion=nuevosucursal";?>">
-        <label>Nombre</label>
-        <input required="required" class="input_luis_two" type="text" name="nombre" placeholder="Nombre de sucursal ">
-        <label>Pais</label>
-        <input type="text" class="input_luis_two" name="pais" disabled="disabled" value="PERU">
-        <label>Departamento</label>
-        <select required name="departamento" class="input_luis_two"  id="departamento">
-          <?php $departamentos=DatosAdmin::Mostrar_departamentos();
-          if(count($departamentos)>0):?>
-            <option value="">Departamentos</option>
-            <?php foreach($departamentos as $dep):?>
-              <option value="<?=$dep->id;?>"><?=$dep->nombre;?></option>
-            <?php endforeach; ?>
-          <?php endif; ?>
-        </select>
-        <label>Provincia</label>
-        <select required="required" name="provincia" id="provincia" class="input_luis_two">
-          <option>Provincia</option>
-        </select>
-        <label>Distrito</label>
-        <select required="required" name="distrito" id="distrito" class="input_luis_two">
-          <option>Distrito</option>
-        </select>
-        <label>Direccion</label>
-        <input required="required" class="input_luis_two" type="text" name="direccion" placeholder="Direccion de sucursal">
-        <label>Referencia</label>
-        <input class="input_luis_two" type="text" name="referencia" placeholder="Referencia">
+        <div class="boxinputlists">
+          <input required="required" class="input_luis_two inptexboslistspublic" type="text" name="nombre">
+          <label class="labelboxinptext"><?=Luis::lang("nombre");?></label>
+        </div>
+
+        <div class="boxinputlists">
+          <input type="text" class="input_luis_two inptexboslistspublic" name="pais" onmousedown="return false;" value="PERU">
+          <label class="labelboxinptext"><?=Luis::lang("pais");?></label>
+        </div>
+
+        <div class="boxinputlists">
+          <select required name="departamento" class="input_luis_two inptexboslistspublic"  id="departamento">
+            <?php $departamentos=DatosAdmin::Mostrar_departamentos();
+            if(count($departamentos)>0):?>
+              <option value=""><?=Luis::lang("departamento");?></option>
+              <?php foreach($departamentos as $dep):?>
+                <option value="<?=$dep->id;?>"><?=$dep->nombre;?></option>
+              <?php endforeach; ?>
+            <?php endif; ?>
+          </select>
+          <label class="labelboxinptext"><?=Luis::lang("departamento");?></label>
+        </div>
+
+        <div class="boxinputlists">
+          <select required="required" name="provincia" id="provincia" class="input_luis_two inptexboslistspublic">
+            <option><?=Luis::lang("provincia");?></option>
+          </select>
+          <label class="labelboxinptext"><?=Luis::lang("provincia");?></label>
+        </div>
+
+        <div class="boxinputlists">
+          <select required="required" name="distrito" id="distrito" class="input_luis_two inptexboslistspublic">
+            <option>Distrito</option>
+          </select>
+          <label class="labelboxinptext"><?=Luis::lang("distrito");?></label>
+        </div>
+
+        <div class="boxinputlists">
+          <input required="required" class="input_luis_two inptexboslistspublic" type="text" name="direccion">
+          <label class="labelboxinptext"><?=Luis::lang("direccion");?></label>
+        </div>
+
+        <div class="boxinputlists">
+          <input required="required" class="input_luis_two inptexboslistspublic" type="text" name="referencia">
+          <label class="labelboxinptext"><?=Luis::lang("referencia");?></label>
+        </div>
         <label>Mapa</label>
         <fieldset class="gllpLatlonPicker">
           <div class="gllpMap" style="height:450px;width:100%;"></div>
@@ -252,15 +299,18 @@ if(isset($urb[3])){$urb3=$urb[3];}else{$urb3=false;}
   });
   });
 
+
    $("#departamento").change(function(){
     var departamento = $(this).val();
     var derp = $("#dir_homs").attr("data_linm");
+    console.log(departamento)
     $.ajax({
       type:"post",
         url: list_urls()+list_action()+"funciondepartamento",
         data: {departamento:departamento},
         cache: false,
         success: function(msg){
+          console.log(msg)
             $("#provincia").html(msg);
         }
     });

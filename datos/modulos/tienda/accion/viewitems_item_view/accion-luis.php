@@ -20,20 +20,30 @@ $items = DatosAdmin::porUkr_items_page($unlineidexe);
 if(isset($items)){
 	$image_int=DatosImagenes::mostrar_imagen_items_carta($items->id);
 	$images_list_view = DatosImagenes::Mostrarimageneditar_items($items->id);
-	$imagepols="datos/modulos/".Luis::temass()."/source/imagenes/items/".$items->id."/thumb/".$image_int->imagen;
+	$imagepolspl="datos/modulos/".Luis::temass()."/source/imagenes/items/".$items->id."/thumb/".$image_int->imagen;
+	if(is_file($imagepolspl)){
+		$imagepols="datos/modulos/".Luis::temass()."/source/imagenes/items/".$items->id."/thumb/".$image_int->imagen;
+	}else{
+		$imagepols="admin/datos/imagenes/icons/no_image.png";
+	}
 	list($red,$green,$blue)=Luis::promedioColorImagen($imagepols);
 	$idexhtmls="<div class=\"contenspage\">";
 	$idexhtmls.="<div class=\"conten_items_view\">";
 	$idexhtmls.="";
 	$idexhtmls.="<div class=\"conten_image_item_view image_view_list\" style='background-color:rgba(".$red.",".$green.",".$blue.",0.8)'>";
 	$idexhtmls.="<picture>";
-	$idexhtmls.="<img id=\"img_item\" data_box=\"".$image_int->id."\" class=\"boxpictureliststimg_view\" src=\"".$base."datos/modulos/".Luis::temass()."/source/imagenes/items/".$items->id."/thumb/".$image_int->imagen."\">";
+	$idexhtmls.="<img id=\"img_item\" data_box=\"".$image_int->id."\" class=\"boxpictureliststimg_view\" src=\"".$base.$imagepols."\">";
 	$idexhtmls.="<span class=\"tum_page_image_items\">";
 	if(count($images_list_view)>=2){
 		foreach ($images_list_view as $kim){
-			$imagepols_a="datos/modulos/".Luis::temass()."/source/imagenes/items/".$items->id."/thumb/".$kim->imagen;
+			$imagepols_a_pls="datos/modulos/".Luis::temass()."/source/imagenes/items/".$items->id."/thumb/".$kim->imagen;
+			if(is_file($imagepols_a_pls)){
+				$imagepols_a="datos/modulos/".Luis::temass()."/source/imagenes/items/".$items->id."/thumb/".$kim->imagen;
+			}else{
+				$imagepols_a="admin/datos/imagenes/icons/no_image.png";
+			}
 			list($red_a,$green_a,$blue_a)=Luis::promedioColorImagen($imagepols_a);
-			$idexhtmls.="<img style='background-color:rgba(".$red_a.",".$green_a.",".$blue_a.",0.8)' class=\"boxpictureliststimg_thum_ind\" data-mode=\"".$kim->id."\" src=\"".$base."datos/modulos/".Luis::temass()."/source/imagenes/items/".$items->id."/thumb/".$kim->imagen."\">";
+			$idexhtmls.="<img style='background-color:rgba(".$red_a.",".$green_a.",".$blue_a.",0.8)' class=\"boxpictureliststimg_thum_ind\" data-mode=\"".$kim->id."\" src=\"".$base.$imagepols_a."\">";
 		}
 	}
 	$idexhtmls.="</span>";
@@ -59,24 +69,30 @@ if(isset($items)){
 	$idexhtmls.="<div class=\"description_list_item_current\">";
 	$idexhtmls.="<h3 class=\"title_item_list_current\">".html_entity_decode($items->nombre)."</h3>";
 
-	if($items->moneda_b){
-		$moneda_por_id_b=DatosAdmin::Mostrar_las_monedas_por_id($items->moneda_b)->simbolo;
+	if($items->moneda_a){
+		$moneda_por_id_a=DatosAdmin::Mostrar_las_monedas_por_id($items->moneda_a)->simbolo;
 	}else{
-		$moneda_por_id_b=false; 
+		$moneda_por_id_a=false; 
 	}
 	
 	if(isset($_SESSION['options_items'])){
 		foreach($_SESSION["options_items"] as $op){
 			$detalles_opciones = DatosAdmin::view_iten_in_pages_por_id($op['id_option_deta']);
-			$es_seleccionado_nuevo_precio+=$detalles_opciones->precio;
+			if($detalles_opciones->precio==1){
+				$open_producto = DatosAdmin::porID_producto($detalles_opciones->item_k);
+				$es_seleccionado_nuevo_precio+=$open_producto->precio_final;
+			}else{
+				$es_seleccionado_nuevo_precio=0;
+			}
+			
 		}
 	}
 
 	if($es_seleccionado_nuevo_precio){
 		$precio_publico_modificado=$es_seleccionado_nuevo_precio+$items->precio_final;
-		$idexhtmls.="<span class=\"price_list_item_curr\">".$moneda_por_id_b.". <span class=\"price_item_view_item_page\">".$precio_publico_modificado."</span></span>";
+		$idexhtmls.="<span class=\"price_list_item_curr\">".$moneda_por_id_a.". <span class=\"price_item_view_item_page\">".$precio_publico_modificado."</span></span>";
 	}else{
-		$idexhtmls.="<span class=\"price_list_item_curr\">".$moneda_por_id_b.". <span class=\"price_item_view_item_page\">".$items->precio_final."</span></span>";
+		$idexhtmls.="<span class=\"price_list_item_curr\">".$moneda_por_id_a.". <span class=\"price_item_view_item_page\">".$items->precio_final."</span></span>";
 	}
 	
 	$idexhtmls.="<hr>";
@@ -103,7 +119,16 @@ if(isset($items)){
 
 		if(!$es_seleccionado){
 			$detalles_opciones = DatosAdmin::ver_detalles_opciones($tp->id);
-			$idexhtmls.="<span class=\"title_options_customs_order\">".html_entity_decode($tp->nombre)."</span>";
+			if($tp->id_cat_sub_add){
+				$cat_b = DatosAdmin::sub_categoria_getById($tp->id_cat_sub_add);
+				$idexhtmls.="<span class=\"title_options_customs_order\">".html_entity_decode($cat_b->nombre)."</span>";
+			}elseif($tp->id_cat_add){
+				$cat_a = DatosAdmin::getById_categoria($tp->id_cat_add);
+				$idexhtmls.="<span class=\"title_options_customs_order\">".html_entity_decode($cat_a->nombre)."</span>";
+			}else{
+				$idexhtmls.="<span class=\"title_options_customs_order\">".html_entity_decode($tp->nombre)."</span>";
+			}
+			
 			foreach($detalles_opciones as $do){
 				if($do->principal==1){
 					$activecheck_selct="checked";
@@ -116,7 +141,17 @@ if(isset($items)){
 				$idexhtmls.="</li>";
 			}
 		}else{
-			$idexhtmls.="<span class=\"title_options_customs_order\">".html_entity_decode($tp->nombre)."</span>";
+			if($tp->id_cat_sub_add){
+				$cat_b = DatosAdmin::sub_categoria_getById($tp->id_cat_sub_add);
+				$idexhtmls.="<span class=\"title_options_customs_order\">".html_entity_decode($cat_b->nombre)."</span>";
+			}elseif($tp->id_cat_add){
+				$cat_a = DatosAdmin::getById_categoria($tp->id_cat_add);
+				$idexhtmls.="<span class=\"title_options_customs_order\">".html_entity_decode($cat_a->nombre)."</span>";
+			}else{
+				$idexhtmls.="<span class=\"title_options_customs_order\">".html_entity_decode($tp->nombre)."</span>";
+			}
+
+
 			foreach ($_SESSION['options_items'] as $g){
 				if($tp->id==$g['id_option_type_item']){
 					$detalles_opciones = DatosAdmin::ver_detalles_opciones($g['id_option_type_item']);

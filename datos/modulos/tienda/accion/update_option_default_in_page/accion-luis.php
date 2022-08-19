@@ -44,7 +44,12 @@ if(!$modificado_option_type){
 
 	foreach($_SESSION['options_items'] as $total_price) {
 		$optiondetaill=DatosAdmin::view_iten_in_pages_por_id($total_price['id_option_deta']);
-		$volrtotal_precios+=$optiondetaill->precio;
+		if($optiondetaill->precio==1){
+			$open_producto = DatosAdmin::porID_producto($optiondetaill->item_k);
+			$volrtotal_precios+=$open_producto->precio_final;
+		}else{
+			$volrtotal_precios+=0;
+		}
 	}
 	$precio_nuevo_suma=$current_item->precio_final+$volrtotal_precios;
 	echo $precio_nuevo_suma;
@@ -61,7 +66,12 @@ if(!$modificado_option_type){
 
 	foreach($_SESSION['options_items'] as $total_price) {
 		$optiondetaill=DatosAdmin::view_iten_in_pages_por_id($total_price['id_option_deta']);
-		$volrtotal_precios+=$optiondetaill->precio;
+		if($optiondetaill->precio==1){
+			$open_producto = DatosAdmin::porID_producto($optiondetaill->item_k);
+			$volrtotal_precios+=$open_producto->precio_final;
+		}else{
+			$volrtotal_precios+=0;
+		}
 	}
 
 	$precio_nuevo_suma=$current_item->precio_final+$volrtotal_precios;

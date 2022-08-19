@@ -72,17 +72,10 @@ header('location:'.$base.'categorias');
   <?php unset($_SESSION["failexep"]); endif ?>
   <a class="butt_back" href="<?=$base."categorias/".$catboxing;?>">❮ atras</a>
   <form method="POST" action="<?=$base."index.php?accion=editarsubcategoria";?>" role="form" enctype="multipart/form-data">
-     <select class="input_luis_tres input_text_category_seaching" required name="sucursal">
-      <?php $sucursales=DatosAdmin::Mostrar_sucursales();
-       
-       ?>
-      <option>Seleccionar sucursal</option>
-      <?php foreach ($sucursales as $k): 
-        if($k->id==$crb->sucursal){$sucursale="selected";}else{$sucursale=false;} ?>
-        <option value="<?=$k->id;?>" <?=$sucursale; ?>><?=html_entity_decode($k->nombre);?></option>
-      <?php endforeach ?>
-    </select>
-    <input class="input_luis_one" type="text" name="nombre" value="<?=html_entity_decode($crb->nombre);?>" placeholder="Nombre de categoria">
+    <div class="boxinputlists">
+      <input class="inptexboslistspublic" type="text" name="nombre" value="<?=html_entity_decode($crb->nombre);?>" required="required" autocomplete="off">
+      <label class="labelboxinptext"><?=Luis::lang("nombre");?></label>
+    </div>
     <input hidden="hidden" type="text" name="id" value="<?=$crb->id;?>">
     <input class="butt_luis_lwos" type="submit" name="boton_guardarcambios" value="Guardar cambios">
   </form>
@@ -95,15 +88,18 @@ header('location:'.$base.'categorias');
   <?php unset($_SESSION["failexep"]); endif ?>
   <a class="butt_back" href="<?=$base."categorias";?>">❮ Categorias</a>
   <form method="POST" action="<?=$base."index.php?accion=editarcategoria";?>" role="form" enctype="multipart/form-data">
-  <input class="input_luis_one" type="text" name="nombre" value="<?=$cats_tit;?>" placeholder="Nombre de categoria">
-<div class="imagenes">
-<input hidden="hidden" type="text" name="laimagen" value="<?=$logo_disp;?>">
-    <span class="addnewimageluis addnewimageluisboxus afsfdg5" role="button" tabindex="1">
-      <img class="addnewimageluisimf" src="<?=$base."datos/imagenes/icons/imge_add.png";?>" alt="" height="16" width="16">
-      <span class="contentaddimgs"> Editar foto</span>
-      <input type="file" id="imagen" name="logo" title="Selecciona imagen" class="addnewimageluisbotsccc adsfdg5" accept="image/*">
-    </span>
-  </div>
+    <div class="boxinputlists">
+      <input class="inptexboslistspublic" type="text" name="nombre" value="<?=$cats_tit;?>" required="required" autocomplete="off">
+      <label class="labelboxinptext"><?=Luis::lang("nombre");?></label>
+    </div>
+    <div class="imagenes">
+      <input hidden="hidden" type="text" name="laimagen" value="<?=$logo_disp;?>">
+        <span class="addnewimageluis addnewimageluisboxus afsfdg5" role="button" tabindex="1">
+          <img class="addnewimageluisimf" src="<?=$base."datos/imagenes/icons/imge_add.png";?>" alt="" height="16" width="16">
+          <span class="contentaddimgs"> Editar foto</span>
+          <input type="file" id="imagen" name="logo" title="Selecciona imagen" class="addnewimageluisbotsccc adsfdg5" accept="image/*">
+        </span>
+      </div>
 <div class="imagen_pre">
     <input type="button" id="eliminaimagen_uno" value="x" class="botoneliminar1" data-ird="<?=$base;?>" data-fl="<?=$logo_disp;?>">
     <img id="vista_previa_imagen" src="<?=$base."../datos/modulos/".Luis::temass()."/source/imagenes/categorias/thumb/".$logo_disp;?>" class="vista_previa_uno vista_previa_une">
@@ -121,14 +117,10 @@ header('location:'.$base.'categorias');
   <p class="cerrar_modal" id="cerrar_modal">X</p>
   <h2 class="title_slide_luis">Agregar sub categoria</h2>
   <form class="formulariodiapositiva" method="POST" action="<?=$base."index.php?accion=nuevasubcategoria";?>" role="form" enctype="multipart/form-data">
-    <select class="input_luis_tres input_text_category_seaching" required name="sucursal">
-      <?php $sucursales=DatosAdmin::Mostrar_sucursales(); ?>
-      <option>Seleccionar sucursal</option>
-      <?php foreach ($sucursales as $k): ?>
-        <option value="<?=$k->id;?>"><?=html_entity_decode($k->nombre);?></option>
-      <?php endforeach ?>
-    </select>
-  <input class="input_luis_tres" type="text" name="nombre" placeholder="Nombre de la sub categoria" autocomplete="off" required="required">
+    <div class="boxinputlists">
+      <input name="nombre" required="required" class="inptexboslistspublic" type="text" autocomplete="off">
+      <label class="labelboxinptext"><?=Luis::lang("nombre");?></label>
+    </div>
   <input hidden="hidden" type="text" name="id_categoria" value="<?=$nbs->id;?>">
   <input hidden="hidden" type="checkbox" checked="checked" name="es_activo">
   <input type="submit" class="butt_luis_two" value="Agregar">
@@ -142,7 +134,10 @@ header('location:'.$base.'categorias');
   <p class="cerrar_modal" id="cerrar_modal">X</p>
   <h2 class="title_slide_luis">Agregar categoria</h2>
   <form class="formulariodiapositiva" method="POST" action="<?=$base."index.php?accion=nuevacategoria";?>" role="form" enctype="multipart/form-data">
-  <input class="input_luis_tres" type="text" name="nombre" placeholder="Nombre de la categoria" autocomplete="off" required="required">
+    <div class="boxinputlists">
+      <input class="inptexboslistspublic" type="text" name="nombre" autocomplete="off" required="required">
+      <label class="labelboxinptext"><?=Luis::lang("nombre");?></label>
+    </div>
   <div class="imagenes">
     <input hidden="hidden" type="text" name="laimagen_logo" value="">
     <span class="addnewimageluis addnewimageluisboxus afsfdg5" role="button" tabindex="1"> 

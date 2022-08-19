@@ -17,7 +17,6 @@ for($i=0;$i<11;$i++){
 $cat->nombre = htmlentities($_POST["nombre"]);
 $cat->id_categoria = $_POST["id_categoria"];
 $cat->codigo = $codigos;
-$cat->sucursal = $_POST["sucursal"];
 $cat->ukr=DatosAdmin::poner_guion(strip_tags(htmlentities($_POST["nombre"])));
 $cat->agregar_sub_categoria();
 

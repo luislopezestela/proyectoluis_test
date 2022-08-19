@@ -588,8 +588,8 @@ class DatosAdmin{
 	}
 
 	public function agregar_sub_categoria(){
-		$sql = "insert into subcategorias (nombre,codigo,ukr,categoria,sucursal,fecha) ";
-		$sql .= "value (\"$this->nombre\",\"$this->codigo\",\"$this->ukr\",\"$this->id_categoria\",$this->sucursal,$this->fecha)";
+		$sql = "insert into subcategorias (nombre,codigo,ukr,categoria,fecha) ";
+		$sql .= "value (\"$this->nombre\",\"$this->codigo\",\"$this->ukr\",\"$this->id_categoria\",$this->fecha)";
 		Ejecutor::doit($sql);
 	}
 
@@ -612,7 +612,7 @@ class DatosAdmin{
 	}
 
 	public function editar_sub_categoria(){
-		$sql = "update subcategorias SET nombre=\"$this->nombre\",ukr=\"$this->ukr\",sucursal=$this->sucursal where id=\"$this->id\"";
+		$sql = "update subcategorias SET nombre=\"$this->nombre\",ukr=\"$this->ukr\" where id=\"$this->id\"";
 		Ejecutor::doit($sql);
 	}
 
@@ -798,9 +798,9 @@ class DatosAdmin{
 	}
 
 	public function publicar_producto(){
-		$sql = "insert into items (usuario,nombre,moneda_a,precio,moneda_b,precio_final,marca,descripcion,categoria,subcategoria,codigo,barcode,sucursal,ukr,fecha)";
+		$sql = "insert into items (usuario,nombre,moneda_a,precio,precio_final,marca,descripcion,categoria,subcategoria,codigo,barcode,sucursal,ukr,fecha)";
 
-		$sql .= "value ($this->id_persona,\"$this->titulo\",$this->moneda_a,\"$this->precio\",$this->moneda_b,\"$this->precio_final\",$this->marca,\"$this->descripcion\",\"$this->id_categoria\",".(($this->id_subcategoria=='')?"NULL":("'".$this->id_subcategoria."'")).",\"$this->codigo\",\"$this->barcode\",$this->sucursal,\"$this->ub\",\"$this->fecha\")";
+		$sql .= "value ($this->id_persona,\"$this->titulo\",$this->moneda_a,\"$this->precio\",\"$this->precio_final\",$this->marca,\"$this->descripcion\",\"$this->id_categoria\",".(($this->id_subcategoria=='')?"NULL":("'".$this->id_subcategoria."'")).",\"$this->codigo\",\"$this->barcode\",$this->sucursal,\"$this->ub\",\"$this->fecha\")";
 		return Ejecutor::doit($sql);
 	}
 
@@ -1805,8 +1805,24 @@ class DatosAdmin{
 		return Modelo::many($query[0],new DatosAdmin());
 	}
 
+	public static function ver_opciones_detalles_list_one_name_view_b_a($id,$nams){
+		$sql = "select * from opciones_items where id_opciones_type=$id and ukr=\"$nams\"";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new DatosAdmin());
+	}
+
 	public function update_data_opciones_detalles(){
-		$sql = "update opciones_items set nombre=\"$this->nombre\",ukr=\"$this->ukr\",precio=\"$this->precio\" where id=$this->id";
+		$sql = "update opciones_items set nombre=\"$this->nombre\",ukr=\"$this->ukr\",id_opciones_type=\"$this->id_opciones_type\" where id=$this->id";
+		Ejecutor::doit($sql);
+	}
+
+	public function update_data_opciones_detalles_b(){
+		$sql = "update opciones_items set nombre=\"$this->nombre\",ukr=\"$this->ukr\",precio=\"$this->precio\",id_opciones_type=\"$this->id_opciones_type\",item_k=\"$this->ith\",inb=1 where id=$this->id";
+		Ejecutor::doit($sql);
+	}
+
+	public function update_data_opciones_detalles_c(){
+		$sql = "update opciones_items set nombre=\"$this->nombre\",ukr=\"$this->ukr\",precio=\"$this->precio\",id_opciones_type=\"$this->id_opciones_type\",item_k=\"$this->ith\",inb=1,cat_act=\"$this->cat_act\" where id=$this->id";
 		Ejecutor::doit($sql);
 	}
 
@@ -2391,7 +2407,7 @@ class DatosAdmin{
 		return Modelo::many($query[0],new DatosAdmin());
 	}
 	public static function Mostrar_las_monedas_admin(){
-		$sql = "select * from moneda";
+		$sql = "select * from moneda order by principal=1 desc";
 		$query = Ejecutor::doit($sql);
 		return Modelo::many($query[0],new DatosAdmin());
 	}

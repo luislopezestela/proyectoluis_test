@@ -15,9 +15,6 @@ $(document).ready(function(){
     $(".add_details_items_inputs").val(datas);
   });
 
-
-  
-
   function StringluisRand(length) {
     var textos = "";
     var cods = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -44,23 +41,6 @@ $(document).ready(function(){
   if($("#editor").length > 0){
     formData.append('listboxstrin',CKEDITOR.instances['editor'].getData());
   }
-/*  $("#ifgoodb").on("keyup", function(){
-    let optl=$(".optlistnull").attr("data-nullb");
-    let config = $(this).val()
-    $.ajax({
-      type:'POST',
-      url:optl+"index.php?accion=moneda",
-      data:{"mounds":config},
-      cache: false,
-      success: function(msg){
-        if ($("#ifgoodb").length>=1){
-        $('#ifgoodbdols').html(msg);
-      }else{
-        $('#ifgoodbdols').html("0");
-      }
-      }
-    });
-  });*/
 
   $(document).on("change", "#files", function () {
     $(".addnewimageluisboxus").removeClass("errorboxrequred")
@@ -501,24 +481,9 @@ $(document).on("click", ".add_details_items_buttons", function(){
         url:list_urls()+list_action()+"add_item_details",
         dataType: "json",
         success: function(datos){
-          let item_insert_in_box_details = '<div class="contentboxitemslistcread contentboxitemslistcreadertype'+datos.line+' contentboxitemslistcread_view_det">'+
-          '<span class="update_button_types update_button_types'+datos.line+'" data="'+datos.line+'" data_two="'+ittms+'">Editar</span>'+
-          ' '+
-          '<span class="delete_button_types" data="'+datos.line+'">Eliminar</span>'+
-          '<label class="label_opcopnes_page label_data_types_detalle label_data_types_detalle'+datos.line+'">'+ittms+'</label>'+
-          '<div class="box_opciones_lista_detalles_box_list box_opciones_lista_detalles_box_list'+datos.line+'">'+
-          '<div class="funtion_box_detalle_types funtion_box_detalle_types'+datos.line+'">'+
-          '<input class="input_add_detalle_de_options_box input_add_detalle_de_options_box'+datos.line+' input_add_detalle_de_options_boxs" placeholder="Nombre" type="text">'+
-          '<input class="input_add_detalle_de_options_box_price input_add_detalle_de_options_box_price'+datos.line+' input_add_detalle_de_options_boxs" placeholder="Precio soles" type="hidden" value="0">'+
-          '<span class="button_add_detalle_de_options_box button_add_detalle_de_options_box'+datos.line+' button_add_detalle_de_options_boxs" data="'+datos.line+'">Agregar</span>'+
-          '</div>'+
-          '</div>'+
-          '<div class="listar_opciones_de_tipo_box listar_opciones_de_tipo_box'+datos.line+'">'+
-          '</div>'+
-          "</div>";
           if(datos.tipo===1){
             alertexito(datos.message);
-            $(".list_details_types_options_box").append(item_insert_in_box_details);
+            document.location.reload();
           }
           if(datos.tipo===0){
             alertadvertencia(datos.message);
@@ -647,36 +612,16 @@ $(document).on("click", ".ad_det_it_b_upd_opts", function(){
         url:list_urls()+list_action()+"add_item_details_options_subs",
         dataType: "json",
         success: function(datos){
-          console.log(datos);
           if(datos.priv===4){
             $(".price_option_actives").removeClass("in_day_ps_true");
           }
-          if(datos.active===1){
-            $(".input_add_detalle_de_options_box_price"+typo_opcion).attr("type", "text");
-            var funmp = '<span class="button_display_opciones_principal_active update_default_option update_default_option'+typo_opcion+'" data_p="'+typo_opcion+'" data_s="'+datos.line+'">Principal</span>';
-          }
-          if(datos.active===0){
-            var funmp ='<span class="button_display_opciones_principal_desactivado update_default_option update_default_option'+typo_opcion+'" data_p="'+typo_opcion+'" data_s="'+datos.line+'">Activar</span>';
-          }
-          var item_insert_in_box_details_in_type = '<div class="box_options_inline box_options_inline'+datos.line+'">'+
-          '<div class="box_type_inline_view">'+
-          '<span class="button_display_opciones_update button_display_opciones_update'+datos.line+'" item_type="'+typo_opcion+'" data="'+datos.line+'" data_two="'+opcion_detalle+'" data_three="'+pric_option+'">Editar</span>'+
-          ' '+
-          '<span class="button_display_opciones_delete button_display_opciones_delete'+datos.line+'" data="'+datos.line+'" data_dels="'+typo_opcion+'">Eliminar</span>'+
-          ' '+
-          funmp+
-          '</div>'+
-          '<label class="name_data_options_view'+datos.line+'">'+opcion_detalle+'</label>'+
-          '</div>';
-
-          
           if(datos.tipo===1){
             $(".ad_opt_lk"+typo_opcion).val("");
             $("#items_li_puv"+typo_opcion).val("")
             alertexito(datos.message);
-            $(".listar_opciones_de_tipo_box"+typo_opcion).append(item_insert_in_box_details_in_type);
             $(".input_add_detalle_de_options_box"+typo_opcion).val("");
             $(".input_add_detalle_de_options_box_price"+typo_opcion).val("");
+            document.location.reload();
           }
           if(datos.tipo===0){
             alertadvertencia(datos.message);
@@ -692,73 +637,44 @@ $(document).on("click", ".ad_det_it_b_upd_opts", function(){
         }
     });
 })
+/////update_item_details_options_subs
 
-
-$(document).on("click", ".button_display_opciones_update", function(){
-    let item_typ=$(this).attr("item_type");
-    let itemt=$(this).attr("data");
-    let nams=$(this).attr("data_two");
-    let prec=$(this).attr("data_three");
-    $(".button_add_detalle_de_options_box"+item_typ).removeClass("button_add_detalle_de_options_boxs");
-    $(".button_add_detalle_de_options_box"+item_typ).addClass("update_opciones_names_butt");
-    $(".button_add_detalle_de_options_box"+item_typ).attr("data_up", itemt);
-    $(".button_add_detalle_de_options_box"+item_typ).attr("data_up_name", nams);
-    $(".button_add_detalle_de_options_box"+item_typ).attr("data_up_price", prec);
-
-    $(".input_add_detalle_de_options_box"+item_typ).addClass("update_check_type_options");
-    $(".input_add_detalle_de_options_box"+item_typ).val(nams);
-
-    $(".input_add_detalle_de_options_box_price"+item_typ).addClass("update_check_type_options");
-    $(".input_add_detalle_de_options_box_price"+item_typ).val(prec);
-
-    $(".button_add_detalle_de_options_box"+item_typ).html("Guardar");
-})
-
-
-$(document).on("click", ".update_opciones_names_butt", function(){
-  let itemt_update=$(this).attr("data_up");
-  let item_typ=$(this).attr("item_type");
-  let itemt=$(this).attr("data");
-  let nams=$(".input_add_detalle_de_options_box"+itemt).val();
-  let prec=$(".input_add_detalle_de_options_box_price"+itemt).val();
-  $.ajax({
-    type:"POST",
-    data:{item_updat:itemt_update,one:item_typ,two:itemt,three:nams,four:prec},
-    url:list_urls()+list_action()+"update_item_details_options_subs",
-    success: function(datos){
-      console.log(datos);
-      if(datos===""){
-
-    $(".button_display_opciones_update"+itemt_update).attr("data_two", nams);
-    $(".button_display_opciones_update"+itemt_update).attr("data_three", prec);
-
-        $(".button_add_detalle_de_options_box"+itemt).removeClass("update_opciones_names_butt");
-        $(".button_add_detalle_de_options_box"+itemt).addClass("button_add_detalle_de_options_boxs");
-        $(".button_add_detalle_de_options_box"+itemt).removeAttr("data_up", itemt);
-        $(".button_add_detalle_de_options_box"+itemt).removeAttr("data_up_name", nams);
-        $(".button_add_detalle_de_options_box"+itemt).removeAttr("data_up_price", prec);
-
-        $(".input_add_detalle_de_options_box"+itemt).addClass("update_check_type_options");
-        $(".input_add_detalle_de_options_box"+itemt).val(nams);
-
-        $(".input_add_detalle_de_options_box_price"+itemt).addClass("update_check_type_options");
-        $(".input_add_detalle_de_options_box_price"+itemt).val(prec);
-
-        $(".name_data_options_view"+itemt_update).html(nams);
-        $(".button_add_detalle_de_options_box").html("Agregar");
-        $(".input_add_detalle_de_options_box").removeClass("update_check_type_options");
-        $(".input_add_detalle_de_options_box_price").removeClass("update_check_type_options");
-        $(".input_add_detalle_de_options_box").val("");
-        $(".input_add_detalle_de_options_box_price").val("");
-        alertexito("Datos actualizados");
-        }else{
-          alertadvertencia(datos);
-        }
+$(document).on("click", ".ad_det_it_b_upd_opts_update", function(){
+  let typo_opcion = $(this).attr("data");
+  let detail_item = $(this).attr("data_i");
+  let opcion_detalle=$(".ad_opt_lk_up"+detail_item).val();
+  let opcion_items=$("#items_li_puv"+detail_item).val();
+  let pric_option = $('input[name=price_data'+detail_item+']:checked').val();
+    $.ajax({
+        type:"POST",
+        data:{type_option:typo_opcion,opcion_det:opcion_detalle,itemp:opcion_items,option_pr:pric_option,dit:detail_item},
+        url:list_urls()+list_action()+"update_item_details_options_subs",
+        dataType: "json",
+        success: function(datos){
+          if(datos.priv===4){
+            $(".price_option_actives").removeClass("in_day_ps_true");
+          }
+          if(datos.tipo===1){
+            $("#items_li_puv"+detail_item).val("")
+            alertexito(datos.message);
+            $(".input_add_detalle_de_options_box"+detail_item).val("");
+            $(".input_add_detalle_de_options_box_price"+detail_item).val("");
+            document.location.reload();
+          }
+          if(datos.tipo===0){
+            alertadvertencia(datos.message);
+          }
+          if(datos.tipo===2){
+            alertadvertencia(datos.message);
+            $(".input_add_detalle_de_options_box"+detail_item).focus();
+          }
+          if(datos.tipo===3){
+            alertadvertencia(datos.message);
+            $(".input_add_detalle_de_options_box_price"+detail_item).focus();
+          }
         }
     });
 })
-
-
 
 $(document).on('click', ".button_display_opciones_delete", function(){
     let items_del = $(this).attr("data");
@@ -775,22 +691,6 @@ $(document).on("click", ".button_delete_opciones_de_items", function(){
         url:list_urls()+list_action()+"delete_opcion_details_lines",
         success: function(datos){
           console.log(datos)
-            $("#alert_confirm_action_dialog"+items_del).remove();
-            $(".button_add_detalle_de_options_box"+items_del_t).removeClass("update_opciones_names_butt");
-            $(".button_add_detalle_de_options_box"+items_del).addClass("button_add_detalle_de_options_boxs");
-            $(".button_add_detalle_de_options_box"+items_del).removeAttr("data_up");
-            $(".button_add_detalle_de_options_box"+items_del).removeAttr("data_up_name");
-            $(".button_add_detalle_de_options_box"+items_del).removeAttr("data_up_price");
-
-            $(".input_add_detalle_de_options_box"+items_del_t).addClass("update_check_type_options");
-            $(".input_add_detalle_de_options_box"+items_del_t).val("");
-
-            $(".input_add_detalle_de_options_box_price"+items_del_t).addClass("update_check_type_options");
-            $(".input_add_detalle_de_options_box_price"+items_del_t).val("");
-
-            $(".button_add_detalle_de_options_box").html("Agregar");
-            $(".input_add_detalle_de_options_box").removeClass("update_check_type_options");
-            $(".input_add_detalle_de_options_box_price").removeClass("update_check_type_options");
             $(".box_options_inline"+items_del).slideUp();
             alertexito("Eliminado con exito.");
         }
@@ -812,7 +712,6 @@ $(document).on("click", ".update_default_option", function(){
         data:{typs:item_type,opt_ops:items_id},
         url:list_urls()+list_action()+"update_option_default",
         success: function(datos){
-
         }
     });
 })

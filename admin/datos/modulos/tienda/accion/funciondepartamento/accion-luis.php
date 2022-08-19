@@ -1,4 +1,4 @@
- <option value="">Provincias</option>
+ <option value=""><?=Luis::lang("provincia");?></option>
  <?php $provincias=DatosAdmin::poridDeDepartamento($_POST['departamento']); ?>
  <?php if(count($provincias)>0):?>
  <?php foreach($provincias as $pro):?>

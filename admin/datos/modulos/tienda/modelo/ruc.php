@@ -1,10 +1,8 @@
 <?php
-class DatosSunat
-{
+class ruc{
 	const URL_CONSULT_MORE  = "https://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsruc/jcrS00Alias";
 	const URL_CONSULT  = "https://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsmulruc/jrmS00Alias";
 	const URL_FILE_ZIP = "https://www.sunat.gob.pe/cl-at-framework-unloadfile/descargaArchivoAlias";
-
 	const UNZIP_FORMAT = 'Vsig/vver/vflag/vmeth/vmodt/vmodd/Vcrc/Vcsize/Vsize/vnamelen/vexlen';
 
 	var $curl = NULL;
@@ -23,32 +21,27 @@ class DatosSunat
 
 	private $user_captcha   = FALSE;
 
-	function __construct($config = array())
-	{
-		//$this->curl = new \jossmp\navigate\Curl();
-		$this->curl = (new DatosRequestCurl())->getCurl();
-
+	function __construct($config = array()){
+		$this->curl = (new RequestCurl())->getCurl();
 		$this->_trabs            = (isset($config["cantidad_trabajadores"])) ? $config["cantidad_trabajadores"] : true;
 		$this->_establecimientos = (isset($config["establecimientos"])) ? $config["establecimientos"] : true;
 		$this->_legal            = (isset($config["representantes_legales"])) ? $config["representantes_legales"] : true;
 		$this->_deuda            = (isset($config["deuda"])) ? $config["deuda"] : true;
 
-		$this->curl->setReferer(self::URL_CONSULT);
+		$this->curl->setReferer("https://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsmulruc/jrmS00Alias");
 		$this->curl->setHeader('Content-Type', 'application/x-www-form-urlencoded');
 		$this->curl->setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.146 Safari/537.36");
 	}
 
 	/* config */
-	public function set_proxy($host = NULL, $port = NULL, $user = NULL, $pass = NULL, $type = CURLPROXY_HTTP)
-	{
+	public function set_proxy($host = NULL, $port = NULL, $user = NULL, $pass = NULL, $type = CURLPROXY_HTTP){
 		if ($host !== NULL && $port !== NULL) {
 			$this->curl->setProxy($host, $port, $user, $pass);
 			$this->curl->setProxyType($type);
 		}
 	}
 
-	public function set_cookie($cookie_file = NULL)
-	{
+	public function set_cookie($cookie_file = NULL){
 		$file = sys_get_temp_dir() . '/cookie.txt';
 		if ($cookie_file != NULL) {
 			$path = dirname($cookie_file);
@@ -59,31 +52,28 @@ class DatosSunat
 		$this->curl->setCookieJar($file);
 	}
 
-	public function set_directory_json($path)
-	{
+	public function set_directory_json($path){
 		$this->check_local = TRUE;
 		$this->local_dir_json = rtrim($path, '/');
 	}
 
-	public function save_local_json($ruc, $json)
-	{
+	public function save_local_json($ruc, $json){
 		if ($this->check_local == TRUE && is_dir($this->local_dir_json)) {
 			$path_json = $this->local_dir_json . "/" . $ruc . ".json";
 			file_put_contents($path_json, $json);
 		}
 	}
 
-	public function get_local_json($ruc)
-	{
-		if ($this->check_local == TRUE) {
+	public function get_local_json($ruc){
+		if ($this->check_local == TRUE){
 			$path_json = $this->local_dir_json . "/" . $ruc . ".json";
 			if (file_exists($path_json)) {
 				$json = file_get_contents($path_json);
 				$obj = json_decode($json);
-				$response = new \jossmp\response\obj($obj);
+				$response = new obj($obj);
 				return $response;
 			} else {
-				$response = new \jossmp\response\obj(array(
+				$response = new obj(array(
 					'success' => false,
 					'message'  => 'Archivo local no disponible'
 				));
@@ -91,37 +81,29 @@ class DatosSunat
 			}
 		}
 
-		$response = new \jossmp\response\obj(array(
+		$response = new obj(array(
 			'success' => false,
 			'message'  => 'Directorio local no definido'
 		));
 		return $response;
 	}
 
-	public function refresh($flag = FALSE)
-	{
+	public function refresh($flag = FALSE){
 		$this->refresh = ($flag === TRUE) ? TRUE : FALSE;
 	}
 
-	function require_deuda($flag = false)
-	{
+	function require_deuda($flag = false){
 		$this->_deuda = $flag;
 	}
-	function require_legal($flag = false)
-	{
+	function require_legal($flag = false){
 		$this->_legal  = $flag;
 	}
-	function require_trabs($flag = false)
-	{
+	function require_trabs($flag = false){
 		$this->_trabs  = $flag;
 	}
-	function require_establecimientos($flag = false)
-	{
+	function require_establecimientos($flag = false){
 		$this->_establecimientos  = $flag;
 	}
-	/* ---------------------------------------------------- */
-	/* ----------------- Inicio de codigo ----------------- */
-	/* ---------------------------------------------------- */
 
 	/**
 	 * decompressXmlFile
@@ -129,60 +111,51 @@ class DatosSunat
 	 * @param mixed $zipContent
 	 * @return string
 	 */
-	public function decompressXmlFile($zipContent)
-	{
+	public function decompressXmlFile($zipContent){
 		$head = unpack(self::UNZIP_FORMAT, substr($zipContent, 0, 30));
 
 		return (gzinflate(substr($zipContent, 30 + $head['namelen'] + $head['exlen'])));
 	}
 
-	public function get_link($ruc)
-	{
-		$url = self::URL_CONSULT . "?accion=consManual&txtRuc&selRuc=" . $ruc;
-
+	public function get_link($ruc){
+		$url = "https://e-consultaruc.sunat.gob.pe/cl-ti-itmrconsmulruc/jrmS00Alias?accion=consManual&txtRuc&selRuc=" . $ruc;
 		$response = $this->curl->get($url);
 		if ($response != "" && $this->curl->getHttpStatusCode() == 200) {
 			$patron = '/data0_num_id=([\d]+)"/';
 			$output = preg_match_all($patron, $response, $matches, PREG_SET_ORDER);
 			if (isset($matches[0])) {
 				$link_zip = 'https://www.sunat.gob.pe/cl-at-framework-unloadfile/descargaArchivoAlias?data0_num_id=' . $matches[0][1];
-				return new \jossmp\response\obj(array(
+				return new obj(array(
 					'success' => true,
 					'result' => array('zip' => $link_zip),
 				));
 			}
-			return new \jossmp\response\obj(array(
+			return new obj(array(
 				'success' => false,
 				'message' => 'No se encontraron resultados',
 			));
 		}
-		return new \jossmp\response\obj(array(
+		return new obj(array(
 			'success' => false,
 			'message' => 'Error de coneccion a SUNAT',
 		));
 	}
 
-	public function get_data($ruc)
-	{
+	public function get_data($ruc){
 		$response = $this->get_link($ruc);
 		if ($response->success == true) {
 			$url = trim($response->result->zip);
-
 			$zipContent = $this->curl->get($url);
-
 			$headers = $this->curl->getResponseHeaders();
-			$content_type    = trim($headers['content-type']);
+			$content_type    = trim((string) $headers['content-type']);
 			if ($zipContent != "" && $this->curl->getHttpStatusCode() == 200 && $content_type == 'application/zip') {
 				$csv = $this->decompressXmlFile($zipContent);
-
-				$this->company = new \jossmp\sunat\model\company();
+				$this->company = new company();
 				$this->company->set_ruc($ruc);
-
 				$response = $this->process($csv);
-
 				return $response;
 			}
-			return new \jossmp\response\obj(array(
+			return new obj(array(
 				'success' => false,
 				'message' => 'SUNAT no responde',
 			));
@@ -190,10 +163,9 @@ class DatosSunat
 		return $response;
 	}
 
-	public function consulta($ruc)
-	{
+	public function consulta($ruc){
 		if ((strlen($ruc) != 8 && strlen($ruc) != 11) || !is_numeric($ruc)) {
-			$response = new \jossmp\response\obj(array(
+			$response = new obj(array(
 				'success' => false,
 				'message' => 'Formato RUC/DNI no validos.'
 			));
@@ -201,7 +173,7 @@ class DatosSunat
 		}
 
 		if (strlen($ruc) == 11 && is_numeric($ruc) && !$this->valid($ruc)) {
-			$response = new \jossmp\response\obj(array(
+			$response = new obj(array(
 				'success' => false,
 				'message' => 'numero de RUC no valido'
 			));
@@ -232,8 +204,7 @@ class DatosSunat
 		return $response;
 	}
 
-	public function get_consulta($ruc)
-	{
+	public function get_consulta($ruc){
 		$response = $this->get_data($ruc);
 		if ($response->success == true) {
 			$this->company->set_representantes_legales(array());
@@ -268,7 +239,7 @@ class DatosSunat
 				}
 			}
 
-			return new \jossmp\response\obj([
+			return new obj([
 				'success' => true,
 				'result' => $this->company,
 			]);
@@ -276,11 +247,9 @@ class DatosSunat
 		return $response;
 	}
 
-	private function process($response)
-	{
+	private function process($response){
 		$line = explode("\n", $response);
-		if (isset($line[1]) && trim($line[1]) != '') {
-
+		if(isset($line[1]) && trim($line[1]) != ''){
 			$data = explode("|", $line[1]);
 			if (count($data) >= 25) {
 				$this->company->set_ruc(trim($data[0], "- \t\n\r\0\x0B"));
@@ -295,7 +264,6 @@ class DatosSunat
 				$this->company->set_departamento(trim($data[9], "- \t\n\r\0\x0B"));
 				$this->company->set_provincia(trim($data[10], "- \t\n\r\0\x0B"));
 				$this->company->set_distrito(trim($data[11], "- \t\n\r\0\x0B"));
-
 				$this->company->set_direccion(trim($data[12], "- \t\n\r\0\x0B"));
 				$this->company->set_telefono(trim($data[13], "- \t\n\r\0\x0B"));
 				$this->company->set_fax(trim($data[14], "- \t\n\r\0\x0B"));
@@ -324,30 +292,24 @@ class DatosSunat
 					];
 				}
 				$this->company->set_actividad_economica($ae);
-
 				$this->company->set_afectado_rus(trim($data[19], "- \t\n\r\0\x0B"));
 				$this->company->set_buen_contribuyente(trim($data[20], "- \t\n\r\0\x0B"));
 				$this->company->set_agente_retencion(trim($data[21], "- \t\n\r\0\x0B"));
 				$this->company->set_agente_perc_vta_int(trim($data[22], "- \t\n\r\0\x0B"));
 				$this->company->set_agente_perc_com_liq(trim($data[23], "- \t\n\r\0\x0B"));
-
-				return new \jossmp\response\obj([
+				return new obj([
 					'success' => true,
 					'type'    => 'count'
 				]);
 			}
 		}
-		return new \jossmp\response\obj(array(
+		return new obj(array(
 			'success' => false,
 			'message' => 'Imposible procesar la respuesta',
 		));
 	}
 
-	/*** *** *** *** *** *** *** *** ***/
-	/*** ***  Datos Adicionales  *** ***/
-	/*** *** *** *** *** *** *** *** ***/
-	public function get_num_trabajadores($num_doc)
-	{
+	public function get_num_trabajadores($num_doc){
 		$valid = $this->valida_doc($num_doc);
 		if ($valid->success == true) {
 			$data = array(
@@ -396,18 +358,18 @@ class DatosSunat
 						);
 					}
 					if (count($cantidad_trabajadores) > 0) {
-						return new \jossmp\response\obj(array(
+						return new obj(array(
 							'success' => true,
 							'result' => $cantidad_trabajadores,
 						));
 					}
 				}
-				return new \jossmp\response\obj(array(
+				return new obj(array(
 					'success' => false,
 					'message' => 'no se encontraron trabajadores registrados',
 				));
 			}
-			return new \jossmp\response\obj(array(
+			return new obj(array(
 				'success' => false,
 				'message' => 'No se pudo conectar a sunat.',
 			));
@@ -415,8 +377,7 @@ class DatosSunat
 		return $valid;
 	}
 
-	public function get_establecimiento($num_doc)
-	{
+	public function get_establecimiento($num_doc){
 		$valid = $this->valida_doc($num_doc);
 		if ($valid->success == true) {
 			$data = array(
@@ -469,19 +430,19 @@ class DatosSunat
 						);
 					}
 					if (count($establecimientos) > 0) {
-						return new \jossmp\response\obj(array(
+						return new obj(array(
 							'success' => true,
 							'result' => $establecimientos,
 						));
 					}
 				}
 
-				return new \jossmp\response\obj(array(
+				return new obj(array(
 					'success' => false,
 					'message' => 'no se encontraron establecimientos registrados',
 				));
 			}
-			return new \jossmp\response\obj(array(
+			return new obj(array(
 				'success' => false,
 				'message' => 'No se pudo conectar a sunat.',
 			));
@@ -489,8 +450,7 @@ class DatosSunat
 		return $valid;
 	}
 
-	public function get_representante_legal($num_doc)
-	{
+	public function get_representante_legal($num_doc){
 		$valid = $this->valida_doc($num_doc);
 		if ($valid->success == true) {
 			$data = array(
@@ -533,18 +493,18 @@ class DatosSunat
 						);
 					}
 					if (count($representantes_legales) > 0) {
-						return new \jossmp\response\obj(array(
+						return new obj(array(
 							'success' => true,
 							'result' => $representantes_legales,
 						));
 					}
 				}
-				return new \jossmp\response\obj(array(
+				return new obj(array(
 					'success' => false,
 					'message' => 'no se encontraron representantes legales',
 				));
 			}
-			return new \jossmp\response\obj(array(
+			return new obj(array(
 				'success' => false,
 				'message' => 'No se pudo conectar a sunat.',
 			));
@@ -552,8 +512,7 @@ class DatosSunat
 		return $valid;
 	}
 
-	public function get_deuda_coactiva($num_doc)
-	{
+	public function get_deuda_coactiva($num_doc){
 		$valid = $this->valida_doc($num_doc);
 		if ($valid->success == true) {
 
@@ -598,18 +557,18 @@ class DatosSunat
 						);
 					}
 					if (count($deuda) > 0) {
-						return new \jossmp\response\obj(array(
+						return new obj(array(
 							'success' => true,
 							'result' => $deuda,
 						));
 					}
 				}
-				return new \jossmp\response\obj(array(
+				return new obj(array(
 					'success' => false,
 					'message' => 'no se encontraron deuda coactiva',
 				));
 			}
-			return new \jossmp\response\obj(array(
+			return new obj(array(
 				'success' => false,
 				'message' => 'No se pudo conectar a sunat.'
 			));
@@ -617,10 +576,9 @@ class DatosSunat
 		return $valid;
 	}
 
-	public function valida_doc($num_doc)
-	{
+	public function valida_doc($num_doc){
 		if ((strlen($num_doc) != 8 && strlen($num_doc) != 11) || !is_numeric($num_doc)) {
-			$response = new \jossmp\response\obj(array(
+			$response = new obj(array(
 				'success' => false,
 				'message' => 'Formato RUC/DNI no validos.'
 			));
@@ -628,7 +586,7 @@ class DatosSunat
 		}
 
 		if (strlen($num_doc) == 11 && is_numeric($num_doc) && !$this->valid($num_doc)) {
-			$response = new \jossmp\response\obj(array(
+			$response = new obj(array(
 				'success' => false,
 				'message' => 'RUC no valido'
 			));
@@ -638,15 +596,14 @@ class DatosSunat
 		if (strlen($num_doc) == 8 && is_numeric($num_doc)) {
 			$num_doc = $this->dnitoruc($num_doc);
 		}
-		return new \jossmp\response\obj(array(
+		return new obj(array(
 			'success' => true,
 			'result' => array('ruc' => $num_doc),
 		));
 	}
 
 
-	public function dnitoruc($dni)
-	{
+	public function dnitoruc($dni){
 		if ($dni != "" || strlen($dni) == 8) {
 			$suma = 0;
 			$hash = array(5, 4, 3, 2, 7, 6, 5, 4, 3, 2);
@@ -668,12 +625,10 @@ class DatosSunat
 		return false;
 	}
 
-	public function valid($valor) // Script SUNAT
-	{
+	public function valid($valor){
 		$valor = trim($valor);
 		if ($valor) {
-			if (strlen($valor) == 11) // RUC
-			{
+			if (strlen($valor) == 11){
 				$suma = 0;
 				$x = 6;
 				for ($i = 0; $i < strlen($valor) - 1; $i++) {
@@ -701,8 +656,7 @@ class DatosSunat
 		return false;
 	}
 
-	function fix_direccion($str_direccion)
-	{
+	function fix_direccion($str_direccion){
 		$items = explode('-', $str_direccion);
 		$cant = count($items);
 
@@ -738,8 +692,7 @@ class DatosSunat
 		];
 	}
 
-	private function fix_departamento($departamento)
-	{
+	private function fix_departamento($departamento){
 		$departamento = strtoupper($departamento);
 		$words = 1;
 		switch ($departamento) {

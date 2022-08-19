@@ -8,16 +8,16 @@ if(isset($urb[3])){$urb3=$urb[3];}else{$urb3=false;}
 ?>
 <section class="vista_preb_page">
      <ol class="box_visw" id="dir_homs" data_linm="<?=$base;?>">
-        <li><a href="<?=$base;?>">Inicio</a></li>
-        <li><a href="<?=$base."tiendas";?>">Tienda</a></li>
+        <li><a href="<?=$base;?>"><?=Luis::lang("inicio");?></a></li>
+        <li><a href="<?=$base."tiendas";?>"><?=Luis::lang("tienda");?></a></li>
         <?php if($urbs): ?>
           <?php if($urbp=="update"): ?>
-          	<li class="active">Editar idioma</li>
+          	<li class="active"><?=Luis::lang("editar_idioma");?></li>
           <?php elseif($urbp=="administrar"): ?>
-            <li class="active">Administrar palabras</li>
+            <li class="active"><?=Luis::lang("administrar_palabras");?></li>
           <?php endif ?>
         <?php else: ?>
-          <li class="active">Idiomas</li>
+          <li class="active"><?=Luis::lang("idiomas");?></li>
         <?php endif ?>
      </ol>
 </section>
@@ -25,20 +25,20 @@ if(isset($urb[3])){$urb3=$urb[3];}else{$urb3=false;}
 
 <?php if ($urbs): ?>
   <?php if($urbp=="update"): ?>
-  	<h4 class="titulo_paginas">Editar idioma</h4>
+  	<h4 class="titulo_paginas"><?=Luis::lang("editar_idioma");?></h4>
   <?php elseif($urbp=="administrar"): ?>
-    <h4 class="titulo_paginas">Administrar palabras</h4>
+    <h4 class="titulo_paginas"><?=Luis::lang("administrar_palabras");?></h4>
   <?php endif ?>
 <?php else: ?>
-  <h4 class="titulo_paginas">Idiomas</h4>
+  <h4 class="titulo_paginas"><?=Luis::lang("idiomas");?></h4>
   <a class="add_itembox" href="<?=$base."agregar_idioma"?>">
-    <div class="butt_luis_one"><span>Nuevo idioma</span></div>
+    <div class="butt_luis_one"><span><?=Luis::lang("nuevo_idioma");?></span></div>
   </a>
 <?php endif ?>
 <div class="contentlists_items">
 	<?php if($urbs): ?>
 		<?php if($urbp=="update"): $sucursal = DatosAdmin::poridSucursal($urbs); ?>
-			<a class="butt_back" href="<?=$base."administrar_idioma";?>">❮ Idiomas</a>
+			<a class="butt_back" href="<?=$base."administrar_idioma";?>">❮ <?=Luis::lang("idiomas");?></a>
 			<div class="contentboxfunst">
 				<div class="contentboxitemslistcread">
 					<div class="boxinputlists">
@@ -47,10 +47,10 @@ if(isset($urb[3])){$urb3=$urb[3];}else{$urb3=false;}
 					</div>
 				</div>
 			</div>
-			<input class="butt_luis_lwos update_laguage_file" type="submit" value="Guardar Cambios">
+			<input class="butt_luis_lwos update_laguage_file" type="submit" value="<?=Luis::lang("guardar");?>">
 		<?php elseif($urbp=="administrar"): ?>
 			<?php $langpl = DatosLang::luis_lang_alls(); ?>
-			<a class="butt_back" href="<?=$base."administrar_idioma";?>">❮ Idiomas</a>
+			<a class="butt_back" href="<?=$base."administrar_idioma";?>">❮ <?=Luis::lang("idiomas");?></a>
 
 				<div class="contentboxfunst">
 					<div class="contentboxitemslistcread">
@@ -84,9 +84,9 @@ if(isset($urb[3])){$urb3=$urb[3];}else{$urb3=false;}
 						<div class="boxoptionslistlines">
 							<div class="makposdind"></div>
 							<div class="tipbox" tipbox="<?=$base;?>"></div>
-							<a href="<?=$base."administrar_idioma/administrar/".$d;?>"><div class="boxoptionslistitems">Administrar</div></a>
-							<a href="<?=$base."administrar_idioma/update/".$d;?>"><div class="boxoptionslistitems">Editar</div></a>
-							<div class="boxoptionslistitems language_file_eliminar" id="<?=$d;?>">Eliminar</div>
+							<a href="<?=$base."administrar_idioma/administrar/".$d;?>"><div class="boxoptionslistitems"><?=Luis::lang("administrar");?></div></a>
+							<a href="<?=$base."administrar_idioma/update/".$d;?>"><div class="boxoptionslistitems"><?=Luis::lang("editar");?></div></a>
+							<div class="boxoptionslistitems language_file_eliminar" id="<?=$d;?>"><?=Luis::lang("eliminar");?></div>
 						</div>
 					</div>
 				</div>

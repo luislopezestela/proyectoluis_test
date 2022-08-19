@@ -7,12 +7,14 @@ if($_POST['sub'] && $_POST['cat']){
 	$det->sub = $_POST['sub'];
 	$det->update_options_type_c();
 	$compadd = DatosAdmin::ver_detalles_opciones_b($_POST['dat']);
-	if ($compadd->cat_act == $_POST['sub']) {
-		$det->eliminar_cambios_b();
-	}elseif ($compadd->cat_act == null) {
-		$det->eliminar_cambios_b();
-	}else{
-		$det->eliminar_cambios_c();
+	if($compadd){
+		if ($compadd->cat_act == $_POST['sub']) {
+			$det->eliminar_cambios_b();
+		}elseif ($compadd->cat_act == null) {
+			$det->eliminar_cambios_b();
+		}else{
+			$det->eliminar_cambios_c();
+		}
 	}
 	$itemsviews = "";
 	$items_for_cat = DatosAdmin::MostrarItems_cartas_opciones_sub($cat_a->id);
@@ -25,7 +27,7 @@ if($_POST['sub'] && $_POST['cat']){
 	$opt_item_count = DatosAdmin::ver_detalles_opciones($_POST['dat']);
 	$countdatasitm = count($opt_item_count);
 	echo json_encode(array('tipo' => 1, 'message' => Luis::lang("guardado"),'values' => html_entity_decode($cat_a->nombre), 'options' => $itemsviews,"play_data" => $countdatasitm));
-}elseif($_POST['cat']){
+}elseif(isset($_POST['cat'])){
 	$itemsviews = '';
 	$cat_a = DatosAdmin::getById_categoria($_POST['cat']);
 	$det = new DatosAdmin();
@@ -34,12 +36,14 @@ if($_POST['sub'] && $_POST['cat']){
 	$det->update_options_type_b();
 
 	$compadd = DatosAdmin::ver_detalles_opciones_b($_POST['dat']);
-	if ($compadd->cat_act == $_POST['cat']) {
-		$det->eliminar_cambios_b();
-	}elseif ($compadd->cat_act == null) {
-		$det->eliminar_cambios_b();
-	}else{
-		$det->eliminar_cambios_c();
+	if($compadd){
+		if ($compadd->cat_act == $_POST['cat']) {
+			$det->eliminar_cambios_b();
+		}elseif ($compadd->cat_act == null) {
+			$det->eliminar_cambios_b();
+		}else{
+			$det->eliminar_cambios_c();
+		}
 	}
 	$items_for_cat = DatosAdmin::MostrarItems_cartas_opciones($cat_a->id);
 	

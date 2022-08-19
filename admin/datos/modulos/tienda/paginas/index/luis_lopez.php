@@ -92,43 +92,43 @@ $moneda_principal = DatosAdmin::mostrar_la_moneda_principal();
 	<div class="cubos cubs_tr">
 		<a class="fotercubo_tr" href="<?=$base."ventas/vender";?>">
 			<i class="icono__vender icon_respont"></i>
-			<span class="realtime_update">Ventas hoy <?=$cantidad_de_ventas_hoy->c;?></span>
-			<b>Vender</b>
+			<span class="realtime_update"><?=Luis::lang("hoy");?> <?=$cantidad_de_ventas_hoy->c;?></span>
+			<b><?=Luis::lang("vender");?></b>
 		</a>
 	</div>
 	<div class="cubos cubs_tr">
 		<a class="fotercubo_tr" href="<?=$base."gastos/add";?>">
 			<i class="icono__gastos icon_respont"></i>
-			<span class="realtime_update">Gastos hoy <?=$cantidad_de_gastos_hoy->c;?></span>
-			<b>Gastos</b>
+			<span class="realtime_update"><?=Luis::lang("hoy");?> <?=$cantidad_de_gastos_hoy->c;?></span>
+			<b><?=Luis::lang("gastos");?></b>
 		</a>
 	</div>
 	<div class="cubos cubs_tr">
 		<a class="fotercubo_tr" href="<?=$base."cajas/add";?>">
 			<i class="icono__comision icon_respont"></i>
-			<span class="realtime_update">Cajas abiertos <?=$cantidad_de_cajas_open->c;?></span>
-			<b>Cajas</b>
+			<span class="realtime_update"><?=Luis::lang("abiertos");?> <?=$cantidad_de_cajas_open->c;?></span>
+			<b><?=Luis::lang("cajas");?></b>
 		</a>
 	</div>
 	<div class="cubos cubs_tr">
 		<a class="fotercubo_tr" href="<?=$base."devoluciones";?>">
 			<i class="icono__devolucion icon_respont"></i>
-			<span class="realtime_update">Devoluciones hoy 0</span>
-			<b>Devolucion</b>
+			<span class="realtime_update"><?=Luis::lang("hoy");?> 0</span>
+			<b><?=Luis::lang("devoluciones");?></b>
 		</a>
 	</div>
 	<div class="cubos cubs_tr">
 		<a class="fotercubo_tr" href="<?=$base."gastos/add";?>">
 			<i class="icono__garantias icon_respont"></i>
-			<span class="realtime_update">Garantias hoy 0</span>
-			<b>Garantias</b>
+			<span class="realtime_update"><?=Luis::lang("hoy");?> 0</span>
+			<b><?=Luis::lang("garantias");?></b>
 		</a>
 	</div>
 	<div class="cubos cubs_tr">
 		<a class="fotercubo_tr" href="<?=$base."gastos/add";?>">
 			<i class="icono__malos icon_respont"></i>
-			<span class="realtime_update">Malogrados hoy 0</span>
-			<b>Malogrados</b>
+			<span class="realtime_update"><?=Luis::lang("hoy");?> 0</span>
+			<b><?=Luis::lang("malogrados");?></b>
 		</a>
 	</div>
 	</div>
@@ -136,37 +136,37 @@ $moneda_principal = DatosAdmin::mostrar_la_moneda_principal();
 	<h3 class="titulospanel"><?=Luis::lang("tablero");?></h3>
 	<div class="datos_pag">
 	<div class="cubos productos_total_un">
-		<div class="admin_titulo_tablero_index">Categorias</div>
+		<div class="admin_titulo_tablero_index"><?=Luis::lang("categorias");?></div>
 		<b><?=$cantidad_de_categorias->c;?></b>
 	</div>
 	<div class="cubos productos_total_un">
-		<div class="admin_titulo_tablero_index">Productos</div>
+		<div class="admin_titulo_tablero_index"><?=Luis::lang("productos");?></div>
 		<b><?=$cantidad_de_productos_stock->c;?></b>
 	</div>
 	<div class="cubos productos_total_un">
-		<div class="admin_titulo_tablero_index">Sucursales</div>
+		<div class="admin_titulo_tablero_index"><?=Luis::lang("sucursales");?></div>
 		<b><?=$cantidad_de_sucursales->c;?></b>
 	</div>
 	<div class="cubos productos_total_un">
-		<div class="admin_titulo_tablero_index">Usuarios</div>
+		<div class="admin_titulo_tablero_index"><?=Luis::lang("usuarios");?></div>
 		<b><?=$cantidad_de_usuarios->c;?></b>
 	</div>
 	<div class="cubos productos_total_un">
-		<div class="admin_titulo_tablero_index">Clientes</div>
+		<div class="admin_titulo_tablero_index"><?=Luis::lang("clientes");?></div>
 		<b><?=$cantidad_de_clientes->c;?></b>
 	</div>
 	<div class="cubos productos_total_un">
-		<div class="admin_titulo_tablero_index">Proveedores</div>
+		<div class="admin_titulo_tablero_index"><?=Luis::lang("proveedores");?></div>
 		<b><?=$cantidad_de_proveedores->c;?></b>
 	</div>
 	</div>
 	<br>
 	<h3 class="titulospanel"><?=Luis::lang("accesos_directos");?></h3>
   <div class="datos_pag">
-    	<a class="botonfunciones" href="<?=$base."productos/crear";?>">Agregar producto</a>
-    	<a class="botonfunciones" href="<?=$base."usuarios/add";?>">Agregar usuario</a>
-    	<a class="botonfunciones" href="<?=$base."sucursales/add";?>">Agregar sucursal</a>
-    	<a class="botonfunciones" href="<?=$base."configurar_pagina";?>">Configuracion</a>
+    	<a class="botonfunciones" href="<?=$base."productos/crear";?>"><?=Luis::lang("agregar_productos");?></a>
+    	<a class="botonfunciones" href="<?=$base."usuarios/add";?>"><?=Luis::lang("agregar_usuario");?></a>
+    	<a class="botonfunciones" href="<?=$base."sucursales/add";?>"><?=Luis::lang("agregar_sucursal");?></a>
+    	<a class="botonfunciones" href="<?=$base."configurar_pagina";?>"><?=Luis::lang("configuracion");?></a>
   </div>
     <br>
 </div>

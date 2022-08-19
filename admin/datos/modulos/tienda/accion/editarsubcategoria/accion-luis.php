@@ -11,7 +11,6 @@ if($ver==null or $namesukr==$c_a->ukr){
  $categoria->id = $_POST["id"];
  $categoria->nombre = $_POST["nombre"];
  $categoria->ukr=DatosAdmin::poner_guion(strip_tags(htmlentities($_POST["nombre"])));
- $categoria->sucursal=$_POST["sucursal"];
  $categoria->editar_sub_categoria();
  Nucleo::redir($basepagina."categorias/".$c_b->ukr."/".$categoria->ukr."/update");
 }else{

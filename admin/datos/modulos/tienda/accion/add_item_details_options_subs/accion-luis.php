@@ -85,5 +85,4 @@ if($_POST['type_option']){
 	}
 }else{
 	echo json_encode(array('tipo' => 0, 'message' => Luis::lang("error_de_datos")));
-	
 }
