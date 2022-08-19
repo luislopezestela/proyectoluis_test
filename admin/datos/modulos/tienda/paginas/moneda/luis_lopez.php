@@ -158,7 +158,7 @@ if(isset($urb[2])){$urbs=$urb[2];}else{$urbs=false;}
 					            <span class="nameshiffs"><?php if(!$ser->nombre==null){echo($ser->nombre);}else{echo('-');}?></span>
 					            <?php $cambio_tipo = 0; ?>
 					            <?php if($ser->principal==1): ?>
-					            <?php else: $resultadode_cambios = Functions::getUpadtesdsd($moneda_principal->moneda,$ser->moneda);?>
+					            <?php else: $resultadode_cambios = 0//Functions::getUpadtesdsd($moneda_principal->moneda,$ser->moneda);?>
 					            	<div class="nameshiffs"><?='1 '.html_entity_decode($moneda_principal->nombre)." = ".$resultadode_cambios;?> </div>
 					            	Fuente Google
 					            <?php endif ?>
