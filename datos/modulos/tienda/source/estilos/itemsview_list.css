@@ -37,6 +37,20 @@ table[align~="left"]{
     left:0;
     float:initial!important;
 }
+.item_description_data table tbody tr td img{display:block;max-width:100%!important;object-fit: fill;}
+.imagen_centro_detalle{
+	width:100%;
+	display:block;
+	margin:0 auto;
+}
+.imagen_centro_detalle img{
+	position:relative;
+	display:block;
+	box-sizing:border-box;
+	max-width:100%!important;
+	margin:0 auto;
+}
+.item_description_data img{max-width:100%;}
 .item_description_data{width:100%;padding:10px;font-size:13px;line-height:1.8!important;color:rgba(0,47,52,.9);word-wrap:break-word}
 .item_description_data hr{background-image:initial;border:0px;border-top:1px solid #ccc;margin: 11px 0;}
 
@@ -50,7 +64,7 @@ table[align~="left"]{
 @media only screen and (max-width: 550px){
 .boxpictureliststimg_thum_ind{display:none;}
 }
-@media only screen and (max-width: 450px){
+@media only screen and (max-width: 470px){
 .item_description_data table,
 .item_description_data table tbody,
 .item_description_data table tbody,

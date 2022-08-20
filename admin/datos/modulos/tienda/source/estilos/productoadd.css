@@ -70,7 +70,7 @@
 #blocknullfom12,#blocknullfom1300,.hipboxmp{display:none!important;visibility:hidden!important;}
 .contentboxbuttons{display:inline-block;position:relative;padding:10px;margin:10px 0;}
 .boxdatabuttompublic{display:block;width:100%;max-width:250px;padding:6px;cursor:pointer;user-select:none;text-align:center;margin:0 auto;background:var(--color_primario);color:var(--color_a);}
-.contenidoboxplasstcread{display:flex;flex-wrap:wrap;padding:10px;position:relative;width:100%;max-width:1225px;border-radius:8px;margin:10px auto;}
+.contenidoboxplasstcread{display:flex;flex-wrap:wrap;padding:10px;position:relative;width:100%;border-radius:8px;margin:10px auto;}
 .untmsd4ss4listticread{display:block;user-select:none;padding:10px 10px 0px 0px;width:100%;max-width:700px;margin:0 auto;}
 
 .list_details_types_options_box{
@@ -83,7 +83,6 @@
     display: block;
     width: 100%;
     user-select: none;
-    max-width: 700px;
     padding: 10px;
     margin: 7px auto;
     background-color: #ffffffff;
