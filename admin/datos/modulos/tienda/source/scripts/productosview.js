@@ -74,12 +74,12 @@ $(document).on("click", ".select_stock_item_imventori", function (){
     $.ajax({
       type:'POST',
       url: list_urls()+list_action()+"update_stock",
-      data:{prodc:dat,sucursal:$("#sucursal"+dat).val(),proveedor:$("#proveedor_cpl"+dat).val(),documento:$("#document"+dat).val(),num_documento:$("#numdoc"+dat).val(),barcode:$("#barcode"+dat).val(),cpu:$("#cpu"+dat).val(),cpu_speed:$("#cpu_speed"+dat).val()},
+      data:{prodc:dat,proveedor:$("#proveedor_cpl"+dat).val(),documento:$("#document"+dat).val(),num_documento:$("#numdoc"+dat).val(),barcode:$("#barcode"+dat).val(),cpu:$("#cpu"+dat).val(),cpu_speed:$("#cpu_speed"+dat).val()},
       dataType: "json",
       success: function(data){
-        console.log(data)
         if(data.estado==true){
             $(".stock_view_init"+dat).html(data.stock);
+            $("#barcode"+dat).val("");$("#barcode"+dat).focus();
             alertexito(data.mensaje);
         }else{
             alertadvertencia(data.mensaje);

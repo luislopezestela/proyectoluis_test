@@ -709,105 +709,20 @@ if(isset($_SESSION["admin_id"])):
                 
                 <div class="contenhead_products">
                   <span class="titulo_paginas_two_dettalles"><?=$irtm->nombre;?></span>
-
-                  <?php if($usuario->es_administrador==1): ?>
-                    <?php $stcok_item=DatosAdmin::cantidad_stock_de_producto_admin($irtm->id)->c;?>
-                    <div class="box_head_products">
-                      <label class="numbers_pag_head_products_label">Stock</label>
-                      <?php if(!isset($stcok_item)): ?>
-                        <span class="numbers_pag_head_products">0</span>
-                      <?php else: ?>
-                        <span class="numbers_pag_head_products"><?=$stcok_item;?></span>
-                      <?php endif ?>
-                    </div>
-                  <?php else: ?>
-                    <?php $stcok_item=DatosAdmin::cantidad_stock_de_producto($irtm->id,$_SESSION["admin_id"])->c;?>
-                    <div class="box_head_products">
-                      <label class="numbers_pag_head_products_label">Stock</label>
-                      <?php if(!isset($stcok_item)): ?>
-                        <span class="numbers_pag_head_products">0</span>
-                      <?php else: ?>
-                        <span class="numbers_pag_head_products"><?=$stcok_item;?></span>
-                      <?php endif ?>
-                    </div>
-                  <?php endif ?>
-
-                  <label class="numbers_pag_head_products_label">Acciones</label>
-                  <?php if($usuario->es_administrador==1): ?>
-                    <span data-modal-trigger="update_stock_data" class="button_acctions_datas_exel">Importar exel</span>
-                    <div class="modal" data-modal-name="update_stock_data" data-modal-dismiss>
-                      <div class="modal__dialog">
-                        <header class="modal__header">
-                          <h3 class="modal__title">Importar datos desde exel</h3>
-                          <i class="modal__close" data-modal-dismiss>X</i>
-                        </header>
-                        <div class="modal__content">
-                          <select class="select_document_view" id="proveedor_cpl<?=$irtm->id?>">
-                            <?php $proveedores=DatosAdmin::mostar_proveedores(); ?>
-                            <option>Selecciona un proveedor</option>
-                            <?php foreach ($proveedores as $y): ?>
-                              <option value="<?=$y->id;?>"><?=html_entity_decode($y->nombre);?></option>
-                            <?php endforeach ?>
-                          </select>
-
-                          <select class="select_document_view" id="document<?=$irtm->id?>">
-                            <?php $documents=DatosAdmin::view_documents(); ?>
-                            <option>Selecciona documento</option>
-                            <?php foreach ($documents as $y): ?>
-                              <option value="<?=$y->id;?>"><?=html_entity_decode($y->nombre);?></option>
-                            <?php endforeach ?>
-                          </select>
-
-                          <select class="select_document_view" id="sucursal<?=$irtm->id?>">
-                            <?php $sucursales_b=DatosAdmin::Mostrar_sucursales(); ?>
-                            <option>Selecciona sucursal</option>
-                            <?php foreach ($sucursales_b as $s): ?>
-                              <option value="<?=$s->id;?>"><?=html_entity_decode($s->nombre);?></option>
-                            <?php endforeach ?>
-                          </select>
-
-                          <div>
-                            <span class="addnewimageluis addnewimageluisboxus archive_process_datas_viewa" role="button" tabindex="1">
-                              <img class="addnewimageluisimf addnewimageluisimftwos" src="<?=$base."datos/imagenes/icons/exel.png";?>" alt="" height="30" width="30">
-                              <span class="contentaddimgs prev_names_acrchive">Importar datos</span>
-                              <input class="addnewimageluisbotsccc actives_ac_archivos_data" type="file" id="imports_datas_archivos" name="exelpage" title="Selecciona un documento" required="" multiple="multiple" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                            </span>
-                          </div>
-
-                          <input type="button" class="butt_luis_two process_data_archivos process_data_archivos_acction" data-conf="<?=$irtm->id?>" value=" Procesar">
-                        </div>
-                      </div>
-                    </div>
-                    <?php $type_items_view_visual = DatosAdmin::Ver_tipo_deproducto_por_item($irtm->tipo);?>
-                    <?php if($type_items_view_visual->model_exel): ?>
-                      <a class="button_acctions_datas_exel" href="<?=$base."datos/source/".$type_items_view_visual->model_exel.".xlsx";?>" download>Base exel</a>
+                  <?php $stcok_item=DatosAdmin::cantidad_stock_de_producto_admin_sucursal($irtm->id,$usuario->sucursal)->c;?>
+                  <div class="box_head_products">
+                    <label class="numbers_pag_head_products_label">Stock</label>
+                    <?php if(!isset($stcok_item)): ?>
+                      <span class="numbers_pag_head_products">0</span>
+                    <?php else: ?>
+                      <span class="numbers_pag_head_products"><?=$stcok_item;?></span>
                     <?php endif ?>
-                    
-                  <?php endif ?>
-                  <span class="button_acctions_datas_exel">Exportar exel</span>
+                  </div>
                 </div>
-      
                 <br>
-                <?php $type_items_view = DatosAdmin::Ver_tipo_deproducto_por_item($irtm->tipo);?>
-                <label><b><?=html_entity_decode($type_items_view->nombre);?></b></label><br>
                 <div class="panel panel-default table_is_productos_lists_dos" id="table_is_productos_lists_dos">
                   <div class="panel-body panel_tabla">
                     <table class="table table_data_info_pages" id="table_is_productos_lists_tres">
-                      <thead class="header_table_items_lists">
-                        <?php $header_table_items_viewers=tables_in_pages_items::Mostrar_tabla_in_page_head_table($type_items_view->id_tabla);?>
-                        <tr>
-                          <td>Action</td>
-                          <?php $contador=1; foreach ($header_table_items_viewers as $tbs => $ssf): ?>
-                          <?php if ($tbs=="id"){
-                          }elseif($ssf==null){
-                          }else{
-                            echo("<th>".$ssf."</th>");
-                            $contador= $contador + 1;
-                          }?>
-                          <?php endforeach ?>
-                        </tr>
-
-                      </thead>
                       <tbody class="data_items_stock_controls">
                         <?php if($usuario->es_administrador==1): ?>
                           <?php $movstock=DatosAdmin::mostrar_productos_stock_lista_admin($irtm->id); ?>
@@ -819,74 +734,13 @@ if(isset($_SESSION["admin_id"])):
                           <?php $proveedor=DatosAdmin::poridproveedor($m->proveedor); ?>
                           <?php $docment=DatosAdmin::poriddocumento($m->documento); ?>
                           <tr>
-                            <?php if($irtm->tipo==1): ?>
-                              <td><span class="delete_button_in_stock_item" data="<?=$m->id;?>">Eliminar</span></td>
-                              <td><?=$proveedor->nombre;?></td>
-                              <td><?=$docment->nombre;?></td>
-                              <td><?=$m->num_documento;?></td>
-                              <td><?=$m->barcode;?></td>
-                              <td><?=$m->make;?></td>
-                              <td><?=$m->model;?></td>
-                              <td><?=$m->series;?></td>
-                              <td><?=$m->coa;?></td>
-                              <td><?=$m->cpu;?></td>
-                              <td><?=$m->cpu_speed;?></td>
-                              <td><?=$m->ram;?></td>
-                              <td><?=$m->hard_drive;?></td>
-                              <td><?=$m->drivetype;?></td>
-                              <td><?=$m->aditional_information;?></td>
-                              <td><?=$m->other_information;?></td>
-                              <td><?=$m->screen_size;?></td>
-                              <td><?=$m->battery;?></td>
-                              <td><?=$m->battery_test;?></td>
-                              <td><?=$m->web_cam;?></td>
-                            <?php elseif($irtm->tipo==2): ?>
-                              <td><span class="delete_button_in_stock_item" data="<?=$m->id;?>">Eliminar</span></td>
-                              <td><?=$proveedor->nombre;?></td>
-                              <td><?=$docment->nombre;?></td>
-                              <td><?=$m->num_documento;?></td>
-                              <td><?=$m->barcode;?></td>
-                              <td><?=$m->make;?></td>
-                              <td><?=$m->model;?></td>
-                              <td><?=$m->series;?></td>
-                              <td><?=$m->form_factor;?></td>
-                              <td><?=$m->coa;?></td>
-                              <td><?=$m->cpu;?></td>
-                              <td><?=$m->cpu_speed;?></td>
-                              <td><?=$m->ram;?></td>
-                              <td><?=$m->hard_drive;?></td>
-                              <td><?=$m->drivetype;?></td>
-                              <td><?=$m->aditional_information;?></td>
-                              <td><?=$m->other_information;?></td>
-                            <?php elseif($irtm->tipo==3): ?>
-                              <td><span class="delete_button_in_stock_item" data="<?=$m->id;?>">Eliminar</span></td>
-                              <td><?=$proveedor->nombre;?></td>
-                              <td><?=$docment->nombre;?></td>
-                              <td><?=$m->num_documento;?></td>
-                              <td><?=$m->barcode;?></td>
-                              <td><?=$m->make;?></td>
-                              <td><?=$m->model;?></td>
-                              <td><?=$m->series;?></td>
-                              <td><?=$m->coa;?></td>
-                              <td><?=$m->cpu;?></td>
-                              <td><?=$m->cpu_speed;?></td>
-                              <td><?=$m->ram;?></td>
-                              <td><?=$m->hard_drive;?></td>
-                              <td><?=$m->drivetype;?></td>
-                              <td><?=$m->aditional_information;?></td>
-                              <td><?=$m->other_information;?></td>
-                              <td><?=$m->screen_size;?></td>
-                              <td><?=$m->web_cam;?></td>
-                              <td><?=$m->ac_adapter;?></td>
-                            <?php elseif($irtm->tipo==4): ?>
-                              <td><span class="delete_button_in_stock_item" data="<?=$m->id;?>">Eliminar</span></td>
-                              <td><?=$proveedor->nombre;?></td>
-                              <td><?=$docment->nombre;?></td>
-                              <td><?=$m->num_documento;?></td>
-                              <td><?=$m->barcode;?></td>
-                              <td><?=$m->cpu;?></td>
-                              <td><?=$m->cpu_speed;?></td>
-                            <?php endif ?>
+                            <td><span class="delete_button_in_stock_item" data="<?=$m->id;?>">Eliminar</span></td>
+                            <td><?=$proveedor->nombre;?></td>
+                            <td><?=$docment->nombre;?></td>
+                            <td><?=$m->num_documento;?></td>
+                            <td><?=$m->barcode;?></td>
+                            <td><?=$m->model;?></td>
+                            <td><?=$m->series;?></td>
                           </tr>
                         <?php endforeach ?>
                       </tbody>
@@ -928,7 +782,7 @@ if(isset($_SESSION["admin_id"])):
               <!-- admin publicaciones on -->
               <?php $total_productos=0;
               foreach($productos as $uss): ?>
-                <?php $stcok_items=DatosAdmin::cantidad_stock_de_producto_admin($uss->id)->c; ?>
+                <?php $stcok_items=DatosAdmin::cantidad_stock_de_producto_admin_sucursal($uss->id,$usuario->sucursal)->c; ?>
                 <?php $total_productos +=$stcok_items; ?>
               <?php endforeach ?>
 
@@ -936,7 +790,7 @@ if(isset($_SESSION["admin_id"])):
               
               <div class="result_seaching_pag">
                 <?php foreach($productos as $ite): 
-                  $stcok_item=DatosAdmin::cantidad_stock_de_producto_admin($ite->id)->c;?>
+                  $stcok_item=DatosAdmin::cantidad_stock_de_producto_admin_sucursal($ite->id,$usuario->sucursal)->c;?>
                   <div class="contentboxitemslist">
                       <div class="boxdisplay_stock">
                         <span class="tluisboxunliprice stock_view_page_items stockviewers">
@@ -1010,14 +864,6 @@ if(isset($_SESSION["admin_id"])):
                                 <p><?=html_entity_decode($ite->nombre);?></p>
                               </header>
                               <div class="modal__content">
-                                <select class="select_document_view" id="sucursal<?=$ite->id?>">
-                                  <?php $sucursales_b=DatosAdmin::Mostrar_sucursales(); ?>
-                                  <option value="">Selecciona sucursal</option>
-                                  <?php foreach ($sucursales_b as $s): ?>
-                                    <option value="<?=$s->id;?>"><?=html_entity_decode($s->nombre);?></option>
-                                  <?php endforeach ?>
-                                </select>
-
                                 <select class="select_document_view" id="proveedor_cpl<?=$ite->id?>">
                                   <?php $proveedores=DatosAdmin::mostar_proveedores(); ?>
                                   <option value="">Selecciona un proveedor</option>
@@ -1127,14 +973,6 @@ if(isset($_SESSION["admin_id"])):
                                 <p><?=html_entity_decode($t->nombre);?></p>
                               </header>
                               <div class="modal__content">
-                                <select class="select_document_view" id="sucursal<?=$t->id?>">
-                                  <?php $sucursales_b=DatosAdmin::Mostrar_sucursales(); ?>
-                                  <option value="">Selecciona sucursal</option>
-                                  <?php foreach ($sucursales_b as $s): ?>
-                                    <option value="<?=$s->id;?>"><?=html_entity_decode($s->nombre);?></option>
-                                  <?php endforeach ?>
-                                </select>
-
                                 <select class="select_document_view" id="proveedor_cpl<?=$t->id?>">
                                   <?php $proveedores=DatosAdmin::mostar_proveedores(); ?>
                                   <option value="">Selecciona un proveedor</option>

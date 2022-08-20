@@ -31,7 +31,12 @@ if(isset($_SESSION['car_stepp'])){
 			$idexhtmls.=$totalcount_car_items;
 			$idexhtmls.="</div>";
 			$idexhtmls.="<br>";
-			//// contenido 
+			//// contenido
+			//if($items->moneda_a){
+			//	$moneda_por_id_a=DatosAdmin::Mostrar_las_monedas_por_id($items->moneda_a)->simbolo;
+			//}else{
+			//	$moneda_por_id_a=false; 
+			//}
 			foreach($_SESSION["carrito"] as $c){
 				$producto=DatosAdmin::porID_producto($c["id_producto"]);
 				$typs_it=DatosAdmin::ver_opciones_type($producto->id);
@@ -40,7 +45,12 @@ if(isset($_SESSION['car_stepp'])){
 					foreach($typs_it as $tps){
 						$id_data=$c[0][$tps->id];
 						$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($id_data);
-						$volrtotal_precios+=$opt_data_details->precio;
+						if($opt_data_details->precio==1){
+							$open_producto = DatosAdmin::porID_producto($opt_data_details->item_k);
+							$volrtotal_precios+=$open_producto->precio_final;
+						}else{
+							$volrtotal_precios+=0;
+						}
 					}
 					$precio_nuevo_suma=$producto->precio_final+$volrtotal_precios;
 				}
@@ -252,7 +262,12 @@ if(isset($_SESSION['car_stepp'])){
 					foreach($typs_it as $tps){
 						$id_data=$c[0][$tps->id];
 						$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($id_data);
-						$volrtotal_precios+=$opt_data_details->precio;
+						if($opt_data_details->precio==1){
+							$open_producto = DatosAdmin::porID_producto($opt_data_details->item_k);
+							$volrtotal_precios+=$open_producto->precio_final;
+						}else{
+							$volrtotal_precios+=0;
+						}
 					}
 					$precio_nuevo_suma=$producto->precio_final+$volrtotal_precios;
 				}
@@ -425,7 +440,12 @@ if(isset($_SESSION['car_stepp'])){
 					foreach($typs_it as $tps){
 						$id_data=$c[0][$tps->id];
 						$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($id_data);
-						$volrtotal_precios+=$opt_data_details->precio;
+						if($opt_data_details->precio==1){
+							$open_producto = DatosAdmin::porID_producto($opt_data_details->item_k);
+							$volrtotal_precios+=$open_producto->precio_final;
+						}else{
+							$volrtotal_precios+=0;
+						}
 					}
 					$precio_nuevo_suma=$producto->precio_final+$volrtotal_precios;
 				}
@@ -608,7 +628,12 @@ if(isset($_SESSION['car_stepp'])){
 					$id_data=$c[0][$tps->id];
 					$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($id_data);
 					$idexhtmls.="<div class=\"title_descript_ok_opt title_descript_ok_opt_items\" data_type=\"".$tps->id."\" data_opt=\"".$opt_data_details->id."\">".$tps->nombre.": <span>".html_entity_decode($opt_data_details->nombre).$id_data."</span></div>";
-					$volrtotal_precios+=$opt_data_details->precio;
+						if($opt_data_details->precio==1){
+							$open_producto = DatosAdmin::porID_producto($opt_data_details->item_k);
+							$volrtotal_precios+=$open_producto->precio_final;
+						}else{
+							$volrtotal_precios+=0;
+						}
 				}
 				$precio_nuevo_suma=$producto->precio_final+$volrtotal_precios;
 				$idexhtmls.="<div class=\"peruvianprice\" itemprop=\"price\">Precio: S/. ".number_format($precio_nuevo_suma,2,".",",")."</div>";

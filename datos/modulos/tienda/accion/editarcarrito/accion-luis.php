@@ -36,7 +36,12 @@ if(isset($_SESSION['carrito'])){
 			foreach($typs_it as $tps){
 				$id_data=$cantidadtotalcarrito[0][$tps->id];
 				$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($id_data);
-				$volrtotal_precios+=$opt_data_details->precio;
+				if($opt_data_details->precio==1){
+					$open_producto = DatosAdmin::porID_producto($opt_data_details->item_k);
+					$volrtotal_precios+=$open_producto->precio_final;
+				}else{
+					$volrtotal_precios+=0;
+				}
 			}
 		}
 		$precio_nuevo_suma=$ptwo->precio_final+$volrtotal_precios;

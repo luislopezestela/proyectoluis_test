@@ -925,6 +925,12 @@ class DatosAdmin{
 		return Modelo::one($query[0],new DatosAdmin());
 	}
 
+	public static function cantidad_stock_de_producto_admin_sucursal($producto,$sucursal){
+		$sql = "select count(*) as c from stock where id_producto=$producto and id_sucursal=$sucursal";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new DatosAdmin());
+	}
+
 	public static function ContarPublicacionesMarket_seacrh($q){
 		$sql = "select count(*) as c from items where nombre like '%$q%' or codigo like '%$q%'";
 		$query = Ejecutor::doit($sql);
@@ -1180,6 +1186,12 @@ class DatosAdmin{
 
 
 	/// stock datas 
+	public static function stock_por_item_y_codigo($item,$barcode){
+		$sql = "select * from stock where id_producto=$item and barcode=$barcode";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new DatosAdmin());
+	}
+
 	public function actualizar_stock_items_procesador(){
 		$sql = "insert into stock (id_sucursal,proveedor,documento,num_documento,barcode,cpu,cpu_speed,id_producto,id_usuario,fecha) ";
 		$sql .= "value ($this->id_sucursal,$this->proveedor,$this->documento,\"$this->num_documento\",\"$this->barcode\",\"$this->cpu\",\"$this->cpu_speed\",$this->id_producto,$this->id_usuario,\"$this->fecha\")";

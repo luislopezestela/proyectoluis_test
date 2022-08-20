@@ -1159,13 +1159,13 @@ document.getElementById('searchlist').addEventListener('input', (e) => {
   	clean_searchs_box()
   }
 })
-$(document).on("keystrokeHandler", '#searchlist', function(){
+/*$(document).on("focus", '#searchlist', function(){
 	$(".system_curl_v_box_conten_lui").addClass("hidden_menu_mob");
 })
-$(document).on("keystrokeHandler", '#searchlist', function(){
+$(document).on("blur", '#searchlist', function(){
 	$(".system_curl_v_box_conten_lui").removeClass("hidden_menu_mob");
 })
-
+*/
 ////
 
 jQuery(document).ready(function (e) {

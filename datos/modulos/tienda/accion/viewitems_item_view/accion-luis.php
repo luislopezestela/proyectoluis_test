@@ -82,7 +82,7 @@ if(isset($items)){
 				$open_producto = DatosAdmin::porID_producto($detalles_opciones->item_k);
 				$es_seleccionado_nuevo_precio+=$open_producto->precio_final;
 			}else{
-				$es_seleccionado_nuevo_precio=0;
+				$es_seleccionado_nuevo_precio+=0;
 			}
 			
 		}
