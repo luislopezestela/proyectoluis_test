@@ -30,7 +30,9 @@ footer{position:relative;width:100%;align-items:flex-end;align-self:flex-end;bot
 	cursor:pointer;
 	fill:var(--color_primario);
 }
-
+.hidden_menu_mob .subs_conten_luis_menu_system,
+.hidden_menu_mob .subs_conten_luis_menu_system svg
+{height:0;position:relative;padding:0;border:0; transition: all 0.5s;}
 
 @media only screen and (max-width:920px){
 	footer{
@@ -46,4 +48,4 @@ footer{position:relative;width:100%;align-items:flex-end;align-self:flex-end;bot
 	.subs_conten_luis_menu_system{
 		padding:10px;
 	}
-}
+} 
