@@ -627,7 +627,7 @@ if(isset($_SESSION['car_stepp'])){
 				foreach($typs_it as $tps){
 					$id_data=$c[0][$tps->id];
 					$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($id_data);
-					$idexhtmls.="<div class=\"title_descript_ok_opt title_descript_ok_opt_items\" data_type=\"".$tps->id."\" data_opt=\"".$opt_data_details->id."\">".$tps->nombre.": <span>".html_entity_decode($opt_data_details->nombre).$id_data."</span></div>";
+					$idexhtmls.="<div class=\"title_descript_ok_opt title_descript_ok_opt_items\" data_type=\"".$tps->id."\" data_opt=\"".$opt_data_details->id."\">".$tps->nombre.": <span>".html_entity_decode($opt_data_details->nombre)."</span></div>";
 						if($opt_data_details->precio==1){
 							$open_producto = DatosAdmin::porID_producto($opt_data_details->item_k);
 							$volrtotal_precios+=$open_producto->precio_final;
