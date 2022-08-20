@@ -50,6 +50,15 @@ table[align~="left"]{
 @media only screen and (max-width: 550px){
 .boxpictureliststimg_thum_ind{display:none;}
 }
+@media only screen and (max-width: 450px){
+.item_description_data table,
+.item_description_data table tbody,
+.item_description_data table tbody,
+.item_description_data table tbody tr,
+.item_description_data table tbody th,
+.item_description_data table tbody td{display:block!important;width:100%!important;}
+
+}
 .buttons_controls_images{position:absolute;height:100%;width:100%;background-color:transparent;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;}
 .buttons_controls_images .control_img_iten{width:50%;}
 .cont_pag_r{display:flex;text-align:right;height:100%;justify-content:center;justify-content:flex-end;}
