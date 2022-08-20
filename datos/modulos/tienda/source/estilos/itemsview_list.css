@@ -64,7 +64,7 @@ table[align~="left"]{
 @media only screen and (max-width: 550px){
 .boxpictureliststimg_thum_ind{display:none;}
 }
-@media only screen and (max-width: 480px){
+@media only screen and (max-width: 450px){
 .item_description_data table,
 .item_description_data table tbody,
 .item_description_data table tbody,
