@@ -1150,8 +1150,6 @@ $(document).on("keyup", "#searchlist", function(){
 	  	}else{
 	  		clean_searchs_box()
 	  	}
-	  	
-	    console.log(data)
 	  }
 	});
 })
@@ -1161,10 +1159,10 @@ document.getElementById('searchlist').addEventListener('input', (e) => {
   	clean_searchs_box()
   }
 })
-$(document).on("focus", '#searchlist', function(){
+$(document).on("keystrokeHandler", '#searchlist', function(){
 	$(".system_curl_v_box_conten_lui").addClass("hidden_menu_mob");
 })
-$(document).on("blur", '#searchlist', function(){
+$(document).on("keystrokeHandler", '#searchlist', function(){
 	$(".system_curl_v_box_conten_lui").removeClass("hidden_menu_mob");
 })
 
