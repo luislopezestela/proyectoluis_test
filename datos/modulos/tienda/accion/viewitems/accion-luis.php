@@ -49,12 +49,12 @@ if(count($items_viewa)>0){
 			$idexhtmls.="<span class=\"title_item_view_list\">".html_entity_decode($tms->nombre)."</span>";
 			$idexhtmls.="</div>";
 			$idexhtmls.="<div class=\"price_view_items\">";
-			if($tms->moneda_b){
-				$moneda_por_id_b=DatosAdmin::Mostrar_las_monedas_por_id($tms->moneda_b)->simbolo;
+			if($tms->moneda_a){
+				$moneda_por_id_a=DatosAdmin::Mostrar_las_monedas_por_id($tms->moneda_a)->simbolo;
 			}else{
-				$moneda_por_id_b=false; 
+				$moneda_por_id_a=false; 
 			}
-			$idexhtmls.="<span class=\"price_view_items_price\"> ".$moneda_por_id_b.".".$tms->precio_final."</span>";
+			$idexhtmls.="<span class=\"price_view_items_price\"> ".$moneda_por_id_a.".".$tms->precio_final."</span>";
 			$idexhtmls.="</div>";
 			$idexhtmls.="</div>";
 			$idexhtmls.="</div>";
