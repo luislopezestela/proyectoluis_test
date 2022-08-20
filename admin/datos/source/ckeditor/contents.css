@@ -10,7 +10,23 @@ body{
 	font-size: 13px;
 	line-height:1.6;
 	word-wrap:break-word;
-} 
+}
+table[align~="right"]{
+	display:table;
+    margin-left:auto;
+    margin-right:0px;
+    position:relative;
+    right: 0;
+    float:initial!important;
+}
+table[align~="left"]{
+	display:table;
+    margin-left:0px;
+    margin-right:auto;
+    position:relative;
+    left: 0;
+    float:initial!important;
+}
 blockquote{
 	font-style: italic;
 	font-family: Georgia, Times, "Times New Roman", serif;

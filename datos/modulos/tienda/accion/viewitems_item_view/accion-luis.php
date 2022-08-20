@@ -212,7 +212,7 @@ if(isset($items)){
 	$idexhtmls.="</form>";
 	$idexhtmls.="";
 	$idexhtmls.="</div>";
-	$idexhtmls.="<br>";
+	$idexhtmls.="";
 	$idexhtmls.="<div class='item_description_data'>";
 	$idexhtmls.=html_entity_decode($items->descripcion);
 	$idexhtmls.="</div>";
