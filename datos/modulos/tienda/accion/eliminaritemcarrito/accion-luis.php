@@ -3,14 +3,11 @@ $basepagina = Luis::basepage("base_page");
 $total=0;
 $controlcarts=false;
 $totalpricelist=false;
-$datacontrol=false;
 $cantidad_de_items=0;
-if(count($_SESSION["carrito"])<1){
+if(isset($_SESSION["carrito"])==0){
 	unset($_SESSION["carrito"]);
-	$controlcarts=true;
-	$datacontrol='<br><p class="txtcarritovacio">No tienes productos en tu carrito</p><a href="'.$basepagina.'productos" class="button_list_order">Ir a comprar ahora</a><br>';
+	
 }else{
-	$controlcarts=false;
 	$products = $_SESSION["carrito"];
 	$news = array();
 	foreach ($products as $product) {
@@ -28,16 +25,45 @@ if(isset($_SESSION['carrito'])){
 		$volrtotal_precios=0;
 		if(count($typs_it)>0){
 			foreach($typs_it as $tps){
-				$id_data=$cantidadtotalcarrito[0][$tps->id];
-				$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($id_data);
-				$volrtotal_precios+=$opt_data_details->precio;
+				if(isset($cantidadtotalcarrito[0][$tps->id])){
+					$id_data=$cantidadtotalcarrito[0][$tps->id];
+					$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($id_data);
+					if($opt_data_details->precio==1){
+						$open_producto = DatosAdmin::porID_producto($opt_data_details->item_k);
+						$volrtotal_precios+=$open_producto->precio_final;
+					}else{
+						$volrtotal_precios+=0;
+					}
+				}else{
+
+				}
+				
 			}
 		}
 		$precio_nuevo_suma=$ptwo->precio_final+$volrtotal_precios;
 		$cantidad_de_items += $cantidadtotalcarrito["q"];
 		$total += $cantidadtotalcarrito["q"]*$precio_nuevo_suma;
 	}
-	$totalpricelist="Total: S/. <span>".number_format($total,2,".",",")."</span>";
+
+	if($cantidad_de_items==0){
+		$controlcarts=true;
+		$datacontrol="<h2 class=\"titulo2carrito\">".str_replace("_"," ",Luis::lang("carrito_sin_productos"))."</h2>";
+		$datacontrol.="<hr>";
+		$datacontrol.="<h3 class=\"subtitulocarrito\">".str_replace("_"," ",Luis::lang("encuentra_productos_a_los_mejores_precios")).".</h3>";
+		$datacontrol.="<div class=\"butt_luis_one\">";
+		$datacontrol.="<a class=\"botoniniciacompra menupagecurrent\" aria-label=\"inicio\" role=\"link\" href=\"".$basepagina."\"><span>".str_replace("_"," ",Luis::lang("inicio"))."</span></a>";
+		$datacontrol.="</div>";
+	}else{
+		$controlcarts=false;
+		$datacontrol=false;
+	}
+	$moneda_principal = DatosAdmin::mostrar_la_moneda_principal();
+	if($moneda_principal){
+		$moneda_por_id_a=$moneda_principal->simbolo;
+	}else{
+		$moneda_por_id_a=false; 
+	}
+	$totalpricelist=$moneda_por_id_a.". <span>".number_format($total,2,".",",")."</span>";
 	echo json_encode(array('estado' => "exito", 'nullcarts' => $controlcarts,'totalpriceorderslist' => $totalpricelist,'controlsup' => $datacontrol,'cantidad' => $cantidad_de_items));
 }else{
 	echo json_encode(array('estado' => "error",'cantidad' => 0,'nullcarts' => $controlcarts,'totalpriceorderslist' => $totalpricelist));

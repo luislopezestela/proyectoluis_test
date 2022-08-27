@@ -1951,7 +1951,7 @@ class DatosAdmin{
 
 	////*** actualizar el metodo de pago en la compra en web
 	public function actualizar_el_metodo_de_pago_page(){
-		$sql = "update ventas SET metodo_pago=$this->metodo_pago where id=$this->id";
+		$sql = "update ventas SET metodo_pago=$this->metodo_pago,cliente_doc=\"$this->cliente_doc\" where id=$this->id";
 		Ejecutor::doit($sql);
 	}
 
@@ -1961,9 +1961,21 @@ class DatosAdmin{
 		Ejecutor::doit($sql);
 	}
 
+	public static function ventas_contar_cliente($persona,$estado){
+		$sql = "select count(*) as c from ventas where cliente=$persona and estado_de_venta=$estado";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new DatosAdmin());
+	}
+
 	///***
 	public static function ventas_registrados_verificar($dataa){
 		$sql = "select * from ventas where cliente=$dataa and estado_de_venta=0";
+		$query = Ejecutor::doit($sql);
+		return Modelo::many($query[0],new DatosAdmin());
+	}
+
+	public static function compras_de_cliente($cliente){
+		$sql = "select * from ventas where cliente=$cliente";
 		$query = Ejecutor::doit($sql);
 		return Modelo::many($query[0],new DatosAdmin());
 	}

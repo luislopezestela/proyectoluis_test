@@ -28,23 +28,23 @@ if(isset($_SESSION['usuarioid'])){
 	if(isset($r[1])){
 		$number_page=$r[1];
 	}else{
-		$number_page="perfil";
+		$number_page=Luis::lang('perfil');;
 	}
 	if($number_page=="direcciones"){
 		$displ_active1="opacit";
-		$title_optio_perfiles="DIRECCIONES";
+		$title_optio_perfiles=Luis::lang('direcciones');
 	}elseif($number_page=="historial_compras"){
 		$displ_active2="opacit";
-		$title_optio_perfiles="HISTORIAL DE COMPRAS";
+		$title_optio_perfiles=Luis::lang('compras');
 	}elseif($number_page=="configurar"){
 		$displ_active3="opacit";
-		$title_optio_perfiles="CONFIGURAR";
+		$title_optio_perfiles=Luis::lang('configurar');
 	}elseif($number_page=="cambiar_pass"){
 		$displ_active4="opacit";
-		$title_optio_perfiles="CAMBIAR CONTRASE&Ntilde;A";
+		$title_optio_perfiles=Luis::lang('cambiar_contrasena');;
 	}elseif($number_page=="perfil"){
 		$displ_active="opacit";
-		$title_optio_perfiles="PERFIL";
+		$title_optio_perfiles=Luis::lang('perfil');;
 	}
 
 	$idexhtmls="<div class=\"b_contenido_onb_page_luis\">";
@@ -84,7 +84,7 @@ if(isset($_SESSION['usuarioid'])){
 																							$idexhtmls.='<div class="perfil_left_data_list_a_data_name_b">';
 																								$idexhtmls.='<div class="perfil_left_data_list_a_data_name_c">';
 																									$idexhtmls.='<span class="perfil_left_data_list_a_data_name_d">';
-																										$idexhtmls.='<span class="perfil_left_data_list_a_data_name_e">PERFIL</span>';
+																										$idexhtmls.='<span class="perfil_left_data_list_a_data_name_e">'.Luis::lang('perfil').'</span>';
 																									$idexhtmls.='</span>';
 																								$idexhtmls.='</div>';
 																							$idexhtmls.='</div>';
@@ -114,7 +114,7 @@ if(isset($_SESSION['usuarioid'])){
 																							$idexhtmls.='<div class="perfil_left_data_list_a_data_name_b">';
 																								$idexhtmls.='<div class="perfil_left_data_list_a_data_name_c">';
 																									$idexhtmls.='<span class="perfil_left_data_list_a_data_name_d">';
-																										$idexhtmls.='<span class="perfil_left_data_list_a_data_name_e">DIRECCIONES</span>';
+																										$idexhtmls.='<span class="perfil_left_data_list_a_data_name_e">'.Luis::lang('direcciones').'</span>';
 																									$idexhtmls.='</span>';
 																								$idexhtmls.='</div>';
 																							$idexhtmls.='</div>';
@@ -134,7 +134,7 @@ if(isset($_SESSION['usuarioid'])){
 																			$idexhtmls.='<div class="perfil_left_data_list_a_data">';
 																				$idexhtmls.='<div class="perfil_left_data_list_a_data_icon">';
 																					$idexhtmls.='<svg height="36" viewBox="0 0 24 24" width="36">';
-																							$idexhtmls.='<path d="m24 12a1 1 0 0 1 -2 0 10.011 10.011 0 0 0 -10-10 1 1 0 0 1 0-2 12.013 12.013 0 0 1 12 12zm-8 1a1 1 0 0 0 0-2h-2.277a2 2 0 0 0 -.723-.723v-3.277a1 1 0 0 0 -2 0v3.277a1.994 1.994 0 1 0 2.723 2.723zm-14.173-6.216a1 1 0 1 0 1 1 1 1 0 0 0 -1-1zm.173 5.216a1 1 0 1 0 -1 1 1 1 0 0 0 1-1zm10 10a1 1 0 1 0 1 1 1 1 0 0 0 -1-1zm-7.779-18.793a1 1 0 1 0 1 1 1 1 0 0 0 -1-1zm3.558-2.366a1 1 0 1 0 1 1 1 1 0 0 0 -1-1zm-5.952 14.375a1 1 0 1 0 1 1 1 1 0 0 0 -1-1zm2.394 3.577a1 1 0 1 0 1 1 1 1 0 0 0 -1-1zm3.558 2.366a1 1 0 1 0 1 1 1 1 0 0 0 -1-1zm14.394-5.943a1 1 0 1 0 1 1 1 1 0 0 0 -1-1zm-2.394 3.577a1 1 0 1 0 1 1 1 1 0 0 0 -1-1zm-3.558 2.366a1 1 0 1 0 1 1 1 1 0 0 0 -1-1z"/>';
+																							$idexhtmls.='<path d="M24,10,21.8,0H2.2L.024,9.783,0,11a3.966,3.966,0,0,0,1,2.618V21a3,3,0,0,0,3,3H20a3,3,0,0,0,3-3V13.618A3.966,3.966,0,0,0,24,11ZM2,10.109,3.8,2H7V6H9V2h6V6h2V2h3.2L22,10.109V11a2,2,0,0,1-2,2H19a2,2,0,0,1-2-2H15a2,2,0,0,1-2,2H11a2,2,0,0,1-2-2H7a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2ZM20,22H4a1,1,0,0,1-1-1V14.858A3.939,3.939,0,0,0,4,15H5a3.975,3.975,0,0,0,3-1.382A3.975,3.975,0,0,0,11,15h2a3.99,3.99,0,0,0,3-1.357A3.99,3.99,0,0,0,19,15h1a3.939,3.939,0,0,0,1-.142V21A1,1,0,0,1,20,22Z"/>';
 																					$idexhtmls.='</svg>';
 																				$idexhtmls.='</div>';
 
@@ -144,7 +144,7 @@ if(isset($_SESSION['usuarioid'])){
 																							$idexhtmls.='<div class="perfil_left_data_list_a_data_name_b">';
 																								$idexhtmls.='<div class="perfil_left_data_list_a_data_name_c">';
 																									$idexhtmls.='<span class="perfil_left_data_list_a_data_name_d">';
-																										$idexhtmls.='<span class="perfil_left_data_list_a_data_name_e">HISTORIAL DE COMPRAS</span>';
+																										$idexhtmls.='<span class="perfil_left_data_list_a_data_name_e">'.Luis::lang('compras').'</span>';
 																									$idexhtmls.='</span>';
 																								$idexhtmls.='</div>';
 																							$idexhtmls.='</div>';
@@ -174,7 +174,7 @@ if(isset($_SESSION['usuarioid'])){
 																							$idexhtmls.='<div class="perfil_left_data_list_a_data_name_b">';
 																								$idexhtmls.='<div class="perfil_left_data_list_a_data_name_c">';
 																									$idexhtmls.='<span class="perfil_left_data_list_a_data_name_d">';
-																										$idexhtmls.='<span class="perfil_left_data_list_a_data_name_e">CONFIGURAR</span>';
+																										$idexhtmls.='<span class="perfil_left_data_list_a_data_name_e">'.Luis::lang('configurar').'</span>';
 																									$idexhtmls.='</span>';
 																								$idexhtmls.='</div>';
 																							$idexhtmls.='</div>';
@@ -204,7 +204,7 @@ if(isset($_SESSION['usuarioid'])){
 																							$idexhtmls.='<div class="perfil_left_data_list_a_data_name_b">';
 																								$idexhtmls.='<div class="perfil_left_data_list_a_data_name_c">';
 																									$idexhtmls.='<span class="perfil_left_data_list_a_data_name_d">';
-																										$idexhtmls.='<span class="perfil_left_data_list_a_data_name_e">CAMBIAR CONTRASE&Ntilde;A</span>';
+																										$idexhtmls.='<span class="perfil_left_data_list_a_data_name_e">'.Luis::lang('cambiar_contrasena').'</span>';
 																									$idexhtmls.='</span>';
 																								$idexhtmls.='</div>';
 																							$idexhtmls.='</div>';
@@ -229,19 +229,22 @@ if(isset($_SESSION['usuarioid'])){
 																					$idexhtmls.='</svg>';
 																				$idexhtmls.='</div>';
 
-																				$idexhtmls.='<div class="perfil_left_data_list_a_data_name">';
-																					$idexhtmls.='<div class="perfil_left_data_list_a_data_name_a">';
-																						$idexhtmls.='<div>';
-																							$idexhtmls.='<div class="perfil_left_data_list_a_data_name_b">';
-																								$idexhtmls.='<div class="perfil_left_data_list_a_data_name_c">';
-																									$idexhtmls.='<span class="perfil_left_data_list_a_data_name_d">';
-																										$idexhtmls.='<span class="perfil_left_data_list_a_data_name_e">Cerrar sesion</span>';
-																									$idexhtmls.='</span>';
+																				if(isset($_SESSION['usuarioid'])){
+																					$idexhtmls.='<div class="perfil_left_data_list_a_data_name">';
+																						$idexhtmls.='<div class="perfil_left_data_list_a_data_name_a">';
+																							$idexhtmls.='<div>';
+																								$idexhtmls.='<div class="perfil_left_data_list_a_data_name_b">';
+																									$idexhtmls.='<div class="perfil_left_data_list_a_data_name_c">';
+																										$idexhtmls.='<span class="perfil_left_data_list_a_data_name_d">';
+																											$idexhtmls.='<span class="perfil_left_data_list_a_data_name_e">'.Luis::lang("cerrar_session").'</span>';
+																										$idexhtmls.='</span>';
+																									$idexhtmls.='</div>';
 																								$idexhtmls.='</div>';
 																							$idexhtmls.='</div>';
 																						$idexhtmls.='</div>';
 																					$idexhtmls.='</div>';
-																				$idexhtmls.='</div>';
+																				}
+
 																			$idexhtmls.='</div>';
 																			$idexhtmls.='<div class="perfil_left_data_list_a_data_x">';
 																			$idexhtmls.='</div>';
@@ -321,16 +324,55 @@ if(isset($_SESSION['usuarioid'])){
 																									}
 																								$idexhtmls.='</div>';
 																							}elseif($number_page=="historial_compras"){
-																								// code...
+																								$idexhtmls.='<div class="box_page_compras_contenido">';
+																									$lista_de_compras = DatosAdmin::compras_de_cliente($_SESSION['usuarioid']);
+																									if(count($lista_de_compras)>0){
+																										foreach ($lista_de_compras as $com) {
+																											$idexhtmls.='<div class="box_page_compras_lista">';
+																												$idexhtmls.='<div class="box_page_compras_head">';
+																													$idexhtmls.='<div class="left"><span>'.$com->numero_venta.'</span></div>';
+																													if($com->estado_de_venta==2){
+																														$idexhtmls.='<div class="center comp_op_a"><span>'.Luis::lang("cancelado").'</span></div>';
+																													}elseif($com->estado_de_venta==3){
+																														$idexhtmls.='<div class="center comp_op_b"><span>'.Luis::lang("entregado").'</span></div>';
+																													}elseif($com->estado_de_venta==4){
+																														$idexhtmls.='<div class="center comp_op_c"><span>'.Luis::lang("reservado").'</span></div>';
+																													}elseif($com->estado_de_venta==5){
+																														$idexhtmls.='<div class="center comp_op_d"><span>'.Luis::lang("pendiente").'</span></div>';
+																													}elseif($com->estado_de_venta==6){
+																														$idexhtmls.='<div class="center comp_op_e"><span>'.Luis::lang("recibido").'</span></div>';
+																													}elseif($com->estado_de_venta==7){
+																														$idexhtmls.='<div class="center comp_op_f"><span>'.Luis::lang("finalizado").'</span></div>';
+																													}
+																													
+																													$idexhtmls.='<div class="right"><span>'.Luis::lang("documento").'</span></div>';
+																												$idexhtmls.='</div>';
+
+																												$idexhtmls.='<div class="box_page_compras_body">';
+																													$idexhtmls.='<div class="box_page_compras_body_resd">';
+																														$idexhtmls.='<span class="date_name_bod">'.Luis::lang("resumen").'</span>';
+																														$idexhtmls.='';
+																													$idexhtmls.='</div>';
+																													$idexhtmls.='<span class="date_name_bod">'.Luis::lang("comprado")." ".Functions::fechasluislopes($com->fecha).'</span>';
+																												$idexhtmls.='</div>';
+																											$idexhtmls.='</div>';
+																										}
+																									}else{
+																										// code...
+																									}
+																									
+
+																									
+																								$idexhtmls.='</div>';
 																							}elseif($number_page=="configurar"){
 																								$idexhtmls.='<div class="box_page_perfil_user_details">';
-																								$idexhtmls.='<span>DNI: <input class="class_tipe_upt_d" type="text" value="'.$per->dni.'"></span>';
-																								$idexhtmls.='<span>NOMBRES: <input class="class_tipe_upt_n" type="text" value="'.html_entity_decode($per->nombre).'"></span>';
-																								$idexhtmls.='<span>APELLIDO PATERNO: <input class="class_tipe_upt_p" type="text" value="'.html_entity_decode($per->apellido_paterno).'"></span>';
-																								$idexhtmls.='<span>APELLIDO MATERNO: <input class="class_tipe_upt_m" type="text" value="'.html_entity_decode($per->apellido_materno).'"></span>';
+																								$idexhtmls.='<span>'.Luis::lang("dni").': <input class="class_tipe_upt_d" type="text" value="'.$per->dni.'"></span>';
+																								$idexhtmls.='<span>'.Luis::lang("nombres").': <input class="class_tipe_upt_n" type="text" value="'.html_entity_decode($per->nombre).'"></span>';
+																								$idexhtmls.='<span>'.Luis::lang("apellido_paterno").': <input class="class_tipe_upt_p" type="text" value="'.html_entity_decode($per->apellido_paterno).'"></span>';
+																								$idexhtmls.='<span>'.Luis::lang("apellido_materno").': <input class="class_tipe_upt_m" type="text" value="'.html_entity_decode($per->apellido_materno).'"></span>';
 																								$idexhtmls.='</div>';
 																								$idexhtmls.='<div class="butttons_box_content">';
-																								$idexhtmls.='<button class="custom-btn btn_saved_grange btn_saved_grange_use">GUARDAR</button>';
+																								$idexhtmls.='<button class="custom-btn btn_saved_grange btn_saved_grange_use">'.Luis::lang("guardar").'</button>';
 																								$idexhtmls.='</div>';
 																							}elseif($number_page=="cambiar_pass"){
 																								$idexhtmls.='<div class="conten_display_pass">';
@@ -367,7 +409,7 @@ if(isset($_SESSION['usuarioid'])){
 
 																								$idexhtmls.='<div class="contenido_accesos_directos_pags">';
 																									$idexhtmls.='<div class="contenido_accesos_directos_pags_lines">';
-																									$idexhtmls.='<span class="head_acceso_direc">Billetera</span>';
+																									$idexhtmls.='<span class="head_acceso_direc">'.Luis::lang("billetera").'</span>';
 																									$idexhtmls.='<svg class="acceso_direc_a" viewBox="0 0 24 24" width="35" height="35">';
 																									$idexhtmls.='<path d="M21,6H5c-.859,0-1.672-.372-2.235-.999,.55-.614,1.349-1.001,2.235-1.001H23c1.308-.006,1.307-1.995,0-2H5C2.239,2,0,4.239,0,7v10c0,2.761,2.239,5,5,5H21c1.657,0,3-1.343,3-3V9c0-1.657-1.343-3-3-3Zm-1,9c-1.308-.006-1.308-1.994,0-2,1.308,.006,1.308,1.994,0,2Z"/>';
 																									$idexhtmls.='</svg>';
@@ -375,16 +417,7 @@ if(isset($_SESSION['usuarioid'])){
 																									$idexhtmls.='</div>';
 
 																									$idexhtmls.='<div class="contenido_accesos_directos_pags_lines">';
-																									$idexhtmls.='<span class="head_acceso_direc">Estado compra</span>';
-																									$idexhtmls.='<svg class="acceso_direc_a" viewBox="0 0 24 24" width="36" height="36">';
-																									$idexhtmls.='<path d="M11.948,24.009l-.354-.157C11.2,23.679,2,19.524,2,12V5.476A2.983,2.983,0,0,1,4.051,2.644L12,.009l7.949,2.635A2.983,2.983,0,0,1,22,5.476V12c0,8.577-9.288,11.755-9.684,11.887ZM12,2.106,4.684,4.532A.992.992,0,0,0,4,5.476V12c0,5.494,6.44,9.058,8.047,9.861C13.651,21.216,20,18.263,20,12V5.476a.992.992,0,0,0-.684-.944Z"/>';
-																									$idexhtmls.='<path d="M11.111,14.542h-.033a1.872,1.872,0,0,1-1.345-.6l-2.306-2.4L8.868,10.16,11.112,12.5l5.181-5.181,1.414,1.414-5.261,5.261A1.873,1.873,0,0,1,11.111,14.542Z"/>';
-																									$idexhtmls.='</svg>';
-																									$idexhtmls.='<span class="acceso_direc_b">-</span>';
-																									$idexhtmls.='</div>';
-
-																									$idexhtmls.='<div class="contenido_accesos_directos_pags_lines">';
-																									$idexhtmls.='<span class="head_acceso_direc">Deuda</span>';
+																									$idexhtmls.='<span class="head_acceso_direc">'.Luis::lang("deuda").'</span>';
 																									$idexhtmls.='<svg class="acceso_direc_a" viewBox="0 0 24 24" width="36" height="36">';
 																									$idexhtmls.='<path d="M12.5,0H5.5c-1.378,0-2.5,1.121-2.5,2.5v6.5H15V2.5c0-1.379-1.122-2.5-2.5-2.5Zm-1.5,2v2H7V2h4Zm12.152,6.681c-.515-.469-1.186-.712-1.878-.678-.697,.032-1.339,.334-1.794,.835l-3.541,3.737c.032,.21,.065,.42,.065,.638,0,2.083-1.555,3.876-3.617,4.17l-4.241,.606-.283-1.979,4.241-.606c1.084-.155,1.9-1.097,1.9-2.191,0-1.22-.993-2.213-2.213-2.213H3.003C1.349,11,.003,12.346,.003,14v7c0,1.654,1.346,3,3,3H12.667l10.674-11.655c.948-1.062,.862-2.707-.189-3.665Z"/>';
 																									$idexhtmls.='</svg>';
@@ -392,14 +425,46 @@ if(isset($_SESSION['usuarioid'])){
 																									$idexhtmls.='</div>';
 
 																									$idexhtmls.='<div class="contenido_accesos_directos_pags_lines">';
-																									$idexhtmls.='<span class="head_acceso_direc">Total compras</span>';
+																									$idexhtmls.='<span class="head_acceso_direc">'.Luis::lang("compras_pendientes").'</span>';
+																									$idexhtmls.='<svg class="acceso_direc_a" viewBox="0 0 24 24" width="36" height="36">';
+																									$idexhtmls.='<path d="M17,10.039c-3.859,0-7,3.14-7,7,0,3.838,3.141,6.961,7,6.961s7-3.14,7-7c0-3.838-3.141-6.961-7-6.961Zm0,11.961c-2.757,0-5-2.226-5-4.961,0-2.757,2.243-5,5-5s5,2.226,5,4.961c0,2.757-2.243,5-5,5Zm1.707-4.707c.391,.391,.391,1.023,0,1.414-.195,.195-.451,.293-.707,.293s-.512-.098-.707-.293l-1-1c-.188-.188-.293-.442-.293-.707v-2c0-.552,.447-1,1-1s1,.448,1,1v1.586l.707,.707Zm5.293-10.293v2c0,.552-.447,1-1,1s-1-.448-1-1v-2c0-1.654-1.346-3-3-3H5c-1.654,0-3,1.346-3,3v1H11c.552,0,1,.448,1,1s-.448,1-1,1H2v9c0,1.654,1.346,3,3,3h4c.552,0,1,.448,1,1s-.448,1-1,1H5c-2.757,0-5-2.243-5-5V7C0,4.243,2.243,2,5,2h1V1c0-.552,.448-1,1-1s1,.448,1,1v1h8V1c0-.552,.447-1,1-1s1,.448,1,1v1h1c2.757,0,5,2.243,5,5Z"/>';
+																									$idexhtmls.='</svg>';
+																									if(isset($_SESSION['usuarioid'])){
+																										$compras_pendientes_list = DatosAdmin::ventas_contar_cliente($_SESSION['usuarioid'],5)->c;
+																									}else{
+																										$compras_pendientes_list = "-";
+																									}
+																									
+																									$idexhtmls.='<span class="acceso_direc_b">'.$compras_pendientes_list.'</span>';
+																									$idexhtmls.='</div>';
+
+																									$idexhtmls.='<div class="contenido_accesos_directos_pags_lines">';
+																									$idexhtmls.='<span class="head_acceso_direc">'.Luis::lang("total_compras").'</span>';
 																									$idexhtmls.='<svg class="acceso_direc_a" viewBox="0 0 24 24" width="36" height="36">';
 																									$idexhtmls.='<path d="M18,12a5.993,5.993,0,0,1-5.191-9H4.242L4.2,2.648A3,3,0,0,0,1.222,0H1A1,1,0,0,0,1,2h.222a1,1,0,0,1,.993.883l1.376,11.7A5,5,0,0,0,8.557,19H19a1,1,0,0,0,0-2H8.557a3,3,0,0,1-2.821-2H17.657a5,5,0,0,0,4.921-4.113l.238-1.319A5.984,5.984,0,0,1,18,12Z"/>';
 																									$idexhtmls.='<circle cx="7" cy="22" r="2"/>';
 																									$idexhtmls.='<circle cx="17" cy="22" r="2"/>';
 																									$idexhtmls.='<path d="M15.733,8.946a1.872,1.872,0,0,0,1.345.6h.033a1.873,1.873,0,0,0,1.335-.553l4.272-4.272A1,1,0,1,0,21.3,3.3L17.113,7.494,15.879,6.17a1,1,0,0,0-1.463,1.366Z"/>';
 																									$idexhtmls.='</svg>';
-																									$idexhtmls.='<span class="acceso_direc_b">0</span>';
+																									if(isset($_SESSION['usuarioid'])){
+																										$compras_total_list = DatosAdmin::ventas_contar_cliente($_SESSION['usuarioid'],4)->c;
+																									}else{
+																										$compras_total_list = "0";
+																									}
+																									$idexhtmls.='<span class="acceso_direc_b">'.$compras_total_list.'</span>';
+																									$idexhtmls.='</div>';
+
+																									$idexhtmls.='<div class="contenido_accesos_directos_pags_lines">';
+																									$idexhtmls.='<span class="head_acceso_direc">'.Luis::lang("reservados").'</span>';
+																									$idexhtmls.='<svg class="acceso_direc_a" viewBox="0 0 24 24" width="36" height="36">';
+																									$idexhtmls.='<path d="M18.987,1.975h-6.528c-.154,0-.31-.037-.447-.105L8.856,.291c-.414-.207-.878-.316-1.342-.316h-2.527C2.23-.025-.013,2.218-.013,4.975v12c0,1.779,.958,3.438,2.499,4.33,.479,.278,1.09,.113,1.366-.364,.277-.479,.113-1.09-.364-1.366-.926-.536-1.501-1.532-1.501-2.6V7.975H21.987v9c0,1.067-.575,2.063-1.501,2.6-.478,.276-.642,.888-.364,1.366,.185,.32,.521,.499,.866,.499,.17,0,.342-.043,.5-.135,1.541-.892,2.499-2.551,2.499-4.33V6.975c0-2.757-2.243-5-5-5ZM1.987,4.975c0-1.654,1.346-3,3-3h2.527c.154,0,.31,.036,.447,.105l3.156,1.579c.415,.206,.879,.315,1.341,.315h6.528c1.302,0,2.402,.839,2.816,2H1.987v-1Zm9.991,5c-3.859,0-7,3.141-7,7s3.141,7,7,7,7-3.141,7-7-3.141-7-7-7Zm0,12c-2.757,0-5-2.243-5-5s2.243-5,5-5,5,2.243,5,5-2.243,5-5,5Zm1.707-4.707c.391,.391,.391,1.023,0,1.414-.195,.195-.451,.293-.707,.293s-.512-.098-.707-.293l-1-1c-.188-.188-.293-.441-.293-.707v-2c0-.553,.447-1,1-1s1,.447,1,1v1.586l.707,.707Z"/>';
+																									$idexhtmls.='</svg>';
+																									if(isset($_SESSION['usuarioid'])){
+																										$compras_total_list = DatosAdmin::ventas_contar_cliente($_SESSION['usuarioid'],3)->c;
+																									}else{
+																										$compras_total_list = "0";
+																									}
+																									$idexhtmls.='<span class="acceso_direc_b">'.$compras_total_list.'</span>';
 																									$idexhtmls.='</div>';
 
 																								$idexhtmls.='</div>';

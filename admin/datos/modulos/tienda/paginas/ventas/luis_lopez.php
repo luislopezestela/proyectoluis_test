@@ -69,18 +69,34 @@ if(isset($_SESSION["admin_id"])){
 													<div class="items_detail_list_order_p_sty">
 														<span class="items_detail_name_star_order"><?=html_entity_decode($item_view_in_order->nombre);?></span>
 														<span class="items_detail_name_star_order items_detail_name_conten_ends_order_ins_head_b">
-														<?php foreach ($item_option_type_view as $v_iop):
-															$view_data_sub_one_details = DatosAdmin::view_iten_in_pages_por_id($v_iop->id_opcion_sub);
-															$view_type_options_details = DatosAdmin::ver_opciones_type_por_id($view_data_sub_one_details->id_opciones_type);
-															$volrtotal_precios+=$view_data_sub_one_details->precio;?>
-															<div class="items_detail_name_conten_ends_order_ins_head">
-																<span class="items_detail_name_star_order_ins">
-																	<?=html_entity_decode($view_type_options_details->nombre.": ");?>		
-																</span>
-																<span class="items_detail_name_conten_ends_order_ins">
-																	<?=html_entity_decode($view_data_sub_one_details->nombre);?>		
-																</span>
-															</div>
+														<?php foreach ($item_option_type_view as $v_iop): 
+															?>
+															<?php if($v_iop->id_opcion_sub):
+																$view_data_sub_one_details = DatosAdmin::view_iten_in_pages_por_id($v_iop->id_opcion_sub);
+																
+																?>
+																<?php if(isset($view_data_sub_one_details->id_opciones_type)): ?>
+																	<?php $view_type_options_details = DatosAdmin::ver_opciones_type_por_id($view_data_sub_one_details->id_opciones_type); ?>
+																	<div class="items_detail_name_conten_ends_order_ins_head">
+																		<span class="items_detail_name_star_order_ins">
+																			<?=html_entity_decode($view_type_options_details->nombre.": ");?>		
+																		</span> 
+																		<span class="items_detail_name_conten_ends_order_ins">
+																			<?=html_entity_decode($view_data_sub_one_details->nombre);?>		
+																		</span>
+																	</div>
+																
+																
+																<?php $volrtotal_precios+=$view_data_sub_one_details->precio; ?>
+																<?php else: ?>
+																	<div class="items_detail_name_conten_ends_order_ins_head">
+																		<span class="items_detail_name_star_order_ins">
+																			<?=html_entity_decode($view_type_options_details->nombre.":ssssssssssssssssssss ");?>		
+																		</span>
+																	</div>
+																<?php $volrtotal_precios+=0; ?>
+																<?php endif ?>
+															<?php endif ?>
 														<?php endforeach ?>
 														<?php $precio_nuevo_suma=$item_view_in_order->precio_final+$volrtotal_precios; ?>
 														</span>

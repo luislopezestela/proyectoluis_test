@@ -71,7 +71,7 @@ $(document).on("click", ".sess_input_button789_b", function(){
 		}
 	});
 })
-
+ 
 
 $(document).on("click", ".btn_new_ge_use_persons_pass_ing", function(e){
 	let u_a = $(".pass_g_ntr_a").val();

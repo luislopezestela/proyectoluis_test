@@ -3,6 +3,21 @@
  * Luis lopez estela funcrions
  */
 class Functions{
+    public static function poner_subguion($url){
+        $url = strtolower($url);
+        $find = array('á','é','í','ó','ú','â','ê','î','ô','û','ã','õ','ç','ñ');
+        $repl = array('a','e','i','o','u','a','e','i','o','u','a','o','c','n');
+        $url = str_replace($find, $repl, $url);
+        $find = array('<','>','div','styletext');
+        $url = str_replace($find, '', $url);
+        $find = array(' ', '&', '\r\n', '\n','+','amp');
+        $url = str_replace($find, '-', $url);
+        $find = array('/[^a-z0-9\-<>]/', '/[\-]+/', '/<{^>*>/');
+        $repl = array('', '_', '');
+        $url = preg_replace($find, $repl, $url);
+        return $url;
+    }
+
     public static function getUpadtesdsd($principal,$cambio){
         $returnHtml = array();
         $page = 'https://www.google.com/finance/quote/'.$cambio.'-'.$principal;

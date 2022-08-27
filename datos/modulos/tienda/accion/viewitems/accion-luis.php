@@ -24,8 +24,6 @@ if(count($items_viewa)>0){
 		if($chek_item==$tms->id){
 		}else{
 			$image_int=DatosImagenes::mostrar_imagen_items_carta($tms->id);
-
-			
 			$idexhtmls.="<div class=\"items_list_views\">";
 			$idexhtmls.="<a class=\"view_items_lista_view_page\" href=\"".$base.$view->ukr."/".$tms->ukr."\" aria-label=\"".$tms->ukr."\" data_null_page=\"".$carta_list->ukr."\" data_int=\"2\">";
 			$idexhtmls.="<div class=\"boxpictureliststb\">";

@@ -46,6 +46,7 @@ if(isset($_SESSION["carrito"])){
 }
 
 if(isset($_SESSION["carrito"])){
+	$ultimoitem_c=0;
 	foreach ($_SESSION["carrito"] as $pc) {
 		$ultimoitem_c=$pc["ident_item"];
 	}
@@ -67,7 +68,13 @@ if($stcok_item==$cantidad_item_total){
 		$valortotaldecompra += $cantidadtotalcarrito["q"];
 	}
 	$data_cantidad=$stcok_item-$cantidad_item_total;
-	echo json_encode(array('estado' => "error",'agotar'=>1,'cantidad_item'=> $data_cantidad,'cantidad' => $valortotaldecompra,'nullcarts' => $controlcarts,"messaje"=>"Agotado"));
+
+	if($data_cantidad==1){
+		$cantidadesitems = $data_cantidad." ".Luis::lang("disponible");
+	}else{
+		$cantidadesitems = $data_cantidad." ".Luis::lang("disponibles");
+	}
+	echo json_encode(array('estado' => "error",'agotar'=>1,'cantidad_item'=> $cantidadesitems,'cantidad' => $valortotaldecompra,'nullcarts' => $controlcarts,"messaje"=>Luis::lang("agotado")));
 }elseif($stcok_item>0){
 	if(!$in_cart){
 		if(!isset($_SESSION["carrito"])){
@@ -98,12 +105,18 @@ if($stcok_item==$cantidad_item_total){
 		$data_cantidad_2=$stcok_item-$cantidad_item_total_2;
 		if($data_cantidad_2==0){
 			$seagotael_item_prod=1;
-			$messaje="Producto agotado";
+			$messaje=Luis::lang("agregado");
 		}else{
 			$seagotael_item_prod=false;
-			$messaje="Agregado";
+			$messaje=Luis::lang("agregado");
 		}
-		echo json_encode(array('estado' => "exito",'agotar'=>$seagotael_item_prod,'cantidad_item'=> $data_cantidad_2,'cantidad' => $valortotaldecompra, 'nullcarts' => $controlcarts,"messaje"=>$messaje));
+
+		if($data_cantidad_2==1){
+			$cantidadesitems_2 = $data_cantidad_2." ".Luis::lang("disponible");
+		}else{
+			$cantidadesitems_2 = $data_cantidad_2." ".Luis::lang("disponibles");
+		}
+		echo json_encode(array('estado' => "exito",'agotar'=>$seagotael_item_prod,'cantidad_item'=> $cantidadesitems_2,'cantidad' => $valortotaldecompra, 'nullcarts' => $controlcarts,"messaje"=>$messaje));
 
 	}else{
 			$cart = $_SESSION["carrito"];
@@ -133,12 +146,19 @@ if($stcok_item==$cantidad_item_total){
 		$data_cantidad_3=$stcok_item-$cantidad_item_total_3;
 		if($data_cantidad_3==0){
 			$seagotael_item_prod=1;
-			$messaje="Producto agotado";
+			$messaje=Luis::lang("agregado");
 		}else{
 			$seagotael_item_prod=false;
-			$messaje="Agregado";
+			$messaje=Luis::lang("agregado");
 		}
-		echo json_encode(array('estado' => "exito",'agotar'=>$seagotael_item_prod,'cantidad_item'=> $data_cantidad_3,'cantidad' => $valortotaldecompra,'nullcarts' => $controlcarts,"messaje"=>$messaje));
+
+		if($data_cantidad_3==1){
+			$cantidadesitems_3 = $data_cantidad_3." ".Luis::lang("disponible");
+		}else{
+			$cantidadesitems_3 = $data_cantidad_3." ".Luis::lang("disponibles");
+		}
+
+		echo json_encode(array('estado' => "exito",'agotar'=>$seagotael_item_prod,'cantidad_item'=> $cantidadesitems_3,'cantidad' => $valortotaldecompra,'nullcarts' => $controlcarts,"messaje"=>$messaje));
 	}
 }else{
 	if(isset($_SESSION['carrito'])){
@@ -148,6 +168,12 @@ if($stcok_item==$cantidad_item_total){
 			}
 		}
 	}
+
+	if($data_cantidad_4==1){
+		$cantidadesitems_4 = $data_cantidad_4." ".Luis::lang("disponible");
+	}else{
+		$cantidadesitems_4 = $data_cantidad_4." ".Luis::lang("disponibles");
+	}
 	$data_cantidad_4=$stcok_item-$cantidad_item_total_4;
-	echo json_encode(array('estado' => "error",'agotar'=>1,'cantidad_item'=> $data_cantidad_4,'cantidad' => $valortotaldecompra,'nullcarts' => $controlcarts,"messaje"=>"Producto agotado"));
+	echo json_encode(array('estado' => "error",'agotar'=>1,'cantidad_item'=> $cantidadesitems_4,'cantidad' => $valortotaldecompra,'nullcarts' => $controlcarts,"messaje"=> Luis::lang("agotado")));
 }

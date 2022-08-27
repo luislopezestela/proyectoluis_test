@@ -736,25 +736,20 @@ $(document).ready(function() {
 	    	if(data.estado=="error"){
 	    		alertadvertencia(data.messaje);
 	    	}
-	    	
 	    	if(data.estado=="exito"){
-	    		alertadvertencia("Agregado");
+	    		alertexito(data.messaje);
 	    	}
 
 	    	if(data.agotar==1){
-	    		alertadvertencia(data.messaje);
-	    		$(".cantidad_stock_disponible_en_item_style").html("Producto agotado.");
+	    		$(".cantidad_stock_disponible_en_item_style").html(data.messaje);
 	    	}else{
-	    		$(".cantidad_stock_disponible_en_item_style").html("STOCK: "+data.cantidad_item);
+	    		$(".cantidad_stock_disponible_en_item_style").html(data.cantidad_item);
 	    	}
 	    	$(".shop_store_box").html(data.cantidad);
 	    }
 	  });
 	});
 });
-
-
-
 
 ///sess_input_button789
 
@@ -770,7 +765,7 @@ $(document).on("click", ".sess_input_button789", function(){
 		$(".sess_input_text_data_b").focus();
 	}else{
 		$.ajax({
-			type:"POST",
+			type:"POST", 
 			url:list_urls()+list_action()+"session_delete_a",
 		  data:{n_sub_a:us_var_not_a,n_sub_b:us_var_not_b,cods:us_var_not_c},
 	    dataType: "json",
@@ -810,6 +805,144 @@ $(document).on("click", ".sess_input_button789", function(){
 		    }
 		});
 	}
+})
+
+$(document).on("click", ".sess_input_button790", function(){
+	let us_var_not_a = $(".sess_input_text_data_a").val();
+	let us_var_not_b = $(".sess_input_text_data_b").val();
+	let us_var_not_c = $(".sess_input_text_data_c").val();
+	if($(".sess_input_text_data_a").val()==""){
+		alertadvertencia("Ingresa tu correo.");
+		$(".sess_input_text_data_a").focus();
+	}else if($(".sess_input_text_data_b").val()==""){
+		alertadvertencia("Ingresa tu contrase&ntilde;a.");
+		$(".sess_input_text_data_b").focus();
+	}else{
+		$.ajax({
+			type:"POST", 
+			url:list_urls()+list_action()+"session_delete_a",
+		  data:{n_sub_a:us_var_not_a,n_sub_b:us_var_not_b,cods:us_var_not_c},
+	    dataType: "json",
+		  success: function(data){
+		    	if(data.estado=="exito"){
+		    		alertexito(data.mensaje);
+		    		if (swapPhoto("carrito",false,false)) {
+							history.pushState(null, null, urline+"carrito", null);
+						}
+		    	}
+		    	if(data.estado=="error900_pl"){
+		    		alertadvertencia(data.mensaje);
+		    	}
+		    	if(data.estado=="noactivado"){
+		    		alertadvertencia(data.mensaje);
+		    		$(".sess_input_text_data_c").removeClass("view_null");
+		    		$(".sess_input_text_data_c").focus();
+		    	}
+		    	if(data.estado=="activado"){
+		    		alertexito(data.mensaje);
+		    		if (swapPhoto("carrito",false,false)) {
+							history.pushState(null, null, urline+"carrito", null);
+						}
+		    	}
+		    	if(data.estado=="noactivadods"){
+		    		alertadvertencia(data.mensaje);
+		    		$(".sess_input_text_data_c").removeClass("view_null");
+		    		$(".sess_input_text_data_c").focus();
+		    	}
+		    	if(data.estado=="error400_pl"){
+		    		alertadvertencia(data.mensaje);
+		    	}
+		    	if(data.estado=="errormail"){
+		    		alertadvertencia(data.mensaje);
+		    	}
+		    }
+		});
+	}
+})
+
+var doc_s = $("input[name='dnis']");
+$(document).on("keypress", "input[name='dnis']", function(e){
+	var key = window.event ? e.which : e.keyCode;
+	  if (key < 48 || key > 57) {
+	    e.preventDefault();
+	  }
+});
+
+$(document).on("keypress", ".reg_input_text_data_h_c", function(e){
+	var key = window.event ? e.which : e.keyCode;
+	  if (key < 48 || key > 57) {
+	    e.preventDefault();
+	  }
+});
+
+$(document).on("keypress", ".number_doc_in_new_order_web_ac_lims", function(e){
+	var key = window.event ? e.which : e.keyCode;
+	  if (key < 48 || key > 57) {
+	    e.preventDefault();
+	  }
+});
+
+$(document).on("keyup", "input[name='dnis']", function(){
+	var datinp = doc_s.val().length;
+	if(datinp > 7){
+		$.ajax({
+			url:urline+"admin/"+list_action()+"luis_consuls",
+			type:"POST",
+			data:{docs:doc_s.val()},
+			dataType:"json",
+			success: function(data){
+				$("input[name='nombres']").val(data.nombres);
+				$("input[name='apellido_paterno']").val(data.apellidoPaterno);
+				$("input[name='apellido_materno']").val(data.apellidoMaterno);
+			}
+		});
+	}
+	if (datinp < 8){
+		$("input[name='nombres']").val("");
+		$("input[name='apellido_paterno']").val("");
+		$("input[name='apellido_materno']").val("");
+	}
+});
+
+$(document).on("click", ".sess_input_button790_b", function(){
+	let u_a = $(".reg_input_text_data_a").val();
+	let u_b = $(".reg_input_text_data_b").val();
+	let u_c = $(".reg_input_text_data_c").val();
+	let u_d = $(".reg_input_text_data_d").val();
+	let u_e = $(".reg_input_text_data_e").val();
+	let u_f = $(".reg_input_text_data_f").val();
+	let u_g = $(".reg_input_text_data_g").val();
+	let u_h = $(".reg_input_text_data_h_c").val();
+	$.ajax({
+		type:"POST",
+		url:list_urls()+list_action()+"session_delete_b",
+		data:{a:u_a,b:u_b,c:u_c,d:u_d,e:u_e,f:u_f,g:u_g,h:u_h},
+		dataType:"json",
+		success: function(data){
+			if(data.estado==1){
+				$(".reg_input_text_data_a").val("");
+				$(".reg_input_text_data_b").val("");
+				$(".reg_input_text_data_c").val("");
+				$(".reg_input_text_data_d").val("");
+				$(".reg_input_text_data_e").val("");
+				$(".reg_input_text_data_f").val("");
+				$(".reg_input_text_data_g").val("");
+				$(".reg_input_text_data_h_c").val("");
+				$(".contenido_access_new_page_luis").addClass("view_null");
+				$(".contenido_access_page_luis").removeClass("view_null");
+		    	alertexito(data.mensaje);
+		    	if(swapPhoto("carrito",false,false)) {
+						history.pushState(null, null, urline+"carrito", null);
+					}
+		    }
+		    if(data.estado==0){
+		    	alertadvertencia(data.mensaje);
+		    }
+		    if(data.cl){
+		    	$(data.cl).focus();
+		    }
+		}
+	});
 })
 
 $(document).on("click", ".ini_play_luis", function(){
@@ -855,8 +988,8 @@ $(document).on("click", ".boton_eliminar_producto_de_carrito_success", function(
 	    	if(data.nullcarts===true){
 	    		$(".content_footer_order_list").html("");
 	    		$(".cart_content_list_items_orders_tbn").html("");
-	    		$(".conten_cart_null_listem").html('<h2 class="titulo2carrito ">NO TIENES PRODUCTOS EN TU CARRITO</h2><hr><h3 class="subtitulocarrito">Encuentra los mejores productos, a los mejores precios.</h3><div class="nuevacompra"><a class="botoniniciacompra menupagecurrent" aria-label="inicio" role="link" href="'+list_urls()+'">Comprar ahora</a></div>');
-	    		$(".order_items_null").html(data.controlsup);
+	    		$(".conten_cart_null_listem").html(data.controlsup);
+	    		$(".order_items_null").html();
 	    	}else{
 	    		$(".order_items_null").html("");
 	    		$(".pricetotalboxcarts").html(data.totalpriceorderslist);
@@ -878,11 +1011,12 @@ $(document).on("click", ".button_delete_order_current_success", function(){
 	$.ajax({
 		type:"POST",
 	    url:list_urls()+list_action()+"cancelarcompra",
+	    dataType:"json",
 	    success: function(data){
 	    	$("#alert_confirm_action_dialogfalse").remove();
-	    	$(".shop_store_box").html("0");
+	    	$(".shop_store_box").html(data.cantidad);
 	    	$(".cart_content_list_items_orders_tbn").html("");
-	    	$(".conten_cart_null_listem").html('<h2 class="titulo2carrito ">NO TIENES PRODUCTOS EN TU CARRITO</h2><hr><h3 class="subtitulocarrito">Encuentra los mejores productos, a los mejores precios.</h3><div class="nuevacompra"><a class="botoniniciacompra menupagecurrent" aria-label="inicio" role="link" href="'+list_urls()+'">Comprar ahora</a></div>');
+	    	$(".conten_cart_null_listem").html(data.controlsup);
 	    }
 	});
 })
@@ -908,27 +1042,37 @@ $(document).on("click", ".next_date_order_process", function(){
 })
 
 $(document).on("click", ".next_date_order_process_two", function(){
+	let data_opt = $("input[name='sucursal']:checked").val();
 	$.ajax({
 		type:"POST",
 	    url:list_urls()+list_action()+"next_order_steptwo",
-	    data:{nom:"3"},
+	    data:{nom:"3",data_p:data_opt},
 	    success: function(data){
 	    }
 	});
 })
+
 $(document).on("click", ".next_date_order_process_three", function(){
-	if(!$("input[name='metodopago']").is(':checked')){
-		alertadvertencia("Selecciona un metodo de pago.");
-	}else{
-		$.ajax({
-			type:"POST",
-		    url:list_urls()+list_action()+"next_order_steptwo",
-		    data:{nom:"4"},
-		    success: function(data){
-		    }
-		});
-	}
+	let data_opt = $("input[name='metodopago']:checked").val();
+	let data_opw = $(".number_doc_in_new_order_web_ac_lims").val();
+	$.ajax({
+		type:"POST",
+		url:list_urls()+list_action()+"next_order_steptwo",
+		data:{nom:"4",data_p:data_opt,data_w:data_opw},
+		success: function(data){
+		}
+	});
 	
+})
+
+$(document).on("click", ".next_date_order_process_two_s", function(){
+	$.ajax({
+		type:"POST",
+	    url:list_urls()+list_action()+"next_order_steptwo",
+	    data:{nom:5},
+	    success: function(data){
+	    }
+	});
 })
 ////***class_label_order_mount_input_sub_data
 
@@ -950,20 +1094,39 @@ $(document).on("click", ".new_stored_page_realtime_envio", function(){
 		type:"POST",
 	    url:list_urls()+list_action()+"new_stored_current_order_envio",
 	    data:{data_p:data_opt},
+	    dataType:"json",
 	    success: function(data){
+	    	if(data.tipo===0){
+	    		alertadvertencia(data.messaje);
+	    		$('.andloadpage').html("");
+	    	}else{
+	    		if(swapPhoto("carrito",false,false)) {
+						history.pushState(null, null, urline+"carrito", null);
+					}
+	    	}
 	    }
 	});
 })
 
 $(document).on("click", ".new_stored_page_realtime_pagos", function(){
 	let data_opt = $("input[name='metodopago']:checked").val();
+	let data_opw = $(".number_doc_in_new_order_web_ac_lims").val();
 	$.ajax({
 		type:"POST",
 	    url:list_urls()+list_action()+"new_stored_current_order_pagos",
-	    data:{data_p:data_opt},
+	    data:{data_p:data_opt,data_w:data_opw},
+	    dataType:"json",
 	    success: function(data){
 	    	if(data.tipe==0){
+	    		$('.andloadpage').html("");
 	    		alertadvertencia(data.messaje);
+	    	}else{
+	    		if(swapPhoto("carrito",false,false)) {
+						history.pushState(null, null, urline+"carrito", null);
+					}
+	    	}
+	    	if(data.cla){
+	    		$("."+data.cla).focus();
 	    	}
 	    }
 	});

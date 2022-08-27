@@ -23,7 +23,10 @@ if(isset($_SESSION['carrito'])){
 	}
 }
 $p =  DatosAdmin::porID_producto($id_del_item_ident);
-$stcok_item=DatosAdmin::cantidad_stock_de_producto_admin($p->id)->c;
+$stcok_item_ot=DatosAdmin::cantidad_stock_de_producto_admin($p->id)->c;
+$item_pendientes_venta=DatosAdmin::item_pndiente_en_ventas_por_item($p->id)->c;
+
+$stcok_item=$stcok_item_ot-$item_pendientes_venta;
 
 
 if(isset($_SESSION['carrito'])){
@@ -42,14 +45,20 @@ if($stcok_item==$cantidad_item_total){
 			$volrtotal_precios=0;
 			if(count($typs_it)>0){
 				foreach($typs_it as $tps){
-					$id_data=$cantidadtotalcarrito[0][$tps->id];
-					$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($id_data);
-					if($opt_data_details->precio==1){
-						$open_producto = DatosAdmin::porID_producto($opt_data_details->item_k);
-						$volrtotal_precios+=$open_producto->precio_final;
+					if(isset($cantidadtotalcarrito[0][$tps->id])){
+						$id_data=$cantidadtotalcarrito[0][$tps->id];
+						$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($id_data);
+						if($opt_data_details->precio==1){
+							$open_producto = DatosAdmin::porID_producto($opt_data_details->item_k);
+							$volrtotal_precios+=$open_producto->precio_final;
+						}else{
+							$volrtotal_precios+=0;
+						}
 					}else{
+						$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($tps->id);
 						$volrtotal_precios+=0;
 					}
+					
 				}
 			}
 			$precio_nuevo_suma=$ptwo->precio_final+$volrtotal_precios;
@@ -60,7 +69,12 @@ if($stcok_item==$cantidad_item_total){
 				$cantidad_del_carrito_item = $cantidadtotalcarrito["q"];
 			}
 		}
-		$totalpricelist="Total: S/. <span>".number_format($total,2,".",",")."</span>";
+		if($ptwo->moneda_a){
+			$moneda_por_id_a=DatosAdmin::Mostrar_las_monedas_por_id($ptwo->moneda_a)->simbolo;
+		}else{
+			$moneda_por_id_a=false; 
+		}
+		$totalpricelist=$moneda_por_id_a.". <span>".number_format($total,2,".",",")."</span>";
 		echo json_encode(array('estado' => "exito",'cantidad_item'=> $cantidad_del_carrito_item,'cantidad' => $cantidad_de_items,'nullcarts' => $controlcarts,'totalpriceorderslist' => $totalpricelist,'agotado'=>$cantidad_item_total_3));
 	}else{
 		echo json_encode(array('estado' => "error",'cantidad' => 0,'nullcarts' => $controlcarts,'totalpriceorderslist' => $totalpricelist,'agotado'=>$cantidad_item_total_3));
@@ -93,14 +107,20 @@ if($stcok_item==$cantidad_item_total){
 			$volrtotal_precios=0;
 			if(count($typs_it)>0){
 				foreach($typs_it as $tps){
-					$id_data=$cantidadtotalcarrito[0][$tps->id];
-					$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($id_data);
-					if($opt_data_details->precio==1){
-						$open_producto = DatosAdmin::porID_producto($opt_data_details->item_k);
-						$volrtotal_precios+=$open_producto->precio_final;
+					if(isset($cantidadtotalcarrito[0][$tps->id])){
+						$id_data=$cantidadtotalcarrito[0][$tps->id];
+						$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($id_data);
+						if($opt_data_details->precio==1){
+							$open_producto = DatosAdmin::porID_producto($opt_data_details->item_k);
+							$volrtotal_precios+=$open_producto->precio_final;
+						}else{
+							$volrtotal_precios+=0;
+						}
 					}else{
+						$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($tps->id);
 						$volrtotal_precios+=0;
 					}
+					
 				}
 			}
 			$precio_nuevo_suma=$ptwo->precio_final+$volrtotal_precios;
@@ -111,7 +131,12 @@ if($stcok_item==$cantidad_item_total){
 				$cantidad_del_carrito_item = $cantidadtotalcarrito["q"];
 			}
 		}
-		$totalpricelist="Total: S/. <span>".number_format($total,2,".",",")."</span>";
+		if($ptwo->moneda_a){
+			$moneda_por_id_a=DatosAdmin::Mostrar_las_monedas_por_id($ptwo->moneda_a)->simbolo;
+		}else{
+			$moneda_por_id_a=false; 
+		}
+		$totalpricelist=$moneda_por_id_a.". <span>".number_format($total,2,".",",")."</span>";
 		echo json_encode(array('estado' => "exito",'cantidad_item'=> $cantidad_del_carrito_item,'cantidad' => $cantidad_de_items,'nullcarts' => $controlcarts,'totalpriceorderslist' => $totalpricelist,'agotado'=>$cantidad_item_total_3));
 	}else{
 		echo json_encode(array('estado' => "error",'cantidad' => 0,'nullcarts' => $controlcarts,'totalpriceorderslist' => $totalpricelist,'agotado'=>$cantidad_item_total_3));

@@ -105,13 +105,14 @@ body:before{
 .title_cart_order h3{border-bottom:4px solid #dddd;padding-bottom:15px;}
 .close_order_list_cart{position:absolute;top:10px;right:10px;cursor:pointer;padding:10px;}
 .content_items_views_order{align-items:flex-start;align-self:flex-start;width:100%;overflow-x:auto;height: calc(100vh - 222px);padding:2px 7px;}
-.items_list_views_order_list{position:relative;display:flex;background-color:#ffffff;box-shadow:0 1px 2px rgba(0,0,0,0.2);padding:8px;margin:15px auto;width:100%;max-width:900px;}
-.viewimage_items_order_list{width:50px;display:block;height:50px;}
+
+.items_list_views_order_list{position:relative;display:flex;background-color:#ffffff;box-shadow:0 1px 2px rgba(0,0,0,0.2);padding:8px;margin:15px auto;width:100%;word-break:break-all;}
+.viewimage_items_order_list{width:120px;display:block;height:120px;}
 .viewimage_items_order_list img {object-fit:contain;max-width:100%;max-height:100%;width:100%;height:100%;border-radius:3%;min-width:50px;}
 .content_footer_order_list{align-items:flex-end;align-self:flex-end;width:100%;padding-top:15px;position:absolute;background:#fff;bottom:0;left:0;right:0;}
 .detail_producto_order_cart{display: block;font-size:18px;padding:0px 10px 0px 10px;}
 .subprecio_order_list{background:#ccc;padding:5px;display:inline-block;border-radius:5px;margin-top:5px;}
-.detail_producto_order_cart h4{font-size:12px;color:#444;}
+.detail_producto_order_cart h4{font-size:18px;color:#444;font-weight:600;}
 .close_cart_orders_list{display:flex;flex-direction:column;position:absolute;padding:3px 4px;right:0;user-select:none;}
 .close_cart_orders_list a{cursor:pointer;background-color:#e4e6eb;box-sizing:border-box;border-radius:6px;color:#555;-webkit-tap-highlight-color:transparent;padding:6px 8px;touch-action: manipulation;}
 .total_monto_order_list{display:block;width:100%;background:#ffffff;font-size:17px;border-radius:15px;text-align:center;padding:15px 5px;user-select:none;}
@@ -214,7 +215,7 @@ alerta
 .view_car_items_page:hover{opacity:0.8;}
 
 /*Page view style star */
-.cantidad_stock_disponible_en_item_style{background-color:#fafafa;border:#ddd solid 4px;border-radius:2px;display:block;padding:15px;margin:8px auto;}
+.cantidad_stock_disponible_en_item_style{display:block;padding-left:5px;padding-bottom:10px;}
 .titlecurrentpage{display:block;width:100%;max-width:400px;text-align:center;color:var(--color_segundario);margin:18px auto;padding-top:23px;}
 
 .contenspage{max-width:1380px;width:100%;position:relative;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;box-sizing:border-box;margin-bottom:55px; }

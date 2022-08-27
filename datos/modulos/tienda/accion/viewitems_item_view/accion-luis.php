@@ -190,23 +190,32 @@ if(isset($items)){
 
 	if($stcok_item==$cantidad_item_total){
 		$idexhtmls.="<div class=\"cantidad_stock_disponible_en_item_style\">";
-		$idexhtmls.="Producto agotado. ";
+		$idexhtmls.=Luis::lang("agotado");
 		$idexhtmls.="</div>";
 	}elseif($stcok_item>0){
 		$idexhtmls.="<div class=\"cantidad_stock_disponible_en_item_style\">";
-		$idexhtmls.="STOCK: ".$stcok_item-$cantidad_item_total;
+		$stokdelitem = $stcok_item-$cantidad_item_total;
+		if($stokdelitem==1){
+			$idexhtmls.=$stcok_item-$cantidad_item_total." ".Luis::lang("disponible");
+		}else{
+			$idexhtmls.=$stcok_item-$cantidad_item_total." ".Luis::lang("disponibles");
+		}
+		
 		$idexhtmls.="</div>";
 	}else{
 		$idexhtmls.="<div class=\"cantidad_stock_disponible_en_item_style\">";
-		$idexhtmls.="Producto agotado. ";
+		$idexhtmls.=Luis::lang("agotado");
 		$idexhtmls.="</div>";
 	}
 	$idexhtmls.="<div class=\"buutons_conten_page_view_items\">";
-	$idexhtmls.='<button data_b="'.$stcok_item.'" id="'.$items->id.'" type="submit" class="button_order_item_list_view add_item_view_select">Agregar a mi orden <svg class="carrito_bt_item_page" viewBox="0 0 423.416 423.416">
+	$idexhtmls.='<button data_b="'.$stcok_item.'" id="'.$items->id.'" type="submit" class="button_order_item_list_view add_item_view_select">';
+	$idexhtmls.='<p>'.str_replace("_"," ",Luis::lang("agregar")).'</p>';
+	$idexhtmls.='<svg class="carrito_bt_item_page" viewBox="0 0 423.416 423.416">
 	<path d="M420.688,145.096c-2.069-2.033-4.961-2.997-7.837-2.612H300.525V92.851c0-49.052-39.764-88.816-88.816-88.816s-88.816,39.764-88.816,88.816v49.633H10.565c-3.135,0-6.269,0-7.837,2.612c-2.106,2.024-3.083,4.954-2.612,7.837L39.3,367.137c5.474,29.881,31.275,51.746,61.649,52.245h221.518c30.461-0.749,56.208-22.787,61.649-52.767L423.3,152.933C423.771,150.05,422.794,147.12,420.688,145.096z M143.79,92.851c0-37.51,30.408-67.918,67.918-67.918c37.51,0,67.918,30.408,67.918,67.918v49.633H143.79V92.851z M363.218,364.002c-3.519,19.801-20.641,34.289-40.751,34.482H100.949c-20.11-0.193-37.232-14.68-40.751-34.482l-37.094-200.62h377.208L363.218,364.002z"/>
 	<path d="M290.076,265.259c5.771,0,10.449-4.678,10.449-10.449v-31.347c0-5.771-4.678-10.449-10.449-10.449c-5.771,0-10.449,4.678-10.449,10.449v31.347C279.626,260.581,284.305,265.259,290.076,265.259z"/>
 	<path d="M133.341,265.259c5.771,0,10.449-4.678,10.449-10.449v-31.347c0-5.771-4.678-10.449-10.449-10.449c-5.771,0-10.449,4.678-10.449,10.449v31.347C122.892,260.581,127.57,265.259,133.341,265.259z"/>
-	</svg></button>';
+	</svg>';
+	$idexhtmls.='</button>';
 	$idexhtmls.="</div>";
 	$idexhtmls.="";
 	$idexhtmls.="</form>";

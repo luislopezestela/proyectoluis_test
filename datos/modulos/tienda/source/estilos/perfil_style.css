@@ -20,7 +20,6 @@
   position:relative;
   min-height:calc(100vh - var(--header-height) - var(--footer-menu-height) - var(--footer-height));
 }
-
 .cdfdperflcont_b{position:relative;font-family: inherit;border-radius: 50%;padding: 2px;display:block;width:95px;height:95px;text-align:center;background-color:#242526;margin:5px auto;}
 .perf767fils_b:not(:root){
     overflow: hidden;
@@ -693,7 +692,26 @@
 .view_null{display:none;}
 .title_data_cl{padding:10px;}
 
-
+.box_page_compras_contenido{margin-top:16px;position:relative;}
+.box_page_compras_lista{background: #fff;box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);transition: all 0.3s cubic-bezier(.25,.8,.25,1);margin:10px auto;border-radius:5px;}
+.box_page_compras_head{display:flex;flex-wrap:wrap;width:100%;position:relative;padding:5px 10px;}
+.box_page_compras_head .left,
+.box_page_compras_head .center,
+.box_page_compras_head .right{width:33.33333333%;text-transform:uppercase;font-size:14px;display:flex;user-select:none;}
+.box_page_compras_head .left{justify-content:left;align-items:center;}
+.box_page_compras_head .center{justify-content:center;align-items:center;background:#fff;box-shadow: inset 0 1px 3px rgb(0 0 0 / 12%),inset 0 1px 2px rgb(0 0 0 / 24%);font-weight:bold;}
+.box_page_compras_head .right{justify-content:right;align-items:center;}
+.box_page_compras_head .right span{background:#2ecc71;color:#FAFAFA;padding:5px;border-radius:4px;cursor:pointer;transition:all .5s;}
+.box_page_compras_head .right span:hover{background:#27ae60;}
+.comp_op_a{color:#e74c3c!important;}
+.comp_op_b{color:#2980b9!important;}
+.comp_op_c{color:#f1c40f!important;}
+.comp_op_d{color:#f39c12!important;}
+.comp_op_e{color:#27ae60!important;}
+.comp_op_f{color:#3498db!important;}
+.box_page_compras_body{width:100%;padding:10px;}
+.box_page_compras_body .date_name_bod{font-size:12px;text-transform:uppercase;}
+.box_page_compras_body_resd{width:100%;border-radius:4px;border:solid 1px #ccc;padding:5px;}
 @media only screen and (max-width:1200px){
   .conten_address_timelines{
     width:calc(50% - 17px);
