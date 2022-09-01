@@ -36,8 +36,21 @@ if(isset($_SESSION["carrito"]) && count($_SESSION["carrito"])>0){
 				if(isset($c[0][$tps->id])){
 					$id_data=$c[0][$tps->id];
 					$opt_data_details = DatosAdmin::view_iten_in_pages_por_id($id_data);
-					$v->id_opcion_sub = $opt_data_details->id;
+					
+					if($tps->id_cat_sub_add){
+						//$v->id_opcion_sub = $tps->id_cat_sub_add;
+						$v->id_opcion_sub = $opt_data_details->id;
+						$v->type = 2;
+					}elseif($tps->id_cat_add){
+						//$v->id_opcion_sub = $tps->id_cat_add;
+						$v->id_opcion_sub = $opt_data_details->id;
+						$v->type = 1;
+					}else{
+						$v->id_opcion_sub = $opt_data_details->id;
+						$v->type = 0;
+					}
 				}else{
+					$v->type = 0;
 					$v->id_opcion_sub = $tps->id;
 				}
 				

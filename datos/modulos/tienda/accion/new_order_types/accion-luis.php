@@ -6,10 +6,12 @@ for($i=0;$i<11;$i++){
 }
 $cant_ventas=DatosAdmin::ventas_registrados_all();
 if($cant_ventas >0){
-	$cantidad_total_ventas=DatosAdmin::TotaldeVentas()->c;
-	$numeroventa="N".str_pad($cantidad_total_ventas,7,0,STR_PAD_LEFT)+1;
+	$cantidad_total_ventas=DatosAdmin::TotaldeVentas()->c+1;
+	$numerickl = str_pad($cantidad_total_ventas,7,'0',STR_PAD_LEFT);
+	$numeroventa="N".$numerickl;
 }else{
-	$numeroventa="N".str_pad(1,7,0,STR_PAD_LEFT);
+	$numerickl = str_pad(1,7,'0',STR_PAD_LEFT);
+	$numeroventa="N".$numerickl;
 }
 $visualizar_documento = DatosAdmin::view_documents_por_defecto();
 if(isset($_SESSION['usuarioid'])){

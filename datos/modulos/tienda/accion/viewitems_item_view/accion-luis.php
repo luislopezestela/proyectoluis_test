@@ -2,7 +2,7 @@
 $es_seleccionado_nuevo_precio=false;
 $cantidad_item_total=0;
 $base=Luis::basepage("base_page");
-if (isset($_GET['viewind'])){
+if(isset($_GET['viewind'])){
 	$unlineidexe=$_GET['viewind'];
 }else{
 	if(isset($_GET["paginas"])){

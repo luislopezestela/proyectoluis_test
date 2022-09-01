@@ -2043,8 +2043,8 @@ class DatosAdmin{
 	}
 
 	public function agregar_los_detalles_del_item_producto_sub(){
-		$sql = "insert into detalles_venta_sub (id_venta,codigo_item,id_opcion_sub) ";
-		$sql .= "value ($this->id_venta,\"$this->codigo\",\"$this->id_opcion_sub\")";
+		$sql = "insert into detalles_venta_sub (id_venta,codigo_item,id_opcion_sub,type) ";
+		$sql .= "value ($this->id_venta,\"$this->codigo\",\"$this->id_opcion_sub\",$this->type)";
 		Ejecutor::doit($sql);
 	}
 
