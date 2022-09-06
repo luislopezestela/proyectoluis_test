@@ -5,9 +5,18 @@ if(isset($_SESSION["carrito"]) && count($_SESSION["carrito"])>0){
 	$usuario = $_SESSION['usuarioid'];
 	$cliente = DatosPagina::persona($usuario);
 	$venta = DatosAdmin::view_order_realtime_in_page($usuario);
+	$moneda_principal = DatosAdmin::mostrar_la_moneda_principal();
+	if($moneda_principal){
+		$moneda_principal_view=$moneda_principal->id;
+	}else{
+		$moneda_principal_view=false; 
+	}
+
 	$v = new DatosAdmin();
 	$v->id = $venta->id;
 	$v->estado_de_venta = 5;
+	$v->moneda = $moneda_principal_view;
+	$v->sucursal = $cliente->sucursal_compra;
 	$v->fecha = date ('Y-m-d H:i:s');
 	$v->finalizar_la_venta_web();
 	////

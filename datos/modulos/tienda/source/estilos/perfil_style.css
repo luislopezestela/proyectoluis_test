@@ -429,7 +429,7 @@
   margin-bottom: 16px;
     position: relative;
     width: 100%;
-    z-index: 0;
+    /*z-index: 0;*/
 }
 .contenedor_perfil_main_timeline_a{
   position: relative;
@@ -711,8 +711,28 @@
 .comp_op_f{color:#3498db!important;}
 .box_page_compras_body{width:100%;padding:10px;}
 .box_page_compras_body .date_name_bod{font-size:12px;text-transform:uppercase;}
-.box_page_compras_body_resd{width:100%;border-radius:4px;border:solid 1px #ccc;padding:5px;}
+
+
+.box_page_compras_body_resd{width:100%;display:flex;flex-wrap:wrap;}
+
+.detailsorderl_items{font-weight:bold;font-size:12px;user-select:none;background-color:#bdc3c7;padding:10px;width:calc(25% - 10px);margin:5px;display:flex;flex-wrap:wrap;flex-direction:column;word-break:break-all; border-radius:5px;justify-content:center;align-items:center;}
+.detailsorderl_items span{display:block;text-transform:uppercase;font-size:12px;color:#34495e;}
+.entr_name_bod{display:block;font-size:12px;width:100%;text-transform:uppercase;}
+.entr_name_bod a{color:#27ae60;}
+.items_list_en_compra_conten{display:flex;background:#ddd;padding:5px;margin-top:5px;font-size:12px;width:100%;font-weight:lighter;}
+.items_list_en_compra_conten:nth-child(odd){
+  background-color:#ddd;
+}
+.items_list_en_compra_conten:nth-child(even){
+  background-color:#f9f9f9;
+}
+.en_compra_conten{width:calc(33.333333%);display:flex;}
+.en_compra_conten_a{}
+.en_compra_conten_b{}
+.en_compra_conten_c{display:flex;}
+.en_compra_conten_c_a{width:100%;display:block;}
 @media only screen and (max-width:1200px){
+  .detailsorderl_items{width:calc(50% - 10px);}
   .conten_address_timelines{
     width:calc(50% - 17px);
   }
@@ -741,6 +761,10 @@
 }
 
 @media only screen and (max-width:380px){
+  .detailsorderl_items{width:calc(100% - 10px);}
+  .box_page_compras_head{display:block;}
+  .box_page_compras_head .left, .box_page_compras_head .center, .box_page_compras_head .right{width:100%;margin-bottom:5px;}
+  .box_page_compras_head .right{align-items:center;justify-content:center;}
   .diplay_box_data_new_address_client input{
     width: calc(100% - 8px);
   }
@@ -755,6 +779,9 @@
 }
 }
 @media only screen and (max-width:260px){
+  .detailsorderl_items{width:calc(100% - 0px);}
+  .box_page_compras_body{padding:3px;}
+  .detailsorderl_items{margin:5px auto;}
   .head_acceso_direc{font-size:12px;}
   .contenedor_perfil_main{
   padding-left:5px;

@@ -327,7 +327,10 @@ if(isset($_SESSION['usuarioid'])){
 																								$idexhtmls.='<div class="box_page_compras_contenido">';
 																									$lista_de_compras = DatosAdmin::compras_de_cliente($_SESSION['usuarioid']);
 																									if(count($lista_de_compras)>0){
-																										foreach ($lista_de_compras as $com) {
+																										foreach ($lista_de_compras as $com){
+																											$total=0;
+																											$total1=0;
+																											$detalles_de_venta = DatosAdmin::listar_detalles_ventas_pendientes_web($com->id);
 																											$idexhtmls.='<div class="box_page_compras_lista">';
 																												$idexhtmls.='<div class="box_page_compras_head">';
 																													$idexhtmls.='<div class="left"><span>'.$com->numero_venta.'</span></div>';
@@ -345,14 +348,116 @@ if(isset($_SESSION['usuarioid'])){
 																														$idexhtmls.='<div class="center comp_op_f"><span>'.Luis::lang("finalizado").'</span></div>';
 																													}
 																													
-																													$idexhtmls.='<div class="right"><span>'.Luis::lang("documento").'</span></div>';
+																													$idexhtmls.='<div class="right"><span data-modal-trigger="detalles_compra_'.$com->barcode.'">'.Luis::lang("detalles").'</span></div>';
+
+																													$idexhtmls.='<div class="modal" data-modal-name="detalles_compra_'.$com->barcode.'" data-modal-dismiss>';
+																														$idexhtmls.='<div class="modal__dialog">';
+																															$idexhtmls.='<header class="modal__header">';
+																															$idexhtmls.='<h3 class="modal__title">'.$com->numero_venta.'</h3>';
+																															$idexhtmls.='<i class="modal__close" data-modal-dismiss="">X</i>';
+																															$idexhtmls.='</header>';
+																															$idexhtmls.='<div class="modal__content">';
+																															foreach($detalles_de_venta as $d_v1) {
+																																$volrtotal_precios1=0;
+																																$item_view_in_order1 = DatosAdmin::itemview_productos($d_v1->id_item);
+																																$item_option_type_view1 = DatosAdmin::listar_detalles_ventas_pendientes_web_sub($d_v1->codigo);
+																																$idexhtmls.='<div class="items_list_en_compra_conten">';
+																																	$idexhtmls.='<div class="en_compra_conten en_compra_conten_a">';
+																																		$idexhtmls.=html_entity_decode($item_view_in_order1->nombre);
+																																	$idexhtmls.='</div>';
+																																	$idexhtmls.='<div class="en_compra_conten en_compra_conten_b">';
+																																	foreach($item_option_type_view1 as $v_iop){
+																																		if($v_iop->id_opcion_sub){
+																																			$view_data_sub_one_details1 = DatosAdmin::view_iten_in_pages_por_id($v_iop->id_opcion_sub);
+																																			$view_type_options_details1 = DatosAdmin::ver_opciones_type_por_id($view_data_sub_one_details1->id_opciones_type);
+																																			if($view_data_sub_one_details1->precio==1){
+																																				$open_producto1 = DatosAdmin::porID_producto($view_data_sub_one_details1->item_k);
+																																				$volrtotal_precios1+=$open_producto1->precio_final;
+																																			}else{
+																																				$volrtotal_precios1+=0;
+																																			}
+																																		}else{
+																																			$volrtotal_precios1+=0;
+	 																																	}
+																																	}
+																																	$idexhtmls.='</div>';
+																																	$precio_nuevo_suma1=$item_view_in_order1->precio_final+$volrtotal_precios1;
+																																	$total1 += $d_v1->cantidad*$precio_nuevo_suma1;
+																																	$mostrar_tipo_de_moneda=DatosAdmin::Mostrar_las_monedas_por_id($com->moneda);
+																																	$idexhtmls.='<div class="en_compra_conten en_compra_conten_c">';
+																																		$idexhtmls.='<div class="en_compra_conten_c_a">';
+																																			$idexhtmls.='<span>'.Luis::lang("cantidad").'</span>';
+																																			$idexhtmls.='<span>'.$d_v1->cantidad.'</span>';
+																																		$idexhtmls.='</div>';
+																																		$idexhtmls.='<div class="en_compra_conten_c_a">';
+																																			$idexhtmls.='<span>'.Luis::lang("precio").'</span>';
+																																			$idexhtmls.='<span>'.$mostrar_tipo_de_moneda->simbolo.". ".number_format($precio_nuevo_suma1,2,".",",").'</span>';
+																																		$idexhtmls.='</div>';
+																																	$idexhtmls.='</div>';
+
+																																	
+																																$idexhtmls.='</div>';
+																															}
+																															$idexhtmls.='';
+																															$idexhtmls.='';
+																															$idexhtmls.='</div>';
+																														$idexhtmls.='</div>';
+																													$idexhtmls.='</div>';
+
 																												$idexhtmls.='</div>';
 
 																												$idexhtmls.='<div class="box_page_compras_body">';
+																												$idexhtmls.='<span class="date_name_bod">'.Luis::lang("resumen").'</span>';
 																													$idexhtmls.='<div class="box_page_compras_body_resd">';
-																														$idexhtmls.='<span class="date_name_bod">'.Luis::lang("resumen").'</span>';
-																														$idexhtmls.='';
+																														$ver_tipo_venta = DatosAdmin::tipo_de_venta_nombre($com->tipo_venta);
+																														$metodo_de_pago = DatosAdmin::metododepago_porelId($com->metodo_pago);
+																														$cantidad_stock = DatosAdmin::contar_stock_en_venta($com->id)->c;
+																														$idexhtmls.='<div class="detailsorderl_items">';
+																															$idexhtmls.='<span>'.Luis::lang("entrega").'</span>';
+																															$idexhtmls.=html_entity_decode($ver_tipo_venta->nombre);
+																														$idexhtmls.='</div>';
+																														$idexhtmls.='<div class="detailsorderl_items">';
+																															$idexhtmls.='<span>'.Luis::lang("metodo_de_pago").'</span>';
+																															$idexhtmls.=html_entity_decode($metodo_de_pago->nombre);
+																														$idexhtmls.='</div>';
+																														$idexhtmls.='<div class="detailsorderl_items">';
+																															$idexhtmls.='<span>'.Luis::lang("cantidad").'</span>';
+																															$idexhtmls.=$cantidad_stock;
+																														$idexhtmls.='</div>';
+																														$idexhtmls.='<div class="detailsorderl_items">';
+																															$idexhtmls.='<span>'.Luis::lang("total").'</span>';
+																															foreach($detalles_de_venta as $d_v) {
+																																$volrtotal_precios=0;
+																																$item_view_in_order = DatosAdmin::itemview_productos($d_v->id_item);
+																																$item_option_type_view = DatosAdmin::listar_detalles_ventas_pendientes_web_sub($d_v->codigo);
+																																foreach($item_option_type_view as $v_iop){
+																																	if($v_iop->id_opcion_sub){
+																																		$view_data_sub_one_details = DatosAdmin::view_iten_in_pages_por_id($v_iop->id_opcion_sub);
+																																		$view_type_options_details = DatosAdmin::ver_opciones_type_por_id($view_data_sub_one_details->id_opciones_type);
+																																		if($view_data_sub_one_details->precio==1){
+																																			$open_producto = DatosAdmin::porID_producto($view_data_sub_one_details->item_k);
+																																			$volrtotal_precios+=$open_producto->precio_final;
+																																		}else{
+																																			$volrtotal_precios+=0;
+																																		}
+																																	}else{
+																																		$volrtotal_precios+=0;
+ 																																	}
+																																}
+																																$precio_nuevo_suma=$item_view_in_order->precio_final+$volrtotal_precios;
+																																$total += $d_v->cantidad*$precio_nuevo_suma;
+																															}
+																															$mostrar_tipo_de_moneda=DatosAdmin::Mostrar_las_monedas_por_id($com->moneda);
+																															$idexhtmls.=$mostrar_tipo_de_moneda->simbolo.". ".number_format($total,2,".",",");
+																														$idexhtmls.='</div>';
 																													$idexhtmls.='</div>';
+																													if($ver_tipo_venta->code=="TIENDA001"){
+																														$sucursal_ent=DatosAdmin::poridSucursal($com->sucursal);
+																														$idexhtmls.='<span class="entr_name_bod">'.str_replace("_", " ",Luis::lang("sucursal_de_entrega"))." ".html_entity_decode($sucursal_ent->nombre).' <a href="https://www.google.com/maps/search/?api=1&query='.$sucursal_ent->latitud.','.$sucursal_ent->longitud.'&zoom='.$sucursal_ent->zoom.'" target="_blank">'.str_replace("_", " ",Luis::lang("ver_direccion")).'</a></span>';
+																													}elseif($ver_tipo_venta->code=="DELIVERY001") {
+																														$idexhtmls.='<span class="entr_name_bod">'.str_replace("_", " ",Luis::lang("direccion_envio"))." ".'</span>';
+																													}
+																													
 																													$idexhtmls.='<span class="date_name_bod">'.Luis::lang("comprado")." ".Functions::fechasluislopes($com->fecha).'</span>';
 																												$idexhtmls.='</div>';
 																											$idexhtmls.='</div>';

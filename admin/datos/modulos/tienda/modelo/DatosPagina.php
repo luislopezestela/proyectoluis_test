@@ -62,6 +62,7 @@ class DatosPagina{
 			$data->codigo = $r['codigo'];
 			$data->estado = $r['estado'];
 			$data->tipo = $r['tipo'];
+			$data->sucursal_compra = $r['sucursal_compra'];
 			$found = $data;
 			break;
 		}

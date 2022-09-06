@@ -1936,6 +1936,12 @@ class DatosAdmin{
 		return Modelo::many($query[0],new DatosAdmin());
 	}
 
+	public static function tipo_de_venta_nombre($tipo){
+		$sql = "select * from tipo_venta where code=\"$tipo\"";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new DatosAdmin());
+	}
+
 	///*** visualizar el usuario en tiempo real
 	public static function ver_el_cliente_data_requerido($viewl,$data){
 		$sql = "select $viewl as c from personas where id=$data";
@@ -2032,7 +2038,7 @@ class DatosAdmin{
 
 	////// Punto para finalizar la compra en la [pagina web].
 	public function finalizar_la_venta_web(){
-		$sql = "update ventas SET estado_de_venta=\"$this->estado_de_venta\",fecha=\"$this->fecha\" where id=\"$this->id\"";
+		$sql = "update ventas SET estado_de_venta=\"$this->estado_de_venta\",moneda=\"$this->moneda\",sucursal=\"$this->sucursal\",fecha=\"$this->fecha\" where id=\"$this->id\"";
 		Ejecutor::doit($sql);
 	}
 
@@ -2052,6 +2058,12 @@ class DatosAdmin{
 		$sql = "insert into stock_venta_cliente (id_venta,codigo_item,id_item) ";
 		$sql .= "value ($this->id_venta,\"$this->codigo\",$this->id_item)";
 		Ejecutor::doit($sql);
+	}
+
+	public static function contar_stock_en_venta($vent){
+		$sql = "select count(*) as c from stock_venta_cliente where id_venta=$vent";
+		$query = Ejecutor::doit($sql);
+		return Modelo::one($query[0],new DatosAdmin());
 	}
 
 	
