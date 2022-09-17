@@ -185,6 +185,7 @@ class Luis {
 					"ventas/vender" => Luis::formatscript("verder"),
 					"ventas/".$urb1 => Luis::formatscript("verder_func"),
 					"ventas/ventas_en_linea/".$urb2 => Luis::formatscript("verder_func"),
+					"ventas/detalles_venta/".$urb2 => Luis::formatscript("verder_func"),
 					"ventas/preparar/".$urb2 => Luis::formatscript("preparar"),
 					"ventas/entregar/".$urb2 => Luis::formatscript("preparar"),
 					"devoluciones" => Luis::formatscript("devols"),

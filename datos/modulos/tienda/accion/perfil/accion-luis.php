@@ -386,11 +386,11 @@ if(isset($_SESSION['usuarioid'])){
 																																	$mostrar_tipo_de_moneda=DatosAdmin::Mostrar_las_monedas_por_id($com->moneda);
 																																	$idexhtmls.='<div class="en_compra_conten en_compra_conten_c">';
 																																		$idexhtmls.='<div class="en_compra_conten_c_a">';
-																																			$idexhtmls.='<span>'.Luis::lang("cantidad").'</span>';
+																																			$idexhtmls.='<span>'.Luis::lang("cantidad").' </span>';
 																																			$idexhtmls.='<span>'.$d_v1->cantidad.'</span>';
 																																		$idexhtmls.='</div>';
 																																		$idexhtmls.='<div class="en_compra_conten_c_a">';
-																																			$idexhtmls.='<span>'.Luis::lang("precio").'</span>';
+																																			$idexhtmls.='<span>'.Luis::lang("precio").' </span>';
 																																			$idexhtmls.='<span>'.$mostrar_tipo_de_moneda->simbolo.". ".number_format($precio_nuevo_suma1,2,".",",").'</span>';
 																																		$idexhtmls.='</div>';
 																																	$idexhtmls.='</div>';

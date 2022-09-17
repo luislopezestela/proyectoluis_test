@@ -1,5 +1,4 @@
 var doc = $("input[name='dni']");
-
 $(document).on("keypress", "input[name='dni']", function(e){
 	var key = window.event ? e.which : e.keyCode;
 	  if (key < 48 || key > 57) {
@@ -93,3 +92,47 @@ $(document).on("click", ".btn_new_ge_use_persons_pass_ing", function(e){
 		}
 	});
 });
+
+
+var _targettedModal_b,
+  _triggers_b = document.querySelectorAll('[data-modal-trigger]'),
+  _dismiss_b = document.querySelectorAll('[data-modal-dismiss]'),
+  modalActiveClass_b = "is-modal-active";
+  function abrirModal(el){
+    _targettedModal_b = document.querySelector('[data-modal-name="'+ el + '"]');
+    _targettedModal_b.classList.add(modalActiveClass_b);
+  }
+
+  function hideModal_b(event){
+    if(event === undefined || event.target.hasAttribute('data-modal-dismiss')) {
+      _targettedModal_b.classList.remove(modalActiveClass_b);
+    }
+  }
+
+  function bindEvents_b(el, callback){
+    for (i = 0; i < el.length; i++) {
+      (function(i){
+        el[i].addEventListener('click', function(event) {
+          callback(this, event);
+        });
+      })(i);
+    }
+  }
+  
+  function triggerModal_b(){
+    bindEvents_b(_triggers_b, function(that){
+      abrirModal(that.dataset.modalTrigger);
+    });
+  }
+
+  function cerrarModal_b(){
+    bindEvents_b(_dismiss_b, function(that){
+        hideModal_b(event);
+      });
+  }
+
+  function iniciarModal_b(){
+    triggerModal_b();
+    cerrarModal_b();
+  }
+  iniciarModal_b();

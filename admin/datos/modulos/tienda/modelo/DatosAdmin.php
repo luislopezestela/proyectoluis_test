@@ -1238,7 +1238,7 @@ class DatosAdmin{
 	}
 
 	public static function verifica_detalles_venta_actualizado($venta){
-		$sql = "select * from ventas where id=$venta and estado_de_venta=3";
+		$sql = "select * from ventas where id=$venta";
 		$query = Ejecutor::doit($sql);
 		return Modelo::one($query[0],new DatosAdmin());
 	}
@@ -1281,7 +1281,7 @@ class DatosAdmin{
 	}
 
 	public static function ventas_registrados_en_la_web_detalles_venta($venta){
-		$sql = "select * from ventas where id=$venta and estado_de_venta=3";
+		$sql = "select * from ventas where id=$venta";
 		$query = Ejecutor::doit($sql);
 		return Modelo::many($query[0],new DatosAdmin());
 	}
@@ -1293,7 +1293,7 @@ class DatosAdmin{
     }
 
     public static function visualizar_venta_realtime_en_la_web_detalles_venta($venta){
-    	$sql = "select * from ventas where id=$venta and estado_de_venta=3 and web=1";
+    	$sql = "select * from ventas where id=$venta";
     	$query = Ejecutor::doit($sql);
 		return Modelo::one($query[0],new DatosAdmin());
     }
@@ -1512,7 +1512,11 @@ class DatosAdmin{
 	}
 
 	//// se muestran las ventas y tipos de ventas 
-
+	public static function todas_las_ventas($tienda){
+		$sql = "select * from ventas where sucursal=$tienda";
+		$query = Ejecutor::doit($sql);
+		return Modelo::many($query[0],new DatosAdmin());
+	}
 	
 	public static function Mostrar_ventas_finalizados($user){
 		$sql = "select * from ventas where vendedor=$user and estado_de_venta=3";

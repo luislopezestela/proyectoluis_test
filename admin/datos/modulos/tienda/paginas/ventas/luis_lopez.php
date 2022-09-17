@@ -1,8 +1,14 @@
 <?php
-
+$usuario=DatosUsuario::poriUsuario($_SESSION["admin_id"]);
 $base = Luis::basepage("base_page_admin");
 $namepage =  Luis::dato("luis_nombre")->valor;
 $metodopago=DatosAdmin::MostrarMetododepago();
+$moneda_principal = DatosAdmin::mostrar_la_moneda_principal();
+if($moneda_principal){
+	$moneda_principal_view=$moneda_principal->simbolo;
+}else{
+	$moneda_principal_view=false; 
+}
 if(isset($_SESSION["admin_id"])){
 	$documentos=DatosAdmin::mostrardocumentos();
 	?>
@@ -683,30 +689,21 @@ if(isset($_SESSION["admin_id"])){
 						////***** finaliza la entrega de la venta por web
 					}elseif($urb[1]==="detalles_venta"){
 						$total=0;
-						///// una venta de la pagina web
 						if($urb[2]==$urb[2]){
 							$ver_lacompra_id = DatosAdmin::verifica_detalles_venta_actualizado($urb[2]);
 							if($urb[2]===$ver_lacompra_id->id){
-								// aqui todas las funciones para realizar la entrega de la compra
 								$selex_document_page=false;
 								$cant_ventas = DatosAdmin::ventas_registrados_en_la_web_detalles_venta($ver_lacompra_id->id);
 								$venta_pendiente = DatosAdmin::visualizar_venta_realtime_en_la_web_detalles_venta($ver_lacompra_id->id);
 								?>
 								<div class="contenido">
-									<h3 class="new_venta"><?=Luis::lang("detalles_venta");?></h3>
 									<?php if($cant_ventas): ?>
-										<div class="numero_de_venta"><?=$venta_pendiente->numero_venta;?></div>
-
-										<?php if (isset($venta_pendiente->documento)): ?>
-											<?php $name_documentss=DatosAdmin::documento_por_id($venta_pendiente->documento);
-											$name_documents=$name_documentss->nombre;?>
-										<?php else: ?>
-											<?php $name_documents="DOCUMENTO";?>
-										<?php endif ?>
+										<div class="numero_de_venta">
+											<?=$venta_pendiente->numero_venta;?>
+										</div>
 
 										<div class="punto_ventas_controls_preparar">
 											<div class="opciones_venta_one">
-												
 												<?php $cliente_view_pages=false;
 												if($venta_pendiente->cliente):
 													$cliente_view_page=DatosAdmin::por_el_id_cliente($venta_pendiente->cliente);
@@ -729,18 +726,16 @@ if(isset($_SESSION["admin_id"])){
 														</div>
 													<?php endif ?>
 												</div>
+											</div>
 
-
-												<select id="select_document_store_shop_client" data="<?=$venta_pendiente->id;?>" class="options_selects select_document_store_shop_client">
-													<?php foreach($documentos as $doc): ?>
-														<?php if($venta_pendiente->documento==$doc->id): ?>
-															<?=$selex_document_page="selected"; ?>
-														<?php else: ?>
-															<?=$selex_document_page=false; ?>
-														<?php endif ?>
-														<option disabled="on" value="<?=$doc->id;?>" data="<?=html_entity_decode($doc->nombre);?>" <?=$selex_document_page;?>><?=html_entity_decode($doc->nombre);?></option>
-													<?php endforeach ?>
-												</select>
+											<div class="opciones_venta_one_dovc">
+												<?php foreach($documentos as $doc): ?>
+													<?php if($venta_pendiente->documento==$doc->id): ?>
+														<label class="order_current_for_label_doc_name"><?=$selex_document_page=html_entity_decode($doc->nombre); ?></label>
+													<?php else: ?>
+														<?=$selex_document_page=false; ?>
+													<?php endif ?>
+												<?php endforeach ?>
 											</div>
 										</div>
 										<!-- items ventas controls -->
@@ -751,92 +746,84 @@ if(isset($_SESSION["admin_id"])){
 													$volrtotal_precios=0;
 													$item_view_in_order = DatosAdmin::itemview_productos($it->id_item);
 													$item_option_type_view = DatosAdmin::listar_detalles_ventas_pendientes_web_sub($it->codigo);?>
-												
-												<div class="items_list_views_order_list blockdisplayin" id="<?="itemsviewscartorder".$it->id;?>">
-													<div class="detail_producto_order_cart">
-														<h4 class="padbot"><?=html_entity_decode($item_view_in_order->nombre);?></h4>
-														<?php foreach ($item_option_type_view as $v_iop):
-															$view_data_sub_one_details = DatosAdmin::view_iten_in_pages_por_id($v_iop->id_opcion_sub);
-															$view_type_options_details = DatosAdmin::ver_opciones_type_por_id($view_data_sub_one_details->id_opciones_type);
-															$volrtotal_precios+=$view_data_sub_one_details->precio;?>
-															<div class="items_detail_name_conten_ends_order_ins_head">
-																<span class="preparar_items_detail_name_star_order_ins">
-																	<?=html_entity_decode($view_type_options_details->nombre.": ");?>		
-																</span>
-																<span class="preparar_items_detail_name_conten_ends_order_ins">
-																	<?=html_entity_decode($view_data_sub_one_details->nombre);?>		
-																</span>
-															</div>
-														<?php endforeach ?>
-														<?php $precio_nuevo_suma=$item_view_in_order->precio_final+$volrtotal_precios; ?>
-														<div class="peruvianprice">PRECIO UNIDAD: <?="S/.".number_format($precio_nuevo_suma,2,".",",");?></div>
-														<span class="cantidad_items_view_pages ">CANTIDAD: <b class="cantidad_items_view_pages_count_items<?=$item_view_in_order->id;?>"><?=$it->cantidad;?></b></span>
-														<br>
-														<div class="peruvianprice">SUB TOTAL: <?="S/.".number_format($precio_nuevo_suma*$it->cantidad,2,".",",");?></div>
-											    		<div class="barcodes_items_view_in_page">
-											    			<?php $cantidad_para_preparar = DatosAdmin::contar_productos_que_faltan_preparar($it->codigo)->c; ?>
-											    			<span class="barcodes_items_view_in_page_button" data-modal-trigger="barcodes_items_view_in_page_button_action<?=$it->id;?>">CODIGOS</span>
-											    			<div class="modal" data-modal-name="barcodes_items_view_in_page_button_action<?=$it->id;?>" data-modal-dismiss="">
-											    				<div class="modal__dialog">
-											    					<header class="modal__header">
-											    						<h3 class="modal__title name_items_titles"><?=html_entity_decode($item_view_in_order->nombre);?></h3>
-											    						<i class="modal__close" data-modal-dismiss="">X</i>
-											    					</header>
-											    					<div class="modal__content" id="<?=$it->id;?>">
-											    						<?php $type_items_view = DatosAdmin::Ver_tipo_deproducto_por_item($item_view_in_order->tipo);?>
-											    						<div class="panel_tabla">
-												    						<table class="table table_data_info_pages" id="<?=$it->id;?>">
-												    							<thead class="header_table_items_lists">
-												    								<?php $header_table_items_viewers=tables_in_pages_items::Mostrar_tabla_in_page_head_table($type_items_view->id_tabla);?>
-												    								<tr>
-												    									<th>BARCODE</th>
-												    									<th>PROVEEDOR</th>
-												    								</tr>
-												    							</thead>
-												    							<tbody class="data_items_stock_controls data_items_stock_controls<?=$it->id;?>">
-												    								<?php $movstock=DatosAdmin::preparar_mostrar_productos_en_la_orden_item($it->codigo); ?>
-												    								<?php foreach ($movstock as $m):
-												    									$stock_lista_m = DatosAdmin::ver_el_stock_del_item_por_barcode_en_lista($m->barcode);
-												    									if($stock_lista_m){
-												    										$provee=DatosAdmin::poridproveedor($stock_lista_m->proveedor);
-												    										$nombre_proveedor=html_entity_decode($provee->nombre);
-												    									}else{
-												    										$nombre_proveedor="-";
-												    									}?>
-												    									<tr id="item_on_code_list_order<?=$m->id;?>">
-												    										<td><input disabled="on" class="barcode_items_style_pah_input_modal inpt_ac_barcode_limit inpt_ac_barcode_limit<?=$m->id;?>" data="<?=$m->id;?>" data-ac="<?=$it->id;?>" type="text" placeholder="BARCODE" value="<?=$m->barcode;?>"></td>
-												    										<td><span class="text_data_style_modal_prov <?="text_data_modal_prov".$m->id;?>"><?=$nombre_proveedor;?></span></td>
-												    									</tr>
-												    								<?php endforeach ?>
-												    							</tbody>
-												    						</table>
-											    						</div>
-											    					</div>
-											    				</div>
-											    			</div>
-											    		</div>
+													<div class="items_list_views_order_list blockdisplayin" id="<?="itemsviewscartorder".$it->id;?>">
+														<div class="detail_producto_order_cart">
+															<h4 class="padbot"><?=html_entity_decode($item_view_in_order->nombre);?></h4>
+															<?php foreach ($item_option_type_view as $v_iop):?>
+																<?php if($v_iop->id_opcion_sub): ?>
+																	<div class="items_detail_name_conten_ends_order_ins_head">
+																		<?php $view_data_sub_one_details = DatosAdmin::view_iten_in_pages_por_id($v_iop->id_opcion_sub);
+																			$view_type_options_details = DatosAdmin::ver_opciones_type_por_id($view_data_sub_one_details->id_opciones_type); ?>
+																		<?php if($v_iop->type==2): ?>
+																			<?php $cat_b = DatosAdmin::sub_categoria_getById($view_data_sub_one_details->cat_act); ?>
+																			<span class="items_detail_name_star_order_ins"><?=html_entity_decode($cat_b->nombre.": ");?></span>
+																		<?php elseif($v_iop->type==1): ?>
+																			<?php $cat_a = DatosAdmin::getById_categoria($view_data_sub_one_details->cat_act); ?>
+																			<span class="items_detail_name_star_order_ins"><?=html_entity_decode($cat_a->nombre.": ");?></span>
+																		<?php elseif($v_iop->type==0): ?>
+																			<span class="items_detail_name_star_order_ins"><?=html_entity_decode($view_type_options_details->nombre.": ");?></span>
+																		<?php endif ?>
+																		<span class="items_detail_name_conten_ends_order_ins">
+																			<?=html_entity_decode($view_data_sub_one_details->nombre);?>		
+																		</span>
+																	</div>
+																	<?php if($view_data_sub_one_details->precio==1):
+																		$open_producto = DatosAdmin::porID_producto($view_data_sub_one_details->item_k);
+																		$volrtotal_precios+=$open_producto->precio_final;
+																		?>
+																	<?php else: ?>
+																		<?php $volrtotal_precios+=0; ?>
+																	<?php endif ?>
+																<?php else: ?>
+																	<?php $volrtotal_precios+=0; ?>
+																<?php endif ?>
+															<?php endforeach ?>
+															<?php $precio_nuevo_suma=$item_view_in_order->precio_final+$volrtotal_precios;
+															if($item_view_in_order->moneda_a){
+																$moneda_por_id_a=DatosAdmin::Mostrar_las_monedas_por_id($item_view_in_order->moneda_a)->simbolo;
+															}else{
+																$moneda_por_id_a=false; 
+															} ?>
+															<div class="peruvianprice"><?=Luis::lang("precio");?>: <?=$moneda_por_id_a.".".number_format($precio_nuevo_suma,2,".",",");?></div>
+															<span class="cantidad_items_view_pages "><?=Luis::lang("cantidad");?>: <b class="cantidad_items_view_pages_count_items<?=$item_view_in_order->id;?>"><?=$it->cantidad;?></b></span>
+															<br>
+															<div class="peruvianprice"><?=Luis::lang("total");?>: <?=$moneda_principal_view.".".number_format($precio_nuevo_suma*$it->cantidad,2,".",",");?></div>
+												    		<div class="barcodes_items_view_in_page">
+												    			<?php $cantidad_para_preparar = DatosAdmin::contar_productos_que_faltan_preparar($it->codigo)->c; ?>
+												    		</div>
+														</div>
 													</div>
-
-													<!-- <div class="close_cart_orders_list close_cart_orders_list_order">
-											    		<a class="boton_eliminar_producto_de_carrito" data_cart="<?=$it->id;?>">x</a>
-											    	</div> -->
-												</div>
-												<?php $total += $it->cantidad*$precio_nuevo_suma; ?>
+													<?php $total += $it->cantidad*$precio_nuevo_suma; ?>
 												<?php  endforeach ?>
 											</div>
 
 											<div class="page_order_datails_resume">
 												<div class="content_code_list_view_order_head">
-											    	<label>Metodo de pago</label>
-											    	<?php $metodo_de_pago_view=DatosAdmin::metododepago_porelId($venta_pendiente->metodo_pago);?>
-											    	<span class="metod_pago_sty_prepare"><?=html_entity_decode($metodo_de_pago_view->nombre);?></span>
-											   	</div>
-											   	<div class="content_code_list_view_order">
-											   		<span class="totalprecio pricetotalboxcarts order_total_count_items">
-											   			<span class="label_price_mount">Total:</span>
-											   			S/. <span class="mount_order_client_litingff"><?php echo number_format($total,2,".",","); ?></span>
-											   		</span>
-											    </div>
+											    <label><?=Luis::lang("metodo_de_pago");?></label>
+											    <?php $metodo_de_pago_view=DatosAdmin::metododepago_porelId($venta_pendiente->metodo_pago);?>
+											    <span class="metod_pago_sty_prepare"><?=html_entity_decode($metodo_de_pago_view->nombre);?></span>
+											  
+											  
+											    <label><?=Luis::lang("estado_de_venta");?></label>
+											    <?php $ver_estado_de_venta = DatosAdmin::Ver_estado_de_venta_por_id($venta_pendiente->estado_de_venta); ?>
+											    <span class="metod_pago_sty_prepare"><?=html_entity_decode($ver_estado_de_venta->nombre);?></span>
+											  </div>
+											  <div class="content_code_list_view_order">
+											   	<span class="totalprecio pricetotalboxcarts order_total_count_items">
+											   		<span class="label_price_mount"><?=Luis::lang("total");?>:</span>
+											   		<?=$moneda_principal_view;?>. <span class="mount_order_client_litingff"><?php echo number_format($total,2,".",","); ?></span>
+											   	</span>
+
+											   	<div class="butt_luis_one">
+											   		<?php if($venta_pendiente->estado_de_venta==5): ?>
+											   			<span class="recibir_button_but_on" data="<?=$venta_pendiente->id;?>"><?=Luis::lang("recibir");?></span>
+											   			<span class="recibir_button_but_on_b" data="<?=$venta_pendiente->id;?>"><?=Luis::lang("recibir_y_preparar");?></span>
+											   		<?php elseif($venta_pendiente->estado_de_venta==6): ?>
+											   			<span class="listo_para_entregar_button_but_on" data="<?=$venta_pendiente->id;?>"><?=Luis::lang("preparar");?></span>
+											   		<?php endif ?>
+														
+													</div>
+											  </div>
 											</div>
 										</div>
 									<?php endif ?>
@@ -1326,6 +1313,9 @@ if(isset($_SESSION["admin_id"])){
 				$cantidad_ventas_recibidos_web = DatosAdmin::cantidad_de_ventas_recibidos_web()->c;
 				$cantidad_ventas_listo_web = DatosAdmin::cantidad_de_ventas_listos_web()->c;
 				$cantidad_ventas_cancelados_web = DatosAdmin::cantidad_de_ventas_cancelados_web()->c;
+
+
+				$mostrar_todas_las_ventas = DatosAdmin::todas_las_ventas($usuario->sucursal);
 				?>
 				<div class="contenido">
 					<div class="funciones_en_ventas_continuados">
@@ -1335,45 +1325,21 @@ if(isset($_SESSION["admin_id"])){
 							<div data_controles=""></div>
 						</div>
 					</div>
-
-					<div class="conten_news_options_page_orders">
-						<div class="order_option_a_functions">
-							<img src="<?=$base."datos/source/icons/ventas.png"?>">
-							<span><?=Luis::lang("ventas");?></span>
-							<span class="sub_menus_ordrs_style"><?=Luis::lang("pendientes");?><i>0</i></span>
-							<span class="sub_menus_ordrs_style"><?=Luis::lang("reservados");?><i>0</i></span>
-							<span class="sub_menus_ordrs_style"><?=Luis::lang("entregado_al_cliente");?><i>0</i></span>
-							<span class="sub_menus_ordrs_style"><?=Luis::lang("orden_cancelada");?><i>0</i></span>
-						</div>
-						<div class="order_option_a_functions">
-							<img src="<?=$base."datos/source/icons/venta_en_linea.png"?>">
-							<span>Ventas en linea</span>
-							<a href="<?=$base."ventas/ventas_en_linea/pendientes";?>" class="sub_menus_ordrs_style"><?=Luis::lang("pendientes");?><i><?=$cantidad_ventas_pendientes_web;?></i></a>
-							<a href="<?=$base."ventas/ventas_en_linea/recibidos";?>" class="sub_menus_ordrs_style"><?=Luis::lang("recibidos");?><i><?=$cantidad_ventas_recibidos_web;?></i></a>
-							<a href="<?=$base."ventas/ventas_en_linea/listos";?>" class="sub_menus_ordrs_style"><?=Luis::lang("listos");?><i><?=$cantidad_ventas_listo_web;?></i></a>
-							<a href="<?=$base."ventas/ventas_en_linea/entregado_al_cliente";?>" class="sub_menus_ordrs_style"><?=Luis::lang("entregado_al_cliente");?><i><?=$cantidad_ventas_entregados_al_cliente_web;?></i></a>
-							<a href="<?=$base."ventas/ventas_en_linea/orden_cancelada";?>" class="sub_menus_ordrs_style"><?=Luis::lang("orden_cancelada");?><i><?=$cantidad_ventas_cancelados_web;?></i></a>
-						</div>
-					</div>
-
-
-
-					<h1 class="order_title_current_day">Ventas de hoy</h1>
 					<div class="panel_tabla">
 						<table class="table table_data_info_pages">
 							<thead class="header_table_items_lists">
 								<tr>
-									<th>ACCIONES</th>
-									<th>NUMERO_VENTA</th>
-									<th>DOC.</th>
+									<th></th>
+									<th><?=Luis::lang("venta");?></th>
+									<th><?=Luis::lang("documento");?>.</th>
 									<th>NUM_DOC</th>
-									<th>CLIENTE</th>
-									<th>METODO_PAGO</th>
-									<th>ESTADO_DE_VENTA</th>
+									<th><?=Luis::lang("cliente");?></th>
+									<th><?=Luis::lang("pago");?></th>
+									<th><?=Luis::lang("estado");?></th>
 								</tr>
 							</thead>
 							<tbody class="panel-body">
-								<?php foreach ($ventas_finalizadas as $ven):
+								<?php foreach ($mostrar_todas_las_ventas as $ven):
 									$el_documento = DatosAdmin::Ver_documento_por_id($ven->documento);
 									$ver_nombre_del_cliente = DatosAdmin::Ver_nombre_del_cliente_por_id($ven->cliente);
 									$ver_estado_de_venta = DatosAdmin::Ver_estado_de_venta_por_id($ven->estado_de_venta);
