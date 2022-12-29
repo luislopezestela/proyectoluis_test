@@ -346,10 +346,12 @@ class Luis {
     }
 
     public static function basepage($base){
+    	$server_schemevalor = @$_SERVER["HTTPS"];
+    	$pageURLvalor = ($server_schemevalor == "on") ? "https://" : "http://";
     	if($base==="base_page"){
-    		$pagebase = Luis::dato("luis_base")->valor;
+    		$pagebase = $pageURLvalor.Luis::dato("luis_base")->valor.'/';
     	}elseif($base==="base_page_admin"){
-    		$pagebase = Luis::dato("luis_base")->valor."admin/";
+    		$pagebase = $pageURLvalor.Luis::dato("luis_base")->valor."/admin/";
     	}
     	return $pagebase;
     }
@@ -554,19 +556,19 @@ class Luis {
 			$server_scheme = @$_SERVER["HTTPS"];
 			$pageURL = ($server_scheme == "on") ? "https://" : "http://";
 			$http_url = $pageURL . $_SERVER['HTTP_HOST'];
-			$url = parse_url($basepagina);
+			$url = parse_url($basepagina.$pageURL.'/');
 			if(!empty($url)){
 				if($url['scheme'] == 'http') {
 					if($http_url != 'http://'.$url['host']){
-						header('Location: '.$basepagina);exit();
+						header('Location:'.$url);exit();
 					}else if($http_url != 'http://'.$url['host']){
-						header('Location: '."www.".$basepagina);exit();
+						header('Location: '."www.".$url);exit();
 					}
 				}else{
-					if($http_url != 'https://' . $url['host']){
-						header('Location: '.$basepagina);exit();
+					if($http_url != 'https://'.$url['host']){
+						header('Location: '.$url);exit();
 					}else if($http_url != 'https://'.$url['host']){
-						header('Location: '."www.".$basepagina);exit();
+						header('Location: '."www.".$url);exit();
 					}
 				}
 			}
@@ -575,7 +577,6 @@ class Luis {
 
 	public function loadModule($modulo){
 			if(!isset($_GET['modulo'])){
-				
 				Modulo::setModule($modulo);
 				include "datos/modulos/".$modulo."/autocarga.php";
 				include "datos/modulos/".$modulo."/superinicio.php";

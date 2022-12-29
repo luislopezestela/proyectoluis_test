@@ -61,17 +61,17 @@
 .banText{display:table-cell;vertical-align:middle;padding-left:50px;position:relative;}
 .banText_conten{max-width:560px;height:300px;display:block;padding:30px 0px 0px 0px;}
 .banText_btns p{color:var(--color_primario);}
-.ban-button-btn{-webkit-transition:color .2s linear, background-color .2s linear, border-color .2s linear;transition:color .2s linear, background-color .2s linear, border-color .2s linear;display:inline-block;min-width:100px;height:40px;padding:0 22px;text-indent:0.1rem;text-align:center;text-decoration:none;cursor:pointer;max-width:100%;outline:none;position:relative;overflow:hidden;font-size:16px;line-height:40px;letter-spacing:0.01875rem;font-weight:500;font-family:"HP Simplified Regular";color:#FFFFFF !important;background-color:#0171ad;border:1px solid #0171ad;text-transform:uppercase;border-radius:0px;margin-bottom:10px;}
+.ban-button-btn{-webkit-transition:color .2s linear, background-color .2s linear, border-color .2s linear;transition:color .2s linear, background-color .2s linear, border-color .2s linear;display:inline-block;min-width:100px;height:40px;padding:0 22px;text-indent:0.1rem;text-align:center;text-decoration:none;cursor:pointer;max-width:100%;outline:none;position:relative;overflow:hidden;font-size:16px;line-height:40px;letter-spacing:0.01875rem;font-weight:500;color:#FFFFFF !important;background-color:#0171ad;border:1px solid #0171ad;text-transform:uppercase;border-radius:0px;margin-bottom:10px;}
 .ban-button-btn:hover{text-decoration:none !important;color:#FFFFFF !important;background-color:#075782;border-color:#075782;outline:0;}
 .bannerText h3{display:inline-block;border-radius:30px 30px;padding:8px 20px;margin-bottom:10px;vertical-align:middle;background-color:var(--color_primario);}
-.bannerText h3 span{color:var(--color_a);font-size:20px;font-weight:500;font-family:"HP Simplified Regular";line-height:25px;margin-top:0px;margin-bottom:0px !important;letter-spacing:normal;text-transform:uppercase;line-height:1;vertical-align:middle;}
-.bannerText .st_texts{clear:both;font-size:42px;font-weight:900;font-family:"HP Simplified Regular";line-height:50px;margin-top:0px;margin-bottom:20px;letter-spacing:normal;color:var(--color_primario);}
+.bannerText h3 span{color:var(--color_a);font-size:20px;font-weight:500;line-height:25px;margin-top:0px;margin-bottom:0px !important;letter-spacing:normal;text-transform:uppercase;line-height:1;vertical-align:middle;}
+.bannerText .st_texts{clear:both;font-size:42px;font-weight:900;line-height:50px;margin-top:0px;margin-bottom:20px;letter-spacing:normal;color:var(--color_primario);}
 .slick-active .bannerText{-webkit-animation:fromRightAnim2 0.8s ease-in 0.3s both;-moz-animation:fromRightAnim2 0.8s ease-in 0.3s both;-o-animation:fromRightAnim2 0.8s ease-in 0.3s both;-ms-animation:fromRightAnim2 0.8s ease-in 0.3s both;animation:fromRightAnim2 0.8s ease-in 0.3s both;}
 
 
-.block_service_lu * { border: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; font-family: 'HP Simplified Regular', sans-serif; font-weight: 400; margin: 0; padding: 0; color:var(--color_a); transition: all .5s; }
+.block_service_lu * { border: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box;font-weight: 400; margin:0;padding:0;color:var(--color_a);transition: all .5s; }
 .block_service_lu a { text-decoration: none; outline: 0; transition: All 0.45s ease; -webkit-transition: All 0.45s ease; -moz-transition: All 0.45s ease; -o-transition: All 0.45s ease; }
-.block_service_lu p { line-height: 1.2; font-family: 'HP Simplified Light', sans-serif; font-weight: 300; font-size: 16px; }
+.block_service_lu p { line-height: 1.2;font-weight: 300; font-size: 16px; }
 .block_service_lu img { height: auto; max-width: 100%; vertical-align: top; line-height: 0; }
 .block_service_lu button:focus, .block_service_lu button:hover, .block_service_lu a.action.primary:hover, .block_service_lu .action.primary:hover, .block_service_lu button:active, .block_service_lu a.action.primary:active, .block_service_lu .action.primary:active { border: 0 !important; outline: 0; }
 .block_service_lu ul.list_service_lu { display: flex; justify-content: space-between; align-items: center; list-style-type: none; border-top: 1px solid #000000; border-bottom: 1px solid #000000; }
@@ -101,8 +101,6 @@
     .block_service_lu ul.list_service_lu li a{ padding: 10px 16px 10px; }
     .block_service_lu ul.list_service_lu { padding: 16px 0; }
 }
-
-
 
 @-moz-keyframes fromRightAnim2{
     0%{ opacity: 0; }
