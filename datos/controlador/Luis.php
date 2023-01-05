@@ -571,11 +571,10 @@ class Luis {
 	    		$pageURL = "http://";
 	    	}
 
-echo($pageURL);
 
 
 			$http_url = $pageURL . $_SERVER['HTTP_HOST'];
-			$url = parse_url($pageURL.$basepagina.'/');
+			$url = parse_url($pageURL.$basepagina);
 			if(!empty($url)){
 				if($url['scheme'] == 'http') {
 					if($http_url != 'http://'.$url['host']){
