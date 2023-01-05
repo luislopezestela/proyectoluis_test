@@ -89,27 +89,20 @@ $footer=Functions::footer_disp();
 		<div class="pages_list_timeline">
 			<?=Vista::load("index"); ?>
 
-			<?php
+			aaaaaa<?php
 
-			if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on') {
-				echo "HTTP";
-			}else{
-				echo "HTTPS";
+			function has_ssl( $domain ) {
+			    $ssl_check = @fsockopen( 'ssl://' . $domain, 443, $errno, $errstr, 30 );
+			    $res = !! $ssl_check;
+			    if ( $ssl_check ) { fclose( $ssl_check ); }
+			    return $res;
 			}
 
-			echo " ................ ";
+			// Test it:
+			print_r( has_ssl(Luis::dato("luis_base")->valor) );
+						
 
-			$stream = stream_context_create (array("ssl" => array("capture_peer_cert" => true)));
-			$read = fopen("https://".Luis::dato("luis_base")->valor, "rb", false, $stream);
-			
-			
-
-			//$cont = stream_context_get_params($read);
-		//	$var = ($cont["options"]["ssl"]["peer_certificate"]);
-			//$result = (!is_null($var)) ? true : false;
-
-			//echo($result)
-			 ?>
+			 ?>eeeeeee
 		</div>
 	</div>
 	
