@@ -571,9 +571,7 @@ class Luis {
 	    		$pageURL = "http://";
 	    	}
 
-
-
-
+echo($pageURL);
 
 
 			$http_url = $pageURL . $_SERVER['HTTP_HOST'];
