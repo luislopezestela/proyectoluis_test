@@ -344,7 +344,7 @@ class Luis {
         $url = str_replace($find, $repl, $url);
         return $url;
     }
-
+ 
     public static function basepage($base){
     	$server_schemevalor = @$_SERVER["HTTPS"];
     	$pageURLvalor = ($server_schemevalor == "on") ? "https://" : "http://";
