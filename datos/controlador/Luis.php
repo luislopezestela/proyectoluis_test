@@ -566,17 +566,10 @@ class Luis {
 		if(!empty($_SERVER['HTTP_HOST'])){
 
 			if(Luis::ver_certificado(Luis::dato("luis_base")->valor)) {
-    			$pageURLvalor = "https://";
+    			$pageURL = "https://";
 	    	}else{
-	    		$pageURLvalor = "http://";
+	    		$pageURL = "http://";
 	    	}
-
-
-			$server_scheme = @$_SERVER["HTTPS"];
-			$pageURL = ($server_scheme == "on") ? "https://" : "http://";
-
-
-
 
 			$http_url = $pageURL . $_SERVER['HTTP_HOST'];
 			$url = parse_url($pageURL.$basepagina.'/');
