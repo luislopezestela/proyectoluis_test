@@ -96,9 +96,6 @@ $footer=Functions::footer_disp();
 			}else{
 				echo "HTTPS";
 			}
-			$pageURLvalor = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
-			print_r(@$_SERVER["HTTPS"]);
-			echo $pageURLvalor;
 			 ?>
 		</div>
 	</div>
