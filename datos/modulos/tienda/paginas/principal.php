@@ -90,7 +90,8 @@ $footer=Functions::footer_disp();
 			<?=Vista::load("index"); ?>
 
 			<?php 
-			$pageURLvalor = (empty($_SERVER["HTTPS"]) != "on") ? "https://" : "http://";
+			$pageURLvalor = ($_SERVER["HTTPS"] == "on") ? "https://" : "http://";
+			print_r($_SERVER);
 			echo $pageURLvalor;
 			 ?>
 		</div>
