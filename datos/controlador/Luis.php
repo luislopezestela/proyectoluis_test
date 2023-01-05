@@ -564,10 +564,22 @@ class Luis {
 	public static function httpconf(){
 		$basepagina = Luis::dato("luis_base")->valor;
 		if(!empty($_SERVER['HTTP_HOST'])){
+
+			if(Luis::ver_certificado(Luis::dato("luis_base")->valor)) {
+    			$pageURLvalor = "https://";
+	    	}else{
+	    		$pageURLvalor = "http://";
+	    	}
+
+
 			$server_scheme = @$_SERVER["HTTPS"];
 			$pageURL = ($server_scheme == "on") ? "https://" : "http://";
+
+
+
+
 			$http_url = $pageURL . $_SERVER['HTTP_HOST'];
-			$url = parse_url($basepagina.$pageURL.'/');
+			$url = parse_url($pageURL.$basepagina.'/');
 			if(!empty($url)){
 				if($url['scheme'] == 'http') {
 					if($http_url != 'http://'.$url['host']){
