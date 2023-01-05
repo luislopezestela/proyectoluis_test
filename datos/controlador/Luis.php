@@ -344,10 +344,21 @@ class Luis {
         $url = str_replace($find, $repl, $url);
         return $url;
     }
- 
+
+    public static function ver_certificado( $domain ) {
+    	$ssl_check = @fsockopen( 'ssl://' . $domain, 443, $errno, $errstr, 30 );
+    	$res = !! $ssl_check;
+    	if($ssl_check){ fclose($ssl_check); }
+    	return $res;
+    }
+    
     public static function basepage($base){
-    	$server_schemevalor = @$_SERVER["HTTPS"];
-    	$pageURLvalor = ($server_schemevalor == "on") ? "https://" : "http://";
+    	if(Luis::ver_certificado(Luis::dato("luis_base")->valor)) {
+    		$pageURLvalor = "https://";
+    	}else{
+    		$pageURLvalor = "http://";
+    	}
+
     	if($base==="base_page"){
     		$pagebase = $pageURLvalor.Luis::dato("luis_base")->valor.'/';
     	}elseif($base==="base_page_admin"){
