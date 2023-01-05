@@ -562,7 +562,7 @@ class Luis {
 	}
 
 	public static function httpconf(){
-		$basepagina = Luis::dato("luis_base")->valor;
+		
 		if(!empty($_SERVER['HTTP_HOST'])){
 
 			if(Luis::ver_certificado(Luis::dato("luis_base")->valor)) {
@@ -571,25 +571,29 @@ class Luis {
 	    		$pageURL = "http://";
 	    	}
 
+	    	$basepagina = Luis::dato("luis_base")->valor;
 
 
-			$http_url = $pageURL . $_SERVER['HTTP_HOST'];
-			$url = parse_url($pageURL.$basepagina);
-			if(!empty($url)){
-				if($url['scheme'] == 'http') {
-					if($http_url != 'http://'.$url['host']){
-						header('Location:'.$url);exit();
-					}else if($http_url != 'http://'.$url['host']){
-						header('Location: '."www.".$url);exit();
+
+			$http_url = $pageURL.$_SERVER['HTTP_HOST'];
+
+			$url = parse_url($pageURL.$_SERVER['HTTP_HOST']);
+			
+				if($url['scheme'] === 'http') {
+					if(!$http_url = 'http://'.$url['host']){
+						header('Location:'.$http_url);exit();
+					}else if(!$http_url = 'http://www.'.$url['host']){
+						header('Location:'.$pageURL."www.".$basepagina);exit();
 					}
+
 				}else{
-					if($http_url != 'https://'.$url['host']){
-						header('Location: '.$url);exit();
-					}else if($http_url != 'https://'.$url['host']){
+					if(!$http_url = 'https://'.$url['host']){
+						header('Location: '.$http_url);exit();
+					}else if(!$http_url = 'https://'.$url['host']){
 						header('Location: '."www.".$url);exit();
 					}
 				}
-			}
+			
 		}
 	}
 
