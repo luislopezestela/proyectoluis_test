@@ -89,7 +89,13 @@ $footer=Functions::footer_disp();
 		<div class="pages_list_timeline">
 			<?=Vista::load("index"); ?>
 
-			<?php 
+			<?php
+
+			if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on') {
+				echo "HTTP";
+			}else{
+				echo "HTTPS";
+			}
 			$pageURLvalor = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
 			print_r(@$_SERVER["HTTPS"]);
 			echo $pageURLvalor;
