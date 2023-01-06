@@ -1,4 +1,5 @@
 <?php
+ob_start();
 Luis::httpconf();
 $logopagina = Luis::dato("luis_logo")->valor;
 $head=Functions::header_disp();
@@ -103,3 +104,4 @@ $footer=Functions::footer_disp();
 	<script src="<?=Luis::basepage("base_page")."datos/source/scripts/script.js";?>"></script>
 </body>
 </html>
+<?php ob_end_flush(); ?>
