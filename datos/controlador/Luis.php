@@ -561,29 +561,19 @@ class Luis {
 		}
 	}
 
-	public static function httpconfss(){
+	public static function httpconf(){
 			if(Luis::ver_certificado(Luis::dato("luis_base")->valor)) {
-	    		$pageURLvalor = "https://";
+	    		$url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+			    header("Location: $url");
+			    exit;
 	    	}else{
 	    		$pageURLvalor = "http://";
 	    	}
 
-	    	if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != '') {
-			    header("location: https://".$_SERVER['HTTP_HOST']);
-			    echo "hello";
-			} else {
-			   // header("location: http://".$_SERVER['HTTP_HOST']);
-			    echo "string";
-			}
+	  
 	}
 
-	public static function httpconf(){
-		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
-		    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-		    header("Location: $url");
-		    exit;
-		}
-	}
+	
 
 	public function loadModule($modulo){
 			if(!isset($_GET['modulo'])){
