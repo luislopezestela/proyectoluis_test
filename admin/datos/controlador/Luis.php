@@ -520,28 +520,15 @@ class Luis {
 	}
 
 	public static function httpconf(){
-		$basepagina = Luis::dato("luis_base")->valor;
-		if(!empty($_SERVER['HTTP_HOST'])){
-			$server_scheme = @$_SERVER["HTTPS"];
-			$pageURL = ($server_scheme == "on") ? "https://" : "http://";
-			$http_url = $pageURL . $_SERVER['HTTP_HOST'];
-			$url = parse_url($basepagina.$pageURL.'/');
-			if(!empty($url)){
-				if($url['scheme'] == 'http') {
-					if($http_url != 'http://'.$url['host']){
-						header('Location:'.$url);exit();
-					}else if($http_url != 'http://'.$url['host']){
-						header('Location: '."www.".$url);exit();
-					}
-				}else{
-					if($http_url != 'https://'.$url['host']){
-						header('Location: '.$url);exit();
-					}else if($http_url != 'https://'.$url['host']){
-						header('Location: '."www.".$url);exit();
-					}
-				}
+		if(Luis::ver_certificado(Luis::dato("luis_base")->valor)) {
+	    	if(isset($_SERVER['HTTPS']) != "on"){
+			    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+			    header("Location: $url");
+			    exit;
 			}
-		}
+	    }else{
+	   		$pageURLvalor = "http://";
+	   	}
 	}
 
 	public function loadModule($modulo){
