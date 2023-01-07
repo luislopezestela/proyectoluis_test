@@ -578,31 +578,10 @@ class Luis {
 	}
 
 	public static function httpconf(){
-		$basepagina = Luis::dato("luis_base")->valor;
-		if(!empty($_SERVER['HTTP_HOST'])){
-			$server_scheme = @$_SERVER["HTTPS"];
-			$pageURL = ($server_scheme == "on") ? "https://" : "http://";
-			$http_url = $pageURL . $_SERVER['HTTP_HOST'];
-			$url = parse_url($pageURL.$_SERVER['HTTP_HOST']);
-			if(!empty($url)){
-				if($url['scheme'] == 'http') {
-					if($http_url != 'http://'.$url['host']){
-						echo "1";
-						header('Location:'.$url);exit();
-					}else if($http_url != 'http://'.$url['host']){
-						echo "2";
-						header('Location: '."www.".$url);exit();
-					}
-				}else{
-					if($http_url != 'https://'.$url['host']){
-						echo "3";
-						header('Location: '.$url);exit();
-					}else if($http_url != 'https://'.$url['host']){
-						echo "4";
-						header('Location: '."www.".$url);exit();
-					}
-				}
-			}
+		if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != ''){
+		    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+		    header("Location: $url");
+		    exit;
 		}
 	}
 
