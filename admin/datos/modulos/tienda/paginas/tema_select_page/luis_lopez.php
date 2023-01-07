@@ -58,7 +58,7 @@ $selec_cold=false;
 			<div class="temneas_skins_cont">
 				<span class="button_select_skins <?=$typeactives;?>" data="<?=$t->id;?>"><?=$tselect;?></span>
 				<?php if ($admin_skin): ?>
-					<span class="button_select_skins"><a href="<?=$base."administrar_skin/".$t->nombre;?>"><?=Luis::lang("administrar");?></a></span>
+					<span class="button_select_skins"><a href="<?=$base."administrar_skin/".$t->nombre;?>"><?=Luis::lang("personalizar");?></a></span>
 				<?php endif ?>
 			</div>
 		</div>

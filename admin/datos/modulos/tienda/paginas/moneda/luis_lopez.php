@@ -123,10 +123,10 @@ if(isset($urb[2])){$urbs=$urb[2];}else{$urbs=false;}
 		<div class="contentlists_items">
 			<h4 class="titulo_paginas"><?=Luis::lang("divisas");?></h4>
 			<div class="message"></div>
-			<!-- <a class="add_itembox" href="$base."moneda/add ">
-				<div class="butt_luis_one"><span>Luis::lang("agregar")</span></div>
+		  <a class="add_itembox" href="<?=$base."moneda/add";?>">
+				<div class="butt_luis_one"><span><?=Luis::lang("agregar");?></span></div>
 			</a>
-			<hr> -->
+			<hr> 
 			
 			<div class="conten_services">
 				<?php if(count($moneda)>0): ?>
@@ -158,9 +158,8 @@ if(isset($urb[2])){$urbs=$urb[2];}else{$urbs=false;}
 					            <span class="nameshiffs"><?php if(!$ser->nombre==null){echo($ser->nombre);}else{echo('-');}?></span>
 					            <?php $cambio_tipo = 0; ?>
 					            <?php if($ser->principal==1): ?>
-					            <?php else: $resultadode_cambios = 0//Functions::getUpadtesdsd($moneda_principal->moneda,$ser->moneda);?>
-					            	<div class="nameshiffs"><?='1 '.html_entity_decode($moneda_principal->nombre)." = ".$resultadode_cambios;?> </div>
-					            	Fuente Google
+					            	<div class="nameshiffs"><?=Luis::lang("principal") ?></div>
+					            <?php else: ?>
 					            <?php endif ?>
 					            
 					        </div>

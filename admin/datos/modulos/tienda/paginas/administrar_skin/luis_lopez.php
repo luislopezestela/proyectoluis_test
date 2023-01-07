@@ -2,7 +2,7 @@
 	.contiene_config_temas{
 		display:block;
 		width:100%;
-		max-width:1020px;
+		max-width:1280px;
 		margin:10px auto;
 	}
 </style>
@@ -16,7 +16,22 @@ if($_SESSION['admin_id']):
 		<?php $skin_view = Luis::administrar_el_tema($urbp);?>
 		<?php if($skin_view): /////////////////////////////////////////// ?>
 			<div class="contiene_config_temas">
-				//
+				<?php if(isset($head->nombre)): ?>
+					<?php if($head->nombre=="header_base"):?>
+						<link rel="stylesheet" type="text/css" href="<?=Luis::basepage("base_page")."datos/source/estilos/header_base.css";?>">
+					<?php elseif($head->nombre=="header_duc"):?>
+						<link rel="stylesheet" type="text/css" href="<?=Luis::basepage("base_page")."datos/source/estilos/header_duc.css";?>">
+					<?php elseif($head->nombre=="header_gog"):?>
+						<link rel="stylesheet" type="text/css" href="<?=Luis::basepage("base_page")."datos/source/estilos/header_gog.css";?>">
+					<?php endif ?>
+				<?php endif ?>
+				<?=DatosPagina::headerpage_b();?>
+
+
+
+
+
+
 			</div>
 		<?php else: //////////////////////////////////////////?>
 			<?php header('location:'.$base."tema_select_page");?>

@@ -88,6 +88,16 @@ class DatosPagina{
 		}else{
 		}
 	}
+
+	public static function headerpage_b(){
+		$head=Functions::header_disp();
+		$filedad = "./../datos/modulos/".Modulo::$modulo."/headers/".$head->nombre."/luis_head.php";
+		if(file_exists($filedad)){
+			include $filedad;
+		}else{
+		}
+	}
+
 	public static function footerpage(){
 		$footer=Functions::footer_disp();
 		$filedad_f = "datos/modulos/".Modulo::$modulo."/footers/".$footer->nombre."/luis_footer.php";

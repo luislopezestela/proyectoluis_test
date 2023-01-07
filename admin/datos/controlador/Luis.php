@@ -35,6 +35,35 @@ class Luis {
 		return $formatscripts;
 	}
 
+
+	public static function currentpagemenu($upl,$hm){
+		if(isset($_GET['paginas'])){
+			$urb=explode("/", $_GET["paginas"]);
+			if(isset($urb[0])){$urb0=$urb[0];}else{$urb0=false;}
+			if ($hm==1) {
+				$actmenty = match($urb0){
+					"index" => 'menu_activo',
+					$urb0 => $upl,
+					default => '',
+				};
+			}else{
+				if ($_GET["paginas"]==$upl) {
+					$actmenty = 'menu_activo';
+				}else{
+					$actmenty=false;
+				}
+			}
+		}else{
+			if($hm==1){
+				$actmenty='menu_activo '.$hm;
+			}else{
+				$actmenty=false;
+			}
+			
+		}
+		return $actmenty;
+	}
+
 	public static function styles(){
 		if(isset($_SESSION["admin_id"]) && $_SESSION["admin_id"]!=""){
 			if(isset($_GET["paginas"])){
