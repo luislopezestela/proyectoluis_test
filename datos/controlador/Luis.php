@@ -578,7 +578,7 @@ class Luis {
 	}
 
 	public static function httpconf(){
-		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'on') {
+		if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 		    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 		    header("Location: $url");
 		    exit;
