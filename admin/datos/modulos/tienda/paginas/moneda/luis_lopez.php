@@ -7,7 +7,7 @@ $base_a = Luis::basepage("base_page");
 $urb=explode("/", $_GET["paginas"]);
 if(isset($urb[1])){$urbp=$urb[1];}else{$urbp=false;}
 if(isset($urb[2])){$urbs=$urb[2];}else{$urbs=false;}
-?>
+?> 
 <section class="vista_preb_page">
   <ol class="box_visw">
     <li><a href="<?=$base;?>"><?=Luis::lang("inicio");?></a></li>
