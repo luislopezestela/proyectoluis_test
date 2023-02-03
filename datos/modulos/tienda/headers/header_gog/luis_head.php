@@ -23,9 +23,9 @@ $logotipclass = Luis::dato("luis_logo")->valor;
 if($logotipclass){
     $image_logo="admin/datos/imagenes/pagina/".$logotipclass;
     if(is_file($image_logo)){
-        $header_logotipo="<img height=\"80\" src='".DatosPagina::confver("base")."/admin/datos/imagenes/pagina/".$logotipclass."'>";
+        $header_logotipo="<img height=\"80\" src='".DatosPagina::confver("base")."admin/datos/imagenes/pagina/".$logotipclass."'>";
     }else{
-        $header_logotipo="<img height=\"80\" src='".DatosPagina::confver("base")."/admin/datos/imagenes/icons/foto.png'>";
+        $header_logotipo="<img height=\"80\" src='".DatosPagina::confver("base")."admin/datos/imagenes/icons/foto.png'>";
     }
 }
 

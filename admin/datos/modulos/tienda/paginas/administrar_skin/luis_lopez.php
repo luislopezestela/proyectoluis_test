@@ -14,7 +14,11 @@ if($_SESSION['admin_id']):
 	?>
 	<?php if($urbp): ?>
 		<?php $skin_view = Luis::administrar_el_tema($urbp);?>
-		<?php if($skin_view): /////////////////////////////////////////// ?>
+		<?php if($skin_view):
+			$logopagina = Luis::dato("luis_logo")->valor;
+			$head=Functions::header_disp();
+			$footer=Functions::footer_disp(); 
+			 ?>
 			<div class="contiene_config_temas">
 				<?php if(isset($head->nombre)): ?>
 					<?php if($head->nombre=="header_base"):?>
@@ -25,7 +29,6 @@ if($_SESSION['admin_id']):
 						<link rel="stylesheet" type="text/css" href="<?=Luis::basepage("base_page")."datos/source/estilos/header_gog.css";?>">
 					<?php endif ?>
 				<?php endif ?>
-				<?=DatosPagina::headerpage_b();?>
 
 
 

@@ -445,50 +445,6 @@ class Luis {
 			$urb=explode("/", $_GET["paginas"]);
 			if(isset($urb[1])){$urb1=$urb[1];}else{$urb1=false;}
 			$laspaginas = $_GET["paginas"];
-			if(Luis::temass()==="restaurante"){
-				switch($laspaginas){
-					case $_GET["paginas"]:
-					    if($name==="title"){
-					    	if(Vista::esValido()){
-					    		switch ($laspaginas) {
-					    			case 'carta':
-					    				$data = 'Carta';
-					    				break;
-					    			
-					    			default:
-					    				$data = html_entity_decode($titulopagina);
-					    				break;
-					    		}
-					    	}else{
-					    		$data = "ERROR 404, pagina ".$laspaginas." no encontrada!";
-					    	}
-					    }elseif($name==="name"){
-					    	$data = html_entity_decode($nombrepagina);
-					    }elseif($name==="description"){
-					    	$data = Luis::poner_guion_ur(strip_tags(html_entity_decode($descripcionpagina)));
-					    }elseif($name==="keywords"){
-					    	$data = html_entity_decode($keywordspagina);
-					    }elseif($name==="primarycolor"){
-					    	$data = $colorPrimario;
-					    }
-					    return $data;
-						break;
-					default:
-					    if($name==="title") {
-					    	$data = html_entity_decode($titulopagina);
-					    }elseif($name==="name"){
-					    	$data = html_entity_decode($nombrepagina);
-					    }elseif($name==="description"){
-					    	$data = Luis::poner_guion_ur(strip_tags(html_entity_decode($descripcionpagina)));
-					    }elseif($name==="keywords"){
-					    	$data = html_entity_decode($keywordspagina);
-					    }elseif($name==="primarycolor"){
-					    	$data = $colorPrimario;
-					    }
-					    return $data;
-					    break;
-				}
-			}elseif(Luis::temass()==="tienda"){
 				switch($laspaginas){
 					case $_GET["paginas"]:
 					    if($name==="title"){
@@ -531,7 +487,6 @@ class Luis {
 					    return $data;
 					    break;
 				}
-			}
 		}else{
 			if($name==="title") {
 				$data = html_entity_decode($titulopagina);

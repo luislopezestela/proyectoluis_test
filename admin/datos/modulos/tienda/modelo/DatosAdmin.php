@@ -78,10 +78,13 @@ class DatosAdmin{
 		$home_a=false;
 		$home_ca=false;
 		$configurar_a=false;
+		$temas_a=false;
 		$lista_menu="";
 		if(isset($_GET["paginas"])&&$_GET["paginas"]){$home_a=false;}else{$home_a="opcionActivado";}
 		if(isset($_GET["paginas"])&&$_GET["paginas"]=="cajas"){$home_ca="opcionActivado";}else{$home_ca=false;}
 		if(isset($_GET["paginas"])&&$_GET["paginas"]=="configurar_pagina"){$configurar_a="opcionActivado";}else{$configurar_a=false;}
+		if(isset($_GET["paginas"])&&$_GET["paginas"]=="tema_select_page" or $_GET["paginas"]=="administrar_skin/".$urb1){$temas_a="opcionActivado";}else{$temas_a=false;}
+	
 		if(isset($_GET["paginas"])&&$_GET["paginas"]=="metododepago"){$metodo_de_pago_a="opcionActivado";}else{$metodo_de_pago_a=false;}
 		if($page==="tienda"){
 			$restaurant_a=false;
@@ -230,6 +233,7 @@ class DatosAdmin{
 			$lista_menu.='</li>';
 
 			$lista_menu.='<li><a class="inicio opcion '.$configurar_a.'" href="'.Luis::basepage("base_page_admin").'configurar_pagina"><i class="icono__configurar"></i> '.Luis::lang("configurar").' </a></li>';
+			$lista_menu.='<li><a class="inicio opcion '.$temas_a.'" href="'.Luis::basepage("base_page_admin").'tema_select_page"><i class="icono__temas"></i> '.Luis::lang("temas").' </a></li>';
 			$lista_menu.='<li><a class="pointer sess_page_users"><i class="icono__userlog"></i> '.Luis::lang("cerrar_session").'</a></li>';
 
 		}
