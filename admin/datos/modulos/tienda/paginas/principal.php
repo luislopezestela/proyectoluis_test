@@ -37,7 +37,7 @@ if(isset($_GET["paginas"])){
 	<div class="mensaje100"></div>
 	<div id="process456" class="lds-rippledef"><div></div><div></div> <div id="porsenrbozx"></div></div>
 	<div id="ur_timeline" data="<?=Luis::basepage("base_page_admin");?>"></div>
-	<?=DatosAdmin::page_timeline_view();?>
+	
 	<?php if(isset($_SESSION['adios_user'])): ?>
 	<p class="message_session_unsed">Session finalizado.</p>
 	<?php unset($_SESSION['adios_user']); else: ?>
