@@ -2,4 +2,6 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home2/layshane/public_html/
-    - /bin/rsync -a --exclude 'BaseDatos.php' * $DEPLOYPATH
+    - /bin/rsync -a --exclude 'BaseDatos.php' /home2/layshane/repositories/proyectoluis2/* $DEPLOYPATH
+  # - export DEPLOYPATH=/home/glades/public_html
+  # - /bin/cp -r /home/glades/<repositories>/<repo>/* $DEPLOYPATH
