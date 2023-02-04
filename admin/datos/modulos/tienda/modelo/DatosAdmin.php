@@ -83,7 +83,11 @@ class DatosAdmin{
 		if(isset($_GET["paginas"])&&$_GET["paginas"]){$home_a=false;}else{$home_a="opcionActivado";}
 		if(isset($_GET["paginas"])&&$_GET["paginas"]=="cajas"){$home_ca="opcionActivado";}else{$home_ca=false;}
 		if(isset($_GET["paginas"])&&$_GET["paginas"]=="configurar_pagina"){$configurar_a="opcionActivado";}else{$configurar_a=false;}
-		if(isset($_GET["paginas"])&&$_GET["paginas"]=="tema_select_page" or isset($_GET["paginas"])&&$_GET["paginas"]=="administrar_skin/".$urb1){$temas_a="opcionActivado";}else{$temas_a=false;}
+		if(isset($_GET["paginas"])&&$_GET["paginas"]=="tema_select_page" or isset($_GET["paginas"])&&$_GET["paginas"]=="administrar_skin/".$urb1){
+			$temas_a="opcionActivado";
+		}else{
+			$temas_a=false;
+		}
 	
 		if(isset($_GET["paginas"])&&$_GET["paginas"]=="metododepago"){$metodo_de_pago_a="opcionActivado";}else{$metodo_de_pago_a=false;}
 		if($page==="tienda"){
