@@ -3,5 +3,3 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/layshane/public_html/
     - /bin/cp -a * $DEPLOYPATH
-    #- /bin/rsync -av --exclude 'admin/BaseDatos.php' * $DEPLOYPATH
-    #s
