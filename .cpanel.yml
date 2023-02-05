@@ -2,5 +2,5 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home2/layshane/public_html/
-    - /bin/cp -a --exclude 'BaseDatos.php' * $DEPLOYPATH
+    - /bin/cp -a * $DEPLOYPATH
     #s
