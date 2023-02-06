@@ -512,13 +512,13 @@ class Luis {
 
 	public static function httpconf(){
 		if(Luis::ver_certificado(Luis::dato("luis_base")->valor)) {
-	    	if(isset($_SERVER['HTTPS']) != "on"){
-			    $url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-			    header("Location: $url");
-			    exit;
-			}
+			$url = "https://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+			header("Location: $url");
+			exit;
 	    }else{
-	   		$pageURLvalor = "http://";
+	    	$url = "http://". $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+			header("Location: $url");
+			exit;
 	   	}
 	}
 
