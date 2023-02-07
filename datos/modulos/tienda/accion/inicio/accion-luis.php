@@ -16,7 +16,7 @@ foreach($diapositiva as $di){
 	}
 	$idexhtmls.="<a ".$urlactive."><picture>";
 	$idexhtmls.="<source class=\"for-mobile\" srcset=\"".$base."datos/modulos/".Luis::temass()."/source/imagenes/diapositiva/".$di->id."/thumb_".$img_slide->imagen."\" media=\"(max-width: 768px)\">";
-	$idexhtmls.="<img class=\"for-desktop first\" src=\"".$base."datos/modulos/".Luis::temass()."/source/imagenes/diapositiva/".$di->id."/".$img_slide->imagen."\" alt=\"Ofertas semanales. Laptop e impresora en un escritorio.\">";
+	$idexhtmls.="<img class=\"for-desktop first\" src=\"".$base."datos/modulos/".Luis::temass()."/source/imagenes/diapositiva/".$di->id."/".$img_slide->imagen."\" alt=\"".html_entity_decode($di->nombre)."\">";
 	$idexhtmls.="<div class=\"bannerTextcontent\">";
 	$idexhtmls.="<div class=\"bannerText\">";
 	$idexhtmls.="<div class=\"banText\">";
@@ -31,7 +31,7 @@ foreach($diapositiva as $di){
 		$idexhtmls.="<button class=\"ban-button-btn\">".Luis::lang($di->boton)."</button>";
 	}
 	
-	$idexhtmls.="<p>* Imágenes referenciales sujetas a variación.</p>";
+	$idexhtmls.="<p>* Imágenes referenciales sujetas a variaciónssss.</p>";
 	$idexhtmls.="</div>";
 
 
