@@ -31,7 +31,7 @@ foreach($diapositiva as $di){
 		$idexhtmls.="<button class=\"ban-button-btn\">".Luis::lang($di->boton)."</button>";
 	}
 	
-	$idexhtmls.="<p>* Imágenes referenciales sujetas a variaciónssss.</p>";
+	$idexhtmls.="<p>* Imágenes referenciales sujetas a variación.</p>";
 	$idexhtmls.="</div>";
 
 
