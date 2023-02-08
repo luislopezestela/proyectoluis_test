@@ -3,17 +3,17 @@ class BaseDatos {
 	public static $db;
 	public static $con;
 	function __construct(){
-		//$this->user="layshanetec";
-		//$this->pass="layshanetecdata";
+		$this->user="layshanetec";
+		$this->pass="layshanetecdata";
 
-		$this->user="root";
-		$this->pass="";
+		//$this->user="root";
+		//$this->pass="";
 		$this->host="localhost";
 	}
 
 	public static function basedatos_p(){
-		$datass = "restaurant";
-		//$datass = "layshane";
+		//$datass = "restaurant";
+		$datass = "layshane";
 		return $datass;
 	}
 	function conectar(){
