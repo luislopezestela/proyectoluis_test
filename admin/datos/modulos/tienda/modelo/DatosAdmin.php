@@ -20,7 +20,11 @@ class DatosAdmin{
         $url = preg_replace($find, $repl, $url);
         return $url;
     }
-    
+
+    public function cambio_logo_page(){
+    	$sql = "update configuracion SET valor=\"$this->icono\" where nombre=\"luis_logo\"";
+    	Ejecutor::doit($sql);
+    }
     
     function nombreCompleto(){ return $this->nombre." ".$this->apellido_paterno; }
     function nombreCompleto_dos(){ return $this->nombre." ".$this->apellido_paterno." ".$this->apellido_materno; }

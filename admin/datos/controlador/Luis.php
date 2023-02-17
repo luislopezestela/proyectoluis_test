@@ -75,7 +75,7 @@ class Luis {
 				$estilo_page = match($page_style){
 					"index" => Luis::formatstyle("stylehome",false,false),
 					"carta" => Luis::formatstyle("styleview",false,false),
-					"configurar_pagina" => Luis::formatstyle("adminstyle",false,false),
+					"configurar_pagina" => Luis::formatstyle("adminstyle","pageslist",false),
 					"carta/crear" => Luis::formatstyle("publiclist",false,false),
 					"carta/editar/".$urb2 => Luis::formatstyle("publiclist",false,false),
 					"carta/view/".$urb2 => Luis::formatstyle("publiclist","styleview",false),

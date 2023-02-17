@@ -52,7 +52,7 @@ li{list-style:none;}
 .addnewimageluisboxus{padding:0;justify-content:center;align-self:center;align-items:center;}
 .addnewimageluis{background-color:#e4e6eb;position:relative;display:flex;flex-wrap:wrap;box-sizing:border-box;width:100%;overflow:hidden;text-align:center;color:#65676b;user-select:none;-webkit-user-select:none;-ms-user-select:none;-moz-user-select:none;border-radius:5px;transition:all 0.5s;height:30px;max-width:200px;min-width:107px;outline:none;margin-top:5px;}
 .addnewimageluis:hover{background-color: #c8c8c8;}
-.vista_previa_uno{height:0;border:1px solid #ccc;margin:5px auto;transition:all .5s;visibility:hidden;}
+.vista_previa_uno{height:0;margin:5px auto;transition:all .5s;visibility:hidden;}
 .vista_previa_une{height:100px;max-width:100%;visibility:visible;object-fit:cover;}
 .botoneliminar1{display:none;}
 .elimina_activo{cursor:pointer;color:#fff;top:0px;right:0;position:absolute;display:inline-table;border-radius: 5px;height:20px;width:20px;outline:none;line-height:18px;border:1px solid #fff;background:#e74c3c;z-index:1000;}
